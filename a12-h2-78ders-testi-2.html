@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estar + Gerundio | A1.2 H2 7-8.Ders</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;--card:#fff;--card2:#ede8f7;
+  --accent:#6c3fc5;--accent2:#9b59b6;--blue:#1a5276;
+  --green:#1a7a45;--text:#2d3436;--muted:#7a7060;
+  --border:#dfe6e9;--radius:14px;--shadow:0 4px 24px rgba(108,92,231,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:"Plus Jakarta Sans",sans-serif;
+  min-height:100vh;max-width:620px;margin:0 auto;
+  box-shadow:0 0 60px rgba(0,0,0,.08);
+  background-image:radial-gradient(ellipse at 5% 10%,#ede8f7 0%,transparent 45%),
+                   radial-gradient(ellipse at 95% 90%,#d6eaf8 0%,transparent 45%);
+}
+/* INTRO */
+#intro{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2.5rem 1.5rem;text-align:center;}
+.week-pill{display:inline-block;background:var(--blue);color:#fff;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:50px;margin-bottom:1rem;}
+.intro-icon{font-size:3.5rem;margin-bottom:.8rem;display:block;animation:sway 3s ease-in-out infinite;}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+#intro h1{font-family:"Fraunces",serif;font-size:clamp(1.7rem,5vw,2.8rem);font-weight:900;color:var(--accent);margin-bottom:.3rem;line-height:1.1;}
+.intro-sub{color:var(--blue);font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
+.intro-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;}
+.teacher-badge{display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--border);background:var(--card);border-radius:50px;padding:.4rem 1.1rem;margin-bottom:1.4rem;font-size:.83rem;}
+.teacher-badge .handle{color:var(--blue);font-weight:700;}
+.topic-chips{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1.8rem;}
+.chip{background:var(--card);border:1.5px solid var(--border);color:var(--accent);font-size:.75rem;font-weight:600;padding:.22rem .7rem;border-radius:50px;}
+.name-box{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:1.2rem;width:100%;max-width:400px;text-align:left;box-shadow:var(--shadow);}
+.name-box label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem;}
+.name-select{width:100%;border:1.5px solid var(--border);background:var(--card2);border-radius:10px;padding:.7rem 1rem;font-size:.93rem;font-family:"Plus Jakarta Sans",sans-serif;color:var(--text);outline:none;}
+.start-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:.95rem 2.8rem;font-size:1rem;font-weight:700;border-radius:50px;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;box-shadow:0 4px 20px rgba(181,69,27,.3);transition:transform .2s;}
+.start-btn:hover{transform:translateY(-3px);}
+/* QUIZ */
+#quiz{display:none;padding:1.8rem 1.2rem 4rem;}
+.top-bar{display:flex;align-items:center;gap:1rem;margin-bottom:.4rem;}
+.prog-wrap{flex:1;background:var(--border);border-radius:50px;height:7px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:50px;transition:width .4s ease;}
+.prog-label{font-size:.8rem;color:var(--muted);white-space:nowrap;}
+.score-bar{display:flex;justify-content:space-between;align-items:center;font-size:.83rem;margin-bottom:1.3rem;}
+.s-correct{color:#1a7a45;font-weight:600;}
+.s-wrong{color:var(--accent);font-weight:600;}
+.finish-btn-sm{background:var(--accent);color:#fff;border:none;border-radius:50px;padding:.35rem 1rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;}
+.warn-box{background:#fff8e1;border:2px solid #f9a825;border-radius:10px;padding:.65rem .9rem;font-size:.8rem;color:#5a3a00;margin-bottom:.85rem;line-height:1.6;}
+.warn-box strong{color:var(--accent);}
+.q-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.5rem 1.2rem;box-shadow:var(--shadow);animation:slideUp .3s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;}
+.q-type-badge{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .65rem;border-radius:50px;display:inline-block;margin-bottom:.45rem;}
+.badge-mc{background:#e8f0fb;color:var(--blue);}
+.badge-fill{background:#fef3e2;color:#a05a00;}
+.q-text{font-family:"Fraunces",serif;font-size:clamp(.95rem,2.4vw,1.12rem);font-weight:700;line-height:1.5;margin-bottom:1rem;}
+.choices{display:flex;flex-direction:column;gap:.5rem;}
+.choice-btn{background:var(--card2);border:2px solid transparent;color:var(--text);padding:.62rem .9rem;border-radius:10px;cursor:pointer;font-size:.87rem;text-align:left;font-family:"Plus Jakarta Sans",sans-serif;display:flex;align-items:flex-start;gap:.6rem;transition:all .17s;line-height:1.4;}
+.choice-btn:hover:not(:disabled){border-color:var(--accent2);background:#fdf3e8;}
+.choice-btn.correct{border-color:#1a7a45;background:#eafaf2;color:#1a7a45;}
+.choice-btn.wrong{border-color:var(--accent);background:#fdf0ec;color:var(--accent);}
+.choice-btn:disabled{cursor:default;}
+.cletter{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--border);font-size:.68rem;font-weight:700;flex-shrink:0;color:var(--muted);margin-top:1px;}
+.correct .cletter{background:#1a7a45;color:#fff;}
+.wrong .cletter{background:var(--accent);color:#fff;}
+.fill-wrap{display:flex;flex-direction:column;gap:.5rem;}
+.fill-input{border:2px solid var(--border);background:var(--card2);border-radius:10px;padding:.72rem 1rem;font-size:.97rem;font-family:"Plus Jakarta Sans",sans-serif;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
+.fill-input:focus{border-color:var(--accent2);}
+.fill-input.correct-input{border-color:#1a7a45;background:#eafaf2;color:#1a7a45;font-weight:600;}
+.fill-input.wrong-input{border-color:var(--accent);background:#fdf0ec;color:var(--accent);}
+.fill-submit{background:linear-gradient(135deg,var(--blue),#2471a3);color:#fff;border:none;padding:.62rem 1.5rem;border-radius:10px;font-size:.87rem;font-weight:600;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;align-self:flex-start;}
+.fill-submit:disabled{opacity:.5;cursor:default;}
+.explanation{display:none;margin-top:.85rem;padding:.8rem 1rem;border-radius:10px;font-size:.83rem;line-height:1.75;}
+.explanation.show{display:block;animation:slideUp .22s ease;}
+.exp-ok{background:#eafaf2;border-left:4px solid #1a7a45;color:#0d4a28;}
+.exp-err{background:#fdf0ec;border-left:4px solid var(--accent);color:#6b1a0a;}
+.exp-es{font-style:italic;margin-top:.4rem;display:block;}
+.exp-tr{font-weight:700;color:var(--blue);display:block;}.exp-en{font-style:italic;color:var(--muted);display:block;}
+.nav-row{display:flex;gap:.65rem;margin-top:1rem;flex-wrap:wrap;}
+.nav-btn{flex:1;min-width:80px;padding:.62rem .9rem;border-radius:10px;border:1.5px solid var(--border);background:var(--card);color:var(--muted);font-size:.83rem;font-weight:600;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;transition:all .17s;}
+.nav-btn:hover{border-color:var(--accent2);color:var(--accent);}
+.nav-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;}
+.nav-btn:disabled{opacity:.35;cursor:default;}
+/* RESULT */
+#result{display:none;padding:2rem 1.2rem 4rem;}
+.result-hero{text-align:center;margin-bottom:1.8rem;}
+.result-icon{font-size:3.5rem;display:block;margin-bottom:.6rem;}
+.result-score{font-family:"Fraunces",serif;font-size:5rem;font-weight:900;color:var(--blue);line-height:1;}
+.result-sub{color:var(--muted);font-size:.87rem;margin-top:.3rem;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-bottom:1.2rem;}
+.stat-box{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:.85rem;text-align:center;box-shadow:var(--shadow);}
+.stat-val{font-family:"Fraunces",serif;font-size:1.9rem;font-weight:900;line-height:1;}
+.stat-lbl{font-size:.7rem;color:var(--muted);margin-top:.2rem;font-weight:600;}
+.clr-g{color:#1a7a45;}.clr-r{color:var(--accent);}.clr-b{color:var(--blue);}
+.name-section{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;margin-bottom:.85rem;box-shadow:var(--shadow);}
+.name-section label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem;}
+.name-row{display:flex;gap:.6rem;flex-wrap:wrap;}
+.name-confirm{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:.65rem 1.2rem;font-size:.87rem;font-weight:600;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;}
+.name-confirm:disabled{opacity:.6;}
+#sendStatus{font-size:.79rem;margin-top:.4rem;display:none;}
+.summary-card{display:none;background:linear-gradient(135deg,var(--blue),#2471a3);color:#fff;border-radius:var(--radius);padding:1.2rem 1.4rem;margin-bottom:.85rem;}
+.summary-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:.25rem;}
+.summary-name{font-family:"Fraunces",serif;font-size:1.2rem;font-weight:900;margin-bottom:.65rem;}
+.summary-scores{display:flex;gap:.8rem;}
+.sum-box{background:rgba(255,255,255,.15);border-radius:10px;padding:.5rem .9rem;text-align:center;flex:1;}
+.sum-val{font-family:"Fraunces",serif;font-size:1.5rem;font-weight:900;}
+.sum-lbl{font-size:.66rem;opacity:.8;margin-top:.1rem;}
+.notice-box{display:none;background:#fff8e1;border:2px solid #f9a825;border-radius:var(--radius);padding:.85rem 1.1rem;font-size:.85rem;color:#5a3a00;line-height:1.7;margin-bottom:.85rem;}
+.action-btns{display:none;flex-direction:column;gap:.6rem;margin-bottom:.85rem;}
+.action-btns.show{display:flex;}
+.btn-review{background:var(--card);border:1.5px solid var(--border);color:var(--text);padding:.78rem;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;}
+.btn-restart{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:.78rem;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;}
+.review-title{font-family:"Fraunces",serif;font-size:1.1rem;font-weight:900;color:var(--accent);margin-bottom:.85rem;}
+.review-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:.65rem;box-shadow:var(--shadow);}
+.review-qnum{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.22rem;}
+.review-q{font-weight:700;margin-bottom:.38rem;line-height:1.5;font-size:.88rem;}
+.review-your{color:var(--accent);font-size:.83rem;margin-bottom:.22rem;}
+.review-correct{color:#1a7a45;font-size:.83rem;margin-bottom:.33rem;}
+.review-exp{background:var(--card2);border-radius:8px;padding:.5rem .72rem;font-size:.8rem;line-height:1.65;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <span class="intro-icon">📚</span>
+  <div class="week-pill">2. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (7–8. DERS)</div>
+  <h1>Estar + Gerundio</h1>
+  <div class="intro-sub">Presente Continuo &amp; Reflexivos</div>
+  <div class="intro-desc">100 soru &middot; Çoktan seçmeli (a–d)</div>
+  <p class="intro-desc">100 soru · Çoktan seçmeli</p>
+  <div class="teacher-badge"><span class="handle">@ispanyolcacim</span><span style="color:var(--border)">•</span><span style="color:var(--muted)">Profe Hazel</span></div>
+  <div class="name-box">
+    <label>👤 Adınızı seçin</label>
+    <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Busem Şeker">Busem Şeker</option>
+    <option value="Ece Turhanoğlu">Ece Turhanoğlu</option>
+    <option value="Elif Şafak">Elif Şafak</option>
+    <option value="Esra Özkaya">Esra Özkaya</option>
+    <option value="Kardelen Kuşçu">Kardelen Kuşçu</option>
+    <option value="Sümeyye Şahin">Sümeyye Şahin</option>
+    <option value="Şeyma Koçak">Şeyma Koçak</option>
+    <option value="Yiğit Öz">Yiğit Öz</option>
+    <option value="Zeynep Ertürk">Zeynep Ertürk</option>
+    <option value="Zümeyra Doğan">Zümeyra Doğan</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<div id="quiz">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+  </div>
+  <div class="score-bar">
+    <span class="s-correct">✓ <span id="sCorrect">0</span> doğru</span>
+    <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+    <span class="s-wrong">✗ <span id="sWrong">0</span> yanlış</span>
+  </div>
+  <div id="qArea"></div>
+</div>
+
+<div id="result">
+  <div class="result-hero">
+    <span class="result-icon" id="resIcon"></span>
+    <div class="week-pill">2. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (7–8. DERS)</div>
+    <div class="result-score" id="resPct">0</div>
+    <div class="result-sub">/ 100 puan</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-val clr-g" id="stOk">0</div><div class="stat-lbl">✓ Doğru</div></div>
+    <div class="stat-box"><div class="stat-val clr-r" id="stErr">0</div><div class="stat-lbl">✗ Yanlış</div></div>
+    <div class="stat-box"><div class="stat-val clr-b" id="stPct">0</div><div class="stat-lbl">Puan</div></div>
+  </div>
+  <div class="name-section">
+    <label>👤 Adınızı onaylayın — ödev çizelgesine işlenecek</label>
+    <div class="name-row">
+      <select class="name-select" id="studentName" style="flex:1;min-width:160px;">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Busem Şeker">Busem Şeker</option>
+    <option value="Ece Turhanoğlu">Ece Turhanoğlu</option>
+    <option value="Elif Şafak">Elif Şafak</option>
+    <option value="Esra Özkaya">Esra Özkaya</option>
+    <option value="Kardelen Kuşçu">Kardelen Kuşçu</option>
+    <option value="Sümeyye Şahin">Sümeyye Şahin</option>
+    <option value="Şeyma Koçak">Şeyma Koçak</option>
+    <option value="Yiğit Öz">Yiğit Öz</option>
+    <option value="Zeynep Ertürk">Zeynep Ertürk</option>
+    <option value="Zümeyra Doğan">Zümeyra Doğan</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+  </select>
+      <button class="name-confirm" id="confirmBtn" onclick="confirmName()">Onayla ✓</button>
+    </div>
+    <div id="sendStatus"></div>
+  </div>
+  <div class="summary-card" id="summaryCard">
+    <div class="summary-label">✅ Ödeviniz teslim edildi!</div>
+    <div class="summary-name" id="summaryName"></div>
+    <div style="font-size:.82rem;opacity:.8;margin-bottom:.7rem;" id="summaryOdev"></div>
+    <div class="summary-scores">
+      <div class="sum-box"><div class="sum-val" id="sumPuan">0</div><div class="sum-lbl">Puan / 100</div></div>
+      <div class="sum-box"><div class="sum-val" id="sumDogru">0</div><div class="sum-lbl">✓ Doğru</div></div>
+      <div class="sum-box"><div class="sum-val" id="sumYanlis">0</div><div class="sum-lbl">✗ Yanlış</div></div>
+    </div>
+  </div>
+  <div class="notice-box" id="noticeBox">
+    🎉 <strong>Test tamamlandı!</strong><br>
+    Yanlışlarınız için <strong>WhatsApp grubundan</strong> sorun!
+  </div>
+  <div class="action-btns" id="actionBtns">
+    <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+    <button class="btn-restart" onclick="restart()">🔄 Testi Tekrar Çöz</button>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+<script>
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec";
+const RESULT_TITLE="2. HAFTA \u00d6DEV\u0130 | A1.2 (7\u20138. DERS)";
+const ODEV_ADI="H2 \u2013 7-8.Ders";
+const GROUPS={
+  "Busem \u015eeker":"A1.2",
+  "Ece Turhan\u043e\u011flu":"A1.2",
+  "Elif \u015eafak":"A1.2",
+  "Esra \u00d6zkaya":"A1.2",
+  "Kardelen Ku\u015f\u00e7u":"A1.2",
+  "S\u00fcmeyye \u015eahin":"A1.2",
+  "\u015eeyma Ko\u00e7ak":"A1.2",
+  "Yi\u011fit \u00d6z":"A1.2",
+  "Zeynep Ert\u00fcrk":"A1.2",
+  "Z\u00fcmeyra Do\u011fan":"A1.2",
+  "Deneme \u00d6\u011frencisi":"A1.2"
+};
+
+const WARN='';
+
+const Q=[
+{t:"mc",q:"No me gusta dormir mucho. Ahora mismo ______ (levantarse) temprano.",o:["me estoy levantando", "estoy levantandome", "me levanto", "estoy me levantando"],a:0,exp:"\"Ahora mismo\" \u2192 \u015fu an \u2192 estar + gerundio zorunlu. Reflexivo \u2192 me estoy levantando (zamir estar'dan \u00f6nce). \u274c B: tilde eksik \u274c C: presente simple \u274c D: yanl\u0131\u015f dizilim | ES: Ahora mismo me estoy levantando temprano. | TR: \u015eu an erken kalk\u0131yorum. | EN: I am getting up early right now.",es:"Ahora mismo me estoy levantando temprano.",tr:"\u015eu an erken kalk\u0131yorum.",en:"I am getting up early right now."},
+{t:"mc",q:"Siempre llego tarde. Ahora ______ (ducharse) r\u00e1pido.",o:["estoy duchandome", "me estoy duchando", "estoy me duchando", "me ducho"],a:1,exp:"\"Ahora\" \u2192 \u015fu an \u2192 estar + gerundio. Reflexivo \u2192 zamir \u00f6nce gelir. | ES: Ahora me estoy duchando r\u00e1pido. | TR: \u015eu an h\u0131zl\u0131 du\u015f al\u0131yorum. | EN: I am taking a shower quickly now.",es:"Ahora me estoy duchando r\u00e1pido.",tr:"\u015eu an h\u0131zl\u0131 du\u015f al\u0131yorum.",en:"I am taking a shower quickly now."},
+{t:"mc",q:"Estoy cansado. Ahora mismo ______ (relajarse) en casa.",o:["me relajo", "estoy relajandome", "estoy relaj\u00e1ndome", "me estoy relajandome"],a:2,exp:"Zamir gerundioya eklenebilir \u2192 relaj\u00e1ndome (tilde \u015fart). | ES: Ahora mismo estoy relaj\u00e1ndome en casa. | TR: \u015eu an evde rahatl\u0131yorum. | EN: I am relaxing at home right now.",es:"Ahora mismo estoy relaj\u00e1ndome en casa.",tr:"\u015eu an evde rahatl\u0131yorum.",en:"I am relaxing at home right now."},
+{t:"mc",q:"Despu\u00e9s del trabajo, ahora ______ (acostarse).",o:["me estoy acostar", "estoy acostandome", "me acuestar", "estoy acost\u00e1ndome"],a:3,exp:"Gerundio + zamir birle\u015fik yaz\u0131l\u0131r ve tilde gerekir \u2192 acost\u00e1ndome. | ES: Ahora estoy acost\u00e1ndome. | TR: \u015eu an yat\u0131yorum. | EN: I am going to bed now.",es:"Ahora estoy acost\u00e1ndome.",tr:"\u015eu an yat\u0131yorum.",en:"I am going to bed now."},
+{t:"mc",q:"No tengo tiempo. Ahora mismo ______ (prepararse) r\u00e1pido.",o:["me estoy preparando", "estoy preparandome", "estoy me preparando", "me preparo estoy"],a:0,exp:"En do\u011fru ve temiz yap\u0131: me estoy preparando. | ES: Ahora mismo me estoy preparando r\u00e1pido. | TR: \u015eu an h\u0131zl\u0131 haz\u0131rlan\u0131yorum. | EN: I am getting ready quickly right now.",es:"Ahora mismo me estoy preparando r\u00e1pido.",tr:"\u015eu an h\u0131zl\u0131 haz\u0131rlan\u0131yorum.",en:"I am getting ready quickly right now."},
+{t:"mc",q:"Ahora mismo ______ (vestirse) para salir.",o:["estoy vistiendome", "me estoy vistiendo", "estoy me vistiendo", "me estoy visto"],a:1,exp:"\"vestirse\" \u2192 e\u2192i de\u011fi\u015fimi \u2192 vistiendo. | ES: Ahora mismo me estoy vistiendo. | TR: \u015eu an giyiniyorum. | EN: I am getting dressed right now.",es:"Ahora mismo me estoy vistiendo.",tr:"\u015eu an giyiniyorum.",en:"I am getting dressed right now."},
+{t:"mc",q:"Estoy en clase. Ahora ______ (sentarse).",o:["me estoy siento", "estoy sient\u00e1ndome", "estoy sent\u00e1ndome", "estoy sentandome"],a:2,exp:"Do\u011fru form \u2192 sent\u00e1ndome (tilde \u015fart). | ES: Ahora estoy sent\u00e1ndome. | TR: \u015eu an oturuyorum. | EN: I am sitting down now.",es:"Ahora estoy sent\u00e1ndome.",tr:"\u015eu an oturuyorum.",en:"I am sitting down now."},
+{t:"mc",q:"Hoy no salgo. Ahora mismo ______ (quedarse) en casa.",o:["me estoy quedo", "estoy quedandome", "me quedo", "estoy qued\u00e1ndome"],a:3,exp:"quedarse \u2192 qued\u00e1ndome (tilde). | ES: Ahora mismo estoy qued\u00e1ndome en casa. | TR: \u015eu an evde kal\u0131yorum. | EN: I am staying at home right now.",es:"Ahora mismo estoy qued\u00e1ndome en casa.",tr:"\u015eu an evde kal\u0131yorum.",en:"I am staying at home right now."},
+{t:"mc",q:"Tengo sue\u00f1o. Ahora ______ (dormirse).",o:["me estoy durmiendo", "estoy durmiendome", "estoy me duermo", "me estoy duermiendo"],a:0,exp:"dormir \u2192 durmiendo (o\u2192ue de\u011fil burada o\u2192u olur). | ES: Ahora me estoy durmiendo. | TR: \u015eu an uyuyakal\u0131yorum. | EN: I am falling asleep now.",es:"Ahora me estoy durmiendo.",tr:"\u015eu an uyuyakal\u0131yorum.",en:"I am falling asleep now."},
+{t:"mc",q:"Hace fr\u00edo. Ahora mismo ______ (ponerse) el abrigo.",o:["estoy poniendome", "me estoy poniendo", "estoy me poniendo", "me estoy pongo"],a:1,exp:"poner \u2192 poniendo. | ES: Ahora mismo me estoy poniendo el abrigo. | TR: \u015eu an montumu giyiyorum. | EN: I am putting on my coat right now.",es:"Ahora mismo me estoy poniendo el abrigo.",tr:"\u015eu an montumu giyiyorum.",en:"I am putting on my coat right now."},
+{t:"mc",q:"Yo no estoy estudiando ahora. Ahora mismo ______ (relajarse).",o:["me estoy relajo", "estoy relajandome", "me estoy relajando", "estoy me relaj\u00e1ndo"],a:2,exp:"\"Ahora mismo\" \u2192 estar + gerundio zorunlu. Reflexivo \u2192 me estoy relajando. | ES: Ahora mismo me estoy relajando. | TR: \u015eu an rahatl\u0131yorum. | EN: I am relaxing right now.",es:"Ahora mismo me estoy relajando.",tr:"\u015eu an rahatl\u0131yorum.",en:"I am relaxing right now."},
+{t:"mc",q:"Estoy en el ba\u00f1o. Ahora ______ (lavarse) las manos.",o:["estoy lavandome", "me estoy lavo", "estoy me lavando", "estoy lav\u00e1ndome"],a:3,exp:"Zamir gerundioya eklenmi\u015f \u2192 lav\u00e1ndome (tilde \u015fart). | ES: Ahora estoy lav\u00e1ndome las manos. | TR: \u015eu an ellerimi y\u0131k\u0131yorum. | EN: I am washing my hands now.",es:"Ahora estoy lav\u00e1ndome las manos.",tr:"\u015eu an ellerimi y\u0131k\u0131yorum.",en:"I am washing my hands now."},
+{t:"mc",q:"Tengo prisa. Ahora mismo ______ (peinarse).",o:["me estoy peinando", "estoy peinandome", "me peino", "estoy me peinando"],a:0,exp:"Acele + \u015fimdi \u2192 estar + gerundio. En temiz yap\u0131: me estoy peinando. | ES: Ahora mismo me estoy peinando. | TR: \u015eu an sa\u00e7\u0131m\u0131 tar\u0131yorum. | EN: I am combing my hair right now.",es:"Ahora mismo me estoy peinando.",tr:"\u015eu an sa\u00e7\u0131m\u0131 tar\u0131yorum.",en:"I am combing my hair right now."},
+{t:"mc",q:"Estoy en casa descansando. Ahora mismo ______ (sentirse) mejor.",o:["estoy sintiendome", "me estoy sintiendo", "estoy me sintiendo", "me siento"],a:1,exp:"sentirse \u2192 sintiendo (e\u2192i de\u011fi\u015fimi) \u2192 me estoy sintiendo. | ES: Ahora mismo me estoy sintiendo mejor. | TR: \u015eu an kendimi daha iyi hissediyorum. | EN: I am feeling better right now.",es:"Ahora mismo me estoy sintiendo mejor.",tr:"\u015eu an kendimi daha iyi hissediyorum.",en:"I am feeling better right now."},
+{t:"mc",q:"Estoy cansado. Ahora ______ (acostarse).",o:["me estoy acuestando", "estoy acuestandome", "estoy acost\u00e1ndome", "estoy me acostando"],a:2,exp:"acostarse \u2192 acost\u00e1ndome (tilde gerekli). Do\u011fru yap\u0131: estoy acost\u00e1ndome. | ES: Ahora estoy acost\u00e1ndome. | TR: \u015eu an yata\u011fa gidiyorum. | EN: I am going to bed now.",es:"Ahora estoy acost\u00e1ndome.",tr:"\u015eu an yata\u011fa gidiyorum.",en:"I am going to bed now."},
+{t:"mc",q:"Ahora mismo ______ (levantarse).",o:["estoy levantandome", "me estoy levantando", "estoy me levantando", "me levanto"],a:1,exp:"estar + gerundio + reflexivo \u2192 me estoy levantando. | ES: Ahora mismo me estoy levantando. | TR: \u015eu an kalk\u0131yorum. | EN: I am getting up right now.",es:"Ahora mismo me estoy levantando.",tr:"\u015eu an kalk\u0131yorum.",en:"I am getting up right now."},
+{t:"mc",q:"Estoy en el sof\u00e1. Ahora ______ (relajarse).",o:["me estoy relajando", "estoy relajandome", "me relajo", "estoy me relajando"],a:0,exp:"\u015eu an \u2192 progresivo \u2192 me estoy relajando. | ES: Ahora me estoy relajando. | TR: \u015eu an rahatl\u0131yorum. | EN: I am relaxing now.",es:"Ahora me estoy relajando.",tr:"\u015eu an rahatl\u0131yorum.",en:"I am relaxing now."},
+{t:"mc",q:"Estoy muy cansado. Ahora mismo ______ (dormirse).",o:["estoy durmiendome", "me estoy durmiendo", "estoy me durmiendo", "me duermo"],a:1,exp:"dormir \u2192 durmiendo \u2192 me estoy durmiendo. | ES: Ahora mismo me estoy durmiendo. | TR: \u015eu an uyuyakal\u0131yorum. | EN: I am falling asleep right now.",es:"Ahora mismo me estoy durmiendo.",tr:"\u015eu an uyuyakal\u0131yorum.",en:"I am falling asleep right now."},
+{t:"mc",q:"Estoy en casa y no voy a salir. Ahora ______ (quedarse).",o:["me estoy quedando", "estoy quedandome", "me quedo", "estoy me quedando"],a:0,exp:"quedarse \u2192 me estoy quedando. | ES: Ahora me estoy quedando en casa. | TR: \u015eu an evde kal\u0131yorum. | EN: I am staying at home now.",es:"Ahora me estoy quedando en casa.",tr:"\u015eu an evde kal\u0131yorum.",en:"I am staying at home now."},
+{t:"mc",q:"Tengo fr\u00edo. Ahora mismo ______ (ponerse) la chaqueta.",o:["estoy poniendome", "me estoy poniendo", "estoy me poniendo", "me pongo"],a:1,exp:"poner \u2192 poniendo \u2192 me estoy poniendo. | ES: Ahora mismo me estoy poniendo la chaqueta. | TR: \u015eu an montumu giyiyorum. | EN: I am putting on my jacket right now.",es:"Ahora mismo me estoy poniendo la chaqueta.",tr:"\u015eu an montumu giyiyorum.",en:"I am putting on my jacket right now."},
+{t:"mc",q:"Est\u00e1s en el ba\u00f1o. Ahora mismo ______ (ducharse).",o:["te est\u00e1s duchando", "est\u00e1s duchandote", "te duchas", "est\u00e1s te duchando"],a:0,exp:"\"Ahora mismo\" \u2192 \u015fu an \u2192 estar + gerundio. Reflexivo \u2192 te est\u00e1s duchando. | ES: Ahora mismo te est\u00e1s duchando. | TR: \u015eu an du\u015f al\u0131yorsun. | EN: You are taking a shower right now.",es:"Ahora mismo te est\u00e1s duchando.",tr:"\u015eu an du\u015f al\u0131yorsun.",en:"You are taking a shower right now."},
+{t:"mc",q:"Tienes sue\u00f1o. Ahora ______ (acostarse).",o:["est\u00e1s acostandote", "te est\u00e1s acostando", "te acuestas", "est\u00e1s te acostando"],a:1,exp:"Uyku var + \u015fimdi \u2192 progresivo \u2192 te est\u00e1s acostando. | ES: Ahora te est\u00e1s acostando. | TR: \u015eu an yata\u011fa gidiyorsun. | EN: You are going to bed now.",es:"Ahora te est\u00e1s acostando.",tr:"\u015eu an yata\u011fa gidiyorsun.",en:"You are going to bed now."},
+{t:"mc",q:"Est\u00e1s tranquilo en casa. Ahora mismo ______ (relajarse).",o:["est\u00e1s relajandote", "te est\u00e1s relajando", "te relajas", "est\u00e1s te relajando"],a:1,exp:"Do\u011fru yap\u0131: te est\u00e1s relajando. | ES: Ahora mismo te est\u00e1s relajando. | TR: \u015eu an rahatl\u0131yorsun. | EN: You are relaxing right now.",es:"Ahora mismo te est\u00e1s relajando.",tr:"\u015eu an rahatl\u0131yorsun.",en:"You are relaxing right now."},
+{t:"mc",q:"Est\u00e1s en casa. Ahora ______ (prepararse) para salir.",o:["te est\u00e1s preparando", "est\u00e1s preparandote", "te preparas", "est\u00e1s te preparando"],a:0,exp:"Progresivo \u2192 te est\u00e1s preparando. | ES: Ahora te est\u00e1s preparando. | TR: \u015eu an haz\u0131rlan\u0131yorsun. | EN: You are getting ready now.",es:"Ahora te est\u00e1s preparando.",tr:"\u015eu an haz\u0131rlan\u0131yorsun.",en:"You are getting ready now."},
+{t:"mc",q:"Est\u00e1s en la cama y tienes mucho sue\u00f1o. Ahora mismo ______ (dormirse).",o:["te est\u00e1s durmiendo", "est\u00e1s durmiendote", "te duermes", "est\u00e1s te durmiendo"],a:0,exp:"dormir \u2192 durmiendo \u2192 te est\u00e1s durmiendo. | ES: Ahora mismo te est\u00e1s durmiendo. | TR: \u015eu an uyuyakal\u0131yorsun. | EN: You are falling asleep right now.",es:"Ahora mismo te est\u00e1s durmiendo.",tr:"\u015eu an uyuyakal\u0131yorsun.",en:"You are falling asleep right now."},
+{t:"mc",q:"Est\u00e1s en el gimnasio. Ahora ______ (cambiarse) de ropa.",o:["te est\u00e1s cambiando", "est\u00e1s cambiandote", "te cambias", "est\u00e1s te cambiando"],a:0,exp:"Do\u011fru yap\u0131: te est\u00e1s cambiando. | ES: Ahora te est\u00e1s cambiando de ropa. | TR: \u015eu an \u00fcst\u00fcn\u00fc de\u011fi\u015ftiriyorsun. | EN: You are changing clothes now.",es:"Ahora te est\u00e1s cambiando de ropa.",tr:"\u015eu an \u00fcst\u00fcn\u00fc de\u011fi\u015ftiriyorsun.",en:"You are changing clothes now."},
+{t:"mc",q:"Tienes sue\u00f1o. Ahora mismo ______ (acostarse) temprano.",o:["est\u00e1s acostandote", "te est\u00e1s acostando", "te acuestas", "est\u00e1s te acostando"],a:1,exp:"Progresivo \u2192 te est\u00e1s acostando. | ES: Ahora mismo te est\u00e1s acostando temprano. | TR: \u015eu an erken yat\u0131yorsun. | EN: You are going to bed early right now.",es:"Ahora mismo te est\u00e1s acostando temprano.",tr:"\u015eu an erken yat\u0131yorsun.",en:"You are going to bed early right now."},
+{t:"mc",q:"Est\u00e1s en casa y no sales. Ahora ______ (quedarse) hoy.",o:["te est\u00e1s quedando", "est\u00e1s quedandote", "te quedas", "est\u00e1s te quedando"],a:0,exp:"quedarse \u2192 te est\u00e1s quedando. | ES: Ahora te est\u00e1s quedando en casa. | TR: \u015eu an evde kal\u0131yorsun. | EN: You are staying at home now.",es:"Ahora te est\u00e1s quedando en casa.",tr:"\u015eu an evde kal\u0131yorsun.",en:"You are staying at home now."},
+{t:"mc",q:"Hace calor. Ahora mismo ______ (ponerse) ropa ligera.",o:["est\u00e1s poniendote", "te est\u00e1s poniendo", "est\u00e1s te poniendo", "te pones"],a:1,exp:"poner \u2192 poniendo \u2192 te est\u00e1s poniendo. | ES: Ahora mismo te est\u00e1s poniendo ropa ligera. | TR: \u015eu an hafif k\u0131yafet giyiyorsun. | EN: You are putting on light clothes right now.",es:"Ahora mismo te est\u00e1s poniendo ropa ligera.",tr:"\u015eu an hafif k\u0131yafet giyiyorsun.",en:"You are putting on light clothes right now."},
+{t:"mc",q:"Est\u00e1s cansado. Ahora ______ (relajarse).",o:["te est\u00e1s relajando", "est\u00e1s relajandote", "te relajas", "est\u00e1s te relajando"],a:0,exp:"Do\u011fru yap\u0131: te est\u00e1s relajando. | ES: Ahora te est\u00e1s relajando. | TR: \u015eu an dinleniyorsun. | EN: You are relaxing now.",es:"Ahora te est\u00e1s relajando.",tr:"\u015eu an dinleniyorsun.",en:"You are relaxing now."},
+{t:"mc",q:"Estamos en el ba\u00f1o. Ahora mismo ______ (lavarse) la cara.",o:["estamos lavandonos", "nos estamos lavando", "estamos nos lavando", "nos lavamos"],a:1,exp:"\u015eu an \u2192 estar + gerundio. Reflexivo \u2192 nos estamos lavando. | ES: Ahora mismo nos estamos lavando la cara. | TR: \u015eu an y\u00fcz\u00fcm\u00fcz\u00fc y\u0131k\u0131yoruz. | EN: We are washing our faces right now.",es:"Ahora mismo nos estamos lavando la cara.",tr:"\u015eu an y\u00fcz\u00fcm\u00fcz\u00fc y\u0131k\u0131yoruz.",en:"We are washing our faces right now."},
+{t:"mc",q:"Tenemos prisa. Ahora ______ (prepararse).",o:["nos estamos preparando", "estamos preparandonos", "nos preparamos", "estamos nos preparando"],a:0,exp:"Acele + \u015fimdi \u2192 progresivo \u2192 nos estamos preparando. | ES: Ahora nos estamos preparando. | TR: \u015eu an haz\u0131rlan\u0131yoruz. | EN: We are getting ready now.",es:"Ahora nos estamos preparando.",tr:"\u015eu an haz\u0131rlan\u0131yoruz.",en:"We are getting ready now."},
+{t:"mc",q:"Estamos en casa. Ahora mismo ______ (sentarse).",o:["nos sentamos", "estamos sentandonos", "estamos nos sentando", "nos estamos sentando"],a:3,exp:"sentarse \u2192 sentando \u2192 nos estamos sentando. | ES: Ahora mismo nos estamos sentando. | TR: \u015eu an oturuyoruz. | EN: We are sitting down right now.",es:"Ahora mismo nos estamos sentando.",tr:"\u015eu an oturuyoruz.",en:"We are sitting down right now."},
+{t:"mc",q:"Estamos muy cansados. Ahora ______ (dormirse).",o:["estamos durmiendonos", "nos estamos durmiendo", "estamos nos durmiendo", "nos dormimos"],a:1,exp:"dormir \u2192 durmiendo \u2192 nos estamos durmiendo. | ES: Ahora nos estamos durmiendo. | TR: \u015eu an uyuyakal\u0131yoruz. | EN: We are falling asleep now.",es:"Ahora nos estamos durmiendo.",tr:"\u015eu an uyuyakal\u0131yoruz.",en:"We are falling asleep now."},
+{t:"mc",q:"Estamos en la cama. Ahora mismo ______ (acostarse).",o:["nos estamos acostando", "estamos acostandonos", "nos acostamos", "estamos nos acostando"],a:0,exp:"acostarse \u2192 acostando \u2192 nos estamos acostando. | ES: Ahora mismo nos estamos acostando. | TR: \u015eu an yata\u011fa gidiyoruz. | EN: We are going to bed right now.",es:"Ahora mismo nos estamos acostando.",tr:"\u015eu an yata\u011fa gidiyoruz.",en:"We are going to bed right now."},
+{t:"mc",q:"Estamos en casa. Ahora ______ (relajarse).",o:["nos estamos relajando", "estamos relajandonos", "nos relajamos", "estamos nos relajando"],a:0,exp:"Do\u011fru yap\u0131: nos estamos relajando. | ES: Ahora nos estamos relajando. | TR: \u015eu an rahatl\u0131yoruz. | EN: We are relaxing now.",es:"Ahora nos estamos relajando.",tr:"\u015eu an rahatl\u0131yoruz.",en:"We are relaxing now."},
+{t:"mc",q:"Estamos en el ba\u00f1o. Ahora mismo ______ (ducharse).",o:["estamos duchandonos", "nos estamos duchando", "estamos nos duchando", "nos duchamos"],a:1,exp:"Reflexivo \u2192 nos estamos duchando. | ES: Ahora mismo nos estamos duchando. | TR: \u015eu an du\u015f al\u0131yoruz. | EN: We are taking a shower right now.",es:"Ahora mismo nos estamos duchando.",tr:"\u015eu an du\u015f al\u0131yoruz.",en:"We are taking a shower right now."},
+{t:"mc",q:"Estamos cansados. Ahora ______ (dormirse).",o:["estamos durmiendonos", "nos estamos durmiendo", "estamos nos durmiendo", "nos dormimos"],a:1,exp:"Do\u011fru yap\u0131: nos estamos durmiendo. | ES: Ahora nos estamos durmiendo. | TR: \u015eu an uyuyakal\u0131yoruz. | EN: We are falling asleep now.",es:"Ahora nos estamos durmiendo.",tr:"\u015eu an uyuyakal\u0131yoruz.",en:"We are falling asleep now."},
+{t:"mc",q:"Estamos en casa y no salimos. Ahora mismo ______ (quedarse).",o:["nos estamos quedando", "estamos quedandonos", "nos quedamos", "estamos nos quedando"],a:0,exp:"quedarse \u2192 nos estamos quedando. | ES: Ahora mismo nos estamos quedando en casa. | TR: \u015eu an evde kal\u0131yoruz. | EN: We are staying at home right now.",es:"Ahora mismo nos estamos quedando en casa.",tr:"\u015eu an evde kal\u0131yoruz.",en:"We are staying at home right now."},
+{t:"mc",q:"Hace fr\u00edo. Ahora ______ (ponerse) el abrigo.",o:["estamos poniendonos", "nos estamos poniendo", "estamos nos poniendo", "nos ponemos"],a:1,exp:"poner \u2192 poniendo \u2192 nos estamos poniendo. | ES: Ahora nos estamos poniendo el abrigo. | TR: \u015eu an montumuzu giyiyoruz. | EN: We are putting on our coats now.",es:"Ahora nos estamos poniendo el abrigo.",tr:"\u015eu an montumuzu giyiyoruz.",en:"We are putting on our coats now."},
+{t:"mc",q:"Est\u00e1is en el sof\u00e1. Ahora mismo ______ (relajarse).",o:["os est\u00e1is relajando", "est\u00e1is relajandoos", "os relaj\u00e1is", "est\u00e1is os relajando"],a:0,exp:"\u015eu an \u2192 estar + gerundio. Reflexivo \u2192 os est\u00e1is relajando. | ES: Ahora mismo os est\u00e1is relajando. | TR: \u015eu an rahatl\u0131yorsunuz. | EN: You are relaxing right now.",es:"Ahora mismo os est\u00e1is relajando.",tr:"\u015eu an rahatl\u0131yorsunuz.",en:"You are relaxing right now."},
+{t:"mc",q:"Est\u00e1is en casa. Ahora ______ (prepararse).",o:["est\u00e1is prepar\u00e1ndoos", "os est\u00e1is preparar", "est\u00e1is os preparando", "os prepar\u00e1is"],a:0,exp:"Progresivo \u2192 est\u00e1is prepar\u00e1ndoos. | ES: Ahora est\u00e1is prepar\u00e1ndoos. | TR: \u015eu an haz\u0131rlan\u0131yorsunuz. | EN: You are getting ready now.",es:"Ahora est\u00e1is prepar\u00e1ndoos.",tr:"\u015eu an haz\u0131rlan\u0131yorsunuz.",en:"You are getting ready now."},
+{t:"mc",q:"Est\u00e1is cansados. Ahora mismo ______ (acostarse).",o:["est\u00e1is acostandoos", "os est\u00e1is acostando", "os acost\u00e1is", "est\u00e1is os acostando"],a:1,exp:"Do\u011fru yap\u0131: os est\u00e1is acostando. | ES: Ahora mismo os est\u00e1is acostando. | TR: \u015eu an yata\u011fa gidiyorsunuz. | EN: You are going to bed right now.",es:"Ahora mismo os est\u00e1is acostando.",tr:"\u015eu an yata\u011fa gidiyorsunuz.",en:"You are going to bed right now."},
+{t:"mc",q:"Est\u00e1is en casa. Ahora ______ (quedarse).",o:["os est\u00e1is quedando", "est\u00e1is qued\u00e1ndoos", "os qued\u00e1is", "est\u00e1is os quedando"],a:0,exp:"quedarse \u2192 os est\u00e1is quedando. | ES: Ahora os est\u00e1is quedando en casa. | TR: \u015eu an evde kal\u0131yorsunuz. | EN: You are staying at home now.",es:"Ahora os est\u00e1is quedando en casa.",tr:"\u015eu an evde kal\u0131yorsunuz.",en:"You are staying at home now."},
+{t:"mc",q:"Ten\u00e9is fr\u00edo. Ahora mismo ______ (ponerse) la chaqueta.",o:["est\u00e1is poni\u00e9ndoos", "os est\u00e1is poniendo", "est\u00e1is os poniendo", "os pon\u00e9is"],a:1,exp:"poner \u2192 poniendo \u2192 os est\u00e1is poniendo. | ES: Ahora mismo os est\u00e1is poniendo la chaqueta. | TR: \u015eu an montunuzu giyiyorsunuz. | EN: You are putting on your jacket right now.",es:"Ahora mismo os est\u00e1is poniendo la chaqueta.",tr:"\u015eu an montunuzu giyiyorsunuz.",en:"You are putting on your jacket right now."},
+{t:"mc",q:"Est\u00e1is en el ba\u00f1o. Ahora ______ (lavarse).",o:["os est\u00e1is lavando", "est\u00e1is lav\u00e1ndoos", "os lav\u00e1is", "est\u00e1is os lavando"],a:0,exp:"Reflexivo \u2192 os est\u00e1is lavando. | ES: Ahora os est\u00e1is lavando. | TR: \u015eu an y\u0131kan\u0131yorsunuz. | EN: You are washing yourselves now.",es:"Ahora os est\u00e1is lavando.",tr:"\u015eu an y\u0131kan\u0131yorsunuz.",en:"You are washing yourselves now."},
+{t:"mc",q:"Est\u00e1is en casa. Ahora mismo ______ (relajarse).",o:["est\u00e1is relaj\u00e1ndoos", "os est\u00e1is relajando", "os relaj\u00e1is", "est\u00e1is os relajando"],a:1,exp:"Do\u011fru yap\u0131: os est\u00e1is relajando. | ES: Ahora mismo os est\u00e1is relajando. | TR: \u015eu an rahatl\u0131yorsunuz. | EN: You are relaxing right now.",es:"Ahora mismo os est\u00e1is relajando.",tr:"\u015eu an rahatl\u0131yorsunuz.",en:"You are relaxing right now."},
+{t:"mc",q:"Est\u00e1is cansados. Ahora ______ (dormirse).",o:["est\u00e1is durmi\u00e9ndoos", "os est\u00e1is durmiendo", "est\u00e1is os durmiendo", "os dorm\u00eds"],a:1,exp:"dormir \u2192 durmiendo \u2192 os est\u00e1is durmiendo. | ES: Ahora os est\u00e1is durmiendo. | TR: \u015eu an uyuyakal\u0131yorsunuz. | EN: You are falling asleep now.",es:"Ahora os est\u00e1is durmiendo.",tr:"\u015eu an uyuyakal\u0131yorsunuz.",en:"You are falling asleep now."},
+{t:"mc",q:"Est\u00e1is en casa. Ahora mismo ______ (quedarse).",o:["os est\u00e1is quedando", "est\u00e1is qued\u00e1ndoos", "os qued\u00e1is", "est\u00e1is os quedando"],a:0,exp:"quedarse \u2192 os est\u00e1is quedando. | ES: Ahora mismo os est\u00e1is quedando en casa. | TR: \u015eu an evde kal\u0131yorsunuz. | EN: You are staying at home right now.",es:"Ahora mismo os est\u00e1is quedando en casa.",tr:"\u015eu an evde kal\u0131yorsunuz.",en:"You are staying at home right now."},
+{t:"mc",q:"Est\u00e1is en la cama. Ahora ______ (acostarse).",o:["est\u00e1is acost\u00e1ndoos", "os est\u00e1is acostando", "est\u00e1is os acostando", "os acost\u00e1is"],a:1,exp:"Do\u011fru yap\u0131: os est\u00e1is acostando. | ES: Ahora os est\u00e1is acostando. | TR: \u015eu an yata\u011fa gidiyorsunuz. | EN: You are going to bed now.",es:"Ahora os est\u00e1is acostando.",tr:"\u015eu an yata\u011fa gidiyorsunuz.",en:"You are going to bed now."},
+{t:"mc",q:"Estoy en casa. Ahora mismo nosotros ______ (relajarse).",o:["nos estamos relajando", "estamos relajandonos", "nos relajamos", "estamos nos relajando"],a:0,exp:"nosotros \u2192 nos + estamos + gerundio \u2192 nos estamos relajando. | ES: Nos estamos relajando. | TR: Biz rahatl\u0131yoruz. | EN: We are relaxing.",es:"Nos estamos relajando.",tr:"Biz rahatl\u0131yoruz.",en:"We are relaxing."},
+{t:"mc",q:"Ahora mismo vosotros ______ (prepararse).",o:["os est\u00e1is preparando", "est\u00e1is prepar\u00e1ndoos", "os prepar\u00e1is", "est\u00e1is os preparando"],a:1,exp:"Zamir gerundioya eklenebilir \u2192 prepar\u00e1ndoos (tilde \u015fart). | ES: Est\u00e1is prepar\u00e1ndoos. | TR: Haz\u0131rlan\u0131yorsunuz. | EN: You are getting ready.",es:"Est\u00e1is prepar\u00e1ndoos.",tr:"Haz\u0131rlan\u0131yorsunuz.",en:"You are getting ready."},
+{t:"mc",q:"Ellos est\u00e1n cansados. Ahora ______ (acostarse).",o:["se est\u00e1n acostando", "est\u00e1n acost\u00e1ndose", "se acuestan", "est\u00e1n se acostando"],a:1,exp:"Zamir gerundioya eklenmi\u015f \u2192 acost\u00e1ndose. | ES: Est\u00e1n acost\u00e1ndose. | TR: Yata\u011fa gidiyorlar. | EN: They are going to bed.",es:"Est\u00e1n acost\u00e1ndose.",tr:"Yata\u011fa gidiyorlar.",en:"They are going to bed."},
+{t:"mc",q:"Nosotros estamos en casa. Ahora mismo ______ (quedarse).",o:["nos estamos quedando", "estamos qued\u00e1ndonos", "nos quedamos", "estamos nos quedando"],a:1,exp:"Zamir birle\u015fik kullan\u0131m \u2192 qued\u00e1ndonos. | ES: Estamos qued\u00e1ndonos en casa. | TR: Evde kal\u0131yoruz. | EN: We are staying at home.",es:"Estamos qued\u00e1ndonos en casa.",tr:"Evde kal\u0131yoruz.",en:"We are staying at home."},
+{t:"mc",q:"Vosotros ten\u00e9is fr\u00edo. Ahora ______ (ponerse) el abrigo.",o:["os est\u00e1is poniendo", "est\u00e1is poniendos", "os pon\u00e9is", "est\u00e1is os poniendo"],a:0,exp:"Do\u011fru yap\u0131: os est\u00e1is poniendo. | ES: Os est\u00e1is poniendo el abrigo. | TR: Montunuzu giyiyorsunuz. | EN: You are putting on your coats.",es:"Os est\u00e1is poniendo el abrigo.",tr:"Montunuzu giyiyorsunuz.",en:"You are putting on your coats."},
+{t:"mc",q:"Ellas est\u00e1n en casa. Ahora mismo ______ (relajarse).",o:["se est\u00e1n relajando", "est\u00e1n relaj\u00e1ndose", "se relajan", "est\u00e1n se relajando"],a:1,exp:"Birle\u015fik yap\u0131: relaj\u00e1ndose. | ES: Est\u00e1n relaj\u00e1ndose. | TR: Rahatl\u0131yorlar. | EN: They are relaxing.",es:"Est\u00e1n relaj\u00e1ndose.",tr:"Rahatl\u0131yorlar.",en:"They are relaxing."},
+{t:"mc",q:"Nosotros estamos en el ba\u00f1o. Ahora ______ (lavarse).",o:["nos estamos lavando", "estamos lav\u00e1ndonos", "nos lavamos", "estamos nos lavando"],a:1,exp:"Birle\u015fik yap\u0131: lav\u00e1ndonos. | ES: Estamos lav\u00e1ndonos. | TR: Y\u0131kan\u0131yoruz. | EN: We are washing ourselves.",es:"Estamos lav\u00e1ndonos.",tr:"Y\u0131kan\u0131yoruz.",en:"We are washing ourselves."},
+{t:"mc",q:"Vosotros est\u00e1is cansados. Ahora mismo ______ (dormirse).",o:["os est\u00e1is durmiendo", "est\u00e1is durmiendos", "os dorm\u00eds", "est\u00e1is durmi\u00e9ndoos"],a:3,exp:"Birle\u015fik yap\u0131: durmi\u00e9ndoos (tilde \u015fart). | ES: Est\u00e1is durmi\u00e9ndoos. | TR: Uyuyakal\u0131yorsunuz. | EN: You are falling asleep.",es:"Est\u00e1is durmi\u00e9ndoos.",tr:"Uyuyakal\u0131yorsunuz.",en:"You are falling asleep."},
+{t:"mc",q:"Ellos est\u00e1n en casa. Ahora ______ (quedarse).",o:["se est\u00e1n quedando", "est\u00e1n quedandose", "se quedan", "est\u00e1n se quedando"],a:0,exp:"Do\u011fru yap\u0131: se est\u00e1n quedando. | ES: Se est\u00e1n quedando en casa. | TR: Evde kal\u0131yorlar. | EN: They are staying at home.",es:"Se est\u00e1n quedando en casa.",tr:"Evde kal\u0131yorlar.",en:"They are staying at home."},
+{t:"mc",q:"Nosotros estamos listos. Ahora mismo ______ (prepararse).",o:["nos estamos preparando", "estamos prepar\u00e1ndonos", "nos preparamos", "estamos nos preparando"],a:1,exp:"Birle\u015fik yap\u0131: prepar\u00e1ndonos. | ES: Estamos prepar\u00e1ndonos. | TR: Haz\u0131rlan\u0131yoruz. | EN: We are getting ready.",es:"Estamos prepar\u00e1ndonos.",tr:"Haz\u0131rlan\u0131yoruz.",en:"We are getting ready."},
+{t:"mc",q:"Vosotros est\u00e1is en casa. Ahora mismo ______ (sentarse).",o:["os est\u00e1is sentando", "est\u00e1is sentandos", "os sent\u00e1is", "est\u00e1is os sentando"],a:0,exp:"vosotros \u2192 os + est\u00e1is + gerundio \u2192 os est\u00e1is sentando. | ES: Ahora mismo os est\u00e1is sentando. | TR: \u015eu an oturuyorsunuz. | EN: You are sitting down right now.",es:"Ahora mismo os est\u00e1is sentando.",tr:"\u015eu an oturuyorsunuz.",en:"You are sitting down right now."},
+{t:"mc",q:"Ellas est\u00e1n cansadas. Ahora ______ (acostarse).",o:["se est\u00e1n acostando", "est\u00e1n acost\u00e1ndose", "se acuestan", "est\u00e1n se acostando"],a:1,exp:"Zamir gerundioya eklenmi\u015f \u2192 acost\u00e1ndose (tilde \u015fart). | ES: Ahora est\u00e1n acost\u00e1ndose. | TR: \u015eu an yata\u011fa gidiyorlar. | EN: They are going to bed now.",es:"Ahora est\u00e1n acost\u00e1ndose.",tr:"\u015eu an yata\u011fa gidiyorlar.",en:"They are going to bed now."},
+{t:"mc",q:"Nosotros estamos tranquilos. Ahora mismo ______ (relajarse).",o:["nos estamos relajando", "estamos relaj\u00e1ndonos", "nos relajamos", "estamos nos relajando"],a:1,exp:"Birle\u015fik yap\u0131 \u2192 relaj\u00e1ndonos. | ES: Ahora mismo estamos relaj\u00e1ndonos. | TR: \u015eu an rahatl\u0131yoruz. | EN: We are relaxing right now.",es:"Ahora mismo estamos relaj\u00e1ndonos.",tr:"\u015eu an rahatl\u0131yoruz.",en:"We are relaxing right now."},
+{t:"mc",q:"Vosotros est\u00e1is en casa. Ahora ______ (quedarse).",o:["os est\u00e1is quedando", "est\u00e1is quedandos", "os qued\u00e1is", "est\u00e1is os quedando"],a:0,exp:"Do\u011fru yap\u0131: os est\u00e1is quedando. | ES: Ahora os est\u00e1is quedando en casa. | TR: \u015eu an evde kal\u0131yorsunuz. | EN: You are staying at home now.",es:"Ahora os est\u00e1is quedando en casa.",tr:"\u015eu an evde kal\u0131yorsunuz.",en:"You are staying at home now."},
+{t:"mc",q:"Ellos est\u00e1n en el sof\u00e1. Ahora mismo ______ (relajarse).",o:["se est\u00e1n relajando", "est\u00e1n relaj\u00e1ndose", "se relajan", "est\u00e1n se relajando"],a:1,exp:"Birle\u015fik yap\u0131: relaj\u00e1ndose. | ES: Ahora mismo est\u00e1n relaj\u00e1ndose. | TR: \u015eu an rahatl\u0131yorlar. | EN: They are relaxing right now.",es:"Ahora mismo est\u00e1n relaj\u00e1ndose.",tr:"\u015eu an rahatl\u0131yorlar.",en:"They are relaxing right now."},
+{t:"mc",q:"Nosotros estamos cansados. Ahora ______ (dormirse).",o:["nos estamos durmiendo", "estamos durmi\u00e9ndonos", "nos dormimos", "estamos nos durmiendo"],a:1,exp:"Birle\u015fik yap\u0131: durmi\u00e9ndonos (tilde \u015fart). | ES: Ahora estamos durmi\u00e9ndonos. | TR: \u015eu an uyuyakal\u0131yoruz. | EN: We are falling asleep now.",es:"Ahora estamos durmi\u00e9ndonos.",tr:"\u015eu an uyuyakal\u0131yoruz.",en:"We are falling asleep now."},
+{t:"mc",q:"Vosotros est\u00e1is en casa. Ahora mismo ______ (prepararse).",o:["os est\u00e1is preparando", "est\u00e1is preparandos", "os prepar\u00e1is", "est\u00e1is os preparando"],a:0,exp:"Do\u011fru yap\u0131: os est\u00e1is preparando. | ES: Ahora mismo os est\u00e1is preparando. | TR: \u015eu an haz\u0131rlan\u0131yorsunuz. | EN: You are getting ready right now.",es:"Ahora mismo os est\u00e1is preparando.",tr:"\u015eu an haz\u0131rlan\u0131yorsunuz.",en:"You are getting ready right now."},
+{t:"mc",q:"Ellas est\u00e1n en casa. Ahora ______ (quedarse).",o:["se est\u00e1n quedando", "est\u00e1n qued\u00e1ndose", "se quedan", "est\u00e1n se quedando"],a:1,exp:"Birle\u015fik yap\u0131: qued\u00e1ndose. | ES: Ahora est\u00e1n qued\u00e1ndose en casa. | TR: \u015eu an evde kal\u0131yorlar. | EN: They are staying at home now.",es:"Ahora est\u00e1n qued\u00e1ndose en casa.",tr:"\u015eu an evde kal\u0131yorlar.",en:"They are staying at home now."},
+{t:"mc",q:"Nosotros estamos en el ba\u00f1o. Ahora mismo ______ (lavarse).",o:["nos estamos lavando", "estamos lav\u00e1ndonos", "nos lavamos", "estamos nos lavando"],a:1,exp:"Birle\u015fik yap\u0131: lav\u00e1ndonos. | ES: Ahora mismo estamos lav\u00e1ndonos. | TR: \u015eu an y\u0131kan\u0131yoruz. | EN: We are washing ourselves right now.",es:"Ahora mismo estamos lav\u00e1ndonos.",tr:"\u015eu an y\u0131kan\u0131yoruz.",en:"We are washing ourselves right now."},
+{t:"mc",q:"Vosotros est\u00e1is cansados. Ahora ______ (acostarse).",o:["os est\u00e1is acostando", "est\u00e1is acostandos", "os acost\u00e1is", "est\u00e1is os acostando"],a:0,exp:"Do\u011fru yap\u0131: os est\u00e1is acostando. | ES: Ahora os est\u00e1is acostando. | TR: \u015eu an yata\u011fa gidiyorsunuz. | EN: You are going to bed now.",es:"Ahora os est\u00e1is acostando.",tr:"\u015eu an yata\u011fa gidiyorsunuz.",en:"You are going to bed now."},
+{t:"mc",q:"Texto 71\nMar\u00eda se levanta temprano todos los d\u00edas. Desayuna caf\u00e9 con leche y pan. Luego sale de casa a las siete. Trabaja en una oficina en el centro. Siempre llega puntual. Durante el d\u00eda habla con muchos clientes. A veces almuerza con sus compa\u00f1eros. Por la tarde vuelve a casa. Despu\u00e9s descansa un poco. Finalmente cena y se acuesta temprano.\n\n\u2753 Mar\u00eda trabaja en una f\u00e1brica.",o:["Verdadero", "Falso"],a:1,exp:"Metinde Mar\u00eda'n\u0131n 'ofiste \u00e7al\u0131\u015ft\u0131\u011f\u0131' yaz\u0131yor, fabrika de\u011fil. | ES: Trabaja en una oficina en el centro. | TR: Fabrika de\u011fil, ofiste \u00e7al\u0131\u015f\u0131yor. | EN: She works in an office, not a factory.",es:"Trabaja en una oficina en el centro.",tr:"Fabrika de\u011fil, ofiste \u00e7al\u0131\u015f\u0131yor.",en:"She works in an office, not a factory."},
+{t:"mc",q:"Texto 72\nJuan vive en una ciudad peque\u00f1a. Tiene una casa cerca del mar. Cada ma\u00f1ana corre por la playa. Despu\u00e9s se ducha y desayuna. Trabaja como profesor en una escuela. Le gusta ense\u00f1ar a los ni\u00f1os. Por la tarde lee libros. A veces sale con amigos. Los fines de semana viaja. Siempre disfruta su vida tranquila.\n\n\u2753 Juan vive en una ciudad grande.",o:["Verdadero", "Falso"],a:1,exp:"Metinde a\u00e7\u0131k\u00e7a 'ciudad peque\u00f1a' deniyor. | ES: Vive en una ciudad peque\u00f1a. | TR: K\u00fc\u00e7\u00fck \u015fehirde ya\u015f\u0131yor. | EN: He lives in a small city.",es:"Vive en una ciudad peque\u00f1a.",tr:"K\u00fc\u00e7\u00fck \u015fehirde ya\u015f\u0131yor.",en:"He lives in a small city."},
+{t:"mc",q:"Texto 73\nAna estudia medicina en la universidad. Tiene muchas clases cada d\u00eda. A veces se siente cansada. Sin embargo, le gusta aprender cosas nuevas. Estudia en la biblioteca por la tarde. Tambi\u00e9n hace pr\u00e1cticas en el hospital. Sus profesores son muy exigentes. Ella quiere ser doctora. En su tiempo libre ve series. Siempre intenta descansar bien.\n\n\u2753 Ana estudia ingenier\u00eda.",o:["Falso", "Verdadero"],a:0,exp:"Metinde t\u0131p (medicina) okudu\u011fu belirtilmi\u015f. | ES: Estudia medicina, no ingenier\u00eda. | TR: T\u0131p okuyor, m\u00fchendislik de\u011fil. | EN: She studies medicine, not engineering.",es:"Estudia medicina, no ingenier\u00eda.",tr:"T\u0131p okuyor, m\u00fchendislik de\u011fil.",en:"She studies medicine, not engineering."},
+{t:"mc",q:"Texto 74\nPedro trabaja en un restaurante. Empieza a trabajar a las diez. Cocina platos tradicionales. Le gusta preparar comida para los clientes. El restaurante es muy popular. Siempre hay mucha gente. Pedro trabaja muchas horas. A veces est\u00e1 cansado. Pero le gusta su trabajo. Quiere abrir su propio restaurante.\n\n\u2753 Pedro quiere abrir su propio restaurante.",o:["Verdadero", "Falso"],a:0,exp:"Son c\u00fcmlede a\u00e7\u0131k\u00e7a kendi restoran\u0131n\u0131 a\u00e7mak istedi\u011fi yaz\u0131yor. | ES: Quiere abrir su propio restaurante. | TR: Kendi restoran\u0131n\u0131 a\u00e7mak istiyor. | EN: He wants to open his own restaurant.",es:"Quiere abrir su propio restaurante.",tr:"Kendi restoran\u0131n\u0131 a\u00e7mak istiyor.",en:"He wants to open his own restaurant."},
+{t:"mc",q:"Texto 75\nLaura tiene una familia grande. Vive con sus padres y hermanos. Cada ma\u00f1ana ayuda en casa. Despu\u00e9s va a la escuela. Es una buena estudiante. Le gusta leer libros. Tambi\u00e9n practica deporte. Sus amigos la visitan a menudo. Por la noche cena con su familia. Siempre est\u00e1 feliz.\n\n\u2753 Laura vive sola.",o:["Verdadero", "Falso"],a:1,exp:"Ailesiyle birlikte ya\u015fad\u0131\u011f\u0131 a\u00e7\u0131k\u00e7a belirtilmi\u015f. | ES: Vive con sus padres y hermanos. | TR: Ailesiyle ya\u015f\u0131yor. | EN: She lives with her family.",es:"Vive con sus padres y hermanos.",tr:"Ailesiyle ya\u015f\u0131yor.",en:"She lives with her family."},
+{t:"mc",q:"Texto 76\nCarlos trabaja desde casa. Usa su ordenador todo el d\u00eda. Tiene reuniones en l\u00ednea. A veces habla con clientes internacionales. Le gusta su trabajo. Puede organizar su tiempo. Por la tarde descansa. Luego hace ejercicio. Cena temprano. Se acuesta a las once.\n\n\u2753 Carlos trabaja en una oficina.",o:["Falso", "Verdadero"],a:0,exp:"Evden \u00e7al\u0131\u015ft\u0131\u011f\u0131 (desde casa) yaz\u0131yor. | ES: Trabaja desde casa. | TR: Evden \u00e7al\u0131\u015f\u0131yor. | EN: He works from home.",es:"Trabaja desde casa.",tr:"Evden \u00e7al\u0131\u015f\u0131yor.",en:"He works from home."},
+{t:"mc",q:"Texto 77\nSof\u00eda viaja mucho por su trabajo. Visita diferentes pa\u00edses. Conoce nuevas culturas. Le gusta aprender idiomas. Siempre lleva su c\u00e1mara. Toma muchas fotos. A veces est\u00e1 cansada. Pero disfruta viajar. Es una persona muy curiosa. Quiere seguir viajando.\n\n\u2753 Sof\u00eda no le gusta viajar.",o:["Verdadero", "Falso"],a:1,exp:"Seyahat etmeyi sevdi\u011fi a\u00e7\u0131k\u00e7a belirtilmi\u015f. | ES: Disfruta viajar y quiere seguir viajando. | TR: Seyahati seviyor. | EN: She enjoys traveling.",es:"Disfruta viajar y quiere seguir viajando.",tr:"Seyahati seviyor.",en:"She enjoys traveling."},
+{t:"mc",q:"Texto 78\nLuis estudia en la universidad. Tiene clases por la ma\u00f1ana. Despu\u00e9s almuerza con amigos. Por la tarde estudia en casa. A veces juega videojuegos. Le gusta escuchar m\u00fasica. Los fines de semana descansa. Tambi\u00e9n visita a su familia. Quiere terminar sus estudios pronto. Es un estudiante responsable.\n\n\u2753 Luis no estudia en la universidad.",o:["Falso", "Verdadero"],a:0,exp:"\u00dcniversitede okudu\u011fu a\u00e7\u0131k\u00e7a yaz\u0131yor. | ES: Luis estudia en la universidad. | TR: \u00dcniversitede okuyor. | EN: He studies at university.",es:"Luis estudia en la universidad.",tr:"\u00dcniversitede okuyor.",en:"He studies at university."},
+{t:"mc",q:"Texto 79\nElena trabaja en una tienda de ropa. Atiende a los clientes. Organiza la tienda. Le gusta la moda. Siempre sonr\u00ede. Sus compa\u00f1eros son amables. Trabaja muchas horas. A veces est\u00e1 cansada. Pero le gusta su trabajo. Quiere mejorar en su profesi\u00f3n.\n\n\u2753 Elena trabaja en una tienda de comida.",o:["Verdadero", "Falso"],a:1,exp:"Giyim ma\u011fazas\u0131nda \u00e7al\u0131\u015ft\u0131\u011f\u0131 belirtilmi\u015f. | ES: Trabaja en una tienda de ropa. | TR: Giyim ma\u011fazas\u0131nda \u00e7al\u0131\u015f\u0131yor. | EN: She works in a clothing store.",es:"Trabaja en una tienda de ropa.",tr:"Giyim ma\u011fazas\u0131nda \u00e7al\u0131\u015f\u0131yor.",en:"She works in a clothing store."},
+{t:"mc",q:"Texto 80\nMiguel vive con su amigo. Comparten un apartamento. Cocinan juntos. Ven pel\u00edculas por la noche. Miguel trabaja en una empresa. Su amigo estudia. Los fines de semana salen. A veces invitan amigos. Les gusta pasar tiempo juntos. Tienen una buena relaci\u00f3n.\n\n\u2753 Miguel vive solo.",o:["Falso", "Verdadero"],a:0,exp:"Arkada\u015f\u0131yla birlikte ya\u015fad\u0131\u011f\u0131 yaz\u0131yor. | ES: Vive con su amigo. | TR: Arkada\u015f\u0131yla ya\u015f\u0131yor. | EN: He lives with his friend.",es:"Vive con su amigo.",tr:"Arkada\u015f\u0131yla ya\u015f\u0131yor.",en:"He lives with his friend."},
+{t:"mc",q:"Texto 81\nRoberto trabaja en una biblioteca. Ordena libros cada ma\u00f1ana. Ayuda a los visitantes a encontrar informaci\u00f3n. Usa el ordenador para buscar datos. Le gusta el silencio del lugar. A veces recomienda novelas interesantes. Tambi\u00e9n organiza eventos culturales. Sale del trabajo a las cinco. Luego camina por el parque. Disfruta su rutina tranquila.\n\n\u2753 Roberto trabaja en un hospital.",o:["Falso", "Verdadero"],a:0,exp:"K\u00fct\u00fcphanede \u00e7al\u0131\u015ft\u0131\u011f\u0131 belirtilmi\u015f, hastanede de\u011fil. | ES: Trabaja en una biblioteca. | TR: K\u00fct\u00fcphanede \u00e7al\u0131\u015f\u0131yor. | EN: He works in a library.",es:"Trabaja en una biblioteca.",tr:"K\u00fct\u00fcphanede \u00e7al\u0131\u015f\u0131yor.",en:"He works in a library."},
+{t:"mc",q:"Texto 82\nLuc\u00eda practica nataci\u00f3n tres veces por semana. Va a la piscina despu\u00e9s del trabajo. Nada durante una hora. Luego descansa un poco. Su entrenador le da consejos. Quiere mejorar su t\u00e9cnica. Tambi\u00e9n participa en competiciones. A veces gana premios. Le gusta el deporte. Siempre se siente motivada.\n\n\u2753 Luc\u00eda nunca compite.",o:["Falso", "Verdadero"],a:0,exp:"Yar\u0131\u015fmalara kat\u0131ld\u0131\u011f\u0131 belirtilmi\u015f. | ES: Participa en competiciones. | TR: Yar\u0131\u015fmalara kat\u0131l\u0131yor. | EN: She participates in competitions.",es:"Participa en competiciones.",tr:"Yar\u0131\u015fmalara kat\u0131l\u0131yor.",en:"She participates in competitions."},
+{t:"mc",q:"Texto 83\nTom\u00e1s conduce un taxi en la ciudad. Trabaja muchas horas al d\u00eda. Conoce a muchas personas diferentes. A veces tiene clientes extranjeros. Escucha m\u00fasica mientras conduce. Le gusta su trabajo. Descansa por la noche. Cena con su familia. Habla con sus hijos. Es una persona amable.\n\n\u2753 Tom\u00e1s trabaja pocas horas.",o:["Verdadero", "Falso"],a:1,exp:"G\u00fcnde \u00e7ok saat \u00e7al\u0131\u015ft\u0131\u011f\u0131 yaz\u0131yor. | ES: Trabaja muchas horas al d\u00eda. | TR: G\u00fcnde \u00e7ok saat \u00e7al\u0131\u015f\u0131yor. | EN: He works many hours a day.",es:"Trabaja muchas horas al d\u00eda.",tr:"G\u00fcnde \u00e7ok saat \u00e7al\u0131\u015f\u0131yor.",en:"He works many hours a day."},
+{t:"mc",q:"Texto 84\nIsabel estudia arte en la universidad. Pinta cuadros en su tiempo libre. Visita museos los fines de semana. Le encanta la pintura moderna. Tiene muchos amigos artistas. Participa en exposiciones. Sus profesores la apoyan. Quiere ser pintora famosa. Practica todos los d\u00edas. Nunca deja de aprender.\n\n\u2753 Isabel quiere ser pintora.",o:["Verdadero", "Falso"],a:0,exp:"Ressam olmak istedi\u011fi a\u00e7\u0131k\u00e7a yaz\u0131yor. | ES: Quiere ser pintora famosa. | TR: Ressam olmak istiyor. | EN: She wants to be a painter.",es:"Quiere ser pintora famosa.",tr:"Ressam olmak istiyor.",en:"She wants to be a painter."},
+{t:"mc",q:"Texto 85\nDavid trabaja en una empresa de tecnolog\u00eda. Dise\u00f1a programas inform\u00e1ticos. Usa diferentes lenguajes de programaci\u00f3n. Trabaja con un equipo internacional. Tiene reuniones en l\u00ednea. Aprende cosas nuevas cada d\u00eda. A veces trabaja desde casa. Le gusta la innovaci\u00f3n. Quiere crear su propia empresa. Es muy creativo.\n\n\u2753 David trabaja solo sin equipo.",o:["Falso", "Verdadero"],a:0,exp:"Uluslararas\u0131 bir ekip ile \u00e7al\u0131\u015ft\u0131\u011f\u0131 belirtilmi\u015f. | ES: Trabaja con un equipo internacional. | TR: Uluslararas\u0131 ekiple \u00e7al\u0131\u015f\u0131yor. | EN: He works with an international team.",es:"Trabaja con un equipo internacional.",tr:"Uluslararas\u0131 ekiple \u00e7al\u0131\u015f\u0131yor.",en:"He works with an international team."},
+{t:"mc",q:"Texto 86\nCarmen tiene una tienda de flores. Abre temprano cada d\u00eda. Vende flores frescas. Habla con sus clientes. Decora ramos bonitos. A veces recibe pedidos grandes. Le gusta su trabajo. Cierra por la tarde. Descansa en casa. Es muy trabajadora.\n\n\u2753 Carmen vende comida.",o:["Verdadero", "Falso"],a:1,exp:"\u00c7i\u00e7ek satt\u0131\u011f\u0131 yaz\u0131yor, yemek de\u011fil. | ES: Vende flores frescas. | TR: \u00c7i\u00e7ek sat\u0131yor. | EN: She sells fresh flowers.",es:"Vende flores frescas.",tr:"\u00c7i\u00e7ek sat\u0131yor.",en:"She sells fresh flowers."},
+{t:"mc",q:"Texto 87\nJorge estudia idiomas extranjeros. Aprende ingl\u00e9s y franc\u00e9s. Practica todos los d\u00edas. Escucha m\u00fasica en otros idiomas. Ve pel\u00edculas sin subt\u00edtulos. Habla con personas de otros pa\u00edses. Quiere viajar al extranjero. Le gusta aprender culturas nuevas. Es muy curioso. Siempre quiere mejorar.\n\n\u2753 Jorge no aprende idiomas.",o:["Verdadero", "Falso"],a:1,exp:"Dil \u00f6\u011frendi\u011fi a\u00e7\u0131k\u00e7a belirtilmi\u015f. | ES: Aprende ingl\u00e9s y franc\u00e9s. | TR: Dil \u00f6\u011freniyor. | EN: He learns languages.",es:"Aprende ingl\u00e9s y franc\u00e9s.",tr:"Dil \u00f6\u011freniyor.",en:"He learns languages."},
+{t:"mc",q:"Texto 88\nNatalia trabaja como enfermera. Cuida a los pacientes. Trabaja en turnos largos. A veces est\u00e1 muy cansada. Pero le gusta ayudar a las personas. Habla con los m\u00e9dicos. Aprende nuevas t\u00e9cnicas. Es responsable. Quiere mejorar en su trabajo. Es muy dedicada.\n\n\u2753 Natalia trabaja como profesora.",o:["Falso", "Verdadero"],a:0,exp:"Hem\u015fire oldu\u011fu yaz\u0131yor. | ES: Trabaja como enfermera. | TR: Hem\u015fire olarak \u00e7al\u0131\u015f\u0131yor. | EN: She works as a nurse.",es:"Trabaja como enfermera.",tr:"Hem\u015fire olarak \u00e7al\u0131\u015f\u0131yor.",en:"She works as a nurse."},
+{t:"mc",q:"Texto 89\nSergio tiene un restaurante peque\u00f1o. Cocina platos tradicionales. Compra ingredientes frescos. Atiende a los clientes personalmente. Le gusta su trabajo. A veces trabaja hasta tarde. Recibe buenas opiniones. Quiere ampliar su negocio. Es muy trabajador. Disfruta cocinar.\n\n\u2753 Sergio no cocina.",o:["Falso", "Verdadero"],a:0,exp:"Yemek yapt\u0131\u011f\u0131 a\u00e7\u0131k\u00e7a belirtilmi\u015f. | ES: Cocina platos tradicionales. | TR: Yemek yap\u0131yor. | EN: He cooks traditional dishes.",es:"Cocina platos tradicionales.",tr:"Yemek yap\u0131yor.",en:"He cooks traditional dishes."},
+{t:"mc",q:"Texto 90\nPaula estudia arquitectura. Dise\u00f1a edificios modernos. Usa programas de dise\u00f1o. Trabaja en proyectos con sus compa\u00f1eros. Aprende sobre estructuras. Visita obras de construcci\u00f3n. Le gusta crear espacios nuevos. Quiere ser arquitecta. Estudia mucho. Es muy dedicada.\n\n\u2753 Paula estudia medicina.",o:["Verdadero", "Falso"],a:1,exp:"Mimarl\u0131k okudu\u011fu belirtilmi\u015f. | ES: Estudia arquitectura. | TR: Mimarl\u0131k okuyor. | EN: She studies architecture.",es:"Estudia arquitectura.",tr:"Mimarl\u0131k okuyor.",en:"She studies architecture."},
+{t:"mc",q:"Texto 91\nAndr\u00e9s trabaja en una empresa internacional. Cada ma\u00f1ana se despierta a las seis. Desayuna r\u00e1pidamente en casa. Luego toma el metro para ir al trabajo. Su oficina est\u00e1 en el centro de la ciudad. Llega siempre puntual. Trabaja con compa\u00f1eros de diferentes pa\u00edses. Usa el ingl\u00e9s para comunicarse. A veces tiene reuniones importantes. Tambi\u00e9n escribe correos electr\u00f3nicos. Su jefe es exigente pero justo. Andr\u00e9s aprende cosas nuevas cada d\u00eda.\n\n\u2753 Andr\u00e9s trabaja solo sin usar idiomas extranjeros.",o:["Verdadero", "Falso"],a:1,exp:"Metinde \u0130ngilizce kulland\u0131\u011f\u0131 ve uluslararas\u0131 bir ortamda \u00e7al\u0131\u015ft\u0131\u011f\u0131 belirtilmi\u015f. | ES: Usa el ingl\u00e9s para comunicarse. | TR: \u0130ngilizce kullan\u0131yor. | EN: He uses English to communicate.",es:"Usa el ingl\u00e9s para comunicarse.",tr:"\u0130ngilizce kullan\u0131yor.",en:"He uses English to communicate."},
+{t:"mc",q:"Texto 92\nElena estudia en la universidad. Vive en una residencia estudiantil. Comparte habitaci\u00f3n con otra estudiante. Cada d\u00eda asiste a sus clases. Le gustan sus profesores. Estudia muchas horas. A veces se siente estresada. Sin embargo, disfruta aprender. Tambi\u00e9n participa en actividades sociales. Tiene amigos de diferentes pa\u00edses. Practica deportes en su tiempo libre. Va al gimnasio dos veces por semana.\n\n\u2753 Elena nunca hace actividades fuera de clase.",o:["Falso", "Verdadero"],a:0,exp:"Spor yapt\u0131\u011f\u0131 ve sosyal aktivitelere kat\u0131ld\u0131\u011f\u0131 belirtilmi\u015f. | ES: Participa en actividades sociales y practica deportes. | TR: Sosyal aktivitelere kat\u0131l\u0131yor. | EN: She participates in social activities and sports.",es:"Participa en actividades sociales y practica deportes.",tr:"Sosyal aktivitelere kat\u0131l\u0131yor.",en:"She participates in social activities and sports."},
+{t:"mc",q:"Texto 93\nCarlos vive en un pueblo peque\u00f1o. Trabaja en una tienda local. Abre la tienda cada ma\u00f1ana. Saluda a sus clientes. Conoce a todos en el pueblo. Le gusta su vida tranquila. A veces ayuda a sus vecinos. Tambi\u00e9n participa en eventos locales. Los fines de semana descansa. Va al campo con su familia. Le gusta la naturaleza. No le gusta la ciudad.\n\n\u2753 Carlos quiere mudarse a la ciudad grande.",o:["Falso", "Verdadero"],a:0,exp:"\u015eehri sevmedi\u011fi ve hayat\u0131n\u0131 de\u011fi\u015ftirmek istemedi\u011fi belirtilmi\u015f. | ES: No le gusta la ciudad. | TR: \u015eehri sevmiyor. | EN: He does not like the city.",es:"No le gusta la ciudad.",tr:"\u015eehri sevmiyor.",en:"He does not like the city."},
+{t:"mc",q:"Texto 94\nMar\u00eda trabaja como dise\u00f1adora gr\u00e1fica. Crea im\u00e1genes digitales. Usa programas de dise\u00f1o. Trabaja desde casa la mayor\u00eda del tiempo. Tiene clientes internacionales. Habla ingl\u00e9s con ellos. Organiza su horario. A veces trabaja por la noche. Le gusta la creatividad. Escucha m\u00fasica mientras trabaja.\n\n\u2753 Mar\u00eda trabaja siempre en una oficina tradicional.",o:["Falso", "Verdadero"],a:0,exp:"\u00c7o\u011funlukla evden \u00e7al\u0131\u015ft\u0131\u011f\u0131 belirtilmi\u015f. | ES: Trabaja desde casa la mayor\u00eda del tiempo. | TR: \u00c7o\u011funlukla evden \u00e7al\u0131\u015f\u0131yor. | EN: She mostly works from home.",es:"Trabaja desde casa la mayor\u00eda del tiempo.",tr:"\u00c7o\u011funlukla evden \u00e7al\u0131\u015f\u0131yor.",en:"She mostly works from home."},
+{t:"mc",q:"Texto 95\nJavier es estudiante de ingenier\u00eda. Tiene muchas clases dif\u00edciles. Estudia matem\u00e1ticas avanzadas. Tambi\u00e9n aprende programaci\u00f3n. Pasa mucho tiempo en la biblioteca. A veces se siente cansado. Pero no se rinde. Quiere ser ingeniero. Trabaja en proyectos con sus compa\u00f1eros. Participa en concursos.\n\n\u2753 Javier no estudia programaci\u00f3n.",o:["Verdadero", "Falso"],a:1,exp:"Programlama \u00f6\u011frendi\u011fi a\u00e7\u0131k\u00e7a yaz\u0131yor. | ES: Tambi\u00e9n aprende programaci\u00f3n. | TR: Programlama \u00f6\u011freniyor. | EN: He also learns programming.",es:"Tambi\u00e9n aprende programaci\u00f3n.",tr:"Programlama \u00f6\u011freniyor.",en:"He also learns programming."},
+{t:"mc",q:"Texto 96\nLuc\u00eda trabaja en un hospital grande. Es m\u00e9dica general. Atiende a muchos pacientes cada d\u00eda. Escucha sus problemas. Da consejos m\u00e9dicos. A veces trabaja turnos largos. Se levanta muy temprano. Llega al hospital a las siete. Usa uniforme blanco. Habla con otros m\u00e9dicos. Los pacientes conf\u00edan en ella. Es muy responsable.\n\n\u2753 Sus pacientes tienen confianza en ella.",o:["Verdadero", "Falso"],a:0,exp:"Metinde 'Los pacientes conf\u00edan en ella' deniyor. | ES: Los pacientes conf\u00edan en ella. | TR: Hastalar ona g\u00fcveniyor. | EN: Her patients trust her.",es:"Los pacientes conf\u00edan en ella.",tr:"Hastalar ona g\u00fcveniyor.",en:"Her patients trust her."},
+{t:"mc",q:"Texto 97\nMiguel vive en una ciudad grande. Trabaja en una empresa de transporte. Conduce un autob\u00fas. Lleva pasajeros por la ciudad. Empieza a trabajar temprano. Conoce muchas rutas. A veces hay tr\u00e1fico. Debe ser cuidadoso. Sigue las reglas. Ayuda a los pasajeros. Es amable. Le gusta su trabajo.\n\n\u2753 \u00c9l ayuda a las personas que viajan en su veh\u00edculo.",o:["Verdadero", "Falso"],a:0,exp:"Metinde 'Ayuda a los pasajeros' deniyor. | ES: Ayuda a los pasajeros. | TR: Yolculara yard\u0131m ediyor. | EN: He helps the passengers.",es:"Ayuda a los pasajeros.",tr:"Yolculara yard\u0131m ediyor.",en:"He helps the passengers."},
+{t:"mc",q:"Texto 98\nSof\u00eda estudia m\u00fasica. Toca el piano desde peque\u00f1a. Practica todos los d\u00edas. Tiene clases en el conservatorio. Aprende teor\u00eda musical. Tambi\u00e9n canta en un coro. Le gusta la m\u00fasica cl\u00e1sica. Participa en conciertos. A veces viaja para competir. Sus profesores la apoyan. Quiere ser pianista profesional.\n\n\u2753 Forma parte de presentaciones musicales en vivo.",o:["Verdadero", "Falso"],a:0,exp:"Metinde 'Participa en conciertos' deniyor. | ES: Participa en conciertos. | TR: Konserlere kat\u0131l\u0131yor. | EN: She participates in concerts.",es:"Participa en conciertos.",tr:"Konserlere kat\u0131l\u0131yor.",en:"She participates in concerts."},
+{t:"mc",q:"Texto 99\nDaniel trabaja en una empresa de marketing. Dise\u00f1a campa\u00f1as publicitarias. Usa redes sociales para promocionar productos. Habla con clientes cada d\u00eda. Organiza reuniones con su equipo. Tiene muchas ideas creativas. Aprende sobre nuevas tendencias. A veces trabaja bajo presi\u00f3n. Cumple con los plazos. Le gusta su profesi\u00f3n.\n\n\u2753 Utiliza plataformas digitales para promocionar productos.",o:["Verdadero", "Falso"],a:0,exp:"Metinde 'usa redes sociales para promocionar productos' deniyor. | ES: Usa redes sociales para promocionar productos. | TR: Sosyal medya kullan\u0131yor. | EN: He uses social media to promote products.",es:"Usa redes sociales para promocionar productos.",tr:"Sosyal medya kullan\u0131yor.",en:"He uses social media to promote products."},
+{t:"mc",q:"Texto 100\nClara estudia arquitectura. Asiste a clases todos los d\u00edas. Aprende sobre dise\u00f1o y construcci\u00f3n. Trabaja en proyectos con sus compa\u00f1eros. Usa programas de dise\u00f1o digital. Dibuja planos detallados. Escucha a sus profesores con atenci\u00f3n. Tiene mucho inter\u00e9s en su carrera. Participa en exposiciones. Presenta sus proyectos.\n\n\u2753 Trabaja junto con otros estudiantes en sus proyectos.",o:["Verdadero", "Falso"],a:0,exp:"Metinde 'trabaja en proyectos con sus compa\u00f1eros' deniyor. | ES: Trabaja en proyectos con sus compa\u00f1eros. | TR: Arkada\u015flar\u0131yla proje yap\u0131yor. | EN: She works on projects with her classmates.",es:"Trabaja en proyectos con sus compa\u00f1eros.",tr:"Arkada\u015flar\u0131yla proje yap\u0131yor.",en:"She works on projects with her classmates."}
+];
+
+let cur=0,score=0,err=0,wrongList=[],state=new Array(Q.length).fill(null);
+
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
+  window._introName=n;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+(q.t==='mc'?buildMC(q,cur):buildFill(q,cur));
+  if(state[cur]!==null)restoreState(cur);
+}
+
+function buildMC(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-mc">\u00c7OKTAN SE\u00c7MEL\u0130</span><div class="q-text">'+q.q+'</div><div class="choices" id="ch'+i+'">'+
+  q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+'abcd'[j]+'</span>'+o+'</button>').join('')+
+  '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function buildFill(q,i){
+  return'<div class="q-card"><div class="q-num">SORU '+(i+1)+'</div><span class="q-type-badge badge-fill">BO\u015eLUK DOLDURMA</span><div class="q-text">'+q.q+'</div><div class="fill-wrap"><input class="fill-input" id="fi'+i+'" placeholder="Cevab\u0131n\u0131z\u0131 yaz\u0131n..." onkeydown="if(event.key===\'Enter\')answerFill('+i+')"><button class="fill-submit" id="fs'+i+'" onclick="answerFill('+i+')">Kontrol Et \u2192</button></div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+
+function navRow(i){
+  return'<div class="nav-row"><button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button><button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>\u2190 Geri</button><button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir \u2713':'\u0130leri \u2192')+'</button></div>';
+}
+
+function showExp(i,ok){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el)return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  el.innerHTML=(ok?'\u2705 ':'\u274c Do\u011frusu: <strong>'+q.a+'</strong><br>')+q.exp+
+    '<span class="exp-es">\u1f1ea\u1f1f8 '+q.es+'</span><span class="exp-tr">\u1f1f9\u1f1f7 '+q.tr+'</span><span class="exp-en">\u1f1ec\u1f1e7 '+q.en+'</span>';
+}
+
+function answerMC(i,j){
+  if(state[i]!==null)return;
+  const q=Q[i],ok=j===q.a;
+  state[i]={chosen:q.o[j],correct:q.o[q.a],ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:q.o[j],correct:q.o[q.a]});}
+  for(let k=0;k<4;k++){
+    const b=document.getElementById('cb'+i+'_'+k);
+    if(!b)continue;b.disabled=true;
+    if(k===q.a)b.classList.add('correct');
+    else if(k===j&&!ok)b.classList.add('wrong');
+  }
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function answerFill(i){
+  const inp=document.getElementById('fi'+i);
+  if(!inp||state[i]!==null)return;
+  const user=inp.value.trim();if(!user)return;
+  const q=Q[i],ok=user.toLowerCase()===q.a.toLowerCase();
+  state[i]={chosen:user,correct:q.a,ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:user,correct:q.a});}
+  inp.classList.add(ok?'correct-input':'wrong-input');
+  inp.disabled=true;
+  document.getElementById('fs'+i).disabled=true;
+  if(!ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#6c5ce7;margin-top:.3rem;font-weight:600;';d.textContent='Do\u011frusu: '+q.a;inp.parentNode.insertBefore(d,inp.nextSibling);}
+  showExp(i,ok);
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  if(allAnswered())setTimeout(showResult,700);
+}
+
+function restoreState(i){
+  const s=state[i],q=Q[i];if(!s)return;
+  if(q.t==='mc'){
+    for(let k=0;k<4;k++){const b=document.getElementById('cb'+i+'_'+k);if(!b)continue;b.disabled=true;if(k===q.a)b.classList.add('correct');else if(q.o[k]===s.chosen&&!s.ok)b.classList.add('wrong');}
+  }else{
+    const inp=document.getElementById('fi'+i);
+    if(inp){inp.value=s.chosen;inp.classList.add(s.ok?'correct-input':'wrong-input');inp.disabled=true;}
+    document.getElementById('fs'+i).disabled=true;
+    if(!s.ok){const d=document.createElement('div');d.style.cssText='font-size:.8rem;color:#6c5ce7;margin-top:.3rem;font-weight:600;';d.textContent='Do\u011frusu: '+q.a;if(inp)inp.parentNode.insertBefore(d,inp.nextSibling);}
+  }
+  showExp(i,s.ok);
+}
+
+function allAnswered(){return state.every(s=>s!==null);}
+function skipQ(){next();}
+function prev(){if(cur>0){cur--;render();}}
+function next(){if(cur<Q.length-1){cur++;render();}else showResult();}
+
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').style.display='block';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('resPct').textContent=pct;
+  document.getElementById('resIcon').textContent='';
+  document.getElementById('stOk').textContent=score;
+  document.getElementById('stErr').textContent=err;
+  document.getElementById('stPct').textContent=pct;
+  document.getElementById('noticeBox').style.display='block';
+  document.getElementById('actionBtns').classList.add('show');
+  if(window._introName){
+    const sel=document.getElementById('studentName');
+    if(sel)for(let i=0;i<sel.options.length;i++)if(sel.options[i].text===window._introName){sel.selectedIndex=i;break;}
+  }
+  // \u00d6nceki onay s\u0131f\u0131rlans\u0131n (tekrar yap\u0131ld\u0131ysa)
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla \u2713';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').style.display='none';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
+  const grup=GROUPS[val]||'A1.1';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='\u2713 Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' \u00b7 '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const st=document.getElementById('sendStatus');
+  st.style.display='block';st.style.color='var(--muted)';st.textContent='\u23f3 Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.style.display='none';})
+  .catch(()=>{st.style.color='var(--muted)';st.textContent='\u26a0\ufe0f Ba\u011flant\u0131 hatas\u0131, l\u00fctfen tekrar deneyin.';});
+}
+
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  const btn=document.querySelector('.btn-review');
+  if(sec.innerHTML&&sec.style.display!=='none'){sec.style.display='none';btn.textContent='\u1f50d Hatalar\u0131m\u0131 g\u00f6zden ge\u00e7ir';return;}
+  btn.textContent='\u25b2 Kapat';
+  if(wrongList.length===0){sec.innerHTML='<div class="review-title">\u1f389 Hi\u00e7 hata yok!</div>';sec.style.display='block';return;}
+  let h='<div class="review-title">\u274c Yanl\u0131\u015f Sorular ('+wrongList.length+')</div>';
+  wrongList.forEach(w=>{
+    const q=Q[w.idx];
+    h+='<div class="review-card"><div class="review-qnum">SORU '+(w.idx+1)+'</div><div class="review-q">'+q.q+'</div><div class="review-your">\u274c Cevab\u0131n\u0131z: '+w.chosen+'</div><div class="review-correct">\u2705 Do\u011fru: '+w.correct+'</div><div class="review-exp">'+q.exp+'<br><span style="font-style:italic;color:#1a5276">\u1f1ea\u1f1f8 '+q.es+'</span><br><strong style="color:#1a5276">\u1f1f9\u1f1f7 '+q.tr+'</strong><br><span style="color:#555">\u1f1ec\u1f1e7 '+q.en+'</span></div></div>';
+  });
+  sec.innerHTML=h;sec.style.display='block';sec.scrollIntoView({behavior:'smooth'});
+}
+
+function restart(){
+  cur=0;score=0;err=0;wrongList=[];state=new Array(Q.length).fill(null);
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').innerHTML='';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('actionBtns').classList.remove('show');
+  document.getElementById('noticeBox').style.display='none';
+  document.querySelector('.btn-review').textContent='\u1f50d Hatalar\u0131m\u0131 g\u00f6zden ge\u00e7ir';
+  document.getElementById('quiz').style.display='block';
+  render();window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
