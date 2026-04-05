@@ -492,14 +492,19 @@ function submitResult(){
   if(!name){alert('Lütfen adınızı seçin!');return;}
   var grup=GROUPS[name]||'A1.2';
   var pct=Math.round(score/Q.length*100);
-  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({ogrenci:name,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})
-  });
+  var params=new URLSearchParams();
+  params.append('ogrenci',name);
+  params.append('grup',grup);
+  params.append('odev',ODEV_ADI);
+  params.append('puan',pct);
+  params.append('dogru',score);
+  params.append('yanlis',err);
+  fetch(SCRIPT_URL+'?'+params.toString(),{method:'GET',mode:'no-cors'});
   var warn=document.getElementById('submitWarning');
   if(warn) warn.style.display='none';
   var msg=document.getElementById('submitMsg');
   msg.style.display='block';
-  msg.textContent=name+' — '+ODEV_ADI+' ödeviniz teslim edildi. Teslim edildi!';
+  msg.textContent=name+' — '+ODEV_ADI+' ödeviniz teslim edildi!';
 }
 
 function toggleReview(){
