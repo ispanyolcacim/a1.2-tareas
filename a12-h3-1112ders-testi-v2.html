@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A1.2 H3 11-12. Ders</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f0ff;min-height:100vh;color:#222}
+#introScreen{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;gap:.9rem;max-width:540px;margin:0 auto}
+.logo-tag{font-size:.75rem;color:#6b7280;letter-spacing:.08em;text-transform:uppercase}
+.week-pill{background:#6b21a8;color:#fff;border-radius:999px;padding:.35rem 1.1rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-align:center}
+h1.main-title{font-size:1.55rem;font-weight:800;color:#6b21a8;text-align:center;line-height:1.25}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.chip{background:#ede9fe;color:#6b21a8;border-radius:999px;padding:.25rem .75rem;font-size:.75rem;font-weight:600}
+.intro-sub{font-size:.9rem;color:#555;text-align:center}
+.name-label{font-size:.85rem;font-weight:600;color:#6b21a8;align-self:flex-start;width:100%;max-width:380px}
+.name-select{width:100%;max-width:380px;padding:.6rem .9rem;border:2px solid #7c3aed;border-radius:.6rem;font-size:.95rem;color:#222;background:#fff;outline:none}
+.start-btn{width:100%;max-width:380px;padding:.8rem;background:#6b21a8;color:#fff;border:none;border-radius:.7rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.5rem}
+.start-btn:hover{background:#9333ea}
+.notice{font-size:.78rem;color:#6b7280;text-align:center;max-width:340px;line-height:1.5}
+.video-links{width:100%;max-width:380px;display:flex;flex-direction:column;gap:.5rem}
+.video-link-btn{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;background:#fff;border:2px solid #e5e7eb;border-radius:.7rem;text-decoration:none;color:#222;font-size:.85rem;font-weight:600;transition:all .15s}
+.video-link-btn:hover{border-color:#7c3aed;color:#6b21a8}
+.yt-icon{width:24px;height:24px;flex-shrink:0}
+.video-section-title{font-size:.8rem;font-weight:700;color:#6b21a8;align-self:flex-start;width:100%;max-width:380px}
+#quizScreen{display:none;max-width:620px;margin:0 auto;padding:1rem}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.quiz-meta{font-size:.78rem;color:#6b7280}
+.counters{display:flex;gap:.6rem;font-size:.78rem}
+.cnt-ok{color:#16a34a;font-weight:700}
+.cnt-err{color:#dc2626;font-weight:700}
+.prog-bar{width:100%;height:6px;background:#ddd;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:6px;background:#6b21a8;border-radius:3px;transition:width .3s}
+.q-card{background:#fff;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 12px rgba(107,33,168,.08);margin-bottom:1rem}
+.q-type-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;margin-bottom:.6rem}
+.badge-mc{background:#ede9fe;color:#6b21a8}
+.badge-fill{background:#fef3c7;color:#92400e}
+.q-text{font-size:1rem;font-weight:600;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.video-ref{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:#6b21a8;background:#ede9fe;border-radius:999px;padding:.2rem .7rem;margin-bottom:.5rem;text-decoration:none}
+.video-ref:hover{background:#ddd6fe}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-top:.9rem}
+.opt-btn{text-align:left;padding:.65rem .9rem;border:2px solid #e5e7eb;border-radius:.6rem;background:#fff;font-size:.9rem;cursor:pointer;transition:all .15s;line-height:1.4;word-break:break-word}
+.opt-btn:hover:not(:disabled){border-color:#7c3aed;background:#ede9fe}
+.opt-btn.correct{border-color:#16a34a;background:#dcfce7;color:#166534;font-weight:600}
+.opt-btn.wrong{border-color:#dc2626;background:#fee2e2;color:#991b1b}
+.opt-btn:disabled{cursor:default}
+.fill-wrap{margin-top:.9rem;display:flex;flex-direction:column;gap:.6rem}
+.fill-input{padding:.65rem .9rem;border:2px solid #e5e7eb;border-radius:.6rem;font-size:.95rem;outline:none;width:100%}
+.fill-input:focus{border-color:#7c3aed}
+.fill-input.correct{border-color:#16a34a;background:#dcfce7}
+.fill-input.wrong{border-color:#dc2626;background:#fee2e2}
+.check-btn{padding:.65rem 1.2rem;background:#7c3aed;color:#fff;border:none;border-radius:.6rem;font-size:.9rem;font-weight:700;cursor:pointer}
+.check-btn:hover{background:#6b21a8}
+.exp-box{margin-top:.75rem;background:#faf5ff;border-left:4px solid #7c3aed;border-radius:.4rem;padding:.75rem .9rem;font-size:.85rem;line-height:1.7;color:#444;display:none;white-space:pre-wrap;word-break:break-word}
+.exp-box.show{display:block}
+.nav-row{display:flex;gap:.6rem;margin-top:.75rem;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:70px;padding:.7rem;border:2px solid #e5e7eb;border-radius:.7rem;background:#fff;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;color:#555}
+.nav-btn:hover:not(:disabled){border-color:#7c3aed;color:#7c3aed}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.nav-btn.primary{background:#6b21a8;color:#fff;border-color:#6b21a8}
+.nav-btn.primary:hover:not(:disabled){background:#9333ea}
+.nav-btn.finish{background:#dc2626;color:#fff;border-color:#dc2626;font-weight:800}
+.nav-btn.finish:hover:not(:disabled){background:#b91c1c}
+#confirmOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:1rem}
+.confirm-box{background:#fff;border-radius:1rem;padding:1.5rem;max-width:360px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.2)}
+.confirm-title{font-size:1.1rem;font-weight:700;color:#6b21a8;margin-bottom:.75rem}
+.confirm-msg{font-size:.92rem;color:#444;margin-bottom:1.2rem;line-height:1.5}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btn-cancel{flex:1;padding:.7rem;border:2px solid #e5e7eb;border-radius:.6rem;background:#fff;font-size:.9rem;font-weight:600;cursor:pointer;color:#555}
+.confirm-btn-ok{flex:1;padding:.7rem;border:none;border-radius:.6rem;background:#dc2626;color:#fff;font-size:.9rem;font-weight:700;cursor:pointer}
+#resultScreen{display:none;max-width:540px;margin:0 auto;padding:2rem 1rem}
+.res-card{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 2px 16px rgba(107,33,168,.1);text-align:center;margin-bottom:1rem}
+.res-pill{display:inline-block;background:#6b21a8;color:#fff;border-radius:999px;padding:.4rem 1.2rem;font-size:.85rem;font-weight:700;margin:.5rem 0}
+.res-score{font-size:3rem;font-weight:900;color:#6b21a8;line-height:1.1}
+.res-total{font-size:1rem;color:#6b7280}
+.res-stats{display:flex;justify-content:center;gap:1.5rem;margin:.75rem 0;font-size:.9rem}
+.stat-ok{color:#16a34a;font-weight:700}
+.stat-err{color:#dc2626;font-weight:700}
+.submit-warning{background:#fef3c7;border:2px solid #f59e0b;border-radius:.8rem;padding:1.1rem;text-align:center;margin-bottom:1rem}
+.submit-warning-title{font-size:1.05rem;font-weight:900;color:#92400e}
+.submit-warning-sub{font-size:.85rem;color:#78350f;margin-top:.3rem}
+.name-select-res{width:100%;padding:.6rem .9rem;border:2px solid #7c3aed;border-radius:.6rem;font-size:.92rem;color:#222;background:#fff;margin-bottom:.75rem}
+.submit-btn{width:100%;padding:1.1rem;background:#16a34a;color:#fff;border:none;border-radius:.8rem;font-size:1.15rem;font-weight:900;cursor:pointer;letter-spacing:.03em;margin-bottom:.75rem}
+.submit-btn:hover{background:#15803d}
+.submit-msg{display:none;padding:.85rem;background:#dcfce7;border-radius:.6rem;font-size:.95rem;color:#166534;font-weight:700;line-height:1.5;text-align:center;margin-bottom:.75rem}
+.review-toggle{width:100%;padding:.7rem;background:#fff;border:2px solid #e5e7eb;border-radius:.7rem;font-size:.88rem;font-weight:600;cursor:pointer;color:#555;margin-bottom:.5rem}
+.review-toggle:hover{border-color:#7c3aed;color:#7c3aed}
+.review-list{display:none;flex-direction:column;gap:.75rem}
+.rev-item{background:#fff;border-radius:.8rem;padding:1rem;box-shadow:0 1px 6px rgba(0,0,0,.06);text-align:left}
+.rev-q{font-size:.88rem;font-weight:600;margin-bottom:.4rem;white-space:pre-wrap;word-break:break-word}
+.rev-chosen{font-size:.82rem;color:#dc2626}
+.rev-correct{font-size:.82rem;color:#16a34a;font-weight:600}
+.rev-exp{font-size:.8rem;color:#555;margin-top:.3rem;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+@media(max-width:480px){h1.main-title{font-size:1.3rem}.res-score{font-size:2.5rem}.nav-row{gap:.4rem}}
+</style>
+</head>
+<body>
+
+<div id="introScreen">
+  <div class="logo-tag">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="week-pill">3. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (11-12. DERS)</div>
+  <h1 class="main-title">Gastar el Dinero &amp; Sıfat Uyumu &amp; Buena Gente</h1>
+  <div class="chips">
+    <span class="chip">Gastar el Dinero</span>
+    <span class="chip">Sıfat Uyumu</span>
+    <span class="chip">Dinleme</span>
+    <span class="chip">A1.2</span>
+  </div>
+  <div class="intro-sub">100 soru &middot; Çoktan Seçmeli</div>
+
+  <div class="video-section-title">Video Kaynakları (S71-100)</div>
+  <div class="video-links">
+    <a class="video-link-btn" href="https://www.youtube.com/watch?v=LtCorVH5ukU" target="_blank">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Buena Gente S1 E1 – Spanish Playground
+    </a>
+    <a class="video-link-btn" href="https://www.youtube.com/watch?v=lTDFYd8OhS8" target="_blank">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Buena Gente S1 E2 – Spanish Playground
+    </a>
+  </div>
+
+  <div class="name-label">Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Busem Şeker">Busem Şeker</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+    <option value="Ece Turhanoğlu">Ece Turhanoğlu</option>
+    <option value="Elif Şafak">Elif Şafak</option>
+    <option value="Esra Özkaya">Esra Özkaya</option>
+    <option value="Kardelen Kuşçu">Kardelen Kuşçu</option>
+    <option value="Sümeyye Şahin">Sümeyye Şahin</option>
+    <option value="Şeyma Koçak">Şeyma Koçak</option>
+    <option value="Yiğit Öz">Yiğit Öz</option>
+    <option value="Zeynep Ertürk">Zeynep Ertürk</option>
+    <option value="Zümeyra Doğan">Zümeyra Doğan</option>
+  </select>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla</button>
+  <div class="notice">71-90. sorular Buena Gente S1 E1, 91-100. sorular S1 E2 videosuna göredir. Videoları izledikten sonra teste başlayın!</div>
+</div>
+
+<div id="confirmOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:1rem">
+  <div class="confirm-box">
+    <div class="confirm-title">Testi Bitir</div>
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="confirm-btn-cancel" onclick="closeConfirm()">Geri Dön</button>
+      <button class="confirm-btn-ok" onclick="doFinish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<div id="quizScreen" style="display:none">
+  <div class="quiz-header">
+    <div class="quiz-meta" id="qMeta">Soru 1 / 100</div>
+    <div class="counters">
+      <span class="cnt-ok" id="cntOk">✓ 0</span>
+      <span class="cnt-err" id="cntErr">✗ 0</span>
+    </div>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-card" id="qCard"></div>
+  <div class="nav-row">
+    <button class="nav-btn" id="btnBack" onclick="goBack()" disabled>← Geri</button>
+    <button class="nav-btn" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
+    <button class="nav-btn primary" id="btnNext" onclick="goNext()" disabled>İleri →</button>
+    <button class="nav-btn finish" id="btnFinish" onclick="confirmFinish()">Testi Bitir</button>
+  </div>
+</div>
+
+<div id="resultScreen" style="display:none">
+  <div class="res-card">
+    <div class="res-pill">3. HAFTA ÖDEVİ | A1.2 (11-12. DERS)</div>
+    <div class="res-score" id="resScore">0</div>
+    <div class="res-total">/ 100 puan</div>
+    <div class="res-stats">
+      <span class="stat-ok" id="resOk">✓ 0 doğru</span>
+      <span class="stat-err" id="resErr">✗ 0 yanlış</span>
+    </div>
+  </div>
+  <div class="submit-warning" id="submitWarning">
+    <div class="submit-warning-title">⚠ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ!</div>
+    <div class="submit-warning-sub">Aşağıdaki butona basarak ödevinizi teslim edin.</div>
+  </div>
+  <select id="resName" class="name-select-res">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Busem Şeker">Busem Şeker</option>
+    <option value="Deneme Öğrencisi">Deneme Öğrencisi</option>
+    <option value="Ece Turhanoğlu">Ece Turhanoğlu</option>
+    <option value="Elif Şafak">Elif Şafak</option>
+    <option value="Esra Özkaya">Esra Özkaya</option>
+    <option value="Kardelen Kuşçu">Kardelen Kuşçu</option>
+    <option value="Sümeyye Şahin">Sümeyye Şahin</option>
+    <option value="Şeyma Koçak">Şeyma Koçak</option>
+    <option value="Yiğit Öz">Yiğit Öz</option>
+    <option value="Zeynep Ertürk">Zeynep Ertürk</option>
+    <option value="Zümeyra Doğan">Zümeyra Doğan</option>
+  </select>
+  <button class="submit-btn" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="review-toggle" onclick="toggleReview()">Yanlış Soruları Gözden Geçir ▾</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+<script>
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI = 'H3 – 11-12.Ders';
+
+var GROUPS = {
+  'Busem Şeker': 'A1.2',
+  'Deneme Öğrencisi': 'A1.2',
+  'Ece Turhanoğlu': 'A1.2',
+  'Elif Şafak': 'A1.2',
+  'Esra Özkaya': 'A1.2',
+  'Kardelen Kuşçu': 'A1.2',
+  'Sümeyye Şahin': 'A1.2',
+  'Şeyma Koçak': 'A1.2',
+  'Yiğit Öz': 'A1.2',
+  'Zeynep Ertürk': 'A1.2',
+  'Zümeyra Doğan': 'A1.2'
+};
+
+// video refs
+var E1 = 'https://www.youtube.com/watch?v=LtCorVH5ukU';
+var E2 = 'https://www.youtube.com/watch?v=lTDFYd8OhS8';
+
+var Q = [
+// S1-S40: Gastar el Dinero kitap soruları (MC 4 şık)
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué puedes comprar con el dinero?',o:['Bienes o servicios','Solo comida','Solo ropa','Solo servicios'],a:0,exp:'Metinde şöyle diyor:\n"Puedes comprar bienes o servicios."\nParayla mallar ya da hizmetler satın alabilirsin.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué venden algunas tiendas?',o:['Solo libros','Solo zapatos','Solo comida','Libros y ropa'],a:3,exp:'Metinden:\n"Algunas venden libros y otras venden ropa."\nBazıları kitap satar, bazıları ise kıyafet satar.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué son los bienes?',o:['Cosas que haces','Cosas que puedes comprar y llevar','Servicios','Cosas que no compras'],a:1,exp:'Metinde şöyle geçiyor:\n"Los bienes son cosas que puedes comprar y llevar a tu casa."\nMallar, satın alıp evine götürebileceğin şeylerdir.\nBu yüzden doğru cevap B.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál es un ejemplo de bien?',o:['Arreglar un coche','Enseñar','Comprar manzanas','Ayudar a alguien'],a:2,exp:'Metinde:\n"Las manzanas del mercado también son bienes."\nPazardaki elmalar da mallardır.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué es un servicio?',o:['Algo que compras','Algo que comes','Algo que una persona hace para otra','Algo que guardas'],a:2,exp:'Metinde:\n"Un servicio es algo que una persona hace para otra."\nHizmet, bir kişinin başka bir kişi için yaptığı şeydir.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué hace el cliente?',o:['Da dinero al banco','Paga por el servicio','Trabaja','Fabrica dinero'],a:1,exp:'Metinde:\n"El cliente le paga al mecánico por el servicio."\nMüşteri hizmet için ödeme yapar.\nBu yüzden doğru cevap B.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué pasa cuando gastamos dinero?',o:['Se rompe','Se pierde','Se guarda','Viaja'],a:3,exp:'Metinde:\n"El dinero viaja cuando lo gastamos en bienes o servicios."\nParayı harcadığımızda para dolaşır.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cómo se llama el dinero que se mueve?',o:['Dinero en circulación','Dinero en casa','Dinero guardado','Dinero fijo'],a:0,exp:'Metinde:\n"El dinero que se mueve de una persona a otra se llama dinero en circulación."\nBir kişiden diğerine geçen paraya dolaşımdaki para denir.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Quién hace las monedas?',o:['El gobierno','El banco','Las personas','Las tiendas'],a:0,exp:'Metinde:\n"El gobierno hace las monedas y el papel moneda."\nMadeni ve kağıt parayı devlet üretir.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuánto duran los billetes?',o:['Muchos años','Un mes','Cerca de un año y medio','Un día'],a:2,exp:'Metinde:\n"Los billetes sólo duran cerca de un año y medio."\nBanknotlar yaklaşık bir buçuk yıl dayanır.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Dónde guardan el dinero los bancos?',o:['En bolsas','En cajas fuertes','En casas','En tiendas'],a:1,exp:'"Los bancos guardan el dinero en cajas fuertes."\nBankalar parayı kasalarda saklar.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Quién cuida el dinero en el banco?',o:['Los clientes','Los niños','Los vendedores','Los guardias'],a:3,exp:'"Los guardias del banco cuidan el dinero."\nGüvenlik görevlileri parayı korur.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cómo viaja el dinero a los bancos?',o:['En coches normales','En trenes','A pie','En camiones especiales'],a:3,exp:'"El dinero viaja a los bancos en camiones especiales."\nPara özel kamyonlarla taşınır.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué hace el dueño de la tienda primero?',o:['Va al banco','Compra comida','Vende ropa','Da dinero'],a:0,exp:'"El dueño de una tienda va al banco…"\nİlk yaptığı şey bankaya gitmektir.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué recibe el cliente después de pagar con tarjeta?',o:['Dinero','Un regalo','Una cuenta','Nada'],a:2,exp:'"El cliente recibe una cuenta por correo."\nMüşteri fatura alır.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué pasa si el cliente no paga a tiempo?',o:['No pasa nada','Tiene que pagar extra','Paga menos','Recibe dinero'],a:1,exp:'"Si no paga a tiempo, paga extra."\nZamanında ödeme yapmazsa ekstra öder.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué es un cheque?',o:['Dinero en efectivo','Un papel especial','Una tarjeta','Una moneda'],a:1,exp:'"Un cheque es un papel especial."\nÇek özel bir kağıttır.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué necesita un cheque para usarse?',o:['Solo dinero','Una tienda','Nombre y firma','Un cliente'],a:2,exp:'"Debe tener nombre y firma."\nİsim ve imza gerekir.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué es un presupuesto?',o:['Un plan de gastos','Dinero guardado','Un juego','Una tienda'],a:0,exp:'"A este plan se le llama presupuesto."\nBütçe bir harcama planıdır.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Para qué sirve un presupuesto?',o:['Para viajar','Para comprar ropa','Para trabajar','Para planear el uso del dinero'],a:3,exp:'Metnin mantığına göre bütçe, parayı nasıl kullanacağını planlamaya yardımcı olur.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué NO significa "ahorrar"?',o:['Guardar dinero','Pensar en el futuro','No gastar dinero','Gastar dinero'],a:3,exp:'"Ahorrar" para biriktirmek demektir, harcamak değildir.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué significa lo contrario de "gastar"?',o:['Ahorrar dinero','Comprar cosas','Usar dinero','Pagar'],a:0,exp:'"Gastar" harcamak demektir. Bunun zıttı "ahorrar" yani biriktirmektir.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué acción está relacionada con "ganar dinero"?',o:['Romper cosas','Perder dinero','Trabajar','Esconder dinero'],a:2,exp:'"Ganar dinero" çalışarak para kazanmak demektir.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué NO es el "precio"?',o:['Cantidad de dinero','Número de personas','Lo que cuesta algo','Valor de un producto'],a:1,exp:'"Precio" bir şeyin ne kadar para ettiğini ifade eder, insan sayısı değildir.\nBu yüzden doğru cevap B.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué significa "caro"?',o:['Barato','Costoso','Nuevo','Difícil'],a:1,exp:'"Caro" pahalı demektir, yani maliyeti yüksek.\nBu yüzden doğru cevap B.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO es un sinónimo de "barato"?',o:['Económico','Bajo precio','Accesible','Caro'],a:3,exp:'"Barato" ucuz demektir. "Caro" ise tam tersidir (pahalı).\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué es lo contrario de "comprar"?',o:['Vender','Pagar','Tener','Usar'],a:0,exp:'"Comprar" satın almak, "vender" ise satmak demektir.\nZıt anlamlıdır.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué significa "vender"?',o:['Comprar','Dar gratis','Dar algo a cambio de dinero','Guardar'],a:2,exp:'"Vender" para karşılığında bir şey vermektir.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué NO es el dinero?',o:['Medio de pago','Algo que usamos para comprar','Tiempo','Valor económico'],a:2,exp:'"Dinero" ödeme aracıdır, zaman değildir.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué significa "banco"?',o:['Tienda','Lugar donde se guarda dinero','Restaurante','Escuela'],a:1,exp:'"Banco" paranın saklandığı ve yönetildiği yerdir.\nBu yüzden doğru cevap B.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué es el "papel moneda"?',o:['Las cajas fuertes del banco','El plan de gastos mensual','Las monedas de metal','Los billetes'],a:3,exp:'Metinde devletin madeni para ve kağıt para bastığı belirtilir. "Papel moneda" terimi kağıt para, yani banknot (billete) anlamına gelir. Bu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO es el opuesto de "caro"?',o:['Grande','Barato','Económico','Bajo precio'],a:0,exp:'"Caro" pahalı demektir. "Barato, económico, bajo precio" hepsi zıt anlamlıdır.\n"Grande" ise alakasızdır.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál describe mejor a una persona que gasta mucho dinero?',o:['Generosa','Rica','Tímida','Rápida'],a:0,exp:'"Generosa" cömert demektir ve çok para harcayan kişi için uygundur.\nBu yüzden doğru cevap A.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Qué significa "pagar en efectivo"?',o:['Pagar con tarjeta','Pagar con monedas o billetes','No pagar','Pagar después'],a:1,exp:'"Efectivo" nakit demektir.\nYani madeni ya da kağıt para ile ödeme yapılır.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO es el significado de "deuda"?',o:['Dinero que debes pagar','Obligación de pago','Dinero gratis','Dinero pendiente'],a:2,exp:'"Deuda" borç demektir.\nÜcretsiz para anlamına gelmez.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO está relacionado con "ganancias"?',o:['Dinero ganado','Beneficio','Ingreso','Pérdida'],a:3,exp:'"Ganancias" kazanç demektir.\n"Pérdida" (kayıp) bunun zıttıdır.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO es un sinónimo de "comprar"?',o:['Adquirir','Obtener','Conseguir','Vender'],a:3,exp:'"Comprar" satın almak demektir.\n"Vender" ise satmak anlamına gelir ve zıttıdır.\nBu yüzden doğru cevap D.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO es un ejemplo de "ingresos"?',o:['Salario','Dinero ganado','Dinero gastado','Pago recibido'],a:2,exp:'"Ingresos" içeri giren para yani gelirdir.\nHarcanan para buna girmez.\nBu yüzden doğru cevap C.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál es el opuesto de "ganar dinero"?',o:['Perder dinero','Ahorrar dinero','Invertir dinero','Guardar dinero'],a:0,exp:'"Ganar dinero" para kazanmak demektir.\nZıttı "perder dinero" yani para kaybetmektir.'},
+{t:'mc',q:'(Okumuş olduğunuz "Gastar el Dinero" isimli kitaba göre yanıtlayınız.)\n¿Cuál NO describe un "presupuesto"?',o:['Plan de gastos','Lista de compras','Control del dinero','Organización financiera'],a:1,exp:'"Presupuesto" harcamaları planlama sistemidir.\nSadece alışveriş listesi değildir.\nBu yüzden doğru cevap B.'},
+// S41-S70: Sıfat Uyumu - boşluk doldurma
+{t:'fill',q:'Marta tiene una hermana muy simpática. Hoy las dos van a una fiesta familiar. Llevan vestidos elegantes y zapatos bonitos. Marta dice: "Mi hermana y yo somos chicas ______ (güzel-g…...)".',a:'guapas',exp:'Bu soruda hedef hem sıfatın çoğul kullanımı hem de dişil isimle uyumu ölçmektir. "Chicas" kelimesi dişil çoğuldur. Bu yüzden kullanılacak sıfatın da dişil çoğul olması gerekir. İspanyolcada -o ile biten sıfatlar dişilde -a olur, çoğulda da -s alır. Bu nedenle doğru cevap guapas olur. Ayrıca sıfat, tanımladığı isimden sonra gelmiştir ve bu en yaygın kullanımdır.\nMarta tiene una hermana muy simpática. Hoy las dos van a una fiesta familiar. Llevan vestidos elegantes y zapatos bonitos. Marta dice: "Mi hermana y yo somos chicas guapas".\nMarta has a very nice sister. Today both of them are going to a family party. They are wearing elegant dresses and beautiful shoes. Marta says: "My sister and I are pretty girls."\nMarta\'nın çok sempatik bir kız kardeşi var. Bugün ikisi aile toplantısına gidiyor. Şık elbiseler ve güzel ayakkabılar giyiyorlar. Marta şöyle diyor: "Kız kardeşim ve ben güzel kızlarız."'},
+{t:'fill',q:'Carlos vive en una casa muy vieja. La casa tiene un jardín enorme y muchas ventanas. Todos en el barrio conocen esa vivienda. Carlos siempre dice que vive en una casa ______ (büyük-g.....).',a:'grande',exp:'Bu soruda sıfatın isimden sonra gelerek fiziksel anlam vermesi ölçülmektedir. "Casa grande" fiziksel olarak büyük ev demektir. "Gran casa" ise yorum içerir (harika ev). Bu bağlamda fiziksel özellik anlatıldığı için doğru cevap grande olur.\nCarlos vive en una casa muy vieja. La casa tiene un jardín enorme y muchas ventanas. Todos en el barrio conocen esa vivienda. Carlos siempre dice que vive en una casa grande.\nCarlos lives in a very old house. The house has a huge garden and many windows. Everyone in the neighborhood knows that home. Carlos always says that he lives in a big house.\nCarlos çok eski bir evde yaşıyor. Evin kocaman bir bahçesi ve birçok penceresi var. Mahallede herkes o evi tanıyor. Carlos her zaman büyük bir evde yaşadığını söyler.'},
+{t:'fill',q:'Ana tiene muchos amigos en la universidad. Uno de ellos la acompaña desde la infancia. Siempre se ayudan y se entienden muy bien. Por eso Ana dice que Luis es su ______ amigo (eski/vaktiyle tanıdığı-v.....).',a:'viejo',exp:'Bu soruda sıfatın yer değiştirdiğinde anlam değiştirmesi ölçülmektedir. "Viejo amigo" uzun zamandır tanıdığı eski arkadaş demektir. "Amigo viejo" ise yaşlı arkadaş anlamına gelir. Bu bağlamda doğru cevap viejo olur ve isimden önce gelir.\nAna tiene muchos amigos en la universidad. Uno de ellos la acompaña desde la infancia. Siempre se ayudan y se entienden muy bien. Por eso Ana dice que Luis es su viejo amigo.\nAna has many friends at university. One of them has been with her since childhood. They always help each other and understand each other very well. That is why Ana says that Luis is her old friend.\nAna\'nın üniversitede birçok arkadaşı var. Onlardan biri çocukluğundan beri onun yanında. Her zaman birbirlerine yardım ediyorlar ve çok iyi anlaşıyorlar. Bu yüzden Ana, Luis\'in onun eski arkadaşı olduğunu söylüyor.'},
+{t:'fill',q:'Hoy tenemos una reunión muy importante. El director quiere escuchar una propuesta clara. Solo un estudiante puede hablar primero. Por eso él es el ______ alumno (tek-ú.....).',a:'único',exp:'Bu soruda "único" sıfatının anlam farkı ölçülmektedir. "El único alumno" = tek öğrenci anlamına gelir. "Un alumno único" ise eşsiz öğrenci demektir. Bağlamda tek kişi olduğu söylendiği için doğru cevap único olur.\nHoy tenemos una reunión muy importante. El director quiere escuchar una propuesta clara. Solo un estudiante puede hablar primero. Por eso él es el único alumno.\nToday we have a very important meeting. The principal wants to hear a clear proposal. Only one student can speak first. That is why he is the only student.\nBugün çok önemli bir toplantımız var. Müdür açık bir öneri duymak istiyor. Sadece bir öğrenci konuşabilir. Bu yüzden o tek öğrencidir.'},
+{t:'fill',q:'Mi hermano tiene quince años y yo tengo diez. En la casa todos saben quién nació antes. Cuando hablamos de él, siempre decimos que es mi hermano ______ (abi/yaşça büyük-m...).',a:'mayor',exp:'Bu soruda "mayor" sıfatı ölçülmektedir. "Mayor" değişmeyen bir sıfattır ve hem erkek hem kadın için aynı kullanılır. Aile içinde "abi/abla" anlamı verir. Bu nedenle doğru cevap mayor olur.\nMi hermano tiene quince años y yo tengo diez. En la casa todos saben quién nació antes. Cuando hablamos de él, siempre decimos que es mi hermano mayor.\nMy brother is fifteen years old and I am ten. Everyone at home knows who was born first. When we talk about him, we always say that he is my older brother.\nErkek kardeşim on beş yaşında, ben ise on yaşındayım. Evde herkes kimin önce doğduğunu biliyor. Ondan bahsederken onun benim ağabeyim olduğunu söyleriz.'},
+{t:'fill',q:'Laura tiene dos profesoras nuevas este año. Las dos explican con mucha paciencia y claridad. Sus clases son muy interesantes y útiles. Laura dice que tiene profesoras ______ (iyi-b...).',a:'buenas',exp:'Bu soruda sıfatın dişil çoğul uyumu ölçülmektedir. "Profesoras" dişil çoğuldur. "Bueno" → "buena" → "buenas" olur. Bu nedenle doğru cevap buenas olur.\nLaura tiene dos profesoras nuevas este año. Las dos explican con mucha paciencia y claridad. Sus clases son muy interesantes y útiles. Laura dice que tiene profesoras buenas.\nLaura has two new teachers this year. Both explain with patience and clarity. Their classes are very useful. Laura says she has good teachers.\nLaura\'nın bu yıl iki kadın öğretmeni var. İkisi de çok iyi anlatıyor. Laura onların iyi öğretmenler olduğunu söylüyor.'},
+{t:'fill',q:'Hoy hemos tenido un día terrible. Perdimos el autobús y llegamos tarde a clase. Después también olvidamos una tarea importante. Por eso todos dicen que fue un ______ día (berbat-m...).',a:'mal',exp:'Bu soruda sıfatın isimden önce gelince anlam değiştirmesi ölçülmektedir. "Mal día" = berbat gün. "Día malo" = kötü gün. Bağlam güçlü negatif olduğu için doğru cevap mal olur.\nHoy hemos tenido un día terrible. Perdimos el autobús y llegamos tarde a clase. Después también olvidamos una tarea importante. Por eso todos dicen que fue un mal día.\nToday we had a terrible day. We missed the bus and arrived late. We also forgot homework. It was a bad day.\nBugün berbat bir gün geçirdik. Otobüsü kaçırdık, geç kaldık. Ödevi unuttuk. Bu yüzden kötü bir gündü.'},
+{t:'fill',q:'En esta tienda hay muchos vestidos. Algunas clientas prefieren los rojos y otras los azules. Las dependientas muestran muchas opciones. Al final, las clientas compran vestidos ______ (kırmızı-r...).',a:'rojos',exp:'Bu soruda sıfatın çoğul ve eril uyumu ölçülmektedir. "Vestidos" eril çoğuldur. "Rojo" → "rojos" olur. Ayrıca sıfat isimden sonra gelir.\nEn esta tienda hay muchos vestidos. Algunas clientas prefieren los rojos y otras los azules. Las dependientas muestran muchas opciones. Al final, las clientas compran vestidos rojos.\nIn this shop there are many dresses. Customers choose colors. At the end they buy red dresses.\nBu mağazada birçok elbise var. Müşteriler renk seçiyor. Sonunda kırmızı elbiseler alıyorlar.'},
+{t:'fill',q:'Mi amiga Clara siempre me ayuda cuando tengo problemas. Me escucha con paciencia y me da buenos consejos. Para mí, ella no es solo una amiga más. Por eso digo que es mi ______ amiga (en iyi-m...).',a:'mejor',exp:'Bu soruda "mejor" sıfatının özel anlamı ölçülmektedir. "Mi mejor amiga" = en iyi arkadaşım anlamına gelir ve sıfat isimden önce gelir. "Mejor" değişmez bir sıfattır.\nMi amiga Clara siempre me ayuda cuando tengo problemas. Me escucha con paciencia y me da buenos consejos. Para mí, ella no es solo una amiga más. Por eso digo que es mi mejor amiga.\nMy friend Clara always helps me. She listens and gives advice. She is my best friend.\nArkadaşım Clara bana hep yardım eder. Beni dinler ve tavsiye verir. O benim en iyi arkadaşım.'},
+{t:'fill',q:'En la clase hay chicos y chicas trabajando juntos. Todos participan activamente en la actividad. El profesor describe al grupo completo. Por eso dice que son alumnos ______ (yakışıklı-g….....).',a:'guapos',exp:'Bu soruda karma grup kuralı ölçülmektedir. Erkek ve kadın birlikte olduğunda sıfat eril çoğul olur. Bu nedenle doğru cevap guapos olur.\nEn la clase hay chicos y chicas trabajando juntos. Todos participan activamente en la actividad. El profesor describe al grupo completo. Por eso dice que son alumnos guapos.\nIn the class there are boys and girls working together. Everyone participates. The teacher says they are good-looking students.\nSınıfta kızlar ve erkekler birlikte çalışıyor. Herkes katılıyor. Öğretmen onların yakışıklı/güzel öğrenciler olduğunu söylüyor.'},
+{t:'fill',q:'Tengo un coche muy moderno. Lo compré hace solo una semana. Funciona perfectamente y todos lo miran en la calle. Por eso digo que es un coche ______ (yeni-n.....).',a:'nuevo',exp:'Bu soruda sıfatın eril tekil isimle uyumu ölçülmektedir. "Coche" eril tekildir. Bu yüzden sıfat da eril tekil olmalıdır. "Nuevo" doğru formdur. Sıfat isimden sonra gelir ve bu standart kullanımdır.\nTengo un coche muy moderno. Lo compré hace solo una semana. Funciona perfectamente y todos lo miran en la calle. Por eso digo que es un coche nuevo.\nI have a very modern car. I bought it only a week ago. It works perfectly and everyone looks at it in the street. That\'s why I say it is a new car.\nÇok modern bir arabam var. Onu sadece bir hafta önce aldım. Mükemmel çalışıyor ve herkes ona bakıyor. Bu yüzden yeni bir araba olduğunu söylüyorum.'},
+{t:'fill',q:'Mi abuelo tiene muchos años. Camina despacio y necesita descansar mucho. Siempre cuenta historias del pasado. Por eso decimos que es un hombre ______ (yaşlı-v….....).',a:'viejo',exp:'"Hombre" eril tekildir. Bu yüzden sıfat da eril tekil olur → "viejo". Sıfat isimden sonra gelmiştir ve burada fiziksel anlam taşır.\nMi abuelo tiene muchos años. Camina despacio y necesita descansar mucho. Siempre cuenta historias del pasado. Por eso decimos que es un hombre viejo.\nMy grandfather is very old. He walks slowly and needs to rest a lot. He always tells stories about the past. That\'s why we say he is an old man.\nDedem çok yaşlı. Yavaş yürür ve çok dinlenmesi gerekir. Hep geçmişten hikâyeler anlatır. Bu yüzden onun yaşlı bir adam olduğunu söyleriz.'},
+{t:'fill',q:'Este tren llega siempre a tiempo. No hace muchas paradas y va directo al destino. Todos los pasajeros están satisfechos con el servicio. Por eso dicen que es un tren ______ (hızlı-r.....).',a:'rápido',exp:'"Tren" eril tekildir. Sıfat da eril tekil olur → "rápido". Sıfat isimden sonra gelir ve nesnenin özelliğini belirtir.\nEste tren llega siempre a tiempo. No hace muchas paradas y va directo al destino. Todos los pasajeros están satisfechos con el servicio. Por eso dicen que es un tren rápido.\nThis train always arrives on time. It doesn\'t stop much and goes directly to the destination. All passengers are satisfied. That\'s why they say it is a fast train.\nBu tren her zaman zamanında gelir. Çok durmaz ve direkt gider. Yolcular memnundur. Bu yüzden hızlı bir tren olduğunu söylerler.'},
+{t:'fill',q:'Mi profesor explica con calma. Repite las cosas varias veces y habla despacio. Los estudiantes entienden mejor así. Por eso decimos que es un profesor ______ (yavaş-l.....).',a:'lento',exp:'"Profesor" eril tekildir. Bu yüzden sıfat "lento" olur. Sıfat isimden sonra gelerek özelliği belirtir.\nMi profesor explica con calma. Repite las cosas varias veces y habla despacio. Los estudiantes entienden mejor así. Por eso decimos que es un profesor lento.\nMy teacher explains calmly. He repeats things and speaks slowly. Students understand better. That\'s why we say he is a slow teacher.\nÖğretmenim sakin anlatır. Tekrar eder ve yavaş konuşur. Öğrenciler daha iyi anlar. Bu yüzden onun yavaş bir öğretmen olduğunu söyleriz.'},
+{t:'fill',q:'Esta tienda vende productos de lujo. Todo es de alta calidad y cuesta mucho dinero. No todos pueden comprar aquí. Por eso es una tienda ______ (pahalı-c.....).',a:'cara',exp:'"Tienda" dişil tekildir. Bu yüzden sıfat "cara" olur. Sıfat isimle cinsiyet uyumu gösterir.\nEsta tienda vende productos de lujo. Todo es de alta calidad y cuesta mucho dinero. No todos pueden comprar aquí. Por eso es una tienda cara.\nThis shop sells luxury products. Everything is high quality and expensive. Not everyone can buy here. That\'s why it is an expensive shop.\nBu mağaza lüks ürünler satar. Her şey pahalıdır. Herkes alışveriş yapamaz. Bu yüzden pahalı bir mağazadır.'},
+{t:'fill',q:'Este supermercado tiene precios bajos. Muchas personas compran aquí todos los días. Los productos son accesibles para todos. Por eso es un supermercado ______ (ucuz-b….....).',a:'barato',exp:'"Supermercado" eril tekildir. Bu yüzden sıfat "barato" olur.\nEste supermercado tiene precios bajos. Muchas personas compran aquí todos los días. Los productos son accesibles para todos. Por eso es un supermercado barato.\nThis supermarket has low prices. Many people shop here every day. Products are affordable. That\'s why it is a cheap supermarket.\nBu markette fiyatlar düşüktür. Herkes alışveriş yapar. Bu yüzden ucuz bir markettir.'},
+{t:'fill',q:'Mi habitación está ordenada. Todo está en su lugar y no hay polvo. Me gusta pasar tiempo aquí. Por eso digo que es una habitación ______ (temiz-l….....).',a:'limpia',exp:'"Habitación" dişil tekildir. Bu yüzden sıfat "limpia" olur.\nMi habitación está ordenada. Todo está en su lugar y no hay polvo. Me gusta pasar tiempo aquí. Por eso digo que es una habitación limpia.\nMy room is tidy. Everything is in place and clean. I like staying here. That\'s why I say it is a clean room.\nOdam düzenlidir. Her şey yerinde ve temizdir. Bu yüzden temiz bir oda olduğunu söylerim.'},
+{t:'fill',q:'Después de jugar en el barro, los niños entran a casa. Tienen las manos y la ropa llenas de tierra. La madre no está contenta. Por eso dice que están ______ (kirli-s….....).',a:'sucios',exp:'"Niños" eril çoğuldur. Bu yüzden sıfat "sucios" olur.\nDespués de jugar en el barro, los niños entran a casa. Tienen las manos y la ropa llenas de tierra. La madre no está contenta. Por eso dice que están sucios.\nAfter playing in the mud, the children come home. Their hands and clothes are dirty. The mother is not happy. That\'s why she says they are dirty.\nÇocuklar çamurda oynadıktan sonra eve girer. Eller ve kıyafetler kirli. Anne memnun değildir. Bu yüzden kirli olduklarını söyler.'},
+{t:'fill',q:'Tengo dos amigos en la universidad. Siempre me ayudan cuando tengo problemas. Son muy amables conmigo. Por eso digo que son amigos ______ (iyi-b.....).',a:'buenos',exp:'"Amigos" eril çoğuldur. Bu yüzden sıfat "buenos" olur.\nTengo dos amigos en la universidad. Siempre me ayudan cuando tengo problemas. Son muy amables conmigo. Por eso digo que son amigos buenos.\nI have two friends at university. They always help me. They are kind to me. That\'s why I say they are good friends.\nÜniversitede iki arkadaşım var. Bana yardım ederler. Bu yüzden iyi arkadaşlar olduklarını söylerim.'},
+{t:'fill',q:'Hoy hemos tenido un examen difícil. Nadie estaba preparado y muchos cometieron errores. El ambiente era negativo. Por eso decimos que fue un examen ______ (kötü-m....).',a:'malo',exp:'"Examen" eril tekildir. Bu yüzden sıfat "malo" olur. Sıfat isimden sonra gelmiştir.\nHoy hemos tenido un examen difícil. Nadie estaba preparado y muchos cometieron errores. El ambiente era negativo. Por eso decimos que fue un examen malo.\nToday we had a difficult exam. Nobody was prepared and many made mistakes. The atmosphere was negative. That\'s why we say it was a bad exam.\nBugün zor bir sınav olduk. Kimse hazır değildi ve hatalar yapıldı. Bu yüzden kötü bir sınavdı.'},
+{t:'fill',q:'Mi hermano juega al baloncesto todos los días. Es más alto que sus amigos y llega fácilmente al aro. Todos lo admiran por su físico. Por eso decimos que es un chico ______ (uzun-a....).',a:'alto',exp:'"Chico" eril tekildir. Bu yüzden sıfat da eril tekil olur → "alto". Sıfat isimden sonra gelerek fiziksel özelliği belirtir.\nMi hermano juega al baloncesto todos los días. Es más alto que sus amigos y llega fácilmente al aro. Todos lo admiran por su físico. Por eso decimos que es un chico alto.\nMy brother plays basketball every day. He is taller than his friends and easily reaches the hoop. Everyone admires him. That\'s why we say he is a tall boy.\nErkek kardeşim her gün basketbol oynar. Arkadaşlarından daha uzundur. Bu yüzden uzun bir çocuk olduğunu söyleriz.'},
+{t:'fill',q:'Mi hermana es menor que yo. No alcanza las cosas en los estantes altos. Siempre me pide ayuda para cogerlas. Por eso digo que es una chica ______ (kısa-b….....).',a:'baja',exp:'"Chica" dişil tekildir. Bu yüzden sıfat "baja" olur. Cinsiyet uyumu vardır.\nMi hermana es menor que yo. No alcanza las cosas en los estantes altos. Siempre me pide ayuda para cogerlas. Por eso digo que es una chica baja.\nMy sister is younger than me. She cannot reach high shelves. She always asks for help. That\'s why I say she is a short girl.\nKız kardeşim benden küçüktür. Yüksek yerlere ulaşamaz. Bu yüzden kısa bir kızdır.'},
+{t:'fill',q:'En la fiesta hay muchos chicos elegantes. Todos están bien vestidos y sonríen mucho. Las personas hablan con ellos todo el tiempo. Por eso dicen que son chicos ______ (yakışıklı-g…..).',a:'guapos',exp:'"Chicos" eril çoğuldur. Bu yüzden sıfat "guapos" olur.\nEn la fiesta hay muchos chicos elegantes. Todos están bien vestidos y sonríen mucho. Las personas hablan con ellos todo el tiempo. Por eso dicen que son chicos guapos.\nAt the party there are many elegant boys. They are well dressed and smiling. People talk to them. That\'s why they say they are handsome boys.\nPartide birçok şık erkek var. Hepsi iyi giyinmiş. Bu yüzden yakışıklı olduklarını söylerler.'},
+{t:'fill',q:'María tiene una casa con flores en el jardín. Todo está bien decorado y limpio. A todos les gusta visitarla. Por eso dicen que es una casa ______ (güzel-b….....).',a:'bonita',exp:'"Casa" dişil tekildir. Bu yüzden sıfat "bonita" olur.\nMaría tiene una casa con flores en el jardín. Todo está bien decorado y limpio. A todos les gusta visitarla. Por eso dicen que es una casa bonita.\nMaría has a house with flowers in the garden. Everything is well decorated. People like visiting it. That\'s why they say it is a beautiful house.\nMaría\'nın çiçekli bir evi var. Her şey güzel. Bu yüzden güzel bir evdir.'},
+{t:'fill',q:'En la mesa hay varios platos. Algunos son grandes y otros muy pequeños. Los niños prefieren las porciones reducidas. Por eso comen platos ______ (küçük-p….....).',a:'pequeños',exp:'"Platos" eril çoğuldur. Bu yüzden sıfat "pequeños" olur.\nEn la mesa hay varios platos. Algunos son grandes y otros muy pequeños. Los niños prefieren las porciones reducidas. Por eso comen platos pequeños.\nOn the table there are several dishes. Some are big and others very small. Children prefer small portions. That\'s why they eat small dishes.\nMasada birçok tabak var. Bazıları büyük bazıları küçük. Çocuklar küçük olanları tercih eder.'},
+{t:'fill',q:'Esta ciudad tiene edificios muy altos. También hay parques y avenidas anchas. Es famosa por su tamaño. Por eso es una ciudad ______ (büyük-g….....).',a:'grande',exp:'"Grande" değişmeyen bir sıfattır (tekil-çoğul aynı kök). "Ciudad" dişil tekildir ama sıfat değişmez → "grande".\nEsta ciudad tiene edificios muy altos. También hay parques y avenidas anchas. Es famosa por su tamaño. Por eso es una ciudad grande.\nThis city has very tall buildings. It also has parks and wide streets. It is famous for its size. That\'s why it is a big city.\nBu şehirde çok yüksek binalar var. Parklar ve geniş caddeler var. Bu yüzden büyük bir şehirdir.'},
+{t:'fill',q:'Tengo unos zapatos que compré ayer. Nunca los he usado antes. Son diferentes de los antiguos. Por eso digo que son zapatos ______ (yeni-n….....).',a:'nuevos',exp:'"Zapatos" eril çoğuldur. Bu yüzden sıfat "nuevos" olur.\nTengo unos zapatos que compré ayer. Nunca los he usado antes. Son diferentes de los antiguos. Por eso digo que son zapatos nuevos.\nI have shoes that I bought yesterday. I have never used them. They are different from the old ones. That\'s why I say they are new shoes.\nDün aldığım ayakkabılar var. Hiç kullanmadım. Bu yüzden yeni ayakkabılar.'},
+{t:'fill',q:'En mi barrio hay casas antiguas y modernas. Algunas son muy pequeñas y otras enormes. Las familias prefieren vivir en casas cómodas. Por eso buscan casas ______ (büyük-g….....).',a:'grandes',exp:'"Casas" dişil çoğuldur. "Grande" değişmez ama çoğulda "grandes" olur. Bu yüzden doğru cevap "grandes".\nEn mi barrio hay casas antiguas y modernas. Algunas son muy pequeñas y otras enormes. Las familias prefieren vivir en casas cómodas. Por eso buscan casas grandes.\nIn my neighborhood there are old and modern houses. Some are small and others are big. Families prefer comfortable homes. That\'s why they look for big houses.\nMahallemde eski ve yeni evler var. Bazıları küçük bazıları büyük. İnsanlar büyük ev ister.'},
+{t:'fill',q:'En la escuela hay chicas muy elegantes. Siempre llevan ropa bonita y hablan con confianza. Todos las miran cuando entran. Por eso dicen que son chicas ______ (güzel-g….....).',a:'guapas',exp:'"Chicas" dişil çoğuldur. Bu yüzden sıfat "guapas" olur.\nEn la escuela hay chicas muy elegantes. Siempre llevan ropa bonita y hablan con confianza. Todos las miran cuando entran. Por eso dicen que son chicas guapas.\nAt school there are elegant girls. They dress well and speak confidently. People look at them. That\'s why they say they are beautiful girls.\nOkulda şık kızlar var. Herkes onları izler. Bu yüzden güzel olduklarını söylerler.'},
+{t:'fill',q:'En el parque hay un edificio pequeño al lado de uno moderno. No tiene muchas habitaciones ni espacio. Pero es cómodo para vivir. Por eso es un edificio ______ (küçük-p….....).',a:'pequeño',exp:'"Edificio" eril tekildir. Bu yüzden sıfat "pequeño" olur.\nEn el parque hay un edificio pequeño al lado de uno moderno. No tiene muchas habitaciones ni espacio. Pero es cómodo para vivir. Por eso es un edificio pequeño.\nIn the park there is a small building next to a modern one. It doesn\'t have many rooms. But it is comfortable. That\'s why it is a small building.\nParkta modern binanın yanında küçük bir bina var. Çok odası yok. Bu yüzden küçük bir binadır.'},
+// S71-S90: Buena Gente S1 E1 (MC)
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué encuentran Sofía y su hermano en el nuevo departamento?',o:['Una cajita','Una pelota grande','Un gato','Mucha comida'],a:0,exp:'[02:26] Dakikasında Sofía, "Alguien dejó aquí una cajita" diyerek dairede bir kutu bulduklarını açıkça söyler.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿De quién creen que es la caja?',o:['Del dueño del edificio','Del hermano de Sofía','De la persona que vivía allí antes','De un amigo de Diego'],a:2,exp:'[03:11] Dakikasında Sofía, kutunun "deben ser de la persona que vivía en este departamento antes" (burada önceden yaşayan kişiye ait olmalı) olduğunu belirtir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Cómo se llama la persona a la que pertenece la caja?',o:['Sofía López','Diego Ana López','Diego García López','Juan Diego García'],a:2,exp:'[04:03] Dakikasında Sofía telefonda ismi "Diego García López" olarak not eder.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué hay dentro de la bolsita chiquita que encuentran?',o:['Papel moneda','Unas llaves','Una receta','Un anillo'],a:3,exp:'[04:57] Dakikasında Sofía keseyi açtığında "Es un anillo" (Bu bir yüzük) diyerek içeriği onaylar.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué tipo de recetas familiares hay en la caja?',o:['Recetas de pizza','Pan dulce y galletas','Recetas de ensaladas','Comida peruana'],a:1,exp:'[04:28] Dakikasında kutuda "recetas de pan dulce y galletas de los abuelos" olduğu söylenir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿A qué ciudad llega el avión de la persona que escribe la nota?',o:['Lima','Madrid','Buenos Aires','Bogotá'],a:0,exp:'[05:24] Dakikasında okunan notta "Llego a Lima el 2 de junio" ifadesi geçer.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿En qué fecha llegará la madre a Perú para la boda?',o:['El 2 de junio','El 24 de julio','El 15 de agosto','El 1 de mayo'],a:0,exp:'[05:24] Dakikasında notta varış tarihi "2 de junio" olarak açıkça duyulur.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué relación tiene quien escribe la nota con Diego?',o:['Es su hermana','Es su madre','Es su abuela','Es su tía'],a:1,exp:'[05:34] Dakikasında notun sonundaki "Te quiero mucho hijo" (Seni çok seviyorum oğlum) cümlesi yazanın anne olduğunu gösterir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué evento importante va a suceder pronto en la vida de Diego?',o:['Una graduación','Un viaje','Un cumpleaños','Una boda'],a:3,exp:'[05:34] Dakikasında Sofía notu okuduktan sonra "Diego se va a casar" (Diego evlenecek) diyerek düğün (boda) haberini verir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué se oye al marcar el número de Diego?',o:['El número está ocupado','Diego contesta pronto','El número no existe','El buzón de voz está lleno'],a:2,exp:'[05:51] dakikasında operatör sesi "El número que marcaste no existe" diyerek uyarı verir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué dice Mateo sobre su habilidad en la cocina?',o:['No sabe cocinar','Cocina muy mal','Cocina muy bien','Solo cocina pasta'],a:2,exp:'[01:45] Mateo, "bueno sí, cocino muy bien" diyerek yemek yapma yeteneğinden bahseder.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué tiene Mateo para tirar la caja de basura?',o:['Una maleta','Una caja grande','Un camión','Una bolsa'],a:3,exp:'[02:32] Mateo, "tira esta caja por favor... ¿tenemos bolsas para basura? Sí, aquí tengo una" diyerek çöp poşeti (bolsa) olduğunu söyler.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué dice Sofía sobre el nuevo departamento al inicio del video?',o:['Me encanta','Es muy pequeño','No me gusta','Es muy viejo'],a:0,exp:'[00:35] Dakikasında Sofía daireye girince "Me encanta, es muy bonito" diyerek beğenisini dile getirir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué profesión menciona Sofía para sí misma?',o:['Médica','Maestra','Cocinera','Ingeniera'],a:1,exp:'[02:03] Sofía diyalog sırasında "También soy buena maestra" diyerek öğretmen olduğunu belirtir.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Con quién se divierte Sofía jugando a la pelota en sus clases?',o:['Con su hermano','Con los niños','Con sus amigos','Con su gato'],a:1,exp:'[02:03] Dakikasında Sofía "Los niños se divierten mucho jugando a la pelota" diyerek öğrencilerinden bahseder.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Cómo describe el hermano a Sofía en la foto de cuando era bebé?',o:['Preciosa','Tímida','Muy grande','Enojada'],a:0,exp:'[01:09] Dakikasında kardeşi Sofía\'ya "Tú una niña preciosa" diyerek eski bir fotoğrafına iltifat eder.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Cuál es el número del departamento de Sofía y Mateo?',o:['435','545','543','345'],a:3,exp:'[03:30] Sofía telefonda "Habla Sofía Méndez del departamento 345" der.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿A quién decide llamar Sofía para informar sobre la cajita encontrada?',o:['A su madre','A Diego García','Al dueño','A su hermano'],a:2,exp:'[03:23] Sofía, "creo que son importantes, voy a llamar al dueño" diyerek daire sahibini arayacağını söyler.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Quién es "el mejor hermano del mundo" según Sofía?',o:['Diego','El dueño','Su hermano','El mecánico'],a:2,exp:'[00:53] Dakikasında Sofía, dairesini bulduğu için kardeşine "Eres el mejor hermano del mundo" diyerek teşekkür eder.'},
+{t:'mc',video:E1,q:'(Buena Gente S1 E1 - Spanish Playground)\n¿Qué cosas hay en la caja además del anillo y los papeles?',o:['Dinero','Ropa','Llaves','Fotos'],a:3,exp:'[02:59] Sofía kutuyu ilk açtığında "tiene una bolsita chiquita, unos papelitos y unas fotos" diyerek içindekileri sayar.'},
+// S91-S100: Buena Gente S1 E2 (MC)
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué medio utiliza Sofía para buscar la dirección de la calle del Truco?',o:['El internet en su computadora','Un mapa de la ciudad','Un libro de teléfonos','Su teléfono móvil'],a:0,exp:'[03:31] Sofía, "podemos buscar en internet la dirección" diyerek bilgisayarın başına geçiyor ve adresi araştırmaya başlıyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué objetos encuentran Sofía y Mateo durante la búsqueda en el departamento?',o:['Una computadora y un televisor','Libros ve revistas','Una cámara ve fotos','Un jabón, monedas y un calcetín'],a:3,exp:'[02:34] Sofía bir sabun (jabón) bulduğunu, [02:51] Mateo ise bozuk paralar (monedas) ve [02:54] bir çorap (calcetín) bulduğunu söylüyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué información principal quiere averiguar Sofía al llamar a la Estética Don Juan?',o:['El precio de un corte de pelo','El horario de cierre','La dirección exacta del local','Si conocen a un cliente llamado Diego'],a:3,exp:'[05:49] Sofía telefon görüşmesinde "necesito ponerme en contacto con uno de sus clientes se llama diego garcía lópez" diyerek doğrudan Diego\'yu sormaktadır.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué hora específica está escrita en el papel junto a la dirección?',o:['1:15 pm','2:30 pm','3:15 pm','4:45 pm'],a:2,exp:'Mateo, adresi okuduktan hemen sonra kağıtta bir saatin de yazdığını belirterek "y también una hora 3:15 pm" ifadesini kullanıyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Cómo se siente Sofía al pensar que Diego no tiene el anillo para su boda?',o:['Muy enojada','Muy triste','Bastante indiferente','Muy emocionada'],a:1,exp:'Sofía, Diego\'nun yüzüğü olmadığını ve her yıl dönümünde kötü hissedeceklerini düşünerek "qué triste, quiero llorar" (ne kadar üzücü, ağlamak istiyorum) diyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué objeto de Diego no funciona al principio de este segmento?',o:['El reloj','El teléfono','La radio','El televisor'],a:1,exp:'[00:36] Sofía, "el teléfono de Diego no funciona" diyerek Diego\'nun telefonunun çalışmadığını belirtiyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Cuál es el nombre de la calle en la dirección encontrada?',o:['Calle del Truco','Avenida Central','Calle Mayor','Paseo de la Reforma'],a:0,exp:'[03:15] Kağıtta yazan adres okunurken "calle de el truco 206" ifadesi kullanılıyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Qué establecimiento se encuentra en la dirección encontrada?',o:['Un banco','Una farmacia','Una estética','Un restaurante'],a:2,exp:'[03:52] İnternet aramasında adresin bir "estética Don Juan" (güzellik salonu) olduğu görülüyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Para qué evento especial se cortó el pelo Diego?',o:['Un viaje','Una fiesta','Un trabajo','Para la boda'],a:3,exp:'[04:07] Diego\'nun düğün (la boda) için saçını kestirdiği açıklanıyor.'},
+{t:'mc',video:E2,q:'(Buena Gente S1 E2 - Spanish Playground)\n¿Cómo intentan ponerse en contacto con la Estética Don Juan?',o:['Diego llama por teléfono','Sofía llama por teléfono','Escriben por internet','Envían un correo electrónico'],a:1,exp:'[05:15] Sofía, "Voy a llamar" diyerek aramaya karar veriyor ve [05:46] vaktinde kuaförü arayarak konuşmaya başlıyor.'}
+];
+
+var cur=0, score=0, err=0;
+var state=new Array(Q.length).fill(null);
+var studentName='';
+
+function startQuiz(){
+  var sel=document.getElementById('introName');
+  if(!sel.value){alert('Lütfen adınızı seçin!');return;}
+  studentName=sel.value;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function escH(s){
+  if(s===null||s===undefined)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderQ(){
+  var q=Q[cur];
+  document.getElementById('qMeta').textContent='Soru '+(cur+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=(Math.round(cur/Q.length*100))+'%';
+  document.getElementById('cntOk').textContent='✓ '+score;
+  document.getElementById('cntErr').textContent='✗ '+err;
+
+  var badge=q.t==='fill'
+    ?'<span class="q-type-badge badge-fill">Boşluk Doldurma</span>'
+    :'<span class="q-type-badge badge-mc">Çoktan Seçmeli</span>';
+
+  var html=badge;
+
+  if(q.video){
+    var label=q.video===E1?'Buena Gente S1 E1':'Buena Gente S1 E2';
+    html+='<a class="video-ref" href="'+escH(q.video)+'" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="#dc2626"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>'+escH(label)+' — videoyu izle</a>';
+  }
+
+  html+='<div class="q-text">'+escH(q.q)+'</div>';
+
+  var answered=(state[cur]!==null);
+
+  if(q.t==='fill'){
+    var inpCls='fill-input';var dis='';var val='';
+    if(answered){inpCls+=state[cur].ok?' correct':' wrong';dis=' disabled';val=escH(state[cur].chosen);}
+    html+='<div class="fill-wrap"><input id="fillInp" class="'+inpCls+'" type="text" placeholder="Cevabınızı yazın..." value="'+val+'"'+dis+'>';
+    if(!answered) html+='<button class="check-btn" onclick="checkFill()">Kontrol Et</button>';
+    html+='</div>';
+  } else {
+    html+='<div class="opts">';
+    for(var i=0;i<q.o.length;i++){
+      var cls='opt-btn';var dis2='';
+      if(answered){
+        if(i===q.a)cls+=' correct';
+        else if(state[cur].chosen===i)cls+=' wrong';
+        dis2=' disabled';
+      }
+      html+='<button class="'+cls+'"'+dis2+' onclick="answerMC('+cur+','+i+')">'+escH(q.o[i])+'</button>';
+    }
+    html+='</div>';
+  }
+
+  var expShow=answered?' show':'';
+  html+='<div class="exp-box'+expShow+'">'+escH(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  updateNav();
+  if(q.t==='fill'&&!answered){
+    var inp=document.getElementById('fillInp');
+    if(inp){inp.focus();inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkFill();});}
+  }
+}
+
+function answerMC(qi,j){
+  if(state[qi]!==null)return;
+  var ok=(j===Q[qi].a);
+  state[qi]={chosen:j,ok:ok};
+  if(ok)score++;else err++;
+  renderQ();
+  checkAutoFinish();
+}
+
+function checkFill(){
+  var inp=document.getElementById('fillInp');
+  if(!inp||!inp.value.trim())return;
+  var q=Q[cur];
+  var user=inp.value.trim();
+  var ok=(user.toLowerCase()===q.a.toLowerCase());
+  state[cur]={chosen:user,ok:ok};
+  if(ok)score++;else err++;
+  renderQ();
+  checkAutoFinish();
+}
+
+function checkAutoFinish(){
+  var answered=0;
+  for(var i=0;i<state.length;i++){if(state[i]!==null)answered++;}
+  if(answered===Q.length)showResult();
+}
+
+function updateNav(){
+  var q=Q[cur];
+  var answered=(state[cur]!==null);
+  var isFill=(q.t==='fill');
+  document.getElementById('btnBack').disabled=(cur===0)||(isFill&&!answered);
+  document.getElementById('btnSkip').disabled=(isFill&&!answered)||(answered)||(cur===Q.length-1);
+  document.getElementById('btnNext').disabled=(isFill&&!answered)||(cur===Q.length-1);
+  document.getElementById('btnFinish').style.display='block';
+}
+
+function goNext(){if(cur<Q.length-1){cur++;renderQ();}}
+function goBack(){if(cur>0){cur--;renderQ();}}
+function skipQ(){
+  if(Q[cur].t==='fill'&&state[cur]===null)return;
+  if(cur<Q.length-1){cur++;renderQ();}
+}
+
+function confirmFinish(){
+  var answered=0;
+  for(var i=0;i<state.length;i++){if(state[i]!==null)answered++;}
+  var unanswered=Q.length-answered;
+  var txt=unanswered>0?unanswered+' soru yanıtsız kaldı. Yine de bitirmek istiyor musunuz?':'100 soruyu da yanıtladınız. Testi bitirmek istiyor musunuz?';
+  document.getElementById('confirmMsg').textContent=txt;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){document.getElementById('confirmOverlay').style.display='none';showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var pct=Math.round(score/Q.length*100);
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent='✓ '+score+' doğru';
+  document.getElementById('resErr').textContent='✗ '+err+' yanlış';
+  var resSel=document.getElementById('resName');
+  for(var i=0;i<resSel.options.length;i++){
+    if(resSel.options[i].value===studentName){resSel.selectedIndex=i;break;}
+  }
+  var rl=document.getElementById('reviewList');
+  var rhtml='';
+  for(var i=0;i<state.length;i++){
+    var s=state[i];
+    if(s&&!s.ok){
+      var q=Q[i];
+      var correctText=(q.t==='fill'?q.a:q.o[q.a]);
+      var chosenText=(q.t==='fill'?s.chosen:q.o[s.chosen]);
+      rhtml+='<div class="rev-item">';
+      rhtml+='<div class="rev-q">S'+(i+1)+': '+escH(q.q)+'</div>';
+      rhtml+='<div class="rev-chosen">✗ Senin cevabın: '+escH(chosenText)+'</div>';
+      rhtml+='<div class="rev-correct">✓ Doğru: '+escH(correctText)+'</div>';
+      rhtml+='<div class="rev-exp">'+escH(q.exp)+'</div></div>';
+    }
+  }
+  if(!rhtml)rhtml='<div style="text-align:center;color:#16a34a;padding:1rem;font-weight:600">Hatalı soru yok!</div>';
+  rl.innerHTML=rhtml;
+}
+
+function submitResult(){
+  var resSel=document.getElementById('resName');
+  var name=resSel.value||studentName;
+  if(!name){alert('Lütfen adınızı seçin!');return;}
+  var grup=GROUPS[name]||'A1.2';
+  var pct=Math.round(score/Q.length*100);
+  var payload=JSON.stringify({ogrenci:name,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err});
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload});
+  var warn=document.getElementById('submitWarning');
+  if(warn)warn.style.display='none';
+  var msg=document.getElementById('submitMsg');
+  msg.style.display='block';
+  msg.textContent=name+' — '+ODEV_ADI+' ödeviniz teslim edildi!';
+}
+
+function toggleReview(){
+  var rl=document.getElementById('reviewList');
+  rl.style.display=(rl.style.display==='none'||rl.style.display==='')?'flex':'none';
+}
+</script>
+</body>
+</html>
