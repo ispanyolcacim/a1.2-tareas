@@ -187,7 +187,7 @@ h1.main-title{font-size:1.55rem;font-weight:800;color:#6b21a8;text-align:center;
 
 <script>
 var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV_ADI = 'H3 - 9-10.Ders';
+var ODEV_ADI = 'H3 – 9-10.Ders';
 
 var GROUPS = {
   'Busem Şeker': 'A1.2',
@@ -492,14 +492,8 @@ function submitResult(){
   if(!name){alert('Lütfen adınızı seçin!');return;}
   var grup=GROUPS[name]||'A1.2';
   var pct=Math.round(score/Q.length*100);
-  var params=new URLSearchParams();
-  params.append('ogrenci',name);
-  params.append('grup',grup);
-  params.append('odev',ODEV_ADI);
-  params.append('puan',pct);
-  params.append('dogru',score);
-  params.append('yanlis',err);
-  fetch(SCRIPT_URL+'?'+params.toString(),{method:'GET',mode:'no-cors'});
+  var payload=JSON.stringify({ogrenci:name,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err});
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload});
   var warn=document.getElementById('submitWarning');
   if(warn) warn.style.display='none';
   var msg=document.getElementById('submitMsg');
