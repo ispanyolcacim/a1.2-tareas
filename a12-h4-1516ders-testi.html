@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H4 – 15-16.Ders | A1.2 Ödevi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:740px;width:100%;padding:2rem}
+.screen{display:none}.screen.active{display:block}
+.week-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem}
+.intro-title{font-size:1.3rem;font-weight:800;color:#3d2a7a;margin-bottom:.3rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.25rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1.5rem;font-weight:600}
+select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none;font-family:inherit;font-size:.95rem}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}
+.cnt-err{background:#fde8e8;color:#d94040}
+.q-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem;background:#e8e0f8;color:#6c4eb8}
+.q-text{font-size:.93rem;color:#333;line-height:1.75;margin-bottom:1rem;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.opt-btn{text-align:left;padding:.7rem 1rem;border:2px solid #d0c8f0;border-radius:9px;background:#fff;cursor:pointer;font-size:.9rem;color:#333;transition:all .15s;font-family:inherit}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-btn.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn:disabled{cursor:default}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.75;white-space:pre-wrap;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
+.btn-back{background:#e8e0f8;color:#6c4eb8}
+.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}
+.btn-finish{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
+.res-score{text-align:center;font-size:3.5rem;font-weight:800;color:#6c4eb8;margin:.75rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.25rem}
+.submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1.1rem 1.5rem;margin-bottom:1rem;text-align:center}
+.submit-warning-title{font-size:1.05rem;font-weight:800;color:#856404;margin-bottom:.3rem;letter-spacing:.3px}
+.submit-warning-sub{font-size:.83rem;color:#856404}
+.btn-submit{width:100%;padding:1.1rem;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;letter-spacing:.3px;font-family:inherit}
+.btn-submit:hover{background:#257a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.85rem;font-size:.9rem;color:#1a5c3a;display:none;margin-bottom:.75rem;text-align:center;font-weight:600;line-height:1.6}
+.review-list{display:none;flex-direction:column;gap:.75rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.75rem;font-size:.82rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.3rem;white-space:pre-wrap}
+.rev-chosen{color:#d94040;margin-bottom:.2rem}
+.rev-correct{color:#2e9e6b;margin-bottom:.3rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.75;white-space:pre-wrap}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}
+.btn-ok{background:#e05c5c;color:#fff}
+@media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- INTRO -->
+  <div id="introScreen" class="screen active">
+    <div class="week-pill">4. HAFTA &#214;DEVI &nbsp;|&nbsp; A1.2 (15-16. DERS)</div>
+    <div class="intro-title">LA CHICA DE MAR DEL PLATA</div>
+    <div class="intro-sub">50 soru &middot; &#199;oktan se&#231;meli (Her soru 2 puan)</div>
+    <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+    <select id="introName">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option value="Busem &#350;eker">Busem &#350;eker</option>
+      <option value="Deneme &#214;&#287;rencisi">Deneme &#214;&#287;rencisi</option>
+      <option value="Ece Turhano&#287;lu">Ece Turhano&#287;lu</option>
+      <option value="Elif &#350;afak">Elif &#350;afak</option>
+      <option value="Esra &#214;zkaya">Esra &#214;zkaya</option>
+      <option value="Kardelen Ku&#351;&#231;u">Kardelen Ku&#351;&#231;u</option>
+      <option value="S&#252;meyye &#350;ahin">S&#252;meyye &#350;ahin</option>
+      <option value="Yi&#287;it &#214;z">Yi&#287;it &#214;z</option>
+      <option value="Zeynep Ert&#252;rk">Zeynep Ert&#252;rk</option>
+      <option value="Z&#252;meyra Do&#287;an">Z&#252;meyra Do&#287;an</option>
+      <option value="&#350;eyma Ko&#231;ak">&#350;eyma Ko&#231;ak</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quizScreen" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 50</span>
+      <span><span class="cnt cnt-ok" id="cntOk">0 Do&#287;ru</span>&nbsp;<span class="cnt cnt-err" id="cntErr">0 Yanl&#305;&#351;</span></span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
+      <button class="btn-skip" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
+      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
+      <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultScreen" class="screen">
+    <input type="hidden" id="resName" value="">
+    <div style="text-align:center">
+      <div class="res-pill">4. HAFTA &#214;DEVI &nbsp;|&nbsp; A1.2 (15-16. DERS)</div>
+    </div>
+    <div class="res-title">LA CHICA DE MAR DEL PLATA</div>
+    <div class="res-score"><span id="resScore">0</span>/100</div>
+    <div class="res-stats">
+      <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
+      <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
+    </div>
+    <div class="res-note" id="resNote"></div>
+
+    <div class="submit-warning" id="submitWarning">
+      <div class="submit-warning-title">&#214;DEV&#304;N&#304;Z &#350;U AN TESLIM EDILMEDI</div>
+      <div class="submit-warning-sub">L&#252;tfen a&#351;a&#287;&#305;daki listeden ad&#305;n&#305;z&#305; se&#231;ip g&#246;nderin.</div>
+    </div>
+
+    <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option value="Busem &#350;eker">Busem &#350;eker</option>
+      <option value="Deneme &#214;&#287;rencisi">Deneme &#214;&#287;rencisi</option>
+      <option value="Ece Turhano&#287;lu">Ece Turhano&#287;lu</option>
+      <option value="Elif &#350;afak">Elif &#350;afak</option>
+      <option value="Esra &#214;zkaya">Esra &#214;zkaya</option>
+      <option value="Kardelen Ku&#351;&#231;u">Kardelen Ku&#351;&#231;u</option>
+      <option value="S&#252;meyye &#350;ahin">S&#252;meyye &#350;ahin</option>
+      <option value="Yi&#287;it &#214;z">Yi&#287;it &#214;z</option>
+      <option value="Zeynep Ert&#252;rk">Zeynep Ert&#252;rk</option>
+      <option value="Z&#252;meyra Do&#287;an">Z&#252;meyra Do&#287;an</option>
+      <option value="&#350;eyma Ko&#231;ak">&#350;eyma Ko&#231;ak</option>
+    </select>
+
+    <div class="submit-msg" id="submitMsg"></div>
+    <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM EDIN</button>
+    <button class="btn-review" onclick="toggleReview()">Yanl&#305;&#351;lar&#305; G&#246;r</button>
+    <div class="review-list" id="reviewList"></div>
+  </div>
+</div>
+
+<!-- CONFIRM OVERLAY -->
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">&#304;ptal</button>
+      <button class="btn-ok" onclick="doFinish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI='H4 \u2013 15-16.Ders';
+var GROUPS={"Busem \u015eeker":"A1.2","Deneme \u00d6\u011frencisi":"A1.2","Ece Turhano\u011flu":"A1.2","Elif \u015eafak":"A1.2","Esra \u00d6zkaya":"A1.2","Kardelen Ku\u015f\u00e7u":"A1.2","S\u00fcmeyye \u015eahin":"A1.2","Yi\u011fit \u00d6z":"A1.2","Zeynep Ert\u00fcrk":"A1.2","Z\u00fcmeyra Do\u011fan":"A1.2","\u015eeyma Ko\u00e7ak":"A1.2"};
+var Q=[
+{"t":"mc","q":"1. El entrenador del equipo Gaud\u00ed se llama\u2026","o":["G\u00f3mez","Ra\u00fal","Sergio","Mart\u00edn"],"a":0,"exp":"Cevap: A) G\u00f3mez\nA\u00e7\u0131klama: Kitab\u0131n 3. sayfas\u0131nda, Barselona\u2019daki Gaud\u00ed enstit\u00fcs\u00fc tak\u0131m\u0131n\u0131n antren\u00f6r\u00fcn\u00fcn G\u00f3mez oldu\u011fu a\u00e7\u0131k\u00e7a belirtilmektedir."},
+{"t":"mc","q":"\u00bfContra qu\u00e9 equipo juega el Gaud\u00ed en el primer partido?","o":["M\u00e9xico","Chile","Peralta Ramos","Bolivia"],"a":2,"exp":"Cevap: C) Peralta Ramos\nA\u00e7\u0131klama: 3. sayfada, tak\u0131m\u0131n Mar del Plata\u2019daki Peralta Ramos koleji tak\u0131m\u0131na kar\u015f\u0131 oynad\u0131\u011f\u0131 yazmaktad\u0131r."},
+{"t":"mc","q":"\u00bfDe qu\u00e9 color es la camiseta del equipo de Barcelona?","o":["Roja","Amarilla","Azul","Verde"],"a":1,"exp":"Cevap: B) Amarilla\nA\u00e7\u0131klama: 3. sayfada, Barselona tak\u0131m\u0131n\u0131n sar\u0131 (amarilla) forma giydi\u011fi ifade edilir."},
+{"t":"mc","q":"\u00bfQui\u00e9n marca el primer gol del equipo espa\u00f1ol?","o":["Mart\u00edn","Sergio","Guillermo","Ra\u00fal"],"a":3,"exp":"Cevap: D) Ra\u00fal\nA\u00e7\u0131klama: 4. sayfada, M\u00f3nica\u2019n\u0131n Sergio\u2019nun pas\u0131yla Ra\u00fal\u2019\u00fcn gol att\u0131\u011f\u0131n\u0131 a\u00e7\u0131klad\u0131\u011f\u0131 g\u00f6r\u00fcl\u00fcr."},
+{"t":"mc","q":"\u00bfQui\u00e9n grita \"\u00a1\u00c1nimo, Sergio!\" desde la grada?","o":["M\u00f3nica","\u00c1ngela","Carmen","Laura"],"a":3,"exp":"Cevap: D) Laura\nA\u00e7\u0131klama: 4. sayfada, seyirciler aras\u0131ndan Sergio\u2019ya ba\u011f\u0131ran ki\u015finin Laura oldu\u011fu belirtilir."},
+{"t":"mc","q":"\u00bfQui\u00e9n llega tarde porque se ha dormido?","o":["Mart\u00edn","Guillermo","Sergio","Ra\u00fal"],"a":1,"exp":"Cevap: B) Guillermo\n+1\nA\u00e7\u0131klama: 4. sayfada, Guillermo\u2019nun yanlar\u0131na geldi\u011fi ve uyuyakald\u0131\u011f\u0131 i\u00e7in ge\u00e7 kald\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi anlat\u0131l\u0131r.\n+1"},
+{"t":"mc","q":"\u00bfQui\u00e9n es profesora de F\u00edsica?","o":["Carmen","\u00c1ngela","Laura","M\u00f3nica"],"a":1,"exp":"Cevap: B) \u00c1ngela\nA\u00e7\u0131klama: 5. sayfada, tak\u0131ma e\u015flik eden \u00c1ngela\u2019n\u0131n bir fizik \u00f6\u011fretmeni oldu\u011fu belirtilir."},
+{"t":"mc","q":"\u00bfQui\u00e9n es el profesor de Lengua?","o":["Roberto","G\u00f3mez","Sergio","Ra\u00fal"],"a":0,"exp":"Cevap: A) Roberto\nA\u00e7\u0131klama: 5. sayfada, Roberto\u2019nun dil (Lengua) \u00f6\u011fretmeni oldu\u011fu bilgisi yer al\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 resultado hay despu\u00e9s del gol de Ra\u00fal?","o":["3-2","4-2","2-2","3-3"],"a":0,"exp":"Cevap: A) 3-2\nA\u00e7\u0131klama: 5. sayfada, Ra\u00fal\u2019\u00fcn gol\u00fcnden sonra M\u00f3nica skorun 3-2 oldu\u011funu a\u00e7\u0131klar."},
+{"t":"mc","q":"\u00bfQui\u00e9n comete falta a Sergio?","o":["El portero","Ra\u00fal","Mart\u00edn","El n\u00famero 6"],"a":3,"exp":"Cevap: D) El n\u00famero 6\nA\u00e7\u0131klama: 5. sayfada, rakip tak\u0131m\u0131n 6 numaras\u0131n\u0131n Sergio\u2019yu iterek faul yapt\u0131\u011f\u0131 anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfD\u00f3nde se juega el campeonato?","o":["Barcelona","Mar del Plata","Madrid","M\u00e9xico"],"a":1,"exp":"Cevap: B) Mar del Plata\nA\u00e7\u0131klama: 4. sayfada, \u015fampiyonan\u0131n bu y\u0131l Arjantin\u2019in Mar del Plata \u015fehirinde yap\u0131ld\u0131\u011f\u0131 belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 ve Mart\u00edn fuera del campo?","o":["Un perro","Un bal\u00f3n","Una chica extra\u00f1a","Un \u00e1rbitro"],"a":2,"exp":"Cevap: C) Una chica extra\u00f1a\nA\u00e7\u0131klama: 6. sayfada, Mart\u00edn\u2019in saha d\u0131\u015f\u0131na \u00e7\u0131kan topu almaya gitti\u011finde \u00e7ok garip bak\u0131\u015fl\u0131 bir k\u0131z g\u00f6rd\u00fc\u011f\u00fc yazmaktad\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 lleva la chica misteriosa?","o":["Vestido rojo","Camiseta blanca","Vestido negro","Chaqueta azul"],"a":2,"exp":"Cevap: C) Vestido negro\nA\u00e7\u0131klama: 6. sayfada, k\u0131z\u0131n siyah bir elbise giydi\u011fi belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 compra Guillermo en el descanso?","o":["Agua","Caf\u00e9","T\u00e9","Coca-Cola"],"a":3,"exp":"Cevap: D) Coca-Cola\nA\u00e7\u0131klama: 6. sayfada, Guillermo\u2019nun bara gidip bir Coca-Cola istedi\u011fi anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQui\u00e9n marca el tercer gol del equipo espa\u00f1ol?","o":["Sergio","Ra\u00fal","Guillermo","Mart\u00edn"],"a":3,"exp":"Cevap: D) Mart\u00edn\nA\u00e7\u0131klama: 6. sayfada, Mart\u00edn\u2019in tak\u0131m\u0131n \u00fc\u00e7\u00fcnc\u00fc gol\u00fcn\u00fc att\u0131\u011f\u0131 ifade edilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 pasa al final del partido?","o":["Pierden","Empatan","Ganan","Se suspende"],"a":1,"exp":"Cevap: B) Empatan\nA\u00e7\u0131klama: 8. sayfada, ma\u00e7\u0131n sonunda tak\u0131m\u0131n berabere kald\u0131\u011f\u0131 (empatado) belirtilir."},
+{"t":"mc","q":"\u00bfD\u00f3nde pasean los chicos despu\u00e9s del partido?","o":["En el parque","En la playa","En el hotel","En el estadio"],"a":1,"exp":"Cevap: B) En la playa\nA\u00e7\u0131klama: 9. sayfada, ma\u00e7tan sonra gen\u00e7lerin sahilde (playa) y\u00fcr\u00fcye\u015fe \u00e7\u0131kt\u0131\u011f\u0131 anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 hace la chica en la playa?","o":["Corre","Habla","Nada","Entra en el agua vestida"],"a":3,"exp":"Cevap: D) Entra en el agua vestida\nA\u00e7\u0131klama: 9. sayfada, k\u0131z\u0131n k\u0131yafetleriyle denize girmeye ba\u015flad\u0131\u011f\u0131 ve gen\u00e7lerin buna \u015fa\u015f\u0131rd\u0131\u011f\u0131 belirtilir."},
+{"t":"mc","q":"\u00bfQui\u00e9n rescata a la chica?","o":["Sergio","Guillermo","Laura","Mart\u00edn"],"a":3,"exp":"Cevap: D) Mart\u00edn\n+1\nA\u00e7\u0131klama: 10. sayfada, Mart\u00edn\u2019in denize atlayarak k\u0131z\u0131 kurtard\u0131\u011f\u0131 anlat\u0131l\u0131r.\n+1"},
+{"t":"mc","q":"\u00bfC\u00f3mo se siente la chica despu\u00e9s?","o":["Feliz","Enfadada","Temblando","Tranquila"],"a":2,"exp":"Cevap: C) Temblando\n+1\nA\u00e7\u0131klama: 10 ve 12. sayfalarda, sudan \u00e7\u0131kan k\u0131z\u0131n titredi\u011fi (temblando) ifade edilir.\n+1"},
+{"t":"mc","q":"\u00bfC\u00f3mo se llama realmente la chica?","o":["Laura","M\u00f3nica","Eufemia","Carmen"],"a":2,"exp":"Cevap: C) Eufemia\nA\u00e7\u0131klama: 13. sayfada, k\u0131z\u0131n ad\u0131n\u0131n Eufemia oldu\u011fu belirtilir."},
+{"t":"mc","q":"\u00bfC\u00f3mo prefiere que la llamen?","o":["Mita","Ana","Lola","Sara"],"a":0,"exp":"Cevap: A) Mita\n+1\nA\u00e7\u0131klama: 13 ve 14. sayfalarda, k\u0131z\u0131n \u201cMita\u201d olarak \u00e7a\u011fr\u0131lmay\u0131 tercih etti\u011fi yazmaktad\u0131r.\n+1"},
+{"t":"mc","q":"\u00bfCon qui\u00e9n vive la chica?","o":["Su madre","Su padre","Sus amigos","Su abuela"],"a":3,"exp":"Cevap: D) Su abuela\nA\u00e7\u0131klama: 12. sayfada, Mita\u2019n\u0131n babaannesiyle (abuela) ya\u015fad\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi g\u00f6r\u00fcl\u00fcr."},
+{"t":"mc","q":"\u00bfQu\u00e9 le da a Mart\u00edn la chica?","o":["Una chaqueta","Una camisa","Un pantalón","Un abrigo"],"a":1,"exp":"Cevap: B) Una camisa\nA\u00e7\u0131klama: 13. sayfada, Mita\u2019n\u0131n \u0131slanan Mart\u00edn\u2019e kuru bir g\u00f6mlek (camisa) verdi\u011fi anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfD\u00f3nde estuvo internada la chica?","o":["Hospital","Psiqui\u00e1trico","Colegio","Hotel"],"a":1,"exp":"Cevap: B) Psiqui\u00e1trico\nA\u00e7\u0131klama: 21. sayfada, Mita\u2019n\u0131n bir psikiyatri klini\u011finde (psiqui\u00e1trico) yatt\u0131\u011f\u0131n\u0131 itiraf etti\u011fi g\u00f6r\u00fcl\u00fcr."},
+{"t":"mc","q":"\u00bfQu\u00e9 le gusta a Mita?","o":["El f\u00fatbol","Estudiar","Nada relacionado con f\u00fatbol","Viajar"],"a":2,"exp":"Cevap: C) Nada relacionado con f\u00fatbol\n+1\nA\u00e7\u0131klama: 18 ve 19. sayfalarda, Mita\u2019n\u0131n asl\u0131nda futbolu sevmedi\u011fini defalarca s\u00f6yledi\u011fi belirtilir.\n+1"},
+{"t":"mc","q":"\u00bfQu\u00e9 dice Mita en el bar?","o":["Estoy feliz","Me voy a casa","Me persiguen","Tengo hambre"],"a":2,"exp":"Cevap: C) Me persiguen\nA\u00e7\u0131klama: 22. sayfada, Mita\u2019n\u0131n Laura\u2019n\u0131n kula\u011f\u0131na \u201cBeni takip ediyorlar\u201d (me persiguen) dedi\u011fi anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 hace Mita despu\u00e9s del bar?","o":["Se queda","Llora","Sale corriendo","Come"],"a":2,"exp":"Cevap: C) Sale corriendo\n+1\nA\u00e7\u0131klama: 22 ve 23. sayfalarda, Mita\u2019n\u0131n bardan h\u0131zla ka\u00e7arak \u00e7\u0131kt\u0131\u011f\u0131 belirtilir.\n+1"},
+{"t":"mc","q":"\u00bfQu\u00e9 problema ten\u00eda Mita en el colegio?","o":["Malas notas","Falta de dinero","Bullying","Enfermedad"],"a":2,"exp":"Cevap: C) Bullying\nA\u00e7\u0131klama: 32. sayfada, babas\u0131n\u0131n Mita\u2019n\u0131n okulda akran zorbal\u0131\u011f\u0131na (bullying) u\u011frad\u0131\u011f\u0131n\u0131 \u00f6\u011frendi\u011fi anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQui\u00e9n es el padre de Mita?","o":["Profesor","M\u00e9dico","Militar","Polic\u00eda"],"a":2,"exp":"Cevap: C) Militar\n+1\nA\u00e7\u0131klama: 21 ve 32. sayfalarda, Mita\u2019n\u0131n babas\u0131n\u0131n bir asker (militar) oldu\u011fu bilgisi yer al\u0131r.\n+1"},
+{"t":"mc","q":"\u00bfD\u00f3nde vive el padre?","o":["En el centro","En la playa","En La Perla","En el campo"],"a":2,"exp":"Cevap: C) En La Perla\nA\u00e7\u0131klama: 29. sayfada, babas\u0131n\u0131n Mar del Plata\u2019n\u0131n merkezindeki La Perla mahallesinde ya\u015fad\u0131\u011f\u0131 belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 descubre el padre sobre su hija?","o":["Que estudia mucho","Que intent\u00f3 suicidarse","Que viaja","Que trabaja"],"a":1,"exp":"Cevap: B) Que intent\u00f3 suicidarse\nA\u00e7\u0131klama: 30. sayfada, M\u00f3nica\u2019n\u0131n babas\u0131na k\u0131z\u0131n\u0131n denizde intihara te\u015febb\u00fcs etti\u011fini anlatt\u0131\u011f\u0131 g\u00f6r\u00fcl\u00fcr."},
+{"t":"mc","q":"\u00bfQu\u00e9 equipo juega la semifinal contra Gaud\u00ed?","o":["M\u00e9xico","Chile","Argentina","Bolivia"],"a":0,"exp":"Cevap: A) Meksika (Acapulco) \nA\u00e7\u0131klama: 15 ve 17. sayfalarda, yar\u0131 final ma\u00e7\u0131n\u0131n Meksika (Acapulco) tak\u0131m\u0131na kar\u015f\u0131 oldu\u011fu belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 resultado tiene el partido amistoso contra Uruguay?","o":["Ganan","Empatan","Pierden","No juegan"],"a":1,"exp":"Cevap: B) Empatan\nA\u00e7\u0131klama: 17. sayfada, Uruguay ile yap\u0131lan haz\u0131rl\u0131k ma\u00e7\u0131n\u0131n berabere (empatan) bitti\u011fi yazmaktad\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 le pasa a M\u00f3nica en semifinales?","o":["Est\u00e1 feliz","Est\u00e1 en el estadio","Est\u00e1 viajando","Est\u00e1 enferma"],"a":3,"exp":"Cevap: D) Est\u00e1 enferma\nA\u00e7\u0131klama: 17. sayfada, M\u00f3nica\u2019n\u0131n hasta oldu\u011fu i\u00e7in yar\u0131 final ma\u00e7\u0131na gelemedi\u011fi ifade edilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 hace Mita en la semifinal?","o":["Juega","Arbitra","Ve el partido","Marca gol"],"a":2,"exp":"Cevap: C) Ve el partido\nA\u00e7\u0131klama: 18. sayfada, Mita\u2019n\u0131n trib\u00fcnlerde Laura\u2019n\u0131n yan\u0131na oturdu\u011fu anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 le dice Mita a Laura en secreto?","o":["Tengo fr\u00edo","Estoy feliz","Me voy","Me persiguen"],"a":3,"exp":"Cevap: D) Me persiguen\nA\u00e7\u0131klama: 22. sayfada, Mita\u2019n\u0131n gizlice f\u0131s\u0131ldad\u0131\u011f\u0131 s\u00f6z\u00fcn \u201cBeni takip ediyorlar\u201d oldu\u011fu belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 hace Mart\u00edn antes de la final?","o":["Descansa","Come mucho","Est\u00e1 destra\u00eddo","Estudia"],"a":2,"exp":"Cevap: C) Est\u00e1 destra\u00eddo\nA\u00e7\u0131klama: 26. sayfada, Mart\u00edn\u2019in final sabah\u0131 \u00e7ok dalg\u0131n (destra\u00eddo) oldu\u011fu ve konsantre olamad\u0131\u011f\u0131 anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 decide hacer Mart\u00edn?","o":["Irse","Llamar","Ir a casa de Mita","Jugar"],"a":2,"exp":"Cevap: C) Ir a casa de Mita\n+1\nA\u00e7\u0131klama: 26. sayfada, Mart\u00edn\u2019in Mita\u2019n\u0131n durumundan endi\u015felenerek onun evine gitmeye karar verdi\u011fi belirtilir.\n+1"},
+{"t":"mc","q":"\u00bfQu\u00e9 dice la abuela de Mita?","o":["Est\u00e1 en casa","No est\u00e1","Est\u00e1 feliz","Est\u00e1 estudiando"],"a":1,"exp":"Cevap: B) No est\u00e1\nA\u00e7\u0131klama: 27. sayfada, babaannesinin Mita\u2019n\u0131n evde olmad\u0131\u011f\u0131n\u0131 ve d\u0131\u015far\u0131 \u00e7\u0131kt\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi g\u00f6r\u00fcl\u00fcr."},
+{"t":"mc","q":"\u00bfCu\u00e1ntos d\u00edas lleva desaparecida Mita?","o":["1","2","3","4"],"a":1,"exp":"Cevap: B) 2\nA\u00e7\u0131klama: 28. sayfada, babaannesinin Mita\u2019y\u0131 iki g\u00fcnd\u00fcr g\u00f6rmedi\u011fini s\u00f6yledi\u011fi anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 hace Mita durante la final?","o":["Grita","Corre","Salta al campo","Aplaude"],"a":2,"exp":"Cevap: C) Salta al campo\nA\u00e7\u0131klama: 34. sayfada, final ma\u00e7\u0131 s\u00fcrerken Mita\u2019n\u0131n aniden sahaya atlad\u0131\u011f\u0131 belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 saca del bolso?","o":["Un libro","Un m\u00f3vil","Una carta","Una pistola"],"a":3,"exp":"Cevap: D) Una pistola\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019n\u0131n \u00e7antas\u0131ndan bir tabanca (pistola) \u00e7\u0131kard\u0131\u011f\u0131 ifade edilir.\n+1"},
+{"t":"mc","q":"\u00bfA qui\u00e9n quiere asustar?","o":["Mart\u00edn","Sergio","Ra\u00fal","Gustavo"],"a":3,"exp":"Cevap: D) Gustavo\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019n\u0131n Gustavo\u2019ya yakla\u015ft\u0131\u011f\u0131 ve onu korkutmak (asustarlo) istedi\u011fi anlat\u0131l\u0131r.\n+1"},
+{"t":"mc","q":"\u00bfQui\u00e9n hac\u00eda bullying a Mita?","o":["Mart\u00edn","Guillermo","Gustavo","Sergio"],"a":2,"exp":"Cevap: C) Gustavo\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019ya zorbal\u0131k yapan ki\u015finin rakip tak\u0131m\u0131n oyuncusu Gustavo oldu\u011fu ortaya \u00e7\u0131kar.\n+1"},
+{"t":"mc","q":"\u00bfQu\u00e9 hace Mart\u00edn?","o":["Corre","Grita","Se va","Detiene a Mita"],"a":3,"exp":"Cevap: D) Detiene a Mita\nA\u00e7\u0131klama: 36. sayfada, Mart\u00edn\u2019in Mita\u2019n\u0131n elini tutarak onu durdurdu\u011fu anlat\u0131l\u0131r."},
+{"t":"mc","q":"\u00bfQu\u00e9 resultado final tiene el partido?","o":["Empate","Gana Gaud\u00ed","Gana Argentina","Se cancela"],"a":1,"exp":"Cevap: B) Gana Gaud\u00ed\nA\u00e7\u0131klama: 38. sayfada, kupay\u0131 kazanan\u0131n Barselona\u2019daki Gaud\u00ed enstit\u00fcs\u00fc oldu\u011fu ilan edilir."},
+{"t":"mc","q":"\u00bfQui\u00e9n marca el gol final?","o":["Mart\u00edn","Sergio","Ra\u00fal","Gustavo"],"a":0,"exp":"Cevap: A) Mart\u00edn\nA\u00e7\u0131klama: 38. sayfada, galibiyet gol\u00fcn\u00fc Mart\u00edn\u2019in att\u0131\u011f\u0131 belirtilir."},
+{"t":"mc","q":"\u00bfQu\u00e9 le pasa a Mita despu\u00e9s?","o":["Se va a casa","Crisis nerviosa","Gana el partido","Se r\u00ede"],"a":1,"exp":"Cevap: B) Crisis nerviosa\nA\u00e7\u0131klama: 39. sayfada, Mita\u2019n\u0131n sinir krizi (crisis nerviosa) ge\u00e7irdi\u011fi i\u00e7in ambulansla g\u00f6t\u00fcr\u00fcld\u00fc\u011f\u00fc s\u00f6ylenir."},
+{"t":"mc","q":"\u00bfQu\u00e9 le regala Mita a Mart\u00edn al final?","o":["Un libro","Un bal\u00f3n","Una camiseta","Un reloj"],"a":2,"exp":"Cevap: C) Una camiseta\nA\u00e7\u0131klama: 42. sayfada, Mita\u2019n\u0131n Mart\u00edn\u2019e veda ederken Leo Messi\u2019nin Arjantin milli tak\u0131m formas\u0131n\u0131 (camiseta) hediye etti\u011fi anlat\u0131l\u0131r."}
+];
+var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
+
+function startQuiz(){
+  var name=document.getElementById('introName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('resName').value=name;
+  document.getElementById('resName2').value=name;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function syncResName(){
+  document.getElementById('resName').value=document.getElementById('resName2').value;
+}
+
+function esc(s){
+  if(!s)return'';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function renderQ(){
+  var i=state.cur;var q=Q[i];var html='';
+  html+='<span class="q-badge">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  var L=['A','B','C','D'];
+  for(var j=0;j<q.o.length;j++){
+    var cls='opt-btn';var dis='';var ans=state.answered[i];
+    if(ans!==undefined){
+      dis='disabled';
+      if(j===q.a)cls+=' correct';
+      else if(j===ans&&ans!==q.a)cls+=' wrong';
+    }
+    html+='<button class="'+cls+'" '+dis+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
+  }
+  html+='</div>';
+  html+='<div class="exp-box'+(state.answered[i]!==undefined?' show':'')+'">'+esc(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  var done=state.answered[i]!==undefined;
+  document.getElementById('btnBack').disabled=(i===0||!done);
+  document.getElementById('btnNext').disabled=(!done||i===Q.length-1);
+  document.getElementById('btnSkip').disabled=(!done||i>=Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cntOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('cntErr').textContent=state.errCount+' Yanl\u0131\u015f';
+}
+
+function checkAns(j){
+  var i=state.cur;
+  if(state.answered[i]!==undefined)return;
+  var q=Q[i];state.answered[i]=j;
+  if(j===q.a){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function goBack(){if(state.cur>0){state.cur--;renderQ();}}
+function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+
+function confirmFinish(){
+  var answered=0;for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
+  var unanswered=Q.length-answered;
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){closeConfirm();showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=total*2;if(pct>100)pct=100;
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('resErr').textContent=state.errCount+' Yanl\u0131\u015f';
+  document.getElementById('resNote').textContent='50 sorudan '+state.okCount+' tanesi do\u011fru (her soru 2 puan)';
+  var L=['A','B','C','D'];var html2='';
+  for(var i=0;i<Q.length;i++){
+    var ans=state.answered[i];
+    if(ans===undefined||ans===Q[i].a)continue;
+    var q=Q[i];
+    html2+='<div class="rev-item">';
+    html2+='<div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
+    html2+='<div class="rev-chosen">Verdi\u011finiz cevap: '+L[ans]+') '+esc(q.o[ans])+'</div>';
+    html2+='<div class="rev-correct">Do\u011fru cevap: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html2+='<div class="rev-exp">'+esc(q.exp)+'</div>';
+    html2+='</div>';
+  }
+  document.getElementById('reviewList').innerHTML=html2||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+}
+
+function toggleReview(){
+  var rv=document.getElementById('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+function submitResult(){
+  var name=document.getElementById('resName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=total*2;if(pct>100)pct=100;
+  var grup=GROUPS[name]||'A1.2';
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV_ADI,grup:grup,
+    puan:pct,dogru:state.okCount,yanlis:state.errCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  document.getElementById('submitWarning').style.display='none';
+  document.getElementById('submitMsg').style.display='block';
+  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  document.getElementById('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+    })
+    .catch(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+    });
+}
+</script>
+</body>
+</html>
