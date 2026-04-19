@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H5 – 17-18.Ders | A1.2 Ödevi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:740px;width:100%;padding:2rem}
+.screen{display:none}.screen.active{display:block}
+.week-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem}
+.intro-title{font-size:1.3rem;font-weight:800;color:#3d2a7a;margin-bottom:.3rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.25rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1rem;font-weight:600}
+.intro-video-link{margin-bottom:1.5rem}
+.intro-video-link a{display:inline-flex;align-items:center;gap:.45rem;background:#ff0000;color:#fff;text-decoration:none;padding:.55rem 1.1rem;border-radius:8px;font-size:.85rem;font-weight:700;font-family:inherit}
+.intro-video-link a:hover{background:#cc0000}
+.intro-video-icon{width:18px;height:18px;fill:#fff;flex-shrink:0}
+select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none;font-family:inherit;font-size:.95rem}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}
+.cnt-err{background:#fde8e8;color:#d94040}
+.q-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem;background:#e8e0f8;color:#6c4eb8}
+.q-text{font-size:.93rem;color:#333;line-height:1.75;margin-bottom:1rem;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.opt-btn{text-align:left;padding:.7rem 1rem;border:2px solid #d0c8f0;border-radius:9px;background:#fff;cursor:pointer;font-size:.9rem;color:#333;transition:all .15s;font-family:inherit}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-btn.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn:disabled{cursor:default}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.75;white-space:pre-wrap;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
+.btn-back{background:#e8e0f8;color:#6c4eb8}
+.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}
+.btn-finish{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
+.res-score{text-align:center;font-size:3.5rem;font-weight:800;color:#6c4eb8;margin:.75rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.25rem}
+.submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1.1rem 1.5rem;margin-bottom:1rem;text-align:center}
+.submit-warning-title{font-size:1.05rem;font-weight:800;color:#856404;margin-bottom:.3rem;letter-spacing:.3px}
+.submit-warning-sub{font-size:.83rem;color:#856404}
+.btn-submit{width:100%;padding:1.1rem;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;letter-spacing:.3px;font-family:inherit}
+.btn-submit:hover{background:#257a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.85rem;font-size:.9rem;color:#1a5c3a;display:none;margin-bottom:.75rem;text-align:center;font-weight:600;line-height:1.6}
+.review-list{display:none;flex-direction:column;gap:.75rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.75rem;font-size:.82rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.3rem;white-space:pre-wrap}
+.rev-chosen{color:#d94040;margin-bottom:.2rem}
+.rev-correct{color:#2e9e6b;margin-bottom:.3rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.75;white-space:pre-wrap}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}
+.btn-ok{background:#e05c5c;color:#fff}
+@media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- INTRO -->
+  <div id="introScreen" class="screen active">
+    <div class="week-pill">5. HAFTA &#214;DEV&#304; &nbsp;|&nbsp; A1.2 (17-18. DERS)</div>
+    <div class="intro-title">IR A + INFINITIVO</div>
+    <div class="intro-sub">50 soru &middot; &#199;oktan se&#231;meli (Her soru 2 puan)</div>
+    <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+    <div class="intro-video-link">
+      <a href="https://www.youtube.com/watch?v=JFld2ZQF-J0" target="_blank" rel="noopener">
+        <svg class="intro-video-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        Videoyu &#304;zle: IR A + INFINITIVO
+      </a>
+    </div>
+    <select id="introName">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option value="Busem &#350;eker">Busem &#350;eker</option>
+      <option value="Deneme &#214;&#287;rencisi">Deneme &#214;&#287;rencisi</option>
+      <option value="Ece Turhano&#287;lu">Ece Turhano&#287;lu</option>
+      <option value="Elif &#350;afak">Elif &#350;afak</option>
+      <option value="Esra &#214;zkaya">Esra &#214;zkaya</option>
+      <option value="Kardelen Ku&#351;&#231;u">Kardelen Ku&#351;&#231;u</option>
+      <option value="S&#252;meyye &#350;ahin">S&#252;meyye &#350;ahin</option>
+      <option value="Yi&#287;it &#214;z">Yi&#287;it &#214;z</option>
+      <option value="Zeynep Ert&#252;rk">Zeynep Ert&#252;rk</option>
+      <option value="Z&#252;meyra Do&#287;an">Z&#252;meyra Do&#287;an</option>
+      <option value="&#350;eyma Ko&#231;ak">&#350;eyma Ko&#231;ak</option>
+    </select>
+    <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quizScreen" class="screen">
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="q-meta">
+      <span id="qMeta">Soru 1 / 50</span>
+      <span><span class="cnt cnt-ok" id="cntOk">0 Do&#287;ru</span>&nbsp;<span class="cnt cnt-err" id="cntErr">0 Yanl&#305;&#351;</span></span>
+    </div>
+    <div id="qCard"></div>
+    <div class="nav">
+      <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
+      <button class="btn-skip" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
+      <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
+      <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultScreen" class="screen">
+    <input type="hidden" id="resName" value="">
+    <div style="text-align:center">
+      <div class="res-pill">5. HAFTA &#214;DEV&#304; &nbsp;|&nbsp; A1.2 (17-18. DERS)</div>
+    </div>
+    <div class="res-title">IR A + INFINITIVO</div>
+    <div class="res-score"><span id="resScore">0</span>/100</div>
+    <div class="res-stats">
+      <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
+      <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
+    </div>
+    <div class="res-note" id="resNote"></div>
+
+    <div class="submit-warning" id="submitWarning">
+      <div class="submit-warning-title">&#214;DEV&#304;N&#304;Z &#350;U AN TESLIM EDILMEDI</div>
+      <div class="submit-warning-sub">L\u00fctfen a\u015fa\u011f\u0131daki listeden ad\u0131n\u0131z\u0131 se\u00e7ip g\u00f6nderin.</div>
+    </div>
+
+    <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
+      <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+      <option value="Busem &#350;eker">Busem &#350;eker</option>
+      <option value="Deneme &#214;&#287;rencisi">Deneme &#214;&#287;rencisi</option>
+      <option value="Ece Turhano&#287;lu">Ece Turhano&#287;lu</option>
+      <option value="Elif &#350;afak">Elif &#350;afak</option>
+      <option value="Esra &#214;zkaya">Esra &#214;zkaya</option>
+      <option value="Kardelen Ku&#351;&#231;u">Kardelen Ku&#351;&#231;u</option>
+      <option value="S&#252;meyye &#350;ahin">S&#252;meyye &#350;ahin</option>
+      <option value="Yi&#287;it &#214;z">Yi&#287;it &#214;z</option>
+      <option value="Zeynep Ert&#252;rk">Zeynep Ert&#252;rk</option>
+      <option value="Z&#252;meyra Do&#287;an">Z&#252;meyra Do&#287;an</option>
+      <option value="&#350;eyma Ko&#231;ak">&#350;eyma Ko&#231;ak</option>
+    </select>
+
+    <div class="submit-msg" id="submitMsg"></div>
+    <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM EDIN</button>
+    <button class="btn-review" onclick="toggleReview()">Yanl&#305;&#351;lar&#305; G&#246;r</button>
+    <div class="review-list" id="reviewList"></div>
+  </div>
+</div>
+
+<!-- CONFIRM OVERLAY -->
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">&#304;ptal</button>
+      <button class="btn-ok" onclick="doFinish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI='H5 \u2013 17-18.Ders';
+var GROUPS={
+  "Busem \u015eeker":"A1.2",
+  "Deneme \u00d6\u011frencisi":"A1.2",
+  "Ece Turhano\u011flu":"A1.2",
+  "Elif \u015eafak":"A1.2",
+  "Esra \u00d6zkaya":"A1.2",
+  "Kardelen Ku\u015f\u00e7u":"A1.2",
+  "S\u00fcmeyye \u015eahin":"A1.2",
+  "Yi\u011fit \u00d6z":"A1.2",
+  "Zeynep Ert\u00fcrk":"A1.2",
+  "Z\u00fcmeyra Do\u011fan":"A1.2",
+  "\u015eeyma Ko\u00e7ak":"A1.2"
+};
+var Q=[
+{"t":"mc","q":"1. \u00bfPor qu\u00e9 usamos la estructura \u201cir a + infinitivo\u201d en todo el video?","o":["Para hablar de una acci\u00f3n que termin\u00f3 ayer.","Para dar una orden directa a otra persona.","Para describir algo que pasa habitualmente.","Para expresar planes, intenciones y futuro pr\u00f3ximo."],"a":3,"exp":"Cevap: D) Para expresar planes, intenciones y futuro pr\u00f3ximo.\nA\u00e7\u0131klama: \u201cIr a + Mastar\u201d yap\u0131s\u0131, henüz ger\u00e7ekle\u015fmemi\u015f ancak planlanm\u0131\u015f niyetleri ve yak\u0131n gelece\u011fi ifade etmek i\u00e7in kullan\u0131l\u0131r."},
+{"t":"mc","q":"2. A principios del video, \u00bfqu\u00e9 voy a preparar en mi maleta para el viaje?","o":["Botas de nieve y mucha ropa de abrigo.","Solo libros de gram\u00e1tica espa\u00f1ola.","Mucha ropa de verano y mis gafas de sol.","Un ordenador nuevo para trabajar."],"a":2,"exp":"Cevap: C) Mucha ropa de verano y mis gafas de sol.\nA\u00e7\u0131klama: Videoda \u201cropa de verano\u201d (yazl\u0131k k\u0131yafet) ve \u201cgafas de sol\u201d (güne\u015f gözlü\u011fü) haz\u0131rlanaca\u011f\u0131 belirtiliyor."},
+{"t":"mc","q":"3. \u00bfC\u00f3mo voy a ir desde el aeropuerto de Barajas hasta el centro de Madrid?","o":["Voy a ir caminando con mi maleta.","Voy a buscar un taxi para ir al centro.","Voy a tomar un barco por el r\u00edo.","Voy a alquilar una bicicleta roja."],"a":1,"exp":"Cevap: B) Voy a buscar un taxi para ir al centro.\nA\u00e7\u0131klama: Videonun 2. dakikas\u0131nda merkeze gitmek i\u00e7in taksi tutulaca\u011f\u0131 (buscar un taxi) s\u00f6yleniyor."},
+{"t":"mc","q":"4. \u00bfCu\u00e1l es el plan en la cafeter\u00eda hist\u00f3rica de la Gran V\u00eda?","o":["Tomar un caf\u00e9 y observar a la gente pasar.","Comprar una televisi\u00f3n nueva.","Dormir durante tres horas.","Estudiar para un examen de matem\u00e1ticas."],"a":0,"exp":"Cevap: A) Tomar un caf\u00e9 y observar a la gente pasar.\nA\u00e7\u0131klama: Madrid\u2019de bir kafede oturup insanlar\u0131 g\u00f6zlemleme (observar a la gente) niyetinden bahsediliyor."},
+{"t":"mc","q":"5. \u00bfCu\u00e1l es la forma correcta de \u201cir\u201d para la primera persona (Yo)?","o":["Voy","Vas","Va","Vamos"],"a":0,"exp":"Cevap: A) Voy\nA\u00e7\u0131klama: \u201cYo\u201d (Ben) öznesi i\u00e7in \u201cir\u201d fiili \u201cvoy\u201d olarak \u00e7ekimlenir."},
+{"t":"mc","q":"6. En el Museo del Prado, \u00bfqu\u00e9 regla \u201cno voy a\u201d romper?","o":["Voy a hablar muy alto.","No voy a usar el tel\u00e9fono m\u00f3vil.","Voy a correr por las salas.","Voy a tocar los cuadros de Goya."],"a":1,"exp":"Cevap: B) No voy a usar el tel\u00e9fono m\u00f3vil.\nA\u00e7\u0131klama: Videoda sanat\u0131n tad\u0131n\u0131 \u00e7\u0131karmak i\u00e7in telefonun kullan\u0131lmayaca\u011f\u0131 (no voy a usar) vurgulan\u0131yor."},
+{"t":"mc","q":"7. \u00bfQu\u00e9 actividad voy a hacer en el estanque del Retiro?","o":["Voy a nadar con los peces.","Voy a pescar la cena.","Voy a alquilar un barco y voy a remar.","Voy a saltar al agua desde un puente."],"a":2,"exp":"Cevap: C) Voy a alquilar un barco y voy a remar.\nA\u00e7\u0131klama: Retiro park\u0131ndaki gölette sandal kiralamak ve kürek \u00e7ekmek (remar) planlan\u0131yor."},
+{"t":"mc","q":"8. Seg\u00fan el video, \u00bfqu\u00e9 informaci\u00f3n NO podemos saber sobre el vuelo?","o":["Que el billete es para Madrid.","Que la p\u00e1gina web es barata.","Que el viaje es la pr\u00f3xima semana.","El precio exacto del billete de avi\u00f3n."],"a":3,"exp":"Cevap: D) El precio exacto del billete de avi\u00f3n.\nA\u00e7\u0131klama: Videoda biletin ucuz oldu\u011fu s\u00f6yleniyor ama net rakam verilmiyor (Videodan \u00e7\u0131kar\u0131lamaz soru)."},
+{"t":"mc","q":"9. En Barcelona, \u00bfpor qu\u00e9 quiero vivir cerca del mar?","o":["Porque quiero pescar mi propia comida.","Porque voy a comprar un barco grande.","Porque no me gusta el centro de la ciudad.","Porque quiero escuchar las olas por la noche."],"a":3,"exp":"Cevap: D) Porque quiero escuchar las olas por la noche.\nA\u00e7\u0131klama: Barcelona\u2019daki dairenin deniz yak\u0131n\u0131nda se\u00e7ilme nedeni dalga seslerini (escuchar las olas) duymakt\u0131r."},
+{"t":"mc","q":"10. Seg\u00fan el video \u00bfa qu\u00e9 van a parecer las casas de Gaud\u00ed?","o":["Van a parecer cuentos de hadas.","Van a parecer barcos antiguos.","Van a parecer edificios de oficinas.","Van a parecer cajas de zapatos."],"a":0,"exp":"Cevap: A) Van a parecer cuentos de hadas.\nA\u00e7\u0131klama: Gaud\u00ed mimarisinin masal\u0131 (cuentos de hadas) g\u00f6r\u00fcn\u00fcm\u00fcne dikkat \u00e7ekiliyor."},
+{"t":"mc","q":"11. \u00bfCu\u00e1l es el plan para visitar la Sagrada Familia?","o":["Voy a entrar para dormir un poco.","No voy a ver el monumento.","Voy a sacar mil fotos de las torres.","Voy a comer una pizza dentro."],"a":2,"exp":"Cevap: C) Voy a sacar mil fotos de las torres.\nA\u00e7\u0131klama: Sagrada Familia\u2019n\u0131n kulelerinin binlerce foto\u011fraf\u0131n\u0131n \u00e7ekilece\u011fi (sacar mil fotos) belirtiliyor."},
+{"t":"mc","q":"12. En la playa de la Barceloneta, \u00bfqu\u00e9 voy a tomar?","o":["Voy a tomar una sopa caliente.","Voy a tomar un helado de chocolate.","Voy a tomar una hamburguesa.","Voy a tomar solo agua fr\u00eda."],"a":1,"exp":"Cevap: B) Voy a tomar un helado de chocolate.\nA\u00e7\u0131klama: Sahilde dondurma (helado de chocolate) yenece\u011fi ifade ediliyor."},
+{"t":"mc","q":"13. \u00bfC\u00f3mo son los edificios en la Ciudad de las Artes de Valencia?","o":["Son muy viejos y tradicionales.","Son muy futuristas y parecen naves espaciales.","Son peque\u00f1os y de color madera.","Son casas antiguas del siglo quince."],"a":1,"exp":"Cevap: B) Son muy futuristas y parecen naves espaciales.\nA\u00e7\u0131klama: Valencia\u2019daki binalar\u0131n futuristik ve uzay gemisi (naves espaciales) gibi oldu\u011fu s\u00f6yleniyor."},
+{"t":"mc","q":"14. Seg\u00fan el video, \u00bfqu\u00e9 es la \u201chorchata\u201d?","o":["Es un plato de pescado frito.","Es un tipo de baile de Valencia.","Es una bebida muy famosa y dulce.","Es una ropa tradicional de Espa\u00f1a."],"a":2,"exp":"Cevap: C) Es una bebida muy famosa y dulce.\nA\u00e7\u0131klama: Horchata, Valencia\u2019ya özgü ünlü ve tatl\u0131 bir i\u00e7ecek (bebida famosa y dulce) olarak tan\u0131mlan\u0131yor."},
+{"t":"mc","q":"15. \u00bfD\u00f3nde voy a mirar el espect\u00e1culo de flamenco en Sevilla?","o":["En el aeropuerto de Barajas.","En la estaci\u00f3n de tren AVE.","En la playa de la Barceloneta.","En un tablao antiguo por la noche."],"a":3,"exp":"Cevap: D) En un tablao antiguo por la noche.\nA\u00e7\u0131klama: Flamenko g\u00f6sterisinin izlenece\u011fi yer geleneksel \u201ctablao\u201ddur."},
+{"t":"mc","q":"16. \u00bfQu\u00e9 tiempo \u201cva a hacer\u201d en el sur de Espa\u00f1a (Sevilla)?","o":["Va a hacer mucho calor.","Va a nevar mucho.","Va a hacer mucho fr\u00edo.","Va a llover todos los d\u00edas."],"a":0,"exp":"Cevap: A) Va a hacer mucho calor.\nA\u00e7\u0131klama: Sevilla\u2019da havan\u0131n \u00e7ok s\u0131cak olaca\u011f\u0131 (hacer mucho calor) belirtiliyor."},
+{"t":"mc","q":"17. \u00bfQu\u00e9 actividad voy a hacer en la torre de la Giralda?","o":["Voy a subir para ver toda la ciudad.","Voy a bajar para buscar un taxi.","Voy a dormir dentro de la torre.","Voy a pintar la torre de blanco."],"a":0,"exp":"Cevap: A) Voy a subir para ver toda la ciudad.\nA\u00e7\u0131klama: Kuleye \u201c\u00e7\u0131kmak\u201d (subir) ve \u015fehri izlemek planlan\u0131yor."},
+{"t":"mc","q":"18. En el barrio de Santa Cruz, \u00bfqu\u00e9 hay en los balcones?","o":["Hay muchas banderas de f\u00fatbol.","Hay televisiones grandes.","Hay mucha gente gritando.","Hay muchas flores bonitas."],"a":3,"exp":"Cevap: D) Hay muchas flores bonitas.\nA\u00e7\u0131klama: Sevilla\u2019n\u0131n bu mahallesindeki balkonlarda \u00e7i\u00e7ekler (flores en los balcones) oldu\u011fu s\u00f6yleniyor."},
+{"t":"mc","q":"19. \u00bfQu\u00e9 sonido \u201cvoy a escuchar\u201d en los jardines de la Alhambra?","o":["El sonido de los coches de Granada.","El sonido de la m\u00fasica rock.","El sonido del agua en las fuentes.","El sonido de los aviones."],"a":2,"exp":"Cevap: C) El sonido del agua en las fuentes.\nA\u00e7\u0131klama: El Hamra saray\u0131ndaki f\u0131sk\u0131yelerin su sesi (sonido del agua) vurgulan\u0131yor."},
+{"t":"mc","q":"20. \u00bfPor qu\u00e9 Granada es especial para la gastronom\u00eda seg\u00fan el video?","o":["Porque la comida es muy cara.","Porque las tapas son gratis con la bebida.","Porque no voy a comer nada all\u00ed.","Porque voy a cocinar mi propia comida."],"a":1,"exp":"Cevap: B) Porque las tapas son gratis con la bebida.\nA\u00e7\u0131klama: Granada\u2019da i\u00e7ecek yan\u0131nda tapalar\u0131n ücretsiz (tapas gratis) olmas\u0131 özel bir detayd\u0131r."},
+{"t":"mc","q":"21. Completa la frase: \u201cMis amigos y yo ___ a hablar mucho en espa\u00f1ol\u201d.","o":["voy","vamos","van","vas"],"a":1,"exp":"Cevap: B) vamos\nA\u00e7\u0131klama: Özne \u201cbiz\u201d (nosotros) oldu\u011fu i\u00e7in fiil \u201cvamos\u201d \u015fekilde \u00e7ekimlenir."},
+{"t":"mc","q":"22. \u00bfPara qu\u00e9 voy a comprar \u201caceite de oliva\u201d en las tiendas?","o":["Para usarlo en mi cocina.","Para limpiar mi coche nuevo.","Para d\u00e1rselo a los gatos de Estambul.","Para beberlo como agua."],"a":0,"exp":"Cevap: A) Para usarlo en mi cocina.\nA\u00e7\u0131klama: Zeytinyag\u0131n\u0131n mutfakta (para mi cocina) kullan\u0131lmak üzere al\u0131nd\u0131g\u0131 belirtiliyor."},
+{"t":"mc","q":"23. \u00bfA qui\u00e9n quiero ayudar con mis compras en Espa\u00f1a?","o":["A las grandes empresas.","A los bancos internacionales.","A los turistas de otros pa\u00edses.","A los artesanos locales de las tiendas."],"a":3,"exp":"Cevap: D) A los artesanos locales de las tiendas.\nA\u00e7\u0131klama: Yerel esnafa/sanat\u00e7\u0131lara (artesanos) destek olma niyeti ifade ediliyor."},
+{"t":"mc","q":"24. \u00bfCon qui\u00e9n voy a practicar espa\u00f1ol durante todo el viaje?","o":["Solo con el profesor de la escuela.","Con nadie, voy a estar en silencio.","Con los camareros, taxistas y recepcionistas.","Solo voy a hablar en ingl\u00e9s."],"a":2,"exp":"Cevap: C) Con los camareros, taxistas y recepcionistas.\nA\u00e7\u0131klama: Günlük hayattaki herkesle (garson, taksici vb.) pratik yapma hedefi var."},
+{"t":"mc","q":"25. Seg\u00fan el video, \u00bfde qu\u00e9 \u201cno voy a tener miedo\u201d?","o":["De viajar con amigos.","De gastar mucho dinero.","De cometer errores al hablar.","De comer comida picante."],"a":2,"exp":"Cevap: C) De cometer errores al hablar.\nA\u00e7\u0131klama: Dil \u00f6\u011frenirken hata yapmaktan korkmamak (no tener miedo de cometer errores) gerekti\u011fi s\u00f6yleniyor."},
+{"t":"mc","q":"26. \u00bfC\u00f3mo voy a volver a casa despu\u00e9s de la aventura?","o":["Muy triste y cansado.","Con mucha hambre y sue\u00f1o.","En un barco muy lento.","Muy feliz y con energ\u00eda positiva."],"a":3,"exp":"Cevap: D) Muy feliz y con energ\u00eda positiva.\nA\u00e7\u0131klama: Seyahat sonundaki ruh hali \u201cfeliz y con energ\u00eda positiva\u201d olarak planlan\u0131yor."},
+{"t":"mc","q":"27. \u00bfQu\u00e9 actividad NO menciona el video en ning\u00fan momento?","o":["Alquilar un coche para viajar por Espa\u00f1a.","Tomar el tren AVE de alta velocidad.","Comprar recuerdos para la familia.","Visitar la Sagrada Familia en Barcelona."],"a":0,"exp":"Cevap: A) Alquilar un coche para viajar por Espa\u00f1a.\nA\u00e7\u0131klama: Videoda taksi ve trenden bahsediliyor ancak araba kiralamaktan bahsedilmiyor (Videodan \u00e7\u0131kar\u0131lamaz soru)."},
+{"t":"mc","q":"28. En la estructura \u201cir a + infinitivo\u201d, \u00bfcu\u00e1l de estos es un infinitivo?","o":["Voy","Comer","Vamos","Vas"],"a":1,"exp":"Cevap: B) Comer\nA\u00e7\u0131klama: Mastar halindeki fiiller (infinitivo) -ar, -er, -ir ile biter."},
+{"t":"mc","q":"29. \u00bfDesde d\u00f3nde voy a mirar el atardecer con la Sierra Nevada?","o":["Desde la Gran V\u00eda de Madrid.","Desde un mirador en Granada.","Desde la playa de Barcelona.","Desde la estaci\u00f3n de Valencia."],"a":1,"exp":"Cevap: B) Desde un mirador en Granada.\nA\u00e7\u0131klama: Sierra Nevada manzaral\u0131 gün bat\u0131m\u0131 Granada b\u00f6lümünde ge\u00e7iyor."},
+{"t":"mc","q":"30. \u00bfQu\u00e9 voy a hacer \u201ctodav\u00eda m\u00e1s\u201d para el pr\u00f3ximo a\u00f1o?","o":["Voy a trabajar en un banco.","Voy a olvidar el espa\u00f1ol.","Voy a estudiar m\u00e1s espa\u00f1ol.","Voy a vender mi maleta."],"a":2,"exp":"Cevap: C) Voy a estudiar m\u00e1s espa\u00f1ol.\nA\u00e7\u0131klama: Videonun sonunda daha fazla \u0130spanyolca \u00e7al\u0131\u015fma (estudiar todav\u00eda m\u00e1s) s\u00f6z\u00fc veriliyor."},
+{"t":"mc","q":"31. \u201cVa a ser como un sue\u00f1o de las mil y una noches\u201d. \u00bfA qu\u00e9 lugar se refiere?","o":["Al aeropuerto de Barajas.","A la estaci\u00f3n de tren de Sants.","A la playa de la Barceloneta.","A la Alhambra de Granada."],"a":3,"exp":"Cevap: D) A la Alhambra de Granada.\nA\u00e7\u0131klama: El Hamra saray\u0131n\u0131n masal\u0131 güzelli\u011fi \u201cbinbir gece masallar\u0131\u201dna benzetiliyor."},
+{"t":"mc","q":"32. \u00bfQu\u00e9 voy a buscar para mi mejor amigo en las tiendas?","o":["Una camiseta de un equipo de f\u00fatbol.","Un libro de cocina espa\u00f1ola.","Una botella de horchata dulce.","Un billete de tren AVE."],"a":0,"exp":"Cevap: A) Una camiseta de un equipo de f\u00fatbol.\nA\u00e7\u0131klama: En iyi arkada\u015f i\u00e7in futbol formas\u0131 (camiseta de f\u00fatbol) al\u0131naca\u011f\u0131 belirtiliyor."},
+{"t":"mc","q":"33. \u00bfQu\u00e9 tipo de expresiones voy a aprender en este viaje?","o":["Expresiones t\u00edpicas que solo se usan en Espa\u00f1a.","Expresiones matem\u00e1ticas dif\u00edciles.","Expresiones en lengua de signos.","Expresiones de miedo y terror."],"a":0,"exp":"Cevap: A) Expresiones t\u00edpicas que solo se usan en Espa\u00f1a.\nA\u00e7\u0131klama: Yerel halkla konu\u015farak \u201ctipik ifadeleri\u201d (expresiones t\u00edpicas) \u00f6\u011frenme hedefi var."},
+{"t":"mc","q":"34. \u00bfCu\u00e1l de estas frases es gramaticalmente CORRECTA?","o":["Yo va a comer paella.","Nosotros voy a viajar.","Ellos van a visitar el museo.","T\u00fa vamos a nadar."],"a":2,"exp":"Cevap: C) Ellos van a visitar el museo.\nA\u00e7\u0131klama: \u201cEllos\u201d (Onlar) öznesi i\u00e7in \u201cir\u201d fiili \u201cvan\u201d olur."},
+{"t":"mc","q":"35. \u00bfQu\u00e9 significa la palabra \u201cpaisaje\u201d en el video?","o":["Bavul","Manzara","Tren","Pasaporte"],"a":1,"exp":"Cevap: B) Manzara\nA\u00e7\u0131klama: Tren yolculu\u011funda pencereden izlenen \u015fey \u201cmanzara\u201d (paisaje) kelimesidir."},
+{"t":"mc","q":"36. \u00bfQu\u00e9 sentimiento voy a tener al mirar el flamenco en Sevilla?","o":["Mucho aburrimiento.","Mucho sue\u00f1o.","Mucha hambre.","Mucha pasi\u00f3n y emoci\u00f3n."],"a":3,"exp":"Cevap: D) Mucha pasi\u00f3n y emoci\u00f3n.\nA\u00e7\u0131klama: Flamenko g\u00f6sterisinin \u201ctutku ve duygu\u201d (pasi\u00f3n y emoci\u00f3n) verece\u011fi s\u00f6yleniyor."},
+{"t":"mc","q":"37. \u00bfD\u00f3nde est\u00e1 el hotel de Madrid exactamente?","o":["En el Museo del Prado.","En la estaci\u00f3n de tren AVE.","Cerca de la Puerta del Sol.","Dentro de la Sagrada Familia."],"a":2,"exp":"Cevap: C) Cerca de la Puerta del Sol.\nA\u00e7\u0131klama: Madrid\u2019deki otelin \u201cPuerta del Sol\u201d meydanına yak\u0131n olaca\u011f\u0131 belirtiliyor."},
+{"t":"mc","q":"38. \u00bfC\u00f3mo describe el video la bebida llamada \u201chorchata\u201d?","o":["Es caliente y muy amarga.","Es verde y muy salada.","Es azul y muy picante.","Es muy famosa y dulce."],"a":3,"exp":"Cevap: D) Es muy famosa y dulce.\nA\u00e7\u0131klama: Horchata i\u00e7ece\u011fi i\u00e7in \u201cünlü ve tatl\u0131\u201d (famosa y dulce) s\u0131fatlar\u0131 kullan\u0131l\u0131yor."},
+{"t":"mc","q":"39. \u00bfEn qu\u00e9 ciudad espa\u00f1ola est\u00e1 el \u201cbarrio de Santa Cruz\u201d?","o":["Sevilla","Barcelona","Madrid","Valencia"],"a":0,"exp":"Cevap: A) Sevilla\nA\u00e7\u0131klama: Beyaz balkonlu \u00e7i\u00e7ekli evlerin oldu\u011fu bu mahalle Sevilla\u2019dad\u0131r."},
+{"t":"mc","q":"40. \u00bfCu\u00e1l es la \u00faltima frase que digo en el video?","o":["Hola a todos.","!\u00a1Nos vemos muy pronto en el pr\u00f3ximo video, adi\u00f3s!","No voy a viajar a Espa\u00f1a.","Voy a comer mucha paella hoy."],"a":1,"exp":"Cevap: B) !\u00a1Nos vemos muy pronto en el pr\u00f3ximo video, adi\u00f3s!\nA\u00e7\u0131klama: Videonun kapan\u0131\u015f c\u00fcmlesi \u201cyak\u0131nda g\u00f6r\u00fc\u015f\u00fcr\u00fcz\u201d (nos vemos pronto) \u015feklindedir."},
+{"t":"mc","q":"41. TEXTO: \u201cMa\u00f1ana por la ma\u00f1ana, voy a levantarme muy temprano para caminar por la playa de Marbella y ver el amanecer.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta seg\u00fan el texto?","o":["La persona va a dar un paseo cerca del mar.","La persona va a nadar en la piscina del hotel.","La persona se va a despertar pronto.","La persona va a observar el sol por la ma\u00f1ana."],"a":1,"exp":"Cevap: B) La persona va a nadar en la piscina del hotel.\nA\u00e7\u0131klama (41-B): Metinde sabah erken kalk\u0131p (levantarse temprano/despertarse pronto) sahilde yürümekten (caminar/dar un paseo) bahsediliyor. Havuzda yüzmekten (nadar en la piscina) bahsedilmiyor."},
+{"t":"mc","q":"42. TEXTO: \u201cDespu\u00e9s del paseo, voy a desayunar un caf\u00e9 con leche y pan con tomate en una cafeter\u00eda tradicional del centro.\u201d \u00bfQu\u00e9 informaci\u00f3n NO se puede deducir?","o":["La persona va a cenar en su casa esta noche.","La persona va a tomar una bebida caliente.","La persona va a comer en un establecimiento p\u00fablico.","La persona va a ingerir alimentos por la ma\u00f1ana."],"a":0,"exp":"Cevap: A) La persona va a cenar en su casa esta noche.\nA\u00e7\u0131klama (42-A): Metin kahvalt\u0131 (desayunar) üzerine. Ak\u015fam yeme\u011fi (cenar) hakk\u0131nda hi\u00e7bir bilgi yok."},
+{"t":"mc","q":"43. TEXTO: \u201cPara moverme por la ciudad de Valencia, voy a alquilar una bicicleta porque es una opci\u00f3n muy ecol\u00f3gica y barata.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta?","o":["La persona va a rentar un veh\u00edculo de dos ruedas.","La persona va a usar un transporte econ\u00f3mico.","La persona va a comprar un coche nuevo en Valencia.","El transporte elegido no va a contaminar mucho."],"a":2,"exp":"Cevap: C) La persona va a comprar un coche nuevo en Valencia.\nA\u00e7\u0131klama (43-C): Bisiklet kiralamaktan (alquilar/rentar) bahsediliyor, araba sat\u0131n almaktan (comprar un coche) de\u011fil."},
+{"t":"mc","q":"44. TEXTO: \u201cPor la tarde, voy a visitar el Museo Picasso con mi familia para conocer la obra del famoso artista malague\u00f1o.\u201d \u00bfQu\u00e9 informaci\u00f3n NO se menciona?","o":["La persona va a ver pinturas y arte.","La persona va a ir a un sitio cultural con sus parientes.","La persona va a aprender sobre un pintor.","La persona no va a entrar en ning\u00fan edificio."],"a":3,"exp":"Cevap: D) La persona no va a entrar en ning\u00fan edificio.\nA\u00e7\u0131klama (44-D): Müzeye gidilece\u011fi (visitar el museo) s\u00f6ylendi\u011fi i\u00e7in binaya girmeyece\u011fi bilgisi yanl\u0131\u015ft\u0131r."},
+{"t":"mc","q":"45. TEXTO: \u201cA las cinco, voy a buscar un regalo especial para mi madre en las tiendas de artesan\u00eda del centro hist\u00f3rico.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta?","o":["La persona va a intentar localizar un obsequio.","La persona va a comprar algo para su progenitora.","La persona va a estar en la zona comercial de la ciudad.","La persona va a trabajar en una tienda de regalos."],"a":3,"exp":"Cevap: D) La persona va a trabajar en una tienda de regalos.\nA\u00e7\u0131klama (45-D): Hediye aramaktan (buscar un regalo/localizar un obsequio) bahsediliyor, \u00e7al\u0131\u015fmaktan (trabajar) de\u011fil."},
+{"t":"mc","q":"46. TEXTO: \u201cEsta noche, voy a encontrarme con unos amigos espa\u00f1oles en una terraza para practicar el idioma y hablar mucho.\u201d \u00bfQu\u00e9 informaci\u00f3n NO se puede deducir?","o":["La persona va a reunirse con gente local.","La persona va a usar el castellano para comunicarse.","La persona va a estar sola durante toda la noche.","El encuentro va a ser en un espacio abierto (terraza)."],"a":2,"exp":"Cevap: C) La persona va a estar sola durante toda la noche.\nA\u00e7\u0131klama (46-C): Arkada\u015flarla bulu\u015fulaca\u011f\u0131 (encontrarse con amigos/reunirse) belirtildi\u011fi i\u00e7in yaln\u0131z olaca\u011f\u0131 bilgisi \u00e7\u0131kar\u0131lamaz."},
+{"t":"mc","q":"47. TEXTO: \u201cEl pr\u00f3ximo s\u00e1bado, mi hermano y yo vamos a ver un espect\u00e1culo de danza flamenca en un teatro muy antiguo.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta?","o":["Dos personas van a mirar una funci\u00f3n art\u00edstica.","El narrador va a ir solo al teatro el s\u00e1bado.","La funci\u00f3n va a ser sobre un baile tradicional espa\u00f1ol.","El evento va a tener lugar en un sitio con mucha historia."],"a":1,"exp":"Cevap: B) El narrador va a ir solo al teatro el s\u00e1bado.\nA\u00e7\u0131klama (47-B): \u201cMi hermano y yo\u201d (erkek karde\u015fim ve ben) dendi\u011fi i\u00e7in ki\u015finin yaln\u0131z gidece\u011fi bilgisi yanl\u0131\u015ft\u0131r."},
+{"t":"mc","q":"48. TEXTO: \u201cPara mejorar mi nivel de espa\u00f1ol, voy a estudiar tres horas de gram\u00e1tica hoy en la biblioteca municipal.\u201d \u00bfQu\u00e9 informaci\u00f3n NO se puede deducir?","o":["La persona va a descansar y dormir todo el d\u00eda.","La persona va a dedicar tiempo al aprendizaje del idioma.","La persona va a realizar un esfuerzo intelectual hoy.","La persona va a estar en un lugar con muchos libros."],"a":0,"exp":"Cevap: A) La persona va a descansar y dormir todo el d\u00eda.\nA\u00e7\u0131klama (48-A): \u00c7al\u0131\u015fma (estudiar) plan\u0131 oldu\u011fu i\u00e7in t\u00fcm gün uyuyaca\u011f\u0131/dinlenece\u011fi bilgisi metne ayk\u0131r\u0131d\u0131r."},
+{"t":"mc","q":"49. TEXTO: \u201cEstoy muy emocionado porque este viaje por Espa\u00f1a va a ser la experiencia m\u00e1s incre\u00edble de mi vida.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta?","o":["El narrador est\u00e1 muy triste y aburrido con el viaje.","La persona se siente muy entusiasmada con su plan.","El viaje va a representar un momento \u00fanico y especial.","El sentimiento de la persona es muy positivo."],"a":0,"exp":"Cevap: A) El narrador est\u00e1 muy triste y aburrido con el viaje.\nA\u00e7\u0131klama (49-A): \u201cEmocionado\u201d (heyecanl\u0131) oldu\u011fu belirtiliyor, \u201ctriste\u201d (üzgün) veya \u201caburrido\u201d (s\u0131k\u0131lm\u0131\u015f) de\u011fil."},
+{"t":"mc","q":"50. TEXTO: \u201cEl pr\u00f3ximo verano, voy a viajar a las islas Canarias para descubrir nuevos paisajes y descansar mucho.\u201d \u00bfQu\u00e9 informaci\u00f3n NO es correcta?","o":["La persona va a visitar un archipi\u00e9lago.","La persona va a quedarse en su casa durante el est\u00edo.","El objetivo del viaje es conocer la naturaleza y relajarse.","La persona va a hacer turismo en la \u00e9poca m\u00e1s calurosa del a\u00f1o."],"a":1,"exp":"Cevap: B) La persona va a quedarse en su casa durante el est\u00edo.\nA\u00e7\u0131klama (50-B): Adalara (islas/archi\u00e9pelago) seyahat edilece\u011fi (viajar) i\u00e7in evde kalaca\u011f\u0131 (quedarse en casa) bilgisi yanl\u0131\u015ft\u0131r. \u201cEst\u00edo\u201d yaz mevsiminin (verano) e\u015f anlaml\u0131s\u0131d\u0131r."}
+];
+var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
+
+function startQuiz(){
+  var name=document.getElementById('introName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('resName').value=name;
+  document.getElementById('resName2').value=name;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+
+function syncResName(){
+  document.getElementById('resName').value=document.getElementById('resName2').value;
+}
+
+function esc(s){
+  if(!s)return'';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function renderQ(){
+  var i=state.cur;var q=Q[i];var html='';
+  html+='<span class="q-badge">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  var L=['A','B','C','D'];
+  for(var j=0;j<q.o.length;j++){
+    var cls='opt-btn';var dis='';var ans=state.answered[i];
+    if(ans!==undefined){
+      dis='disabled';
+      if(j===q.a)cls+=' correct';
+      else if(j===ans&&ans!==q.a)cls+=' wrong';
+    }
+    html+='<button class="'+cls+'" '+dis+' onclick="checkAns('+j+')"><strong>'+L[j]+')</strong> '+esc(q.o[j])+'</button>';
+  }
+  html+='</div>';
+  html+='<div class="exp-box'+(state.answered[i]!==undefined?' show':'')+'">'+esc(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+  var done=state.answered[i]!==undefined;
+  document.getElementById('btnBack').disabled=(i===0||!done);
+  document.getElementById('btnNext').disabled=(!done||i===Q.length-1);
+  document.getElementById('btnSkip').disabled=(!done||i>=Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cntOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('cntErr').textContent=state.errCount+' Yanl\u0131\u015f';
+}
+
+function checkAns(j){
+  var i=state.cur;
+  if(state.answered[i]!==undefined)return;
+  var q=Q[i];state.answered[i]=j;
+  if(j===q.a){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function goBack(){if(state.cur>0){state.cur--;renderQ();}}
+function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+
+function confirmFinish(){
+  var answered=0;for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
+  var unanswered=Q.length-answered;
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){closeConfirm();showResult();}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=total*2;if(pct>100)pct=100;
+  document.getElementById('resScore').textContent=pct;
+  document.getElementById('resOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('resErr').textContent=state.errCount+' Yanl\u0131\u015f';
+  document.getElementById('resNote').textContent='50 sorudan '+state.okCount+' tanesi do\u011fru (her soru 2 puan)';
+  var L=['A','B','C','D'];var html2='';
+  for(var i=0;i<Q.length;i++){
+    var ans=state.answered[i];
+    if(ans===undefined||ans===Q[i].a)continue;
+    var q=Q[i];
+    html2+='<div class="rev-item">';
+    html2+='<div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
+    html2+='<div class="rev-chosen">Verdi\u011finiz cevap: '+L[ans]+') '+esc(q.o[ans])+'</div>';
+    html2+='<div class="rev-correct">Do\u011fru cevap: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html2+='<div class="rev-exp">'+esc(q.exp)+'</div>';
+    html2+='</div>';
+  }
+  document.getElementById('reviewList').innerHTML=html2||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+}
+
+function toggleReview(){
+  var rv=document.getElementById('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+function submitResult(){
+  var name=document.getElementById('resName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var pct=total*2;if(pct>100)pct=100;
+  var grup=GROUPS[name]||'A1.2';
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV_ADI,grup:grup,
+    puan:pct,dogru:state.okCount,yanlis:state.errCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  document.getElementById('submitWarning').style.display='none';
+  document.getElementById('submitMsg').style.display='block';
+  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  document.getElementById('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+    })
+    .catch(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+    });
+}
+</script>
+</body>
+</html>
