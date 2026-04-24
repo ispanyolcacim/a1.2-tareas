@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H6 &#8211; 21-22.Ders | A1.2 Ödevi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:740px;width:100%;padding:2rem}
+.screen{display:none}.screen.active{display:block}
+.week-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem}
+.intro-title{font-size:1.2rem;font-weight:800;color:#3d2a7a;margin-bottom:.3rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.25rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1.5rem;font-weight:600}
+select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none;font-family:inherit;font-size:.95rem}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}
+.cnt-err{background:#fde8e8;color:#d94040}
+.q-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem}
+.q-badge-math{background:#e8f4fd;color:#1a6fb5}
+.q-badge-vf{background:#fff3cd;color:#856404}
+.q-text{font-size:.93rem;color:#333;line-height:1.75;margin-bottom:1rem}
+.reading-box{background:#f8f5ff;border:1px solid #d0c8f0;border-radius:10px;padding:1rem 1.2rem;font-size:.81rem;color:#333;line-height:1.8;margin-bottom:1rem;max-height:260px;overflow-y:auto}
+.reading-title{font-weight:800;color:#6c4eb8;font-size:.9rem;margin-bottom:.6rem;text-align:center}
+.idiom-num{color:#6c4eb8;font-weight:700}
+.ifade-box{background:#ede8fb;border-radius:10px;padding:.85rem 1rem;font-size:.77rem;color:#3d2a7a;line-height:1.8;margin-bottom:1rem}
+.ifade-title{font-weight:800;color:#6c4eb8;margin-bottom:.4rem;font-size:.8rem}
+.fill-area{margin-bottom:1rem}
+.fill-input{width:100%;padding:.75rem 1rem;border:2px solid #d0c8f0;border-radius:9px;font-size:.95rem;font-family:inherit;color:#333;outline:none;transition:border-color .15s}
+.fill-input:focus{border-color:#9b7de0}
+.fill-input.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.fill-input.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.fill-input:disabled{cursor:default}
+.btn-check{width:100%;padding:.7rem;background:#6c4eb8;color:#fff;border:none;border-radius:9px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:.75rem}
+.btn-check:hover{background:#5a3ea0}
+.btn-check:disabled{opacity:.4;cursor:not-allowed}
+.fill-answer{display:none;background:#f8f5ff;border-left:4px solid #2e9e6b;border-radius:0 8px 8px 0;padding:.6rem 1rem;font-size:.83rem;color:#1a5c3a;font-weight:600;margin-bottom:.5rem}
+.fill-answer.show{display:block}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.75;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
+.btn-back{background:#e8e0f8;color:#6c4eb8}
+.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}
+.btn-finish{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
+.res-score{text-align:center;font-size:3.5rem;font-weight:800;color:#6c4eb8;margin:.75rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.25rem}
+.submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1.1rem 1.5rem;margin-bottom:1rem;text-align:center}
+.submit-warning-title{font-size:1.05rem;font-weight:800;color:#856404;margin-bottom:.3rem;letter-spacing:.3px}
+.submit-warning-sub{font-size:.83rem;color:#856404}
+.btn-submit{width:100%;padding:1.1rem;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;letter-spacing:.3px;font-family:inherit}
+.btn-submit:hover{background:#257a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.85rem;font-size:.9rem;color:#1a5c3a;display:none;margin-bottom:.75rem;text-align:center;font-weight:600;line-height:1.6}
+.review-list{display:none;flex-direction:column;gap:.75rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.75rem;font-size:.82rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.3rem}
+.rev-chosen{color:#d94040;margin-bottom:.2rem}
+.rev-correct{color:#2e9e6b;margin-bottom:.3rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.75}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}
+.btn-ok{background:#e05c5c;color:#fff}
+@media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}}
+</style>
+</head>
+<body>
+<div class="card">
+
+<!-- INTRO -->
+<div id="introScreen" class="screen active">
+  <div class="week-pill">6. HAFTA &#214;DEV&#304; &nbsp;|&nbsp; A1.2 (21-22. DERS)</div>
+  <div class="intro-title">N&#218;MEROS, OPERACIONES MATEM&#193;TICAS<br>Y COMPRENSI&#211;N LECTORA</div>
+  <div class="intro-sub">100 soru &middot; Matematik (1&#8211;56) + Okuma Anlama (57&#8211;100) &middot; Her soru 1 puan</div>
+  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <select id="introName">
+    <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+    <option>Busem &#350;eker</option>
+    <option>Deneme &#214;&#287;rencisi</option>
+    <option>Ece Turhano&#287;lu</option>
+    <option>Elif &#350;afak</option>
+    <option>Esra &#214;zkaya</option>
+    <option>Kardelen Ku&#351;&#231;u</option>
+    <option>S&#252;meyye &#350;ahin</option>
+    <option>Yi&#287;it &#214;z</option>
+    <option>Zeynep Ert&#252;rk</option>
+    <option>Z&#252;meyra Do&#287;an</option>
+    <option>&#350;eyma Ko&#231;ak</option>
+  </select>
+  <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quizScreen" class="screen">
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-meta">
+    <span id="qMeta">Soru 1 / 100</span>
+    <span><span class="cnt cnt-ok" id="cntOk">0 Do&#287;ru</span>&nbsp;<span class="cnt cnt-err" id="cntErr">0 Yanl&#305;&#351;</span></span>
+  </div>
+  <div id="qCard"></div>
+  <div class="nav">
+    <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
+    <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla</button>
+    <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
+    <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <input type="hidden" id="resName" value="">
+  <div style="text-align:center"><div class="res-pill">6. HAFTA &#214;DEV&#304; &nbsp;|&nbsp; A1.2 (21-22. DERS)</div></div>
+  <div class="res-title">N&#218;MEROS, OPERACIONES MATEM&#193;TICAS Y COMPRENSI&#211;N LECTORA</div>
+  <div class="res-score"><span id="resScore">0</span>/100</div>
+  <div class="res-stats">
+    <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="resOk"></span>
+    <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
+  </div>
+  <div class="res-note" id="resNote"></div>
+  <div class="submit-warning" id="submitWarning">
+    <div class="submit-warning-title">&#214;DEV&#304;N&#304;Z &#350;U AN TESLIM EDILMEDI</div>
+    <div class="submit-warning-sub">L&#252;tfen a&#351;a&#287;&#305;daki listeden ad&#305;n&#305;z&#305; se&#231;ip g&#246;nderin.</div>
+  </div>
+  <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
+    <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
+    <option>Busem &#350;eker</option>
+    <option>Deneme &#214;&#287;rencisi</option>
+    <option>Ece Turhano&#287;lu</option>
+    <option>Elif &#350;afak</option>
+    <option>Esra &#214;zkaya</option>
+    <option>Kardelen Ku&#351;&#231;u</option>
+    <option>S&#252;meyye &#350;ahin</option>
+    <option>Yi&#287;it &#214;z</option>
+    <option>Zeynep Ert&#252;rk</option>
+    <option>Z&#252;meyra Do&#287;an</option>
+    <option>&#350;eyma Ko&#231;ak</option>
+  </select>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM EDIN</button>
+  <button class="btn-review" onclick="toggleReview()">Yanl&#305;&#351;lar&#305; G&#246;r</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+</div>
+
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">&#304;ptal</button>
+      <button class="btn-ok" onclick="doFinish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV_ADI='H6 \u2013 21-22.Ders';
+var GROUPS={
+  "Busem \u015eeker":"A1.2","Deneme \u00d6\u011frencisi":"A1.2","Ece Turhano\u011flu":"A1.2",
+  "Elif \u015eafak":"A1.2","Esra \u00d6zkaya":"A1.2","Kardelen Ku\u015f\u00e7u":"A1.2",
+  "S\u00fcmeyye \u015eahin":"A1.2","Yi\u011fit \u00d6z":"A1.2","Zeynep Ert\u00fcrk":"A1.2",
+  "Z\u00fcmeyra Do\u011fan":"A1.2","\u015eeyma Ko\u00e7ak":"A1.2"
+};
+
+var TEXT_LOCURA = '<div class="reading-title">Una Semana de Locura</div>Hola a todos, me llamo Clara. Mi mejor amiga se llama Luc\u00eda. Nosotras somos <span class="idiom-num">(1)</span> u\u00f1a y carne porque hacemos todo juntas. Ahora mismo, nosotras estamos planeando una fiesta sorpresa para su hermano, Mateo. Mateo es <span class="idiom-num">(2)</span> un bomb\u00f3n, es muy guapo y tiene muchas fans. Ma\u00f1ana nosotras vamos a decorar el sal\u00f3n para la gran sorpresa.\n\nSin embargo, hoy Luc\u00eda est\u00e1 <span class="idiom-num">(3)</span> de mala leche porque su jefe es muy estricto. Ella est\u00e1 trabajando mucho en la oficina y se siente estresada. Luc\u00eda me dice: \u201cClara, estoy <span class="idiom-num">(4)</span> hasta las narices de los informes, \u00a1necesito bailar!\u201d. Yo le digo que este fin de semana ella va a descansar mucho en la fiesta y va a olvidar el estr\u00e9s.\n\nA veces la gente piensa que Mateo es <span class="idiom-num">(5)</span> un bicho raro porque prefiere leer mitolog\u00eda egipcia que ir al f\u00fatbol. Pero a Luc\u00eda <span class="idiom-num">(6)</span> le importa un pimiento la opini\u00f3n de los dem\u00e1s; ella adora a su hermano. En este momento, ella est\u00e1 buscando un regalo especial en las tiendas del centro. Ella va a comprar algo muy original para \u00e9l.\n\nEl problema es que el regalo ideal es un libro muy antiguo y <span class="idiom-num">(7)</span> cuesta un ojo de la cara. Nosotras no tenemos mucho dinero, as\u00ed que tenemos que <span class="idiom-num">(8)</span> ponernos las pilas. Ahora yo estoy ahorrando todo mi salario y Luc\u00eda est\u00e1 buscando un trabajo extra. Estoy segura de que nosotras vamos a conseguir el dinero antes del s\u00e1bado.\n\nAyer fuimos a un mercado y un vendedor nos quiso <span class="idiom-num">(9)</span> dar gato por liebre con un libro falso. Yo <span class="idiom-num">(10)</span> no tengo pelos en la lengua y le dije la verdad: \u201cSe\u00f1or, esto no es original\u201d. \u00c9l pens\u00f3 que nos pod\u00edamos <span class="idiom-num">(11)</span> tomar el pelo porque somos j\u00f3venes, pero nosotras somos muy inteligentes. Ma\u00f1ana vamos a denunciar a ese vendedor.\n\nAhora nosotras estamos intentando <span class="idiom-num">(12)</span> darle la vuelta a la tortilla. Vamos a organizar un sorteo para ganar m\u00e1s dinero. Luc\u00eda est\u00e1 sonriendo porque ya tenemos muchos participantes. Ella dice: \u201cClara, con tu ayuda, organizar esta fiesta va a ser <span class="idiom-num">(13)</span> pan comido\u201d. Al final, todo va a salir perfectamente bien.\n\nFinalmente, llega el d\u00eda de la fiesta. Mi madre dice que nosotras estamos <span class="idiom-num">(14)</span> como una cabra porque estamos saltando y cantando por toda la casa. Todo est\u00e1 listo y Mateo va a llegar en cinco minutos. \u00a1Es fant\u00e1stico usar estas expresiones con mi mejor amiga mientras estamos celebrando la vida!';
+
+var IFADE_LOCURA = '<div class="ifade-title">&#128218; \u0130fade Listesi:</div><b>(1) Ser u\u00f1a y carne:</b> T\u0131rnak ve et gibi olmak (Ayr\u0131lmaz ikili) &nbsp;|&nbsp; <b>(2) Ser un bomb\u00f3n:</b> \u00c7ok \u00e7ekici olmak &nbsp;|&nbsp; <b>(3) Estar de mala leche:</b> Sinirli/huysuz olmak &nbsp;|&nbsp; <b>(4) Estar hasta las narices:</b> Can\u0131na tak etmek, b\u0131kmak &nbsp;|&nbsp; <b>(5) Ser un bicho raro:</b> Garip/Tuhaf biri olmak &nbsp;|&nbsp; <b>(6) Importar un pimiento:</b> Hi\u00e7 umrunda olmamak &nbsp;|&nbsp; <b>(7) Costar un ojo de la cara:</b> \u00c7ok pahal\u0131ya mal olmak &nbsp;|&nbsp; <b>(8) Ponerse las pilas:</b> Gayrete gelmek &nbsp;|&nbsp; <b>(9) Dar gato por liebre:</b> Kand\u0131rmak &nbsp;|&nbsp; <b>(10) No tener pelos en la lengua:</b> Dobra olmak &nbsp;|&nbsp; <b>(11) Tomar el pelo:</b> Dalga ge\u00e7mek &nbsp;|&nbsp; <b>(12) Darle la vuelta a la tortilla:</b> Durumu tersine \u00e7evirmek &nbsp;|&nbsp; <b>(13) Ser pan comido:</b> \u00c7ocuk oyuncag\u0131 &nbsp;|&nbsp; <b>(14) Estar como una cabra:</b> Deli dolu / Ka\u00e7\u0131k olmak';
+
+var TEXT_DIGITAL = '<div class="reading-title">Un Nuevo Proyecto Digital</div>El pr\u00f3ximo mes, yo voy a empezar un proyecto muy emocionante en mis redes sociales. Yo voy a grabar treinta v\u00eddeos nuevos para ense\u00f1ar espa\u00f1ol a mis seguidores. Mis alumnos van a recibir muchos consejos \u00fatiles y yo voy a publicar un v\u00eddeo cada d\u00eda. Yo s\u00e9 que este proyecto va a ser un gran \u00e9xito porque muchas personas quieren aprender este idioma conmigo.\n\nPrimero, yo voy a organizar mi espacio de trabajo en casa. Yo voy a usar mi c\u00e1mara profesional y mi tr\u00edpode para tener una buena imagen. Mi amiga Zeynep va a ayudar con las ideas de los temas y nosotras vamos a crear un calendario de contenidos. Yo voy a explicar la gram\u00e1tica de una manera muy sencilla y divertida en cada lecci\u00f3n.\n\nDurante las grabaciones, mi gato Zeytin va a estar conmigo en la habitaci\u00f3n. \u00c9l no va a hablar, pero va a aparecer en algunos momentos para saludar a los estudiantes. Nosotros vamos a trabajar en el balc\u00f3n porque la luz natural de Antalya es perfecta. Yo voy a grabar los v\u00eddeos por la tarde, justo cuando el sol va a bajar en el horizonte.\n\nDespu\u00e9s de grabar, yo voy a editar todo el material en mi ordenador. Yo voy a poner m\u00fasica espa\u00f1ola de fondo y voy a a\u00f1adir subt\u00edtulos para ayudar a los principiantes. Mis seguidores van a aprender vocabulario sobre la vida diaria y nosotras vamos a responder a todas las preguntas en los comentarios. Yo voy a estar muy atenta a sus mensajes.\n\nEl pr\u00f3ximo fin de semana, mi hermana menor va a venir a visitarme desde Esmirna. Nosotras vamos a ir a una cafeter\u00eda bonita para hablar sobre su carrera de medicina. Yo le voy a ense\u00f1ar mis primeros v\u00eddeos y ella me va a dar su opini\u00f3n sincera. Nosotras vamos a pasar un tiempo maravilloso juntas y vamos a caminar por la playa para buscar inspiraci\u00f3n.\n\nPara este proyecto, yo voy a comprar una agenda nueva y unos bol\u00edgrafos de colores. Yo no voy a gastar mucho dinero, pero voy a invertir en algunas herramientas digitales. Tambi\u00e9n, yo voy a buscar historias de mitolog\u00eda para contar en espa\u00f1ol, porque a mis alumnos les va a encantar este tema. Yo s\u00e9 que ellos van a valorar mucho mi esfuerzo.\n\nFinalmente, el d\u00eda del lanzamiento, yo voy a estar un poco nerviosa pero muy feliz. Yo voy a celebrar el inicio de mi curso con una cena deliciosa y un poco de m\u00fasica. Despu\u00e9s, yo voy a mirar el atardecer desde mi balc\u00f3n y voy a pensar en nuevos sue\u00f1os. Este proyecto va a cambiar mi rutina, pero yo s\u00e9 que voy a disfrutar cada minuto de esta aventura.';
+
+var Q=[
+// ===== 1-56 MATEMATİK =====
+{t:"fill",q:"1. cien m\u00e1s doscientos son _____.",answers:["trescientos"],exp:"cien m\u00e1s doscientos son trescientos.\nY\u00fcz art\u0131 iki y\u00fcz \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"2. cuatrocientos m\u00e1s quinientos son _____.",answers:["novecientos"],exp:"cuatrocientos m\u00e1s quinientos son novecientos.\nD\u00f6rt y\u00fcz art\u0131 be\u015f y\u00fcz dokuz y\u00fcz eder."},
+{t:"fill",q:"3. setecientos m\u00e1s trescientos son _____.",answers:["mil"],exp:"setecientos m\u00e1s trescientos son mil.\nYedi y\u00fcz art\u0131 \u00fc\u00e7 y\u00fcz bin eder."},
+{t:"fill",q:"4. ciento cincuenta m\u00e1s ciento cincuenta son _____.",answers:["trescientos"],exp:"ciento cincuenta m\u00e1s ciento cincuenta son trescientos.\nY\u00fcz elli art\u0131 y\u00fcz elli \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"5. ochocientos m\u00e1s ciento veinte son _____.",answers:["novecientos veinte"],exp:"ochocientos m\u00e1s ciento veinte son novecientos veinte.\nSekiz y\u00fcz art\u0131 y\u00fcz yirmi dokuz y\u00fcz yirmi eder."},
+{t:"fill",q:"6. doscientos cincuenta m\u00e1s doscientos cincuenta son _____.",answers:["quinientos"],exp:"doscientos cincuenta m\u00e1s doscientos cincuenta son quinientos.\n\u0130ki y\u00fcz elli art\u0131 iki y\u00fcz elli be\u015f y\u00fcz eder."},
+{t:"fill",q:"7. quinientos cincuenta m\u00e1s cincuenta son _____.",answers:["seiscientos"],exp:"quinientos cincuenta m\u00e1s cincuenta son seiscientos.\nBe\u015f y\u00fcz elli art\u0131 elli alt\u0131 y\u00fcz eder."},
+{t:"fill",q:"8. seiscientos cuarenta m\u00e1s diez son _____.",answers:["seiscientos cincuenta"],exp:"seiscientos cuarenta m\u00e1s diez son seiscientos cincuenta.\nAlt\u0131 y\u00fcz k\u0131rk art\u0131 on alt\u0131 y\u00fcz elli eder."},
+{t:"fill",q:"9. novecientos noventa m\u00e1s diez son _____.",answers:["mil"],exp:"novecientos noventa m\u00e1s diez son mil.\nDokuz y\u00fcz doksan art\u0131 on bin eder."},
+{t:"fill",q:"10. setecientos veinte m\u00e1s ochenta son _____.",answers:["ochocientos"],exp:"setecientos veinte m\u00e1s ochenta son ochocientos.\nYedi y\u00fcz yirmi art\u0131 seksen sekiz y\u00fcz eder."},
+{t:"fill",q:"11. ciento diez m\u00e1s noventa son _____.",answers:["doscientos"],exp:"ciento diez m\u00e1s noventa son doscientos.\nY\u00fcz on art\u0131 doksan iki y\u00fcz eder."},
+{t:"fill",q:"12. trescientos treinta m\u00e1s treinta son _____.",answers:["trescientos sesenta"],exp:"trescientos treinta m\u00e1s treinta son trescientos sesenta.\n\u00dc\u00e7 y\u00fcz otuz art\u0131 otuz \u00fc\u00e7 y\u00fcz altm\u0131\u015f eder."},
+{t:"fill",q:"13. cuatrocientos setenta m\u00e1s treinta son _____.",answers:["quinientos"],exp:"cuatrocientos setenta m\u00e1s treinta son quinientos.\nD\u00f6rt y\u00fcz yetmi\u015f art\u0131 otuz be\u015f y\u00fcz eder."},
+{t:"fill",q:"14. ochocientos cincuenta m\u00e1s ciento cincuenta son _____.",answers:["mil"],exp:"ochocientos cincuenta m\u00e1s ciento cincuenta son mil.\nSekiz y\u00fcz elli art\u0131 y\u00fcz elli bin eder."},
+{t:"fill",q:"15. mil menos quinientos son _____.",answers:["quinientos"],exp:"mil menos quinientos son quinientos.\nBin eksi be\u015f y\u00fcz be\u015f y\u00fcz eder."},
+{t:"fill",q:"16. novecientos menos cuatrocientos son _____.",answers:["quinientos"],exp:"novecientos menos cuatrocientos son quinientos.\nDokuz y\u00fcz eksi d\u00f6rt y\u00fcz be\u015f y\u00fcz eder."},
+{t:"fill",q:"17. ochocientos cincuenta menos cincuenta son _____.",answers:["ochocientos"],exp:"ochocientos cincuenta menos cincuenta son ochocientos.\nSekiz y\u00fcz elli eksi elli sekiz y\u00fcz eder."},
+{t:"fill",q:"18. setecientos menos doscientos son _____.",answers:["quinientos"],exp:"setecientos menos doscientos son quinientos.\nYedi y\u00fcz eksi iki y\u00fcz be\u015f y\u00fcz eder."},
+{t:"fill",q:"19. seiscientos menos ciento cincuenta son _____.",answers:["cuatrocientos cincuenta"],exp:"seiscientos menos ciento cincuenta son cuatrocientos cincuenta.\nAlt\u0131 y\u00fcz eksi y\u00fcz elli d\u00f6rt y\u00fcz elli eder."},
+{t:"fill",q:"20. quinientos veinte menos veinte son _____.",answers:["quinientos"],exp:"quinientos veinte menos veinte son quinientos.\nBe\u015f y\u00fcz yirmi eksi yirmi be\u015f y\u00fcz eder."},
+{t:"fill",q:"21. cuatrocientos treinta menos treinta son _____.",answers:["cuatrocientos"],exp:"cuatrocientos treinta menos treinta son cuatrocientos.\nD\u00f6rt y\u00fcz otuz eksi otuz d\u00f6rt y\u00fcz eder."},
+{t:"fill",q:"22. trescientos menos cien son _____.",answers:["doscientos"],exp:"trescientos menos cien son doscientos.\n\u00dc\u00e7 y\u00fcz eksi y\u00fcz iki y\u00fcz eder."},
+{t:"fill",q:"23. doscientos setenta menos setenta son _____.",answers:["doscientos"],exp:"doscientos setenta menos setenta son doscientos.\n\u0130ki y\u00fcz yetmi\u015f eksi yetmi\u015f iki y\u00fcz eder."},
+{t:"fill",q:"24. ciento ochenta menos ochenta son _____.",answers:["cien"],exp:"ciento ochenta menos ochenta son cien.\nY\u00fcz seksen eksi seksen y\u00fcz eder."},
+{t:"fill",q:"25. novecientos cincuenta menos doscientos son _____.",answers:["setecientos cincuenta"],exp:"novecientos cincuenta menos doscientos son setecientos cincuenta.\nDokuz y\u00fcz elli eksi iki y\u00fcz yedi y\u00fcz elli eder."},
+{t:"fill",q:"26. setecientos cuarenta menos cuarenta son _____.",answers:["setecientos"],exp:"setecientos cuarenta menos cuarenta son setecientos.\nYedi y\u00fcz k\u0131rk eksi k\u0131rk yedi y\u00fcz eder."},
+{t:"fill",q:"27. ochocientos sesenta menos sesenta son _____.",answers:["ochocientos"],exp:"ochocientos sesenta menos sesenta son ochocientos.\nSekiz y\u00fcz altm\u0131\u015f eksi altm\u0131\u015f sekiz y\u00fcz eder."},
+{t:"fill",q:"28. mil menos novecientos son _____.",answers:["cien"],exp:"mil menos novecientos son cien.\nBin eksi dokuz y\u00fcz y\u00fcz eder."},
+{t:"fill",q:"29. cien por dos son _____.",answers:["doscientos"],exp:"cien por dos son doscientos.\nY\u00fcz \u00e7arp\u0131 iki iki y\u00fcz eder."},
+{t:"fill",q:"30. doscientos por tres son _____.",answers:["seiscientos"],exp:"doscientos por tres son seiscientos.\n\u0130ki y\u00fcz \u00e7arp\u0131 \u00fc\u00e7 alt\u0131 y\u00fcz eder."},
+{t:"fill",q:"31. cien por diez son _____.",answers:["mil"],exp:"cien por diez son mil.\nY\u00fcz \u00e7arp\u0131 on bin eder."},
+{t:"fill",q:"32. cincuenta por cuatro son _____.",answers:["doscientos"],exp:"cincuenta por cuatro son doscientos.\nElli \u00e7arp\u0131 d\u00f6rt iki y\u00fcz eder."},
+{t:"fill",q:"33. trescientos por dos son _____.",answers:["seiscientos"],exp:"trescientos por dos son seiscientos.\n\u00dc\u00e7 y\u00fcz \u00e7arp\u0131 iki alt\u0131 y\u00fcz eder."},
+{t:"fill",q:"34. setenta por diez son _____.",answers:["setecientos"],exp:"setenta por diez son setecientos.\nYetmi\u015f \u00e7arp\u0131 on yedi y\u00fcz eder."},
+{t:"fill",q:"35. ochenta por cinco son _____.",answers:["cuatrocientos"],exp:"ochenta por cinco son cuatrocientos.\nSeksen \u00e7arp\u0131 be\u015f d\u00f6rt y\u00fcz eder."},
+{t:"fill",q:"36. cuatrocientos por dos son _____.",answers:["ochocientos"],exp:"cuatrocientos por dos son ochocientos.\nD\u00f6rt y\u00fcz \u00e7arp\u0131 iki sekiz y\u00fcz eder."},
+{t:"fill",q:"37. cincuenta por diez son _____.",answers:["quinientos"],exp:"cincuenta por diez son quinientos.\nElli \u00e7arp\u0131 on be\u015f y\u00fcz eder."},
+{t:"fill",q:"38. ciento cincuenta por dos son _____.",answers:["trescientos"],exp:"ciento cincuenta por dos son trescientos.\nY\u00fcz elli \u00e7arp\u0131 iki \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"39. noventa por diez son _____.",answers:["novecientos"],exp:"noventa por diez son novecientos.\nDoksan \u00e7arp\u0131 on dokuz y\u00fcz eder."},
+{t:"fill",q:"40. sesenta por cinco son _____.",answers:["trescientos"],exp:"sesenta por cinco son trescientos.\nAltm\u0131\u015f \u00e7arp\u0131 be\u015f \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"41. veinticinco por cuatro son _____.",answers:["cien"],exp:"veinticinco por cuatro son cien.\nYirmi be\u015f \u00e7arp\u0131 d\u00f6rt y\u00fcz eder."},
+{t:"fill",q:"42. quinientos por dos son _____.",answers:["mil"],exp:"quinientos por dos son mil.\nBe\u015f y\u00fcz \u00e7arp\u0131 iki bin eder."},
+{t:"fill",q:"43. mil dividido entre dos son _____.",answers:["quinientos"],exp:"mil dividido entre dos son quinientos.\nBin b\u00f6l\u00fc iki be\u015f y\u00fcz eder."},
+{t:"fill",q:"44. novecientos dividido entre tres son _____.",answers:["trescientos"],exp:"novecientos dividido entre tres son trescientos.\nDokuz y\u00fcz b\u00f6l\u00fc \u00fc\u00e7 \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"45. ochocientos dividido entre cuatro son _____.",answers:["doscientos"],exp:"ochocientos dividido entre cuatro son doscientos.\nSekiz y\u00fcz b\u00f6l\u00fc d\u00f6rt iki y\u00fcz eder."},
+{t:"fill",q:"46. setecientos dividido entre siete son _____.",answers:["cien"],exp:"setecientos dividido entre siete son cien.\nYedi y\u00fcz b\u00f6l\u00fc yedi y\u00fcz eder."},
+{t:"fill",q:"47. seiscientos dividido entre dos son _____.",answers:["trescientos"],exp:"seiscientos dividido entre dos son trescientos.\nAlt\u0131 y\u00fcz b\u00f6l\u00fc iki \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"48. quinientos dividido entre cinco son _____.",answers:["cien"],exp:"quinientos dividido entre cinco son cien.\nBe\u015f y\u00fcz b\u00f6l\u00fc be\u015f y\u00fcz eder."},
+{t:"fill",q:"49. cuatrocientos dividido entre cuatro son _____.",answers:["cien"],exp:"cuatrocientos dividido entre cuatro son cien.\nD\u00f6rt y\u00fcz b\u00f6l\u00fc d\u00f6rt y\u00fcz eder."},
+{t:"fill",q:"50. trescientos dividido entre tres son _____.",answers:["cien"],exp:"trescientos dividido entre tres son cien.\n\u00dc\u00e7 y\u00fcz b\u00f6l\u00fc \u00fc\u00e7 y\u00fcz eder."},
+{t:"fill",q:"51. doscientos dividido entre dos son _____.",answers:["cien"],exp:"doscientos dividido entre dos son cien.\n\u0130ki y\u00fcz b\u00f6l\u00fc iki y\u00fcz eder."},
+{t:"fill",q:"52. mil dividido entre diez son _____.",answers:["cien"],exp:"mil dividido entre diez son cien.\nBin b\u00f6l\u00fc on y\u00fcz eder."},
+{t:"fill",q:"53. quinientos dividido entre dos son _____.",answers:["doscientos cincuenta"],exp:"quinientos dividido entre dos son doscientos cincuenta.\nBe\u015f y\u00fcz b\u00f6l\u00fc iki iki y\u00fcz elli eder."},
+{t:"fill",q:"54. ochocientos dividido entre dos son _____.",answers:["cuatrocientos"],exp:"ochocientos dividido entre dos son cuatrocientos.\nSekiz y\u00fcz b\u00f6l\u00fc iki d\u00f6rt y\u00fcz eder."},
+{t:"fill",q:"55. seiscientos dividido entre seis son _____.",answers:["cien"],exp:"seiscientos dividido entre seis son cien.\nAlt\u0131 y\u00fcz b\u00f6l\u00fc alt\u0131 y\u00fcz eder."},
+{t:"fill",q:"56. novecientos dividido entre nueve son _____.",answers:["cien"],exp:"novecientos dividido entre nueve son cien.\nDokuz y\u00fcz b\u00f6l\u00fc dokuz y\u00fcz eder."},
+// ===== 57-71 UNA SEMANA DE LOCURA (Verdadero/Falso) =====
+{t:"vf",reading:"locura",q:"57. Clara y Luc\u00eda son primas.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Onlar kuzen de\u011fil, \u00e7ok yak\u0131n arkada\u015flar (u\u00f1a y carne)."},
+{t:"vf",reading:"locura",q:"58. Mateo es el hermano de Luc\u00eda y es un chico muy guapo.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Mateo\u2019nun Luc\u00eda\u2019n\u0131n karde\u015fi ve yak\u0131\u015fkl\u0131 (un bomb\u00f3n) oldu\u011fu belirtiliyor."},
+{t:"vf",reading:"locura",q:"59. Las chicas van a decorar el sal\u00f3n hoy mismo.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. S\u00fcslemeyi bug\u00fcn de\u011fil, yar\u0131n (ma\u00f1ana) yapacaklar."},
+{t:"vf",reading:"locura",q:"60. Luc\u00eda est\u00e1 muy contenta con su trabajo y su jefe.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Luc\u00eda sinirli ve huzursuz (de mala leche) \u00e7\u00fcnk\u00fc i\u015fi stresli ve \u015fefi \u00e7ok kat\u0131."},
+{t:"vf",reading:"locura",q:"61. Luc\u00eda est\u00e1 harta (hasta las narices) de escribir informes.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Metinde raporlardan b\u0131kt\u0131\u011f\u0131n\u0131 (hasta las narices) a\u00e7\u0131k\u00e7a ifade ediyor."},
+{t:"vf",reading:"locura",q:"62. Mateo prefiere el f\u00fatbol antes que la mitolog\u00eda egipcia.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Mateo, futbol yerine mitoloji okumay\u0131 tercih eden bir \u201ctuhaf tip\u201d (bicho raro)."},
+{t:"vf",reading:"locura",q:"63. A Luc\u00eda no le importa lo que la gente piense de su hermano.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Ba\u015fkalar\u0131n\u0131n ne dedi\u011fi Luc\u00eda\u2019n\u0131n hi\u00e7 umurunda de\u011fil (le importa un pimiento)."},
+{t:"vf",reading:"locura",q:"64. El regalo que Luc\u00eda quiere comprar es muy barato.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Kitap \u00e7ok pahal\u0131, ate\u015f pahas\u0131 (cuesta un ojo de la cara)."},
+{t:"vf",reading:"locura",q:"65. Clara est\u00e1 ahorrando dinero para ayudar con el regalo.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Clara hediye i\u00e7in t\u00fcm maa\u015f\u0131n\u0131 biriktirdi\u011fini (est\u00e1 ahorrando) s\u00f6yl\u00fcyor."},
+{t:"vf",reading:"locura",q:"66. Un vendedor intent\u00f3 enga\u00f1ar a las chicas con un libro falso.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Sat\u0131c\u0131 onlara k\u00f6t\u00fc mal\u0131 iyi diye yutturmaya (dar gato por liebre) \u00e7al\u0131\u015ft\u0131."},
+{t:"vf",reading:"locura",q:"67. Clara es una persona t\u00edmida y no dice lo que piensa.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Clara olduk\u00e7a dobra biri, laf\u0131n\u0131 sakm\u0131yor (no tiene pelos en la lengua)."},
+{t:"vf",reading:"locura",q:"68. Las chicas van a organizar un sorteo para conseguir m\u00e1s dinero.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Para bulmak i\u00e7in durumu tersine \u00e7evirip bir \u00e7ekili\u015f (sorteo) d\u00fczenlemeye karar veriyorlar."},
+{t:"vf",reading:"locura",q:"69. Luc\u00eda piensa que organizar la fiesta va a ser una tarea muy dif\u00edcil.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Luc\u00eda i\u00e7in bu organizasyon art\u0131k \u00e7ocuk oyunca\u011f\u0131 (pan comido)."},
+{t:"vf",reading:"locura",q:"70. La madre de Clara piensa que las chicas est\u00e1n un poco locas.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Annesi onlar\u0131n ne kadar deli dolu (como una cabra) oldu\u011funu dile getiriyor."},
+{t:"vf",reading:"locura",q:"71. Mateo va a llegar a la fiesta en cinco minutos.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Metnin son c\u00fcmlesinde Mateo\u2019nun 5 dakika i\u00e7inde gelece\u011fi belirtiliyor."},
+// ===== 72-100 UN NUEVO PROYECTO DIGITAL (Verdadero/Falso) =====
+{t:"vf",reading:"digital",q:"72. Yo voy a empezar el proyecto el a\u00f1o que viene.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Proje gelecek y\u0131l de\u011fil, gelecek ay (el pr\u00f3ximo mes) ba\u015flayacak."},
+{t:"vf",reading:"digital",q:"73. Yo voy a grabar treinta v\u00eddeos para ense\u00f1ar espa\u00f1ol.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Metinde \u0130spanyolca \u00f6\u011fretmek i\u00e7in otuz video \u00e7ekilece\u011fi belirtiliyor."},
+{t:"vf",reading:"digital",q:"74. Yo voy a publicar un v\u00eddeo cada semana.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Haftada bir de\u011fil, her g\u00fcn (cada d\u00eda) bir video yay\u0131mlanacak."},
+{t:"vf",reading:"digital",q:"75. Yo voy a organizar mi espacio de trabajo en la oficina.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. \u00c7al\u0131\u015fma alan\u0131 ofiste de\u011fil, evde (en casa) organize edilecek."},
+{t:"vf",reading:"digital",q:"76. Yo voy a usar una c\u00e1mara profesional y un tr\u00edpode.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. \u0130yi bir g\u00f6r\u00fcnt\u00fc i\u00e7in profesyonel kamera ve tripod kullan\u0131laca\u011f\u0131 belirtiliyor."},
+{t:"vf",reading:"digital",q:"77. Zeynep va a ayudar con las ideas de los temas.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Arkada\u015f\u0131 Zeynep\u2019in konu fikirleri ve i\u00e7erik takvimi konusunda yard\u0131mc\u0131 olaca\u011f\u0131 yaz\u0131yor."},
+{t:"vf",reading:"digital",q:"78. El gato Zeytin va a hablar en los v\u00eddeos.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Zeytin odada olacak ama konu\u015fmayacak (\u00e9l no va a hablar)."},
+{t:"vf",reading:"digital",q:"79. El gato Zeytin va a aparecer en todos los v\u00eddeos.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Zeytin t\u00fcm videolarda de\u011fil, sadece baz\u0131 anlarda (en algunos momentos) g\u00f6r\u00fcnecek."},
+{t:"vf",reading:"digital",q:"80. Nosotros vamos a trabajar en el balc\u00f3n por la luz natural.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Antalya\u2019n\u0131n do\u011fal \u0131\u015f\u0131\u011f\u0131 m\u00fckemmel oldu\u011fu i\u00e7in balkonda \u00e7al\u0131\u015f\u0131lacak."},
+{t:"vf",reading:"digital",q:"81. Yo voy a grabar los v\u00eddeos por la ma\u00f1ana temprano.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Videolar sabah de\u011fil, \u00f6\u011fleden sonra g\u00fcne\u015f batarken (por la tarde) \u00e7ekilecek."},
+{t:"vf",reading:"digital",q:"82. Yo voy a editar el material en mi ordenador.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. \u00c7ekimlerden sonra materyaller bilgisayarda d\u00fczenlecek."},
+{t:"vf",reading:"digital",q:"83. Yo voy a poner m\u00fasica francesa de fondo.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Arka plana Frans\u0131zca de\u011fil, \u0130spanyolca m\u00fczik (m\u00fasica espa\u00f1ola) koyulacak."},
+{t:"vf",reading:"digital",q:"84. Los seguidores van a aprender vocabulario sobre medicina.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Tak\u0131p\u00e7iler t\u0131p de\u011fil, g\u00fcnl\u00fck ya\u015fam (la vida diaria) hakk\u0131nda kelimeler \u00f6\u011frenecek."},
+{t:"vf",reading:"digital",q:"85. Nosotras vamos a responder a las preguntas en los comentarios.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Yorumlardaki t\u00fcm sorulara cevap verilece\u011fi belirtiliyor."},
+{t:"vf",reading:"digital",q:"86. Mi hermana menor va a venir de visita desde Estambul.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. K\u0131z karde\u015f \u0130stanbul\u2019dan de\u011fil, \u0130zmir\u2019den (Esmirna) gelecek."},
+{t:"vf",reading:"digital",q:"87. Mi hermana estudia medicina.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Metinde karde\u015finin t\u0131p kariyeri (carrera de medicina) \u00fczerine konu\u015facaklar\u0131 yaz\u0131yor."},
+{t:"vf",reading:"digital",q:"88. Nosotras vamos a ir a una cafeter\u00eda bonita.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Karde\u015fiyle g\u00fczel bir kafeye gidip sohbet edecekler."},
+{t:"vf",reading:"digital",q:"89. Nosotras vamos a caminar por la monta\u00f1a para buscar inspiraci\u00f3n.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. \u0130lham aramak i\u00e7in da\u011fda de\u011fil, plajda (por la playa) y\u00fcr\u00fcyecekler."},
+{t:"vf",reading:"digital",q:"90. Yo voy a comprar una c\u00e1mara nueva para el proyecto.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Yeni bir kamera de\u011fil, yeni bir ajanda ve renkli kalemler sat\u0131n al\u0131nacak."},
+{t:"vf",reading:"digital",q:"91. Yo voy a invertir en herramientas digitales.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. \u00c7ok para harcanmasa da dijital ara\u00e7lara yat\u0131r\u0131m yap\u0131laca\u011f\u0131 belirtiliyor."},
+{t:"vf",reading:"digital",q:"92. Yo voy a buscar historias de mitolog\u00eda para los v\u00eddeos.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. \u00d6\u011frencilerin sevece\u011fi mitolojik hikayelerin anlat\u0131laca\u011f\u0131 yaz\u0131yor."},
+{t:"vf",reading:"digital",q:"93. El d\u00eda del lanzamiento, yo voy a estar muy triste.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Lansman g\u00fcn\u00fc \u00fczg\u00fcn de\u011fil, biraz gergin ama \u00e7ok mutlu (un poco nerviosa pero muy feliz) olunacak."},
+{t:"vf",reading:"digital",q:"94. Yo voy a celebrar el inicio con una cena deliciosa.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Kursun ba\u015flang\u0131c\u0131 lezzetli bir ak\u015fam yeme\u011fi ve m\u00fczikle kutlanacak."},
+{t:"vf",reading:"digital",q:"95. Despu\u00e9s de la cena, yo voy a mirar el atardecer desde mi balc\u00f3n.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Balkondan g\u00fcn bat\u0131m\u0131n\u0131 izleyip yeni hayaller kurulacak."},
+{t:"vf",reading:"digital",q:"96. Este proyecto no va a cambiar mi rutina.\n(Verdadero o Falso?)",answers:["falso"],exp:"Falso. Metinde bu projenin rutini de\u011fi\u015ftirece\u011fi (va a cambiar mi rutina) a\u00e7\u0131k\u00e7a s\u00f6yleniyor."},
+{t:"vf",reading:"digital",q:"97. Yo voy a disfrutar cada minuto de esta aventura.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Maceran\u0131n her dakikas\u0131ndan keyif al\u0131naca\u011f\u0131 belirtiliyor."},
+{t:"vf",reading:"digital",q:"98. Zeytin va a saludar a los estudiantes en algunos momentos.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Kedinin baz\u0131 anlarda \u00f6\u011frencileri selamlamak i\u00e7in g\u00f6r\u00fcnece\u011fi yaz\u0131yor."},
+{t:"vf",reading:"digital",q:"99. Yo voy a a\u00f1adir subt\u00edtulos para ayudar a los principiantes.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Ba\u015flang\u0131\u00e7 seviyesindekilere yard\u0131mc\u0131 olmak i\u00e7in alt yaz\u0131 eklenecek."},
+{t:"vf",reading:"digital",q:"100. Mi hermana me va a dar su opini\u00f3n sincera sobre los v\u00eddeos.\n(Verdadero o Falso?)",answers:["verdadero"],exp:"Verdadero. Karde\u015finin videolar hakk\u0131ndaki samimi fikrini payla\u015faca\u011f\u0131 belirtiliyor."}
+];
+
+var state={cur:0,answered:[],scores:[],userInputs:[],okCount:0,errCount:0};
+
+function startQuiz(){
+  var name=document.getElementById('introName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  document.getElementById('resName').value=name;
+  document.getElementById('resName2').value=name;
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  renderQ();
+}
+function syncResName(){
+  document.getElementById('resName').value=document.getElementById('resName2').value;
+}
+function esc(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function normalize(s){
+  return s.trim()
+    // Türkçe büyük İ → i, büyük I → i (toLowerCase() bunları yanlış çevirir)
+    .replace(/\u0130/g,'i').replace(/I/g,'i')
+    .toLowerCase()
+    // Büyük harfli aksan: Á É Í Ó Ú Ü Ñ
+    .replace(/\u00e1|\u00c1/g,'a').replace(/\u00e9|\u00c9/g,'e')
+    .replace(/\u00ed|\u00cd/g,'i').replace(/\u00f3|\u00d3/g,'o')
+    .replace(/\u00fa|\u00da/g,'u').replace(/\u00fc|\u00dc/g,'u')
+    .replace(/\u00f1|\u00d1/g,'n')
+    // Türkçe ı → i (öğrenci "cıen" yazarsa geçsin)
+    .replace(/\u0131/g,'i')
+    .replace(/\s+/g,' ');
+}
+function renderQ(){
+  var i=state.cur;var q=Q[i];
+  var html='';
+  // reading box
+  if(q.t==='vf'){
+    var rtxt=q.reading==='locura'?TEXT_LOCURA:TEXT_DIGITAL;
+    html+='<div class="reading-box">'+rtxt+'</div>';
+    if(q.reading==='locura'){
+      html+='<div class="ifade-box">'+IFADE_LOCURA+'</div>';
+    }
+    html+='<span class="q-badge q-badge-vf">VERDADERO / FALSO</span>';
+  } else {
+    html+='<span class="q-badge q-badge-math">MATEM\u00c1TICA</span>';
+  }
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  var answered=state.answered[i]!==undefined;
+  var correct=state.scores[i]===1;
+  var val=state.userInputs[i]||'';
+  var cls='fill-input'+(answered?(correct?' correct':' wrong'):'');
+  var ph=q.t==='vf'?'verdadero \u00f3 falso yazın...':'Cevabınızı yazın...';
+  html+='<div class="fill-area"><input id="fillInp" class="'+cls+'" type="text" placeholder="'+ph+'" value="'+esc(val)+'"'+(answered?' disabled':'')+'></div>';
+  html+='<button class="btn-check" id="btnCheck" onclick="checkFill()" '+(answered?'disabled':'')+'>'+(answered?'\u2713 Kontrol Edildi':'Kontrol Et')+'</button>';
+  if(answered){
+    html+='<div class="fill-answer show">\u2705 Do\u011fru cevap: <strong>'+esc(q.answers[0])+'</strong></div>';
+  }
+  html+='<div class="exp-box'+(answered?' show':'')+'">'+esc(q.exp)+'</div>';
+  document.getElementById('qCard').innerHTML=html;
+
+  document.getElementById('btnBack').disabled=(i===0);
+  document.getElementById('btnNext').disabled=(!answered||i===Q.length-1);
+  document.getElementById('btnSkip').disabled=(i>=Q.length-1);
+  document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
+  document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
+  document.getElementById('cntOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('cntErr').textContent=state.errCount+' Yanl\u0131\u015f';
+
+  if(!answered){
+    var inp=document.getElementById('fillInp');
+    if(inp){
+      inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkFill();});
+      inp.focus();
+    }
+  }
+}
+function checkFill(){
+  var i=state.cur;
+  if(state.answered[i]!==undefined)return;
+  var q=Q[i];
+  var inp=document.getElementById('fillInp');
+  var val=inp?inp.value:'';
+  state.userInputs[i]=val;
+  state.answered[i]=val;
+  var norm=normalize(val);
+  var ok=q.answers.some(function(a){return normalize(a)===norm;});
+  if(ok){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function goBack(){if(state.cur>0){state.cur--;renderQ();}}
+function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function confirmFinish(){
+  var answered=0;for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
+  var unanswered=Q.length-answered;
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirmOverlay').style.display='none';}
+function doFinish(){closeConfirm();showResult();}
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  document.getElementById('resScore').textContent=total;
+  document.getElementById('resOk').textContent=state.okCount+' Do\u011fru';
+  document.getElementById('resErr').textContent=state.errCount+' Yanl\u0131\u015f';
+  document.getElementById('resNote').textContent='100 sorudan '+state.okCount+' tanesi do\u011fru (her soru 1 puan)';
+  var html2='';
+  for(var i=0;i<Q.length;i++){
+    if(state.answered[i]===undefined||state.scores[i]===1)continue;
+    var q=Q[i];
+    html2+='<div class="rev-item">';
+    html2+='<div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
+    html2+='<div class="rev-chosen">Yazd\u0131\u011f\u0131n\u0131z: '+esc(state.userInputs[i]||'(bo\u015f)')+'</div>';
+    html2+='<div class="rev-correct">Do\u011fru cevap: '+esc(q.answers[0])+'</div>';
+    html2+='<div class="rev-exp">'+esc(q.exp)+'</div>';
+    html2+='</div>';
+  }
+  document.getElementById('reviewList').innerHTML=html2||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+}
+function toggleReview(){
+  var rv=document.getElementById('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+function submitResult(){
+  var name=document.getElementById('resName').value;
+  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
+  var grup=GROUPS[name]||'A1.2';
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV_ADI,grup:grup,
+    puan:total,dogru:state.okCount,yanlis:state.errCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  document.getElementById('submitWarning').style.display='none';
+  document.getElementById('submitMsg').style.display='block';
+  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  document.getElementById('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+total+'/100.';
+    })
+    .catch(function(){
+      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+total+'/100.';
+    });
+}
+</script>
+</body>
+</html>
