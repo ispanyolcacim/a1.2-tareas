@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H7 &#8211; 23-24.Ders | A1.2 Ödevi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;padding:1rem;display:flex;justify-content:center;align-items:flex-start}
+.wrap{max-width:740px;width:100%}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.13);padding:2rem;margin-bottom:1.5rem}
+.hidden{display:none!important}
+
+/* ── INTRO ── */
+.week-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem}
+.intro-title{font-size:1.15rem;font-weight:800;color:#3d2a7a;margin-bottom:.3rem}
+.intro-sub{color:#888;font-size:.85rem;margin-bottom:.25rem}
+.intro-teacher{color:#9b7de0;font-size:.8rem;margin-bottom:1.5rem;font-weight:600}
+select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;color:#333;background:#fff;margin-bottom:1rem;outline:none;font-family:inherit;font-size:.95rem}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+
+/* ── QUIZ (1-30 one-by-one) ── */
+.prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
+.cnt{padding:.2rem .6rem;border-radius:6px;font-weight:600}
+.cnt-ok{background:#e6f9f0;color:#2e9e6b}
+.cnt-err{background:#fde8e8;color:#d94040}
+.video-link{display:inline-flex;align-items:center;gap:.4rem;background:#ff0000;color:#fff;text-decoration:none;padding:.45rem 1rem;border-radius:8px;font-size:.8rem;font-weight:700;margin-bottom:1.1rem;font-family:inherit}
+.video-link:hover{background:#cc0000}
+.yt-icon{width:16px;height:16px;fill:#fff;flex-shrink:0}
+.q-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:.8rem;background:#e8f4fd;color:#1a6fb5}
+.q-text{font-size:.93rem;color:#333;font-weight:600;line-height:1.65;margin-bottom:1rem}
+.opts{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.opt{display:flex;align-items:center;gap:.55rem;padding:.65rem .9rem;border:2px solid #e0d8f8;border-radius:9px;cursor:pointer;font-size:.88rem;color:#444;transition:all .15s;background:#fff;text-align:left;font-family:inherit;width:100%}
+.opt:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-letter{font-weight:700;color:#6c4eb8;min-width:20px;flex-shrink:0}
+.opt.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a;font-weight:600}
+.opt.correct .opt-letter{color:#2e9e6b}
+.opt.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt.wrong .opt-letter{color:#d94040}
+.opt:disabled{cursor:default}
+.exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.8rem 1rem;font-size:.83rem;color:#444;line-height:1.75;margin-bottom:1rem}
+.exp-box.show{display:block}
+.nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
+.btn-back{background:#e8e0f8;color:#6c4eb8}
+.btn-skip{background:#e8e0f8;color:#6c4eb8}
+.btn-next{background:#6c4eb8;color:#fff}
+.btn-finish-q{background:#e05c5c;color:#fff}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── DRAG-DROP sections ── */
+.sec-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem;padding-bottom:.75rem;border-bottom:2px solid #e8e0f8}
+.sec-arrow{color:#6c4eb8;font-size:1rem}
+.sec-title{font-size:1rem;font-weight:800;color:#3d2a7a}
+.sec-badge-label{font-size:.75rem;color:#888;font-weight:500}
+
+.dd-item{display:flex;align-items:flex-start;gap:.6rem;padding:.7rem 0;border-bottom:1px solid #f0eef8}
+.dd-item:last-of-type{border-bottom:none}
+.dd-num{font-size:.72rem;font-weight:700;color:#9b7de0;min-width:28px;padding-top:.15rem}
+.dd-sentence{font-size:.85rem;color:#333;flex:1;line-height:1.6}
+.dd-drop{border:2px dashed #c0b4e8;border-radius:8px;min-width:195px;height:38px;display:flex;align-items:center;justify-content:center;font-size:.78rem;color:#bbb;background:#faf8ff;transition:all .15s;flex-shrink:0;padding:0 .5rem;text-align:center;cursor:default}
+.dd-drop.over{border-color:#6c4eb8;background:#ede8fb}
+.dd-drop.filled{border-style:solid;border-color:#6c4eb8;color:#3d2a7a;font-weight:600;font-size:.82rem;background:#ede8fb;cursor:grab}
+.dd-drop.correct{border-color:#2e9e6b!important;background:#e6f9f0!important;color:#1a5c3a!important;border-style:solid!important;cursor:default}
+.dd-drop.wrong{border-color:#d94040!important;background:#fde8e8!important;color:#8b1a1a!important;border-style:solid!important;cursor:default}
+.dd-exp{font-size:.78rem;color:#555;padding:.35rem .5rem .35rem 2.4rem;background:#f8f5ff;border-radius:6px;margin-top:.2rem;margin-bottom:.2rem;display:none;line-height:1.55}
+.dd-exp.show{display:block}
+
+.pool-label{font-size:.72rem;font-weight:700;color:#6c4eb8;letter-spacing:.5px;margin:1rem 0 .5rem}
+.pool{display:flex;flex-wrap:wrap;gap:.5rem;padding:.85rem;background:#f3effb;border-radius:10px;min-height:52px}
+.chip{display:inline-flex;align-items:center;padding:.38rem .9rem;background:#fff;border:2px solid #c0b4e8;border-radius:20px;font-size:.82rem;color:#3d2a7a;cursor:grab;font-weight:600;user-select:none;transition:all .12s;touch-action:none}
+.chip:hover{border-color:#6c4eb8;background:#ede8fb}
+.chip.dragging{opacity:.4}
+.chip.used{opacity:.25;pointer-events:none;cursor:default}
+
+.sec-check-btn{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;margin-top:1.25rem}
+.sec-check-btn:hover:not(:disabled){background:#5a3ea0}
+.sec-check-btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ── RESULT ── */
+.res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.res-title{font-size:1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
+.res-score{text-align:center;font-size:3.4rem;font-weight:800;color:#6c4eb8;margin:.6rem 0}
+.res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
+.res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.2rem}
+.submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1rem 1.4rem;margin-bottom:1rem;text-align:center}
+.submit-warning-title{font-size:1rem;font-weight:800;color:#856404;margin-bottom:.25rem;letter-spacing:.3px}
+.submit-warning-sub{font-size:.82rem;color:#856404}
+.btn-submit{width:100%;padding:1rem;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:pointer;margin-bottom:.75rem;font-family:inherit;letter-spacing:.2px}
+.btn-submit:hover:not(:disabled){background:#257a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-review{width:100%;padding:.7rem;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit}
+.submit-msg{background:#e6f9f0;border:1px solid #b8f0d8;border-radius:8px;padding:.85rem;font-size:.88rem;color:#1a5c3a;display:none;margin-bottom:.75rem;font-weight:600;line-height:1.6;text-align:center}
+.review-list{display:none;flex-direction:column;gap:.6rem;margin-top:1rem}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:.65rem;font-size:.81rem}
+.rev-q{font-weight:600;color:#333;margin-bottom:.2rem}
+.rev-chosen{color:#d94040;margin-bottom:.15rem}
+.rev-correct{color:#2e9e6b;margin-bottom:.2rem;font-weight:600}
+.rev-exp{color:#555;line-height:1.6}
+
+/* confirm */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:999;padding:1rem}
+.confirm-box{background:#fff;border-radius:14px;padding:1.5rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.confirm-msg{font-size:.9rem;color:#333;white-space:pre-wrap;margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:.75rem}
+.confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-cancel{background:#e8e0f8;color:#6c4eb8}
+.btn-ok{background:#e05c5c;color:#fff}
+
+@media(max-width:520px){
+  .dd-item{flex-wrap:wrap}
+  .dd-drop{min-width:100%;margin-top:.3rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ INTRO ═══ -->
+<div id="introCard" class="card">
+  <div class="week-pill">7. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div>
+  <div class="intro-title">ESCUCHA, IR A + INFINITIVO<br>Y EXPRESIONES COTIDIANAS</div>
+  <div class="intro-sub">50 soru &middot; Dinleme (1–30) + Sürükle-Bırak (31–50) &middot; Her soru 2 puan</div>
+  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <select id="introName">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem &#350;eker</option>
+    <option>Deneme &#214;&#287;rencisi</option>
+    <option>Ece Turhano&#287;lu</option>
+    <option>Elif &#350;afak</option>
+    <option>Esra &#214;zkaya</option>
+    <option>Kardelen Ku&#351;&#231;u</option>
+    <option>S&#252;meyye &#350;ahin</option>
+    <option>Yi&#287;it &#214;z</option>
+    <option>Zeynep Ert&#252;rk</option>
+    <option>Z&#252;meyra Do&#287;an</option>
+    <option>&#350;eyma Ko&#231;ak</option>
+  </select>
+  <button class="btn-start" onclick="startQuiz()">Teste Başla</button>
+</div>
+
+<!-- ═══ QUIZ 1-30 (one by one) ═══ -->
+<div id="quizCard" class="card hidden">
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-meta">
+    <span id="qMeta">Soru 1 / 30</span>
+    <span><span class="cnt cnt-ok" id="cntOk">0 Doğru</span>&nbsp;<span class="cnt cnt-err" id="cntErr">0 Yanlış</span></span>
+  </div>
+  <div id="qCard"></div>
+  <div class="nav">
+    <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
+    <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla</button>
+    <button class="btn-next" id="btnNext" onclick="goNext()" disabled>İleri</button>
+    <button class="btn-finish-q" onclick="confirmFinishMC()">Testi Bitir</button>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: DRAG-DROP 31-40 ═══ -->
+<div id="sec2Card" class="card hidden">
+  <div class="sec-header">
+    <span class="sec-arrow">▼</span>
+    <span class="sec-title">BÖLÜM 2 (31–40) – Ir a + Infinitivo</span>
+    <span class="sec-badge-label">Sürükle &amp; Bırak</span>
+  </div>
+  <div id="dd1-items"></div>
+  <div class="pool-label">KELİME HAVUZU</div>
+  <div class="pool" id="pool1"></div>
+  <button class="sec-check-btn" id="s2btn" onclick="checkSec(1)">✓ Bölümü Kontrol Et</button>
+</div>
+
+<!-- ═══ SECTION 3: DRAG-DROP 41-50 ═══ -->
+<div id="sec3Card" class="card hidden">
+  <div class="sec-header">
+    <span class="sec-arrow">▼</span>
+    <span class="sec-title">BÖLÜM 3 (41–50) – Ir a + Infinitivo</span>
+    <span class="sec-badge-label">Sürükle &amp; Bırak</span>
+  </div>
+  <div id="dd2-items"></div>
+  <div class="pool-label">KELİME HAVUZU</div>
+  <div class="pool" id="pool2"></div>
+  <button class="sec-check-btn" id="s3btn" onclick="checkSec(2)">✓ Bölümü Kontrol Et</button>
+</div>
+
+<!-- ═══ RESULT ═══ -->
+<div id="resultCard" class="card hidden">
+  <div style="text-align:center"><div class="res-pill">7. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div></div>
+  <div class="res-title">ESCUCHA, IR A + INFINITIVO Y EXPRESIONES</div>
+  <div class="res-score"><span id="rScore">0</span>/100</div>
+  <div class="res-stats">
+    <span class="res-stat" style="background:#e6f9f0;color:#2e9e6b" id="rOk"></span>
+    <span class="res-stat" style="background:#fde8e8;color:#d94040" id="rErr"></span>
+  </div>
+  <div class="res-note" id="rNote"></div>
+  <div class="submit-warning" id="submitWarning">
+    <div class="submit-warning-title">ÖDEVİNİZ ŞU AN TESLİM EDİLMEDİ</div>
+    <div class="submit-warning-sub">Lütfen aşağıdaki listeden adınızı seçip gönderin.</div>
+  </div>
+  <select id="resName2" onchange="syncName()" style="margin-bottom:1rem">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem &#350;eker</option>
+    <option>Deneme &#214;&#287;rencisi</option>
+    <option>Ece Turhano&#287;lu</option>
+    <option>Elif &#350;afak</option>
+    <option>Esra &#214;zkaya</option>
+    <option>Kardelen Ku&#351;&#231;u</option>
+    <option>S&#252;meyye &#350;ahin</option>
+    <option>Yi&#287;it &#214;z</option>
+    <option>Zeynep Ert&#252;rk</option>
+    <option>Z&#252;meyra Do&#287;an</option>
+    <option>&#350;eyma Ko&#231;ak</option>
+  </select>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- confirm overlay -->
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">İptal</button>
+      <button class="btn-ok" id="confirmOkBtn" onclick="">Evet, Devam Et</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════ DATA ═══════════════════════ */
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV='H7 \u2013 23-24.Ders';
+var GRP={"Busem \u015eeker":"A1.2","Deneme \u00d6\u011frencisi":"A1.2","Ece Turhano\u011flu":"A1.2","Elif \u015eafak":"A1.2","Esra \u00d6zkaya":"A1.2","Kardelen Ku\u015f\u00e7u":"A1.2","S\u00fcmeyye \u015eahin":"A1.2","Yi\u011fit \u00d6z":"A1.2","Zeynep Ert\u00fcrk":"A1.2","Z\u00fcmeyra Do\u011fan":"A1.2","\u015eeyma Ko\u00e7ak":"A1.2"};
+var YT='https://youtu.be/ICBf1yG4YVg?si=bBrkmE0OJRZUB1cL';
+
+var MC=[
+  {q:"1. Es viernes por la tarde y un grupo de amigos est\u00e1 en una...",o:["escuela","casa","parque","cafeter\u00eda"],a:3,exp:"Metinde \u201cun grupo de amigos est\u00e1 en una cafeter\u00eda tranquila en el centro de la ciudad\u201d ge\u00e7iyor. Do\u011fru cevap: D) cafeter\u00eda."},
+  {q:"2. \u00bfQu\u00e9 est\u00e1n haciendo los amigos en la cafeter\u00eda?",o:["est\u00e1n durmiendo","est\u00e1n trabajando","est\u00e1n hablando de sus vacaciones","est\u00e1n estudiando"],a:2,exp:"Metinde \u201cEst\u00e1n hablando de sus vacaciones de verano porque quieren hacer algo diferente este a\u00f1o\u201d ge\u00e7iyor. Do\u011fru cevap: C."},
+  {q:"3. \u00bfPor qu\u00e9 est\u00e1n hablando de sus vacaciones?",o:["porque tienen mucho dinero","porque quieren viajar ma\u00f1ana","porque quieren hacer algo diferente este a\u00f1o","porque est\u00e1n aburridos del caf\u00e9"],a:2,exp:"\u201cQuieren hacer algo diferente este a\u00f1o\u201d ifadesi do\u011frudan cevab\u0131 veriyor. Do\u011fru cevap: C."},
+  {q:"4. \u00bfQu\u00e9 est\u00e1n buscando en internet?",o:["pel\u00edculas","ideas de viaje","ropa","trabajo"],a:1,exp:"\u201cEst\u00e1n buscando ideas en internet\u201d ifadesi metinde ge\u00e7iyor. Do\u011fru cevap: B."},
+  {q:"5. \u00bfA d\u00f3nde decide viajar el grupo?",o:["Espa\u00f1a","Italia","M\u00e9xico","Francia"],a:2,exp:"\u201cEl grupo decide que va a viajar a M\u00e9xico\u201d metinde a\u00e7\u0131k\u00e7a yer al\u0131yor. Do\u011fru cevap: C."},
+  {q:"6. \u00bfC\u00f3mo es M\u00e9xico seg\u00fan el texto?",o:["aburrido","peligroso","muy interesante","peque\u00f1o"],a:2,exp:"\u201cEs un destino muy interesante\u201d ifadesi metinde ge\u00e7iyor. Do\u011fru cevap: C."},
+  {q:"7. \u00bfPor qu\u00e9 M\u00e9xico ofrece muchas opciones?",o:["porque es barato","porque tiene cultura, historia y naturaleza","porque est\u00e1 cerca","porque es peque\u00f1o"],a:1,exp:"\u201cLleno de cultura, historia y naturaleza\u201d ifadesi do\u011fruyu veriyor. Do\u011fru cevap: B."},
+  {q:"8. \u00bfQu\u00e9 ciudad van a visitar en M\u00e9xico?",o:["Canc\u00fan","Ciudad de M\u00e9xico","Lima","Bogot\u00e1"],a:1,exp:"\u201cCiudad de M\u00e9xico es una de las ciudades principales\u201d metinde ge\u00e7iyor. Do\u011fru cevap: B."},
+  {q:"9. \u00bfPor qu\u00e9 quieren ir a Canc\u00fan?",o:["para trabajar","para estudiar","para ver el mar y descansar","para comprar ropa"],a:2,exp:"\u201cQuieren ver el mar y descansar en la playa\u201d metinde ge\u00e7iyor. Do\u011fru cevap: C."},
+  {q:"10. \u00bfQu\u00e9 est\u00e1n haciendo cuando imaginan el viaje?",o:["est\u00e1n trabajando","est\u00e1n durmiendo","est\u00e1n estudiando","est\u00e1n so\u00f1ando"],a:3,exp:"\u201cEst\u00e1n so\u00f1ando con todo lo que van a hacer\u201d ifadesi metinde a\u00e7\u0131k. Do\u011fru cevap: D."},
+  {q:"11. \u00bfQu\u00e9 est\u00e1n organizando ahora con m\u00e1s atenci\u00f3n?",o:["una fiesta","los detalles del viaje","una clase","un trabajo"],a:1,exp:"\u201cAhora est\u00e1n organizando los detalles del viaje con m\u00e1s atenci\u00f3n.\u201d Do\u011fru cevap: B."},
+  {q:"12. \u00bfQu\u00e9 van a decidir sobre el viaje?",o:["qu\u00e9 comida van a comprar","d\u00f3nde se van a quedar","qu\u00e9 ropa van a vender","qu\u00e9 m\u00fasica van a escuchar"],a:1,exp:"\u201cVan a decidir d\u00f3nde se van a quedar durante sus vacaciones.\u201d Do\u011fru cevap: B."},
+  {q:"13. \u00bfQu\u00e9 est\u00e1n comparando en internet?",o:["coches","trabajos","diferentes opciones de alojamiento","libros"],a:2,exp:"Konaklama se\u00e7eneklerini kar\u015f\u0131la\u015ft\u0131r\u0131yorlar. Do\u011fru cevap: C."},
+  {q:"14. \u00bfPor qu\u00e9 van a alquilar un apartamento?",o:["porque es m\u00e1s caro","porque es m\u00e1s econ\u00f3mico y c\u00f3modo","porque es m\u00e1s peque\u00f1o","porque est\u00e1 lejos"],a:1,exp:"\u201cEs m\u00e1s econ\u00f3mico que un hotel y tambi\u00e9n es m\u00e1s c\u00f3modo.\u201d Do\u011fru cevap: B."},
+  {q:"15. \u00bfQu\u00e9 pueden hacer en el apartamento?",o:["trabajar","estudiar","cocinar y pasar tiempo juntos","dormir todo el d\u00eda"],a:2,exp:"\u201cVan a poder cocinar y pasar m\u00e1s tiempo juntos.\u201d Do\u011fru cevap: C."},
+  {q:"16. \u00bfD\u00f3nde va a estar el apartamento?",o:["en el campo","cerca del centro","lejos de la ciudad","en la monta\u00f1a"],a:1,exp:"\u201cEl apartamento va a estar cerca del centro de la ciudad.\u201d Do\u011fru cevap: B."},
+  {q:"17. \u00bfPor qu\u00e9 es importante la ubicaci\u00f3n del apartamento?",o:["porque quieren gastar m\u00e1s dinero","porque quieren caminar y ahorrar dinero","porque quieren trabajar","porque quieren estudiar"],a:1,exp:"Y\u00fcr\u00fcyebilmek ve para tasarrufu yapmak istiyorlar. Do\u011fru cevap: B."},
+  {q:"18. \u00bfQu\u00e9 lugares van a tener cerca?",o:["hospitales","f\u00e1bricas","restaurantes, tiendas y lugares tur\u00edsticos","aeropuertos"],a:2,exp:"\u201cCerca de restaurantes, tiendas\u2026 lugares tur\u00edsticos.\u201d Do\u011fru cevap: C."},
+  {q:"19. \u00bfQu\u00e9 quieren hacer por la ma\u00f1ana?",o:["dormir","trabajar","salir y caminar por las calles","estudiar"],a:2,exp:"\u201cSalir por la ma\u00f1ana, caminar por las calles.\u201d Do\u011fru cevap: C."},
+  {q:"20. \u00bfQu\u00e9 est\u00e1n descubriendo cada d\u00eda?",o:["problemas","nuevos lugares","trabajos","escuelas"],a:1,exp:"\u201cDescubrir nuevos lugares cada d\u00eda.\u201d Do\u011fru cevap: B."},
+  {q:"21. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Los amigos est\u00e1n en una cafeter\u00eda.","Est\u00e1n trabajando en un proyecto importante.","Est\u00e1n hablando de sus vacaciones.","Quieren hacer algo diferente."],a:1,exp:"Metinde \u201c\u00f6nemli bir proje \u00fczerinde \u00e7al\u0131\u015ft\u0131klar\u0131\u201d bilgisi yer almaz. \u00c7\u0131kar\u0131lamaz \u2192 B."},
+  {q:"22. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Est\u00e1n en una ciudad grande y ruidosa.","Est\u00e1n buscando ideas en internet.","Est\u00e1n organizando un viaje.","Est\u00e1n cansados de la rutina diaria."],a:0,exp:"Metnin \u015fehrin \u201cb\u00fcy\u00fck ve g\u00fcr\u00fclt\u00fcl\u00fc\u201d oldu\u011funu s\u00f6yleyen k\u0131sm\u0131 yoktur. \u00c7\u0131kar\u0131lamaz \u2192 A."},
+  {q:"23. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Van a viajar a M\u00e9xico.","M\u00e9xico es un destino interesante.","Van a visitar varias ciudades.","M\u00e9xico es el pa\u00eds m\u00e1s visitado del mundo."],a:3,exp:"Meksika\u2019n\u0131n \u201cd\u00fcnyan\u0131n en \u00e7ok ziyaret edilen \u00fclkesi\u201d oldu\u011fu metinde s\u00f6ylenmez. \u00c7\u0131kar\u0131lamaz \u2192 D."},
+  {q:"24. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Van a visitar Ciudad de M\u00e9xico.","Tambi\u00e9n quieren ir a Canc\u00fan.","Van a visitar otros pa\u00edses.","Quieren ver el mar."],a:2,exp:"Metinde sadece Meksika i\u00e7indeki \u015fehirler ge\u00e7er, ba\u015fka \u00fclkeler ge\u00e7mez. \u00c7\u0131kar\u0131lamaz \u2192 C."},
+  {q:"25. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Est\u00e1n comparando opciones.","Est\u00e1n leyendo comentarios.","Est\u00e1n comprando billetes ahora mismo.","Est\u00e1n viendo fotos."],a:2,exp:"Ara\u015ft\u0131rma s\u00fcreci var ama hen\u00fcz bilet sat\u0131n alma yoktur. \u00c7\u0131kar\u0131lamaz \u2192 C."},
+  {q:"26. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Van a alquilar un apartamento.","El apartamento es c\u00f3modo.","Es m\u00e1s econ\u00f3mico que un hotel.","El apartamento tiene jacuzzi."],a:3,exp:"Konfor ve fiyat bilgisi var ama jakuzi bilgisi metinde yoktur. \u00c7\u0131kar\u0131lamaz \u2192 D."},
+  {q:"27. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Van a usar transporte p\u00fablico todos los d\u00edas.","Van a caminar por la ciudad.","Quieren ahorrar dinero.","El apartamento est\u00e1 cerca del centro."],a:0,exp:"Her g\u00fcn toplu ta\u015f\u0131ma kullanacaklar\u0131 s\u00f6ylenmez; y\u00fcr\u00fcyerek gezmek istiyorlar. \u00c7\u0131kar\u0131lamaz \u2192 A."},
+  {q:"28. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Est\u00e1n comparando transporte.","Van a viajar en tren.","El avi\u00f3n es m\u00e1s r\u00e1pido.","El avi\u00f3n es m\u00e1s c\u00f3modo."],a:1,exp:"Tren bir se\u00e7enek olarak ge\u00e7er ama se\u00e7ilmez. \u00c7\u0131kar\u0131lamaz \u2192 B."},
+  {q:"29. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Est\u00e1n organizando el presupuesto.","Ya han reservado el apartamento.","Quieren gastar poco dinero.","Est\u00e1n escribiendo una lista."],a:1,exp:"Hen\u00fcz rezervasyon yap\u0131lmam\u0131\u015ft\u0131r, sadece planlanmaktad\u0131r. \u00c7\u0131kar\u0131lamaz \u2192 B."},
+  {q:"30. \u00bfCu\u00e1l de las siguientes afirmaciones NO se puede deducir del texto?",o:["Van a quedarse una semana.","Van a visitar museos.","Van a trabajar durante el viaje.","Van a descansar tambi\u00e9n."],a:2,exp:"Gezmek ve dinlenmek var ama seyahat s\u0131ras\u0131nda \u00e7al\u0131\u015fmak yoktur. \u00c7\u0131kar\u0131lamaz \u2192 C."}
+];
+
+var DD1=[
+  {n:31,s:"Son las ocho de la tarde. Mañana tienes un examen muy importante y todavía no has empezado a estudiar. Tu amigo te pregunta: \"¿Qué haces ahora?\"",a:"voy a estudiar",exp:"Acil bir plan/karar → \"ir a + infinitivo\" kullanılır. (Şimdi ders çalışacağım.)"},
+  {n:32,s:"Es viernes por la noche. Tu amigo se está preparando, se pone ropa elegante y dice que va a encontrarse con sus amigos en el centro.",a:"vas a salir",exp:"Görülen hazırlık → yakın gelecek planı. (Dışarı çıkacaksın.)"},
+  {n:33,s:"Tu hermana está haciendo la maleta y tiene el pasaporte en la mano. Mañana tiene un vuelo temprano.",a:"va a viajar",exp:"Somut kanıt (valiz, pasaport) → plan kesin. (Seyahat edecek.)"},
+  {n:34,s:"Son las dos de la tarde. Tú y tus amigos estáis en casa y todos decís que tenéis mucha hambre.",a:"vamos a comer",exp:"Ortak anlık karar → \"nosotros\" planı. (Yemek yiyeceğiz.)"},
+  {n:35,s:"Tenéis las entradas en la mano y estáis delante del cine esperando para entrar.",a:"vais a ver",exp:"Plan çok yakın → film izleme niyeti. (İzleyeceksiniz.)"},
+  {n:36,s:"Tus padres miran el frigorífico y está completamente vacío. Cogen las llaves y salen de casa.",a:"van a comprar",exp:"Durumdan çıkarım → alışveriş planı. (Alışveriş yapacaklar.)"},
+  {n:37,s:"Llegas a casa después de trabajar todo el día. Estás muy cansado y no quieres hacer nada más.",a:"voy a descansar",exp:"Kişisel niyet/karar. (Dinleneceğim.)"},
+  {n:38,s:"Tu amigo mira el móvil, ve una llamada perdida de su madre y dice: \"¡Uy!\"",a:"vas a llamar",exp:"Tepki → hemen yapılacak eylem. (Arayacaksın.)"},
+  {n:39,s:"Tu madre está en la cocina con ingredientes sobre la mesa y empieza a preparar la cena.",a:"va a cocinar",exp:"Görsel kanıt → plan/niyet. (Yemek yapacak.)"},
+  {n:40,s:"Es sábado por la mañana. Tú y tu familia habláis de ir a casa de los abuelos y ya estáis preparando el coche.",a:"vamos a visitar",exp:"Plan + hazırlık → kesin gelecek. (Ziyarete gideceğiz.)"}
+];
+var POOL1=["voy a estudiar","vas a salir","va a viajar","vamos a comer","vais a ver","van a comprar","voy a descansar","vas a llamar","va a cocinar","vamos a visitar"];
+
+var DD2=[
+  {n:41,s:"Acabas de llegar a una ciudad nueva y no tienes casa. Estás mirando anuncios de pisos en internet.",a:"voy a alquilar",exp:"Durum → yeni şehir + ev yok → plan: ev kiralamak. (Ev kiralayacağım.)"},
+  {n:42,s:"Tu amigo tiene su primer día en un nuevo trabajo mañana. Está un poco nervioso pero también emocionado.",a:"vas a empezar",exp:"Gelecek plan → işe başlama. (İşe başlayacaksın.)"},
+  {n:43,s:"Es temprano por la mañana y ves que el dueño del café está levantando la puerta metálica del local.",a:"va a abrir",exp:"Görsel kanıt → dükkân açılacak. (Açacak.)"},
+  {n:44,s:"Tú y tu familia tenéis muchas cajas en casa y habláis de cambiar de vivienda este mes.",a:"vamos a mudarnos",exp:"Hazırlık + plan → taşınma. (Taşınacağız.)"},
+  {n:45,s:"Estáis en un restaurante nuevo y el camarero os recomienda un plato típico de la ciudad.",a:"vais a probar",exp:"Durum → yeni yemek deneme planı. (Deneyeceksiniz.)"},
+  {n:46,s:"En tu barrio hay un terreno vacío y ahora hay máquinas grandes trabajando todo el día.",a:"van a construir",exp:"Kanıt → inşaat başlayacak. (İnşa edecekler.)"},
+  {n:47,s:"No tienes trabajo ahora y estás mirando ofertas en internet todos los días.",a:"voy a buscar",exp:"Durum → iş yok → plan: iş aramak. (İş arayacağım.)"},
+  {n:48,s:"Tu amigo quiere vivir en España y ya ha comprado un libro de español para estudiar.",a:"vas a aprender",exp:"Amaç + hazırlık → öğrenme planı. (Öğreneceksin.)"},
+  {n:49,s:"Son las diez de la noche y ves que los trabajadores están apagando las luces de la tienda.",a:"va a cerrar",exp:"Gözlem → kapanma eylemi. (Kapatacak.)"},
+  {n:50,s:"Es el cumpleaños de tu madre y toda la familia está preparando comida y decoraciones en casa.",a:"vamos a celebrar",exp:"Ortak plan → kutlama. (Kutlayacağız.)"}
+];
+var POOL2=["voy a alquilar","vas a empezar","va a abrir","vamos a mudarnos","vais a probar","van a construir","voy a buscar","vas a aprender","va a cerrar","vamos a celebrar"];
+
+/* ═══════════════════════ STATE ═══════════════════════ */
+var cur=0;
+var mcAns=new Array(30).fill(-1);
+var mcScores=new Array(30).fill(0);
+var mcOk=0, mcErr=0;
+var mcDone=false;
+
+var dd1Ans=new Array(10).fill(null);
+var dd2Ans=new Array(10).fill(null);
+var dd1Ok=0,dd1Err=0,dd2Ok=0,dd2Err=0;
+var dd1Done=false, dd2Done=false;
+
+var studentName='';
+var dragWord=null, dragFromPool=null, dragFromDropId=null;
+
+/* ═══════════════════════ HELPERS ═══════════════════════ */
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function $(id){return document.getElementById(id);}
+function show(id){$(id).classList.remove('hidden');}
+function hide(id){$(id).classList.add('hidden');}
+
+/* ═══════════════════════ START ═══════════════════════ */
+function startQuiz(){
+  var n=$('introName').value;
+  if(!n){alert('Lütfen adınızı seçin.');return;}
+  studentName=n;
+  hide('introCard');
+  show('quizCard');
+  renderQ();
+}
+function syncName(){studentName=$('resName2').value;}
+
+/* ═══════════════════════ MC RENDER ═══════════════════════ */
+function renderQ(){
+  var i=cur; var q=MC[i];
+  var L=['A','B','C','D'];
+  var done=(mcAns[i]!==-1);
+
+  var html='';
+  html+='<a class="video-link" href="'+YT+'" target="_blank" rel="noopener">';
+  html+='<svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>';
+  html+='Videoyu İzle: Yavaş İspanyolca</a>';
+  html+='<div class="q-badge">DİNLEME – Soru '+(i+1)+'</div>';
+  html+='<div class="q-text">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  q.o.forEach(function(opt,j){
+    var cls='opt';
+    if(done){
+      if(j===q.a) cls+=' correct';
+      else if(j===mcAns[i]&&mcAns[i]!==q.a) cls+=' wrong';
+    }
+    html+='<button class="'+cls+'"'+(done?' disabled':'')+' onclick="pickMC('+j+')">';
+    html+='<span class="opt-letter">'+L[j]+')</span> '+esc(opt)+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="exp-box'+(done?' show':'')+'">'+esc(q.exp)+'</div>';
+  $('qCard').innerHTML=html;
+
+  // nav
+  $('progFill').style.width=((i+1)/30*100)+'%';
+  $('qMeta').textContent='Soru '+(i+1)+' / 30';
+  $('cntOk').textContent=mcOk+' Doğru';
+  $('cntErr').textContent=mcErr+' Yanlış';
+  $('btnBack').disabled=(i===0);
+  $('btnNext').disabled=(!done||i===29);
+  $('btnSkip').disabled=(i===29);
+}
+
+function pickMC(j){
+  if(mcAns[cur]!==-1)return; // already answered
+  var q=MC[cur];
+  mcAns[cur]=j;
+  if(j===q.a){mcOk++;mcScores[cur]=1;}
+  else{mcErr++;mcScores[cur]=0;}
+  renderQ();
+}
+
+function goNext(){if(cur<29){cur++;renderQ();}}
+function goBack(){if(cur>0){cur--;renderQ();}}
+function skipQ(){if(cur<29){cur++;renderQ();}}
+
+function confirmFinishMC(){
+  var unanswered=mcAns.filter(function(x){return x===-1;}).length;
+  var msg='Bölüm 1\'den '+mcOk+' doğru, '+mcErr+' yanlış yaptınız.';
+  if(unanswered>0) msg+='\n\n'+unanswered+' soru cevapsız. Bitmemiş soruları tamamlamak ister misiniz?';
+  msg+='\n\nDevam etmek istediğinizden emin misiniz?\n(Sürükle-Bırak bölümlerine geçeceksiniz.)';
+  openConfirm(msg, finishMCAndContinue);
+}
+
+function finishMCAndContinue(){
+  mcDone=true;
+  hide('quizCard');
+  show('sec2Card');
+  buildDD(DD1, POOL1, 'dd1-items', 'pool1', 1);
+  $('sec2Card').scrollIntoView({behavior:'smooth'});
+}
+
+/* ═══════════════════════ DRAG-DROP BUILD ═══════════════════════ */
+function shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+
+function buildDD(data, pool, containerId, poolId, secNum){
+  // build items
+  var c=$(containerId); c.innerHTML='';
+  data.forEach(function(item,i){
+    var wrapper=document.createElement('div');
+    wrapper.innerHTML=
+      '<div class="dd-item">'+
+        '<div class="dd-num">'+item.n+'.</div>'+
+        '<div class="dd-sentence">'+esc(item.s)+'</div>'+
+        '<div class="dd-drop" id="drop'+secNum+'_'+i+'" data-sec="'+secNum+'" data-idx="'+i+'">buraya sürükle</div>'+
+      '</div>'+
+      '<div class="dd-exp" id="ddexp'+secNum+'_'+i+'">'+esc(item.exp)+'</div>';
+    c.appendChild(wrapper);
+
+    // desktop drag events on drop zone
+    var drop=$('drop'+secNum+'_'+i);
+    drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('over');});
+    drop.addEventListener('dragleave',function(){drop.classList.remove('over');});
+    drop.addEventListener('drop',function(e){
+      e.preventDefault();
+      drop.classList.remove('over');
+      var word=e.dataTransfer.getData('text')||dragWord;
+      if(!word)return;
+      applyDrop(drop,word,secNum,i,poolId,data);
+    });
+  });
+
+  // build pool (shuffled)
+  var poolEl=$(poolId); poolEl.innerHTML='';
+  var shuffled=shuffle(pool);
+  shuffled.forEach(function(word){
+    poolEl.appendChild(makeChip(word, poolId, secNum, data));
+  });
+}
+
+function makeChip(word, poolId, secNum, data){
+  var chip=document.createElement('span');
+  chip.className='chip';
+  chip.textContent=word;
+  chip.setAttribute('draggable','true');
+  chip.dataset.word=word;
+  chip.dataset.poolId=poolId;
+
+  // desktop drag
+  chip.addEventListener('dragstart',function(e){
+    dragWord=word; dragFromPool=poolId; dragFromDropId=null;
+    chip.classList.add('dragging');
+    e.dataTransfer.setData('text',word);
+  });
+  chip.addEventListener('dragend',function(){chip.classList.remove('dragging');dragWord=null;});
+
+  // touch
+  chip.addEventListener('touchstart',touchStartChip,{passive:true});
+  return chip;
+}
+
+function applyDrop(drop, word, secNum, idx, poolId, data){
+  // if the drop already has a word, return it to pool
+  var prev=drop.dataset.current;
+  if(prev){
+    var poolEl=$(poolId);
+    poolEl.querySelectorAll('.chip').forEach(function(c){
+      if(c.dataset.word===prev) c.classList.remove('used');
+    });
+    drop.dataset.current='';
+  }
+  // mark chip as used
+  var poolEl=$(poolId);
+  var marked=false;
+  poolEl.querySelectorAll('.chip').forEach(function(c){
+    if(!marked && c.dataset.word===word && !c.classList.contains('used')){
+      c.classList.add('used'); marked=true;
+    }
+  });
+  drop.textContent=word;
+  drop.dataset.current=word;
+  drop.classList.add('filled');
+  drop.classList.remove('over');
+  if(secNum===1) dd1Ans[idx]=word;
+  else dd2Ans[idx]=word;
+}
+
+/* ─── TOUCH DRAG ─── */
+var touchChip=null, touchClone=null, touchPoolId=null, touchSecNum=null, touchData=null;
+function touchStartChip(e){
+  touchChip=this;
+  touchPoolId=this.dataset.poolId;
+  dragWord=this.dataset.word;
+  // determine which section data
+  touchSecNum=touchPoolId==='pool1'?1:2;
+  touchData=touchSecNum===1?DD1:DD2;
+  // floating clone
+  touchClone=this.cloneNode(true);
+  touchClone.style.cssText='position:fixed;z-index:9999;opacity:.75;pointer-events:none;';
+  document.body.appendChild(touchClone);
+  moveTouchClone(e.touches[0]);
+  document.addEventListener('touchmove',onTouchMove,{passive:false});
+  document.addEventListener('touchend',onTouchEnd);
+}
+function moveTouchClone(t){
+  if(!touchClone)return;
+  touchClone.style.left=(t.clientX-touchClone.offsetWidth/2)+'px';
+  touchClone.style.top=(t.clientY-touchClone.offsetHeight/2)+'px';
+}
+function onTouchMove(e){e.preventDefault();moveTouchClone(e.touches[0]);}
+function onTouchEnd(e){
+  document.removeEventListener('touchmove',onTouchMove);
+  document.removeEventListener('touchend',onTouchEnd);
+  if(touchClone){document.body.removeChild(touchClone);touchClone=null;}
+  if(!e.changedTouches[0]||!dragWord)return;
+  var t=e.changedTouches[0];
+  var el=document.elementFromPoint(t.clientX,t.clientY);
+  var drop=el&&el.closest('.dd-drop');
+  if(drop&&parseInt(drop.dataset.sec)===touchSecNum){
+    var idx=parseInt(drop.dataset.idx);
+    applyDrop(drop,dragWord,touchSecNum,idx,touchPoolId,touchData);
+  }
+  dragWord=null;
+}
+
+/* ═══════════════════════ CHECK DD ═══════════════════════ */
+function checkSec(secNum){
+  var data=secNum===1?DD1:DD2;
+  var ok=0,err=0;
+  data.forEach(function(item,i){
+    var drop=$('drop'+secNum+'_'+i);
+    var val=(secNum===1?dd1Ans[i]:dd2Ans[i])||'';
+    drop.classList.remove('filled','over');
+    if(val===item.a){drop.classList.add('correct');ok++;}
+    else{drop.classList.add('wrong');err++;}
+    drop.setAttribute('draggable','false');
+    $('ddexp'+secNum+'_'+i).classList.add('show');
+  });
+  // disable pool chips
+  var poolId=secNum===1?'pool1':'pool2';
+  $(poolId).querySelectorAll('.chip').forEach(function(c){c.style.pointerEvents='none';});
+  $('s'+(secNum+1)+'btn').disabled=true;
+  $('s'+(secNum+1)+'btn').textContent='✓ Tamamlandı';
+
+  if(secNum===1){dd1Ok=ok;dd1Err=err;dd1Done=true; show('sec3Card'); buildDD(DD2,POOL2,'dd2-items','pool2',2); $('sec3Card').scrollIntoView({behavior:'smooth'});}
+  else{dd2Ok=ok;dd2Err=err;dd2Done=true; showFinalResult();}
+}
+
+/* ═══════════════════════ RESULT ═══════════════════════ */
+function showFinalResult(){
+  hide('sec2Card'); hide('sec3Card');
+  var totalOk=mcOk+dd1Ok+dd2Ok;
+  var totalErr=mcErr+dd1Err+dd2Err;
+  var score=totalOk*2;
+  $('rScore').textContent=score;
+  $('rOk').textContent=totalOk+' Doğru';
+  $('rErr').textContent=totalErr+' Yanlış';
+  $('rNote').textContent='50 sorudan '+totalOk+' tanesi doğru (her soru 2 puan)';
+  $('resName2').value=studentName;
+  show('resultCard');
+  buildReview(totalOk,totalErr);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildReview(){
+  var html='';
+  var L=['A','B','C','D'];
+  MC.forEach(function(q,i){
+    if(mcAns[i]===q.a)return;
+    html+='<div class="rev-item">';
+    html+='<div class="rev-q">Soru '+(i+1)+': '+esc(q.q.substring(0,70))+'...</div>';
+    html+='<div class="rev-chosen">Seçiminiz: '+(mcAns[i]>=0?L[mcAns[i]]+') '+esc(q.o[mcAns[i]]):'(boş)')+'</div>';
+    html+='<div class="rev-correct">Doğru: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  });
+  DD1.forEach(function(item,i){
+    var v=dd1Ans[i]||'(boş)';
+    if(v===item.a)return;
+    html+='<div class="rev-item"><div class="rev-q">Soru '+item.n+'</div>';
+    html+='<div class="rev-chosen">Yerleştirdiğiniz: '+esc(v)+'</div>';
+    html+='<div class="rev-correct">Doğru: '+esc(item.a)+'</div>';
+    html+='<div class="rev-exp">'+esc(item.exp)+'</div></div>';
+  });
+  DD2.forEach(function(item,i){
+    var v=dd2Ans[i]||'(boş)';
+    if(v===item.a)return;
+    html+='<div class="rev-item"><div class="rev-q">Soru '+item.n+'</div>';
+    html+='<div class="rev-chosen">Yerleştirdiğiniz: '+esc(v)+'</div>';
+    html+='<div class="rev-correct">Doğru: '+esc(item.a)+'</div>';
+    html+='<div class="rev-exp">'+esc(item.exp)+'</div></div>';
+  });
+  $('reviewList').innerHTML=html||'<div style="padding:.5rem;color:#666">Yanlış soru bulunamadı! 🎉</div>';
+}
+
+function toggleReview(){
+  var rv=$('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+function submitResult(){
+  var name=$('resName2').value;
+  if(!name){alert('Lütfen adınızı seçin.');return;}
+  var totalOk=mcOk+dd1Ok+dd2Ok;
+  var totalErr=mcErr+dd1Err+dd2Err;
+  var score=totalOk*2;
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV,grup:GRP[name]||'A1.2',
+    puan:score,dogru:totalOk,yanlis:totalErr,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  $('submitWarning').style.display='none';
+  $('submitMsg').style.display='block';
+  $('submitMsg').textContent='Gönderiliyor...';
+  $('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){$('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+score+'/100.';})
+    .catch(function(){$('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+score+'/100.';});
+}
+
+/* ═══════════════════════ CONFIRM ═══════════════════════ */
+var confirmCb=null;
+function openConfirm(msg,cb){
+  $('confirmMsg').textContent=msg;
+  confirmCb=cb;
+  $('confirmOkBtn').onclick=function(){closeConfirm();if(confirmCb)confirmCb();};
+  $('confirmOverlay').style.display='flex';
+}
+function closeConfirm(){$('confirmOverlay').style.display='none';}
+</script>
+</body>
+</html>
