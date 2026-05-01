@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H7 – 25-26.Ders | A1.2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:14px}
+.wrap{max-width:720px;margin:0 auto}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px}
+.hidden{display:none!important}
+
+/* INTRO */
+.pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.intro-title{font-size:1.05rem;font-weight:800;color:#3d2a7a;margin-bottom:4px}
+.intro-sub{color:#888;font-size:.82rem;margin-bottom:5px}
+.intro-teacher{color:#9b7de0;font-weight:700;font-size:.8rem;margin-bottom:16px}
+select{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.93rem;font-family:inherit;color:#333;background:#fff;outline:none;margin-bottom:12px;cursor:pointer}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:13px;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.2px}
+.btn-start:hover{background:#5a3ea0}
+
+/* PROGRESS */
+.prog-wrap{margin-bottom:12px}
+.prog-bar{height:7px;background:#e8e0f8;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#6c4eb8,#9b7de0);border-radius:4px;transition:width .3s}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#888;margin-bottom:14px}
+.cnt-ok{color:#2e9e6b;font-weight:700}
+.cnt-err{color:#d94040;font-weight:700;margin-left:8px}
+
+/* FILL question */
+.q-header{font-size:.72rem;font-weight:700;color:#6c4eb8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid #f0edf8}
+.q-instruction{font-size:.8rem;color:#777;margin-bottom:14px;line-height:1.55;font-style:italic;background:#faf8ff;padding:8px 12px;border-radius:8px;border-left:3px solid #c0b0e8}
+.sub-item{margin-bottom:14px;padding:14px;background:#faf8ff;border-radius:10px;border:1px solid #e8e0f8}
+.sub-label{font-size:.7rem;font-weight:700;color:#9b7de0;letter-spacing:.4px;margin-bottom:6px;text-transform:uppercase}
+.sub-sent{font-size:.9rem;color:#333;line-height:1.65;margin-bottom:9px;font-weight:500}
+.sub-inp{width:100%;padding:9px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;color:#333;background:#fff;transition:border-color .15s}
+.sub-inp:focus{border-color:#6c4eb8}
+.sub-inp.correct{border-color:#2e9e6b!important;background:#eafaf2;color:#1a5c3a;font-weight:600}
+.sub-inp.wrong{border-color:#d94040!important;background:#fde8e8;color:#8b1a1a}
+.sub-inp:disabled{cursor:default}
+.sub-ans{font-size:.8rem;margin-top:7px;padding:6px 10px;border-radius:6px;display:none;line-height:1.5}
+.sub-ans.ok{background:#eafaf2;color:#1a5c3a;display:block}
+.sub-ans.err{background:#fde8e8;color:#8b1a1a;display:block}
+
+/* explanation */
+.exp-box{background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 10px 10px 0;padding:14px 16px;font-size:.83rem;color:#333;line-height:1.85;margin-top:14px;white-space:pre-wrap;display:none}
+.exp-box.show{display:block}
+
+/* nav buttons */
+.btn-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-check{flex:2;padding:12px;background:#6c4eb8;color:#fff;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-check:hover:not(:disabled){background:#5a3ea0}
+.btn-check:disabled{opacity:.35;cursor:not-allowed}
+.btn-next{flex:2;padding:12px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-next:hover{background:#d5c9f0}
+.btn-finish{flex:1;padding:12px 10px;background:#c94040;color:#fff;border:none;border-radius:9px;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;min-width:90px}
+.btn-finish:hover{background:#a83030}
+
+/* MC */
+.mc-badge{display:inline-block;font-size:.7rem;font-weight:700;color:#1a6fb5;background:#e8f4fd;padding:3px 10px;border-radius:5px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.mc-q{font-size:.9rem;color:#333;font-weight:600;line-height:1.68;margin-bottom:14px;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt-btn{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:2px solid #e0d8f8;border-radius:9px;cursor:pointer;font-size:.88rem;color:#444;font-family:inherit;background:#fff;text-align:left;line-height:1.5;transition:all .12s}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-letter{font-weight:700;color:#6c4eb8;min-width:22px;flex-shrink:0;padding-top:1px}
+.opt-btn.correct{background:#eafaf2;border-color:#2e9e6b;color:#1a5c3a}
+.opt-btn.correct .opt-letter{color:#2e9e6b}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn.wrong .opt-letter{color:#d94040}
+.opt-btn:disabled{cursor:default}
+
+/* RESULT */
+.res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:8px}
+.res-title{font-size:.95rem;font-weight:800;color:#3d2a7a;text-align:center;margin-bottom:4px}
+.res-score{text-align:center;font-size:3.4rem;font-weight:800;color:#6c4eb8;margin:8px 0 10px}
+.res-stats{display:flex;gap:10px;justify-content:center;margin-bottom:10px}
+.stat-ok{background:#eafaf2;color:#2e9e6b;padding:5px 16px;border-radius:8px;font-weight:700;font-size:.88rem}
+.stat-err{background:#fde8e8;color:#d94040;padding:5px 16px;border-radius:8px;font-weight:700;font-size:.88rem}
+.res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:14px}
+.warning-box{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:14px 18px;text-align:center;margin-bottom:14px}
+.warning-title{font-size:1.05rem;font-weight:800;color:#856404;letter-spacing:.3px}
+.warning-sub{font-size:.8rem;color:#856404;margin-top:3px}
+.btn-submit{width:100%;padding:14px;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:10px;letter-spacing:.2px}
+.btn-submit:hover:not(:disabled){background:#237a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.submit-msg{background:#eafaf2;border:1px solid #b0e8d0;border-radius:8px;padding:12px;font-size:.88rem;color:#1a5c3a;text-align:center;font-weight:600;line-height:1.65;display:none;margin-bottom:10px}
+.btn-review{width:100%;padding:11px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit}
+.review-list{display:none;flex-direction:column;gap:10px;margin-top:12px}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:12px;font-size:.8rem}
+.rev-q{font-weight:700;color:#3d2a7a;margin-bottom:4px;font-size:.82rem}
+.rev-my{color:#d94040;margin-bottom:3px}
+.rev-ok{color:#2e9e6b;font-weight:700;margin-bottom:4px}
+.rev-exp{color:#555;line-height:1.7;white-space:pre-wrap;margin-top:6px;font-size:.79rem}
+
+/* confirm overlay */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.confirm-card{background:#fff;border-radius:14px;padding:22px;max-width:380px;width:100%}
+.confirm-msg{font-size:.9rem;color:#333;line-height:1.65;margin-bottom:18px}
+.confirm-btns{display:flex;gap:10px}
+.btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
+.btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
+
+@media(max-width:480px){.btn-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- INTRO -->
+<div id="introCard" class="card">
+  <div class="pill">7. HAFTA ÖDEVİ &bull; A1.2</div>
+  <div class="intro-title">H7 – 25-26. DERS</div>
+  <div class="intro-sub">Presente de Indicativo / Estar + Gerundio / Ir a + Infinitivo</div>
+  <div class="intro-sub">50 Soru &bull; Her Soru 2 Puan &bull; Toplam 100 Puan</div>
+  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <select id="nameSelect">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem Şeker</option><option>Deneme Öğrencisi</option><option>Ece Turhanoğlu</option>
+    <option>Elif Şafak</option><option>Esra Özkaya</option><option>Kardelen Kuşçu</option>
+    <option>Sümeyye Şahin</option><option>Yiğit Öz</option><option>Zeynep Ertürk</option>
+    <option>Zümeyra Doğan</option><option>Şeyma Koçak</option>
+  </select>
+  <button class="btn-start" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<!-- QUIZ CARD -->
+<div id="quizCard" class="card hidden">
+  <div class="prog-wrap">
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div class="q-meta">
+    <span id="qLabel">Soru 1 / 50</span>
+    <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr"> &nbsp;✗ 0</span></span>
+  </div>
+  <div id="qContent"></div>
+  <div class="btn-row">
+    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✓ Kontrol Et</button>
+    <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
+    <button class="btn-finish" onclick="askFinish()">Testi Bitir</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultCard" class="card hidden">
+  <div style="text-align:center"><div class="res-pill">7. HAFTA &bull; 25-26. DERS &bull; A1.2</div></div>
+  <div class="res-title">H7 – Presente / Estar+Gerundio / Ir a+Infinitivo</div>
+  <div class="res-score" id="rScore">0/100</div>
+  <div class="res-stats">
+    <span class="stat-ok" id="rOk">0 Doğru</span>
+    <span class="stat-err" id="rErr">0 Yanlış</span>
+  </div>
+  <p class="res-note" id="rNote"></p>
+  <div class="warning-box" id="warningBox">
+    <div class="warning-title">⚠ ÖDEVİNİZ TESLİM EDİLMEDİ</div>
+    <div class="warning-sub">Lütfen adınızı seçip aşağıdaki butona tıklayın.</div>
+  </div>
+  <select id="nameSelect2" onchange="syncName()">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem Şeker</option><option>Deneme Öğrencisi</option><option>Ece Turhanoğlu</option>
+    <option>Elif Şafak</option><option>Esra Özkaya</option><option>Kardelen Kuşçu</option>
+    <option>Sümeyye Şahin</option><option>Yiğit Öz</option><option>Zeynep Ertürk</option>
+    <option>Zümeyra Doğan</option><option>Şeyma Koçak</option>
+  </select>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör ▼</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- confirm overlay -->
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-card">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">İptal</button>
+      <button class="btn-ok-red" id="confirmOk">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV='H7 \u2013 25-26.Ders';
+var studentName='';
+
+/* ── NORMALIZE ── */
+function norm(s){
+  if(!s)return'';
+  return s.trim()
+    .replace(/\u0130/g,'i').replace(/I/g,'i').replace(/\u0131/g,'i')
+    .replace(/\u011e/g,'g').replace(/\u011f/g,'g')
+    .replace(/\u015e/g,'s').replace(/\u015f/g,'s')
+    .replace(/\u00c7/g,'c').replace(/\u00e7/g,'c')
+    .replace(/\u00dc/g,'u').replace(/\u00fc/g,'u')
+    .replace(/\u00d6/g,'o').replace(/\u00f6/g,'o')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,' ');
+}
+function matchAns(input,answers){
+  var ni=norm(input);
+  if(!ni)return false;
+  for(var i=0;i<answers.length;i++){
+    if(ni===norm(answers[i]))return true;
+    if(ni.indexOf(norm(answers[i]))!==-1)return true;
+  }
+  return false;
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function $(id){return document.getElementById(id);}
+
+/* ── STATE ── */
+var cur=0;
+var okCount=0,errCount=0;
+var answered=[];
+var scores=[];
+var myAnswers=[];
+
+
+var FILL=[
+  {h:"Soru 1 – Yo / comenzar",subs:[
+    {lbl:"Yo / comenzar / todos los días",sent:"Yo __________________ la clase a las nueve todos los días.",ans:["comienzo"]},
+    {lbl:"Yo / comenzar / ahora",sent:"Yo __________________ la clase ahora.",ans:["estoy comenzando"]},
+    {lbl:"Yo / comenzar / mañana",sent:"Yo __________________ la clase mañana.",ans:["voy a comenzar"]},
+  ],exp:"Bu soruda comenzar fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin/alışkanlık anlattığı için geniş zaman kullanılır. Comenzar fiili geniş zamanda kök değiştirir: e → ie. Bu yüzden yo comienzo olur.\nAhora şu anda devam eden bir eylemi anlattığı için estar + gerundio kullanılır. Comenzar fiilinin gerundio hali düzenlidir: comenzando. Bu yüzden estoy comenzando doğru cevaptır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: comenzar. Bu yüzden voy a comenzar doğru cevaptır."},
+  {h:"Soru 2 – Ella / leer",subs:[
+    {lbl:"Ella / leer / normalmente",sent:"Ella __________________ novelas normalmente.",ans:["lee"]},
+    {lbl:"Ella / leer / ahora",sent:"Ella __________________ una novela ahora.",ans:["está leyendo"]},
+    {lbl:"Ella / leer / esta noche",sent:"Ella __________________ una novela esta noche.",ans:["va a leer"]},
+  ],exp:"Bu soruda leer fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Leer fiili geniş zamanda bu özneyle düzenli çekilir: ella lee.\nAhora şu anda devam eden bir eylemi anlattığı için estar + gerundio kullanılır. Leer fiilinin gerundio hali düzensizdir: leyendo. Çünkü iki sesli harf arasında i, y olur. Bu yüzden está leyendo doğru cevaptır.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: leer. Bu yüzden va a leer doğru cevaptır."},
+  {h:"Soru 3 – Mi hermano / dormir",subs:[
+    {lbl:"Mi hermano / dormir / todos los días",sent:"Mi hermano __________________ ocho horas todos los días.",ans:["duerme"]},
+    {lbl:"Mi hermano / dormir / ahora",sent:"Mi hermano __________________ ahora.",ans:["está durmiendo"]},
+    {lbl:"Mi hermano / dormir / mañana",sent:"Mi hermano __________________ temprano mañana.",ans:["va a dormir"]},
+  ],exp:"Bu soruda dormir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin anlattığı için geniş zaman kullanılır. Dormir fiili geniş zamanda kök değiştirir: o → ue. Bu yüzden mi hermano duerme olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Dormir fiilinin gerundio hali düzensizdir: durmiendo. Burada o → u değişimi vardır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: dormir. Bu yüzden va a dormir doğru cevaptır."},
+  {h:"Soru 4 – Nosotros / pedir",subs:[
+    {lbl:"Nosotros / pedir / a veces",sent:"Nosotros __________________ comida a veces.",ans:["pedimos"]},
+    {lbl:"Nosotros / pedir / ahora",sent:"Nosotros __________________ comida ahora.",ans:["estamos pidiendo"]},
+    {lbl:"Nosotros / pedir / esta tarde",sent:"Nosotros __________________ comida esta tarde.",ans:["vamos a pedir"]},
+  ],exp:"Bu soruda pedir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nA veces alışkanlık ya da tekrar eden durum anlattığı için geniş zaman kullanılır. Pedir fiili geniş zamanda kök değiştirir: e → i. Ancak nosotros çekiminde bu kök değişimi olmaz. Bu yüzden pedimos doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Pedir fiilinin gerundio hali düzensizdir: pidiendo. Burada e → i değişimi vardır.\nEsta tarde gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: pedir. Bu yüzden vamos a pedir doğru cevaptır."},
+  {h:"Soru 5 – Tú / vestirse",subs:[
+    {lbl:"Tú / vestirse / normalmente",sent:"Tú __________________ rápido normalmente.",ans:["te vistes"]},
+    {lbl:"Tú / vestirse / ahora",sent:"Tú __________________ ahora.",ans:["te estás vistiendo", "estás vistiéndote"]},
+    {lbl:"Tú / vestirse / mañana",sent:"Tú __________________ temprano mañana.",ans:["te vas a vestir", "vas a vestirte"]},
+  ],exp:"Bu soruda vestirse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Vestirse fiili geniş zamanda kök değiştirir: e → i. Ayrıca dönüşlü fiil olduğu için tú öznesiyle te zamiri kullanılır. Bu yüzden te vistes doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Vestirse fiilinin gerundio hali düzensizdir: vistiendo. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te estás vistiendo veya estás vistiéndote. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te vas a vestir veya vas a vestirte. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 6 – Los niños / despertarse",subs:[
+    {lbl:"Los niños / despertarse / todos los días",sent:"Los niños __________________ a las siete todos los días.",ans:["se despiertan"]},
+    {lbl:"Los niños / despertarse / ahora",sent:"Los niños __________________ ahora.",ans:["se están despertando", "están despertándose"]},
+    {lbl:"Los niños / despertarse / mañana",sent:"Los niños __________________ temprano mañana.",ans:["se van a despertar", "van a despertarse"]},
+  ],exp:"Bu soruda despertarse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin anlattığı için geniş zaman kullanılır. Despertarse fiili geniş zamanda kök değiştirir: e → ie. Los niños üçüncü çoğul şahıs olduğu için dönüşlü zamir se kullanılır. Bu yüzden se despiertan doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Gerundio hali düzenlidir: despertando. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se están despertando veya están despertándose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se van a despertar veya van a despertarse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 7 – Yo / sentirse",subs:[
+    {lbl:"Yo / sentirse / normalmente",sent:"Yo __________________ bien normalmente.",ans:["me siento"]},
+    {lbl:"Yo / sentirse / ahora",sent:"Yo __________________ mal ahora.",ans:["me estoy sintiendo", "estoy sintiéndome"]},
+    {lbl:"Yo / sentirse / mañana",sent:"Yo __________________ mejor mañana.",ans:["me voy a sentir", "voy a sentirme"]},
+  ],exp:"Bu soruda sentirse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel durum anlattığı için geniş zaman kullanılır. Sentirse fiili geniş zamanda kök değiştirir: e → ie. Yo öznesiyle dönüşlü zamir me kullanılır. Bu yüzden me siento doğru cevaptır.\nAhora şu anda devam eden bir durum anlattığı için estar + gerundio kullanılır. Sentirse fiilinin gerundio hali düzensizdir: sintiendo. Burada e → i değişimi vardır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me estoy sintiendo veya estoy sintiéndome. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek beklentisi/planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me voy a sentir veya voy a sentirme. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 8 – Ella / seguir",subs:[
+    {lbl:"Ella / seguir / siempre",sent:"Ella __________________ las instrucciones siempre.",ans:["sigue"]},
+    {lbl:"Ella / seguir / ahora",sent:"Ella __________________ las instrucciones ahora.",ans:["está siguiendo"]},
+    {lbl:"Ella / seguir / mañana",sent:"Ella __________________ las instrucciones mañana.",ans:["va a seguir"]},
+  ],exp:"Bu soruda seguir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nSiempre alışkanlık anlattığı için geniş zaman kullanılır. Seguir fiili geniş zamanda kök değiştirir: e → i. Bu yüzden ella sigue olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Seguir fiilinin gerundio hali düzensizdir: siguiendo. Burada e → i değişimi vardır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: seguir. Bu yüzden va a seguir doğru cevaptır."},
+  {h:"Soru 9 – Tú / decir",subs:[
+    {lbl:"Tú / decir / todos los días",sent:"Tú __________________ la verdad todos los días.",ans:["dices"]},
+    {lbl:"Tú / decir / ahora",sent:"Tú __________________ la verdad ahora.",ans:["estás diciendo"]},
+    {lbl:"Tú / decir / mañana",sent:"Tú __________________ la verdad mañana.",ans:["vas a decir"]},
+  ],exp:"Bu soruda decir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin/alışkanlık anlattığı için geniş zaman kullanılır. Decir fiili geniş zamanda düzensizdir. Tú çekiminde dices olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Decir fiilinin gerundio hali düzensizdir: diciendo. Burada e → i değişimi vardır. Bu yüzden estás diciendo doğru cevaptır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: decir. Bu yüzden vas a decir doğru cevaptır."},
+  {h:"Soru 10 – Yo / tener",subs:[
+    {lbl:"Yo / tener / normalmente",sent:"Yo __________________ clase normalmente.",ans:["tengo"]},
+    {lbl:"Yo / tener / ahora",sent:"Yo __________________ una reunión ahora.",ans:["estoy teniendo"]},
+    {lbl:"Yo / tener / mañana",sent:"Yo __________________ un examen mañana.",ans:["voy a tener"]},
+  ],exp:"Bu soruda tener fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel durum anlattığı için geniş zaman kullanılır. Tener fiili geniş zamanda düzensizdir: yo tengo.\nAhora şu anda devam eden bir durumu anlattığı için estar + gerundio kullanılır. Tener fiilinin gerundio hali teniendo'dir. Bu yüzden estoy teniendo doğru cevaptır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Fiil mastar halde kalır: tener. Bu yüzden voy a tener doğru cevaptır."},
+  {h:"Soru 11 – Mi primo / venir",subs:[
+    {lbl:"Mi primo / venir / todos los viernes",sent:"Mi primo __________________ a mi casa todos los viernes.",ans:["viene"]},
+    {lbl:"Mi primo / venir / ahora",sent:"Mi primo __________________ a mi casa ahora.",ans:["está viniendo"]},
+    {lbl:"Mi primo / venir / mañana",sent:"Mi primo __________________ a mi casa mañana.",ans:["va a venir"]},
+  ],exp:"Bu soruda venir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los viernes tekrar eden bir zaman ifadesi olduğu için geniş zaman kullanılır. Venir fiili geniş zamanda düzensizdir ve kök değiştirir. Mi primo üçüncü tekil şahıs olduğu için viene olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Venir fiilinin gerundio hali düzensizdir: viniendo. Burada e → i değişimi vardır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: venir. Bu yüzden va a venir doğru cevaptır."},
+  {h:"Soru 12 – Nosotros / preferir",subs:[
+    {lbl:"Nosotros / preferir / normalmente",sent:"Nosotros __________________ té normalmente.",ans:["preferimos"]},
+    {lbl:"Nosotros / preferir / ahora",sent:"Nosotros __________________ té ahora.",ans:["estamos prefiriendo"]},
+    {lbl:"Nosotros / preferir / mañana",sent:"Nosotros __________________ té mañana.",ans:["vamos a preferir"]},
+  ],exp:"Bu soruda preferir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel tercih anlattığı için geniş zaman kullanılır. Preferir fiili geniş zamanda kök değiştirir: e → ie. Ancak nosotros çekiminde bu kök değişimi olmaz. Bu yüzden preferimos doğru cevaptır.\nAhora şu anda devam eden/geçici bir tercih anlattığı için estar + gerundio kullanılır. Preferir fiilinin gerundio hali düzensizdir: prefiriendo. Burada e → i değişimi vardır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: preferir. Bu yüzden vamos a preferir doğru cevaptır."},
+  {h:"Soru 13 – Nosotros / conseguir",subs:[
+    {lbl:"Nosotros / conseguir / normalmente",sent:"Nosotros __________________ entradas normalmente.",ans:["conseguimos"]},
+    {lbl:"Nosotros / conseguir / ahora",sent:"Nosotros __________________ entradas ahora.",ans:["estamos consiguiendo"]},
+    {lbl:"Nosotros / conseguir / mañana",sent:"Nosotros __________________ entradas mañana.",ans:["vamos a conseguir"]},
+  ],exp:"Bu soruda conseguir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel durum anlattığı için geniş zaman kullanılır. Conseguir fiili geniş zamanda kök değiştirir: e → i. Ancak nosotros çekiminde bu kök değişimi olmaz. Bu yüzden conseguimos doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Conseguir fiilinin gerundio hâli düzensizdir: consiguiendo. Burada e → i değişimi vardır. Bu yüzden estamos consiguiendo doğru cevaptır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar hâlde kalır: conseguir. Nosotros öznesiyle ir fiili vamos şeklinde çekimlenir. Bu yüzden vamos a conseguir doğru cevaptır."},
+  {h:"Soru 14 – Yo / traer",subs:[
+    {lbl:"Yo / traer / siempre",sent:"Yo __________________ mi libro siempre.",ans:["traigo"]},
+    {lbl:"Yo / traer / ahora",sent:"Yo __________________ mi libro ahora.",ans:["estoy trayendo"]},
+    {lbl:"Yo / traer / mañana",sent:"Yo __________________ mi libro mañana.",ans:["voy a traer"]},
+  ],exp:"Bu soruda traer fiili üç farklı zaman ifadesiyle kullanılmıştır.\nSiempre alışkanlık anlattığı için geniş zaman kullanılır. Traer fiili geniş zamanda yo çekiminde düzensizdir: traigo.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Traer fiilinin gerundio hali düzensizdir: trayendo. Çünkü iki sesli harf arasında i, y olur.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: traer. Bu yüzden voy a traer doğru cevaptır."},
+  {h:"Soru 15 – Tú / oír",subs:[
+    {lbl:"Tú / oír / normalmente",sent:"Tú __________________ música normalmente.",ans:["oyes"]},
+    {lbl:"Tú / oír / ahora",sent:"Tú __________________ música ahora.",ans:["estás oyendo"]},
+    {lbl:"Tú / oír / esta noche",sent:"Tú __________________ música esta noche.",ans:["vas a oír"]},
+  ],exp:"Bu soruda oír fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Oír fiili geniş zamanda düzensizdir. Tú çekiminde oyes olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Oír fiilinin gerundio hali düzensizdir: oyendo. Çünkü iki sesli harf arasında i, y olur.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: oír. Bu yüzden vas a oír doğru cevaptır."},
+  {h:"Soru 16 – Nosotros / ir",subs:[
+    {lbl:"Nosotros / ir / todos los sábados",sent:"Nosotros __________________ al cine todos los sábados.",ans:["vamos"]},
+    {lbl:"Nosotros / ir / ahora",sent:"Nosotros __________________ al cine ahora.",ans:["estamos yendo"]},
+    {lbl:"Nosotros / ir / mañana",sent:"Nosotros __________________ al cine mañana.",ans:["vamos a ir"]},
+  ],exp:"Bu soruda ir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los sábados tekrar eden bir zaman ifadesi olduğu için geniş zaman kullanılır. Ir fiili geniş zamanda tamamen düzensizdir. Nosotros çekiminde vamos olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Ir fiilinin gerundio hali düzensizdir: yendo.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Burada dikkat edilmesi gereken yapı vamos a ir şeklindedir. İlk vamos, yardımcı yapı olan ir a çekimidir; ikinci ir ise mastar fiildir."},
+  {h:"Soru 17 – Yo / ponerse",subs:[
+    {lbl:"Yo / ponerse / normalmente",sent:"Yo __________________ la chaqueta normalmente.",ans:["me pongo"]},
+    {lbl:"Yo / ponerse / ahora",sent:"Yo __________________ la chaqueta ahora.",ans:["me estoy poniendo", "estoy poniéndome"]},
+    {lbl:"Yo / ponerse / mañana",sent:"Yo __________________ la chaqueta mañana.",ans:["me voy a poner", "voy a ponerme"]},
+  ],exp:"Bu soruda ponerse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Ponerse fiili geniş zamanda yo çekiminde düzensizdir: pongo. Ayrıca dönüşlü fiil olduğu için me zamiri kullanılır. Bu yüzden me pongo doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Gerundio hali poniendodur. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me estoy poniendo veya estoy poniéndome. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me voy a poner veya voy a ponerme. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 18 – Mi madre / acostarse",subs:[
+    {lbl:"Mi madre / acostarse / todos los días",sent:"Mi madre __________________ a las diez todos los días.",ans:["se acuesta"]},
+    {lbl:"Mi madre / acostarse / ahora",sent:"Mi madre __________________ ahora.",ans:["se está acostando", "está acostándose"]},
+    {lbl:"Mi madre / acostarse / esta noche",sent:"Mi madre __________________ temprano esta noche.",ans:["se va a acostar", "va a acostarse"]},
+  ],exp:"Bu soruda acostarse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin anlattığı için geniş zaman kullanılır. Acostarse fiili geniş zamanda kök değiştirir: o → ue. Mi madre üçüncü tekil şahıs olduğu için dönüşlü zamir se kullanılır. Bu yüzden se acuesta doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Gerundio hali düzenlidir: acostando. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se está acostando veya está acostándose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se va a acostar veya va a acostarse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 19 – Los estudiantes / repetir",subs:[
+    {lbl:"Los estudiantes / repetir / normalmente",sent:"Los estudiantes __________________ las palabras normalmente.",ans:["repiten"]},
+    {lbl:"Los estudiantes / repetir / ahora",sent:"Los estudiantes __________________ las palabras ahora.",ans:["están repitiendo"]},
+    {lbl:"Los estudiantes / repetir / mañana",sent:"Los estudiantes __________________ las palabras mañana.",ans:["van a repetir"]},
+  ],exp:"Bu soruda repetir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Repetir fiili geniş zamanda kök değiştirir: e → i. Bu yüzden los estudiantes repiten olur.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Repetir fiilinin gerundio hali düzensizdir: repitiendo. Burada e → i değişimi vardır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar halde kalır: repetir. Bu yüzden van a repetir doğru cevaptır."},
+  {h:"Soru 20 – Ellos / construir",subs:[
+    {lbl:"Ellos / construir / normalmente",sent:"Ellos __________________ casas normalmente.",ans:["construyen"]},
+    {lbl:"Ellos / construir / ahora",sent:"Ellos __________________ una casa ahora.",ans:["están construyendo"]},
+    {lbl:"Ellos / construir / mañana",sent:"Ellos __________________ una casa mañana.",ans:["van a construir"]},
+  ],exp:"Bu soruda construir fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel durum anlattığı için geniş zaman kullanılır. Construir fiili geniş zamanda bazı çekimlerde y alır. Ellos öznesiyle doğru çekim construyen olur. Bu yüzden construyen doğru cevaptır.\nAhora şu anda devam eden bir eylemi anlattığı için estar + gerundio kullanılır. Construir fiilinin gerundio hâli düzensizdir: construyendo. Çünkü iki sesli harf arasında i, y olur. Bu yüzden están construyendo doğru cevaptır.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Bu yapıda fiil mastar hâlde kalır: construir. Ellos öznesiyle ir fiili van şeklinde çekimlenir. Bu yüzden van a construir doğru cevaptır."},
+  {h:"Soru 21 – Yo / despertarse",subs:[
+    {lbl:"Yo / despertarse / todos los días",sent:"Yo __________________ a las siete todos los días.",ans:["me despierto"]},
+    {lbl:"Yo / despertarse / ahora",sent:"Yo __________________ ahora.",ans:["me estoy despertando", "estoy despertándome"]},
+    {lbl:"Yo / despertarse / mañana",sent:"Yo __________________ temprano mañana.",ans:["me voy a despertar", "voy a despertarme"]},
+  ],exp:"Bu soruda despertarse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin/alışkanlık anlattığı için geniş zaman kullanılır. Despertarse fiili geniş zamanda kök değiştirir: e → ie. Yo öznesiyle dönüşlü zamir me kullanılır. Bu yüzden me despierto doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Despertarse fiilinin gerundio hali düzenlidir: despertando. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me estoy despertando veya estoy despertándome. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me voy a despertar veya voy a despertarme. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 22 – Tú / lavarse",subs:[
+    {lbl:"Tú / lavarse / normalmente",sent:"Tú __________________ la cara normalmente.",ans:["te lavas"]},
+    {lbl:"Tú / lavarse / ahora",sent:"Tú __________________ la cara ahora.",ans:["te estás lavando", "estás lavándote"]},
+    {lbl:"Tú / lavarse / esta noche",sent:"Tú __________________ la cara esta noche.",ans:["te vas a lavar", "vas a lavarte"]},
+  ],exp:"Bu soruda lavarse dönüşlü fiili üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık/genel durum anlattığı için geniş zaman kullanılır. Lavarse düzenli bir fiildir. Tú öznesiyle lavar fiili lavas şeklinde çekimlenir. Fiil dönüşlü olduğu için te zamiri kullanılır. Bu yüzden te lavas doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Lavarse fiilinin gerundio hâli düzenlidir: lavando. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te estás lavando veya estás lavándote. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te vas a lavar veya vas a lavarte. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 23 – Ella / sentirse",subs:[
+    {lbl:"Ella / sentirse / normalmente",sent:"Ella __________________ bien normalmente.",ans:["se siente"]},
+    {lbl:"Ella / sentirse / ahora",sent:"Ella __________________ mal ahora.",ans:["se está sintiendo", "está sintiéndose"]},
+    {lbl:"Ella / sentirse / mañana",sent:"Ella __________________ mejor mañana.",ans:["se va a sentir", "va a sentirse"]},
+  ],exp:"Bu soruda sentirse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente genel durum/alışkanlık anlattığı için geniş zaman kullanılır. Sentirse fiili geniş zamanda kök değiştirir: e → ie. Ella üçüncü tekil şahıs olduğu için dönüşlü zamir se kullanılır. Bu yüzden se siente doğru cevaptır.\nAhora şu anda devam eden bir durum anlattığı için estar + gerundio kullanılır. Sentirse fiilinin gerundio hali düzensizdir: sintiendo. Burada e → i değişimi vardır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se está sintiendo veya está sintiéndose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek durum/beklenti anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se va a sentir veya va a sentirse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 24 – Nosotros / acostarse",subs:[
+    {lbl:"Nosotros / acostarse / todos los días",sent:"Nosotros __________________ a las once todos los días.",ans:["nos acostamos"]},
+    {lbl:"Nosotros / acostarse / ahora",sent:"Nosotros __________________ ahora.",ans:["nos estamos acostando", "estamos acostándonos"]},
+    {lbl:"Nosotros / acostarse / esta noche",sent:"Nosotros __________________ temprano esta noche.",ans:["nos vamos a acostar", "vamos a acostarnos"]},
+  ],exp:"Bu soruda acostarse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nTodos los días rutin/alışkanlık anlattığı için geniş zaman kullanılır. Acostarse fiili geniş zamanda kök değiştirir: o → ue. Ancak nosotros çekiminde bu kök değişimi olmaz. Bu yüzden nos acostamos doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Acostarse fiilinin gerundio hali düzenlidir: acostando. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: nos estamos acostando veya estamos acostándonos. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: nos vamos a acostar veya vamos a acostarnos. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 25 – Los niños / dormirse",subs:[
+    {lbl:"Los niños / dormirse / normalmente",sent:"Los niños __________________ temprano normalmente.",ans:["se duermen"]},
+    {lbl:"Los niños / dormirse / ahora",sent:"Los niños __________________ ahora.",ans:["se están durmiendo", "están durmiéndose"]},
+    {lbl:"Los niños / dormirse / más tarde",sent:"Los niños __________________ más tarde.",ans:["se van a dormir", "van a dormirse"]},
+  ],exp:"Bu soruda dormirse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Dormirse fiili geniş zamanda kök değiştirir: o → ue. Los niños üçüncü çoğul şahıs olduğu için dönüşlü zamir se kullanılır. Bu yüzden se duermen doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Dormirse fiilinin gerundio hali düzensizdir: durmiendo. Burada o → u değişimi vardır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se están durmiendo veya están durmiéndose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMás tarde gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se van a dormir veya van a dormirse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 26 – Yo / ponerse (siempre)",subs:[
+    {lbl:"Yo / ponerse / siempre",sent:"Yo __________________ la chaqueta siempre.",ans:["me pongo"]},
+    {lbl:"Yo / ponerse / ahora",sent:"Yo __________________ la chaqueta ahora.",ans:["me estoy poniendo", "estoy poniéndome"]},
+    {lbl:"Yo / ponerse / mañana",sent:"Yo __________________ la chaqueta mañana.",ans:["me voy a poner", "voy a ponerme"]},
+  ],exp:"Bu soruda ponerse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nSiempre alışkanlık anlattığı için geniş zaman kullanılır. Ponerse fiili geniş zamanda yo çekiminde düzensizdir: pongo. Fiil dönüşlü olduğu için yo öznesiyle dönüşlü zamir me kullanılır. Bu yüzden me pongo doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Ponerse fiilinin gerundio hali poniendodur. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me estoy poniendo veya estoy poniéndome. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: me voy a poner veya voy a ponerme. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 27 – Tú / caerse",subs:[
+    {lbl:"Tú / caerse / a veces",sent:"Tú __________________ a veces.",ans:["te caes"]},
+    {lbl:"Tú / caerse / ahora",sent:"Tú __________________ ahora.",ans:["te estás cayendo", "estás cayéndote"]},
+    {lbl:"Tú / caerse / mañana",sent:"Tú __________________ si no tienes cuidado mañana.",ans:["te vas a caer", "vas a caerte"]},
+  ],exp:"Bu soruda caerse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nA veces tekrar eden bir durum anlattığı için geniş zaman kullanılır. Caerse fiili geniş zamanda tú çekiminde te caes olur. Bu fiil dönüşlü olduğu için te zamiri kullanılır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Caerse fiilinin gerundio hali düzensizdir: cayendo. Çünkü iki sesli harf arasında i, y olur. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te estás cayendo veya estás cayéndote. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek ihtimali anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: te vas a caer veya vas a caerte. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 28 – Ella / divertirse",subs:[
+    {lbl:"Ella / divertirse / los fines de semana",sent:"Ella __________________ los fines de semana.",ans:["se divierte"]},
+    {lbl:"Ella / divertirse / ahora",sent:"Ella __________________ ahora.",ans:["se está divirtiendo", "está divirtiéndose"]},
+    {lbl:"Ella / divertirse / esta noche",sent:"Ella __________________ esta noche.",ans:["se va a divertir", "va a divertirse"]},
+  ],exp:"Bu soruda divertirse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nLos fines de semana tekrar eden bir zaman ifadesi olduğu için geniş zaman kullanılır. Divertirse fiili geniş zamanda kök değiştirir: e → ie. Ella üçüncü tekil şahıs olduğu için dönüşlü zamir se kullanılır. Bu yüzden se divierte doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Divertirse fiilinin gerundio hali düzensizdir: divirtiendo. Burada e → i değişimi vardır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se está divirtiendo veya está divirtiéndose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nEsta noche gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se va a divertir veya va a divertirse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 29 – Nosotros / irse",subs:[
+    {lbl:"Nosotros / irse / normalmente",sent:"Nosotros __________________ temprano normalmente.",ans:["nos vamos"]},
+    {lbl:"Nosotros / irse / ahora",sent:"Nosotros __________________ ahora.",ans:["nos estamos yendo", "estamos yéndonos"]},
+    {lbl:"Nosotros / irse / mañana",sent:"Nosotros __________________ temprano mañana.",ans:["nos vamos a ir", "vamos a irnos"]},
+  ],exp:"Bu soruda irse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nNormalmente alışkanlık anlattığı için geniş zaman kullanılır. Irse fiili geniş zamanda tamamen düzensizdir. Nosotros çekiminde vamos olur. Fiil dönüşlü olduğu için nos zamiri kullanılır. Bu yüzden nos vamos doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Ir fiilinin gerundio hali düzensizdir: yendo. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: nos estamos yendo veya estamos yéndonos. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: nos vamos a ir veya vamos a irnos. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+  {h:"Soru 30 – Ustedes / despedirse",subs:[
+    {lbl:"Ustedes / despedirse / siempre",sent:"Ustedes __________________ antes de salir siempre.",ans:["se despiden"]},
+    {lbl:"Ustedes / despedirse / ahora",sent:"Ustedes __________________ ahora.",ans:["se están despidiendo", "están despidiéndose"]},
+    {lbl:"Ustedes / despedirse / mañana",sent:"Ustedes __________________ antes de salir mañana.",ans:["se van a despedir", "van a despedirse"]},
+  ],exp:"Bu soruda despedirse dönüşlü ve düzensiz bir fiil olarak üç farklı zaman ifadesiyle kullanılmıştır.\nSiempre alışkanlık anlattığı için geniş zaman kullanılır. Despedirse fiili geniş zamanda kök değiştirir: e → i. Ustedes üçüncü çoğul gibi çekimlendiği için dönüşlü zamir se kullanılır. Bu yüzden se despiden doğru cevaptır.\nAhora şu anda devam eden eylemi anlattığı için estar + gerundio kullanılır. Despedirse fiilinin gerundio hali düzensizdir: despidiendo. Burada e → i değişimi vardır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se están despidiendo veya están despidiéndose. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir.\nMañana gelecek planı anlattığı için ir a + infinitivo kullanılır. Dönüşlü fiil olduğu için dönüşlü zamir iki yerde kullanılabilir: se van a despedir veya van a despedirse. Öğrenci sadece birini yazarsa da doğru kabul edilir; iki seçeneği birden yazarsa da doğru kabul edilir."},
+];
+
+var MC=[
+  {n:31,q:"Tu hermana está en su habitación con la puerta cerrada. Tú llamas a la puerta y ella responde con una voz un poco ocupada. Escuchas el sonido de la cremallera y de la ropa. ¿Cuál de las siguientes opciones es la más adecuada para decir que ella se está vistiendo en ese preciso momento?",o:["Se está vistiendo ahora mismo, espera un momento.", "Se viste todos los días antes de desayunar.", "Se va a vestir después de ducharse.", "Normalmente se viste muy rápido por la mañana."],a:0,exp:"Doğru cevap: A\nA) Se está vistiendo ahora mismo, espera un momento.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Kız kardeşin odasında ve kapısı kapalı. Sen kapıyı çalıyorsun, o da biraz meşgul bir sesle cevap veriyor. Fermuar ve kıyafet sesi duyuyorsun. Tam o anda onun giyinmekte olduğunu söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada dikkat etmemiz gereken en önemli ifade \"en ese preciso momento\" ifadesidir. Bu ifade \"tam o anda\" anlamına gelir. Yani soru bizden bir alışkanlık, rutin ya da gelecek planı istemiyor. Soru, konuşma anında devam eden bir eylemi ifade etmemizi istiyor.\n\nBu yüzden doğru yapı estar + gerundio yapısıdır.\nSe está vistiendo ahora mismo cümlesi \"Şu anda giyiniyor\" anlamına gelir. Burada estar + gerundio kullanılmıştır:\n• está → estar fiilinin ella çekimi\n• vistiendo → vestirse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está vistiendo ahora mismo.\nveya\n• Está vistiéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden doğrudur?\nA) Se está vistiendo ahora mismo, espera un momento.\nBu cümle \"Şu anda giyiniyor, bir dakika bekle\" anlamına gelir. Buradaki ahora mismo ifadesi \"tam şu anda\" demektir. Bu ifade konuşma anında devam eden bir eylemi gösterir. Bu nedenle estar + gerundio kullanılması gerekir. Se está vistiendo yapısı da tam olarak bu anlamı verir. Bu yüzden doğru cevap A seçeneğidir.\n\nB seçeneği neden yanlıştır?\nB) Se viste todos los días antes de desayunar.\nBu cümle \"Her gün kahvaltıdan önce giyinir\" anlamına gelir. Burada todos los días ifadesi vardır. Bu ifade rutin ve alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se viste. Cümle dil bilgisi olarak doğrudur ama sorunun istediği anlamı vermez. Soru \"şu anda ne yapıyor?\" bağlamındadır; bu seçenek ise genel bir alışkanlık anlatır.\n\nC seçeneği neden yanlıştır?\nC) Se va a vestir después de ducharse.\nBu cümle \"Duş aldıktan sonra giyinecek\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se va a vestir. Bu yapı yakın gelecek planı anlatır. Yani kişi şu anda giyinmiyor, daha sonra giyinecek. Ancak soruda tam o anda kıyafet sesi duyuluyor. Bu yüzden C seçeneği uygun değildir.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se viste muy rápido por la mañana.\nBu cümle \"Normalde sabahları çok hızlı giyinir\" anlamına gelir. Burada normalmente ifadesi vardır. Bu ifade genel alışkanlık veya rutin anlatır. Bu yüzden geniş zaman kullanılmıştır: se viste. Ancak bu cümle kişinin şu anda giyinmekte olduğunu söylemez. Sadece genel bir davranıştan bahseder.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap A seçeneğidir."},
+  {n:32,q:"Estás en casa y ves a tu hermano pequeño frente al lavabo. Tiene espuma en la boca y sostiene su cepillo de dientes. Tu madre pregunta: \"¿Qué está haciendo ahora?\". ¿Cuál de las siguientes opciones es la más adecuada para responder que se está cepillando los dientes en ese preciso momento?",o:["Se cepilla los dientes todos los días después de comer.", "Se va a cepillar los dientes antes de dormir.", "Se está cepillando los dientes ahora mismo.", "Normalmente se cepilla los dientes con pasta de menta."],a:2,exp:"Doğru cevap: C\nC) Se está cepillando los dientes ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Evdesin ve küçük kardeşini lavabonun önünde görüyorsun. Ağzında köpük var ve diş fırçasını tutuyor. Annen 'Şu anda ne yapıyor?' diye soruyor. Tam o anda dişlerini fırçaladığını söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada dikkat etmemiz gereken en önemli ifade \"ahora\" ve \"en ese preciso momento\" anlamıdır. Soru, kişinin genel olarak ne yaptığını değil, şu anda ne yapmakta olduğunu soruyor.\n\nBu yüzden doğru yapı estar + gerundio yapısıdır.\nSe está cepillando los dientes ahora mismo cümlesi \"Şu anda dişlerini fırçalıyor\" anlamına gelir. Burada estar + gerundio kullanılmıştır:\n• está → estar fiilinin él çekimi\n• cepillando → cepillarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está cepillando los dientes ahora mismo.\nveya\n• Está cepillándose los dientes ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se cepilla los dientes todos los días después de comer.\nBu cümle \"Her gün yemekten sonra dişlerini fırçalar\" anlamına gelir. Burada todos los días ifadesi vardır. Bu ifade rutin ve alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se cepilla. Ancak soru şu anda devam eden bir eylemi sormaktadır.\n\nB seçeneği neden yanlıştır?\nB) Se va a cepillar los dientes antes de dormir.\nBu cümle \"Uyumadan önce dişlerini fırçalayacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se va a cepillar. Bu yapı gelecek planı anlatır. Fakat sorudaki çocuk zaten lavabonun önünde, ağzında köpük var ve eylem şu anda devam ediyor.\n\nC seçeneği neden doğrudur?\nC) Se está cepillando los dientes ahora mismo.\nBu cümle \"Şu anda dişlerini fırçalıyor\" anlamına gelir. Buradaki ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle estar + gerundio kullanılması gerekir. Se está cepillando yapısı doğru ve bağlama uygundur.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se cepilla los dientes con pasta de menta.\nBu cümle \"Normalde dişlerini naneli diş macunuyla fırçalar\" anlamına gelir. Burada normalmente ifadesi rutin anlatır. Cümle kişinin genel alışkanlığını açıklar, şu anda ne yaptığını söylemez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap C seçeneğidir."},
+  {n:33,q:"Tu amiga está en el sofá con una manta. Sus ojos se cierran poco a poco y casi no responde a tus preguntas. Tú quieres decir que ella se está durmiendo en este momento. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se duerme temprano todos los días.", "Se va a dormir dentro de media hora.", "Normalmente se duerme viendo series.", "Se está durmiendo ahora mismo."],a:3,exp:"Doğru cevap: D\nD) Se está durmiendo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Arkadaşın kanepede battaniyeyle oturuyor. Gözleri yavaş yavaş kapanıyor ve sorularına neredeyse cevap vermiyor. Onun şu anda uykuya dalmakta olduğunu söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada durum açıkça konuşma anında devam eden bir eylemi gösteriyor. Kişi henüz tamamen uyumamış ama uykuya dalma süreci devam ediyor. Bu nedenle estar + gerundio kullanılır.\n\nSe está durmiendo ahora mismo cümlesi \"Şu anda uykuya dalıyor\" anlamına gelir. Burada dormirse dönüşlü fiildir ve aynı zamanda düzensizdir:\n• está → estar fiilinin ella çekimi\n• durmiendo → dormirse fiilinin düzensiz gerundio hâli\n• se → dönüşlü zamir\n\nDormir / dormirse fiilinde gerundio yapılırken o → u değişimi olur:\ndormir → durmiendo\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está durmiendo ahora mismo.\nveya\n• Está durmiéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se duerme temprano todos los días.\nBu cümle \"Her gün erken uyur / uykuya dalar\" anlamına gelir. Burada todos los días ifadesi rutin anlatır. Geniş zaman kullanılmıştır: se duerme. Ancak soru, o anda devam eden uykuya dalma sürecini anlatmak istiyor.\n\nB seçeneği neden yanlıştır?\nB) Se va a dormir dentro de media hora.\nBu cümle \"Yarım saat içinde uyuyacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se va a dormir. Bu yapı gelecek planı anlatır. Ama soruda kişinin gözleri şu anda kapanıyor; eylem başlamış durumda.\n\nC seçeneği neden yanlıştır?\nC) Normalmente se duerme viendo series.\nBu cümle \"Normalde dizi izlerken uykuya dalar\" anlamına gelir. Burada normalmente genel bir alışkanlık anlatır. Bu cevap, kişinin şu anda uykuya dalmakta olduğunu söylemez.\n\nD seçeneği neden doğrudur?\nD) Se está durmiendo ahora mismo.\nBu cümle \"Şu anda uykuya dalıyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden bir eylemi gösterir. Ayrıca durmiendo gerundio hâli düzensizdir. Bu yüzden doğru cevap D seçeneğidir.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap D seçeneğidir."},
+  {n:34,q:"Estás esperando a tu primo para salir. Lo ves delante del espejo con un peine en la mano. Está arreglando su pelo mientras tú lo miras. ¿Cuál de las siguientes opciones es la más adecuada para decir que se está peinando en ese preciso momento?",o:["Se peina todas las mañanas antes de salir.", "Se está peinando ahora mismo delante del espejo.", "Se va a peinar cuando termine de vestirse.", "Normalmente se peina muy rápido."],a:1,exp:"Doğru cevap: B\nB) Se está peinando ahora mismo delante del espejo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Dışarı çıkmak için kuzenini bekliyorsun. Onu aynanın önünde, elinde tarakla görüyorsun. Sen ona bakarken saçını düzeltiyor. Tam o anda saçını taradığını söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada kişi aynanın önünde ve elinde tarak var. Eylem konuşma anında devam ediyor. Bu yüzden doğru yapı estar + gerundio yapısıdır.\n\nSe está peinando ahora mismo delante del espejo cümlesi \"Şu anda aynanın önünde saçını tarıyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• peinando → peinarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está peinando ahora mismo.\nveya\n• Está peinándose ahora mismo.\nİkisi de doğrudur. Bu soruda B seçeneğinde dönüşlü zamir yardımcı fiilin önüne alınmıştır.\n\nA seçeneği neden yanlıştır?\nA) Se peina todas las mañanas antes de salir.\nBu cümle \"Her sabah dışarı çıkmadan önce saçını tarar\" anlamına gelir. Todas las mañanas alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se peina. Ancak soru şu anda devam eden eylemi istemektedir.\n\nB seçeneği neden doğrudur?\nB) Se está peinando ahora mismo delante del espejo.\nBu cümle \"Şu anda aynanın önünde saçını tarıyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Bu nedenle estar + gerundio kullanılması gerekir.\n\nC seçeneği neden yanlıştır?\nC) Se va a peinar cuando termine de vestirse.\nBu cümle \"Giyinmeyi bitirdiğinde saçını tarayacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se va a peinar. Bu yapı gelecek planı anlatır. Ama soruda kişi şu anda saçını tarıyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se peina muy rápido.\nBu cümle \"Normalde çok hızlı saçını tarar\" anlamına gelir. Normalmente rutin veya alışkanlık belirtir. Soru ise genel alışkanlığı değil, o anda devam eden eylemi soruyor.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap B seçeneğidir."},
+  {n:35,q:"Tu padre está en el baño. Escuchas el sonido de una máquina de afeitar y, cuando miras por la puerta entreabierta, ves espuma en su cara. ¿Cuál de las siguientes opciones es la más adecuada para decir que se está afeitando en ese preciso momento?",o:["Se está afeitando ahora mismo en el baño.", "Se afeita todos los domingos por la mañana.", "Se va a afeitar antes de ir al trabajo.", "Normalmente se afeita con cuidado."],a:0,exp:"Doğru cevap: A\nA) Se está afeitando ahora mismo en el baño.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Baban banyoda. Tıraş makinesinin sesini duyuyorsun ve aralık kapıdan baktığında yüzünde köpük görüyorsun. Tam o anda tıraş olduğunu söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu durumda eylem konuşma anında devam ediyor. Kişinin yüzünde köpük var ve tıraş makinesi sesi duyuluyor. Bu yüzden estar + gerundio kullanılır.\n\nSe está afeitando ahora mismo en el baño cümlesi \"Şu anda banyoda tıraş oluyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• afeitando → afeitarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está afeitando ahora mismo.\nveya\n• Está afeitándose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden doğrudur?\nA) Se está afeitando ahora mismo en el baño.\nBu cümle \"Şu anda banyoda tıraş oluyor\" anlamına gelir. Ahora mismo ifadesi eylemin tam konuşma anında devam ettiğini gösterir. Bu nedenle A seçeneği doğru cevaptır.\n\nB seçeneği neden yanlıştır?\nB) Se afeita todos los domingos por la mañana.\nBu cümle \"Her pazar sabahı tıraş olur\" anlamına gelir. Todos los domingos tekrar eden alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se afeita. Ancak soruda şu anda devam eden eylem isteniyor.\n\nC seçeneği neden yanlıştır?\nC) Se va a afeitar antes de ir al trabajo.\nBu cümle \"İşe gitmeden önce tıraş olacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır. Bu, gelecek planı anlatır. Ama soruda kişi zaten şu anda banyoda tıraş oluyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se afeita con cuidado.\nBu cümle \"Normalde dikkatli tıraş olur\" anlamına gelir. Bu seçenek kişinin genel alışkanlığını anlatır, şu anda tıraş olduğunu göstermez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap A seçeneğidir."},
+  {n:36,q:"Estás esperando a tus amigos en la entrada del edificio. Los ves con las mochilas en la espalda y las llaves en la mano. Están saliendo de casa justo en este momento. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se van todos los días a las ocho.", "Se van a ir después de comer.", "Se están yendo ahora mismo.", "Normalmente se van temprano."],a:2,exp:"Doğru cevap: C\nC) Se están yendo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Binanın girişinde arkadaşlarını bekliyorsun. Onları sırtlarında çantalar ve ellerinde anahtarlarla görüyorsun. Tam şu anda evden çıkıyorlar / ayrılıyorlar. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem tam konuşma anında devam ediyor. Arkadaşların şu anda evden ayrılma sürecinde. Bu yüzden estar + gerundio yapısı gerekir.\n\nSe están yendo ahora mismo cümlesi \"Şu anda gidiyorlar / ayrılıyorlar\" anlamına gelir. Burada:\n• están → estar fiilinin ellos çekimi\n• yendo → ir fiilinin düzensiz gerundio hâli\n• se → irse fiilinin dönüşlü zamiri\n\nIrse dönüşlü ve düzensiz bir fiildir. Gerundio hâli iendo değil, yendo olur.\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se están yendo ahora mismo.\nveya\n• Están yéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se van todos los días a las ocho.\nBu cümle \"Her gün saat sekizde giderler / ayrılırlar\" anlamına gelir. Todos los días rutin anlatır. Geniş zaman kullanılmıştır: se van. Ama soru, şu anda gerçekleşen bir eylemi soruyor.\n\nB seçeneği neden yanlıştır?\nB) Se van a ir después de comer.\nBu cümle \"Yemekten sonra gidecekler / ayrılacaklar\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se van a ir. Bu gelecek planı anlatır. Ama soruda kişiler zaten şu anda çıkıyor.\n\nC seçeneği neden doğrudur?\nC) Se están yendo ahora mismo.\nBu cümle \"Şu anda gidiyorlar / ayrılıyorlar\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle doğru cevap C seçeneğidir.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se van temprano.\nBu cümle \"Normalde erken giderler / ayrılırlar\" anlamına gelir. Normalmente genel alışkanlık anlatır. Bu cümle şu anda ne yaptıklarını söylemez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap C seçeneğidir."},
+  {n:37,q:"Estás hablando con tu prima por videollamada. Ella está frente al espejo, tiene maquillaje en la mano y está aplicándolo en su cara mientras habla contigo. ¿Cuál de las siguientes opciones es la más adecuada para decir que se está maquillando en ese preciso momento?",o:["Se maquilla normalmente antes de salir.", "Se está maquillando ahora mismo.", "Se va a maquillar dentro de diez minutos.", "Se maquilla todos los días por la mañana."],a:1,exp:"Doğru cevap: B\nB) Se está maquillando ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Kuzeninle görüntülü konuşuyorsun. O aynanın önünde, elinde makyaj malzemesi var ve seninle konuşurken yüzüne makyaj yapıyor. Tam o anda makyaj yaptığını söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu soruda eylem konuşma sırasında devam ediyor. Yani kişi o anda makyaj yapma eyleminin içindedir. Bu nedenle estar + gerundio yapısı gerekir.\n\nSe está maquillando ahora mismo cümlesi \"Şu anda makyaj yapıyor\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• maquillando → maquillarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está maquillando ahora mismo.\nveya\n• Está maquillándose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se maquilla normalmente antes de salir.\nBu cümle \"Normalde dışarı çıkmadan önce makyaj yapar\" anlamına gelir. Normalmente alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se maquilla. Ama soru şu anda devam eden eylemi soruyor.\n\nB seçeneği neden doğrudur?\nB) Se está maquillando ahora mismo.\nBu cümle \"Şu anda makyaj yapıyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle doğru yapı estar + gerundiodur.\n\nC seçeneği neden yanlıştır?\nC) Se va a maquillar dentro de diez minutos.\nBu cümle \"On dakika içinde makyaj yapacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve yakın gelecek planı anlatır. Fakat soruda kişi zaten makyaj yapıyor.\n\nD seçeneği neden yanlıştır?\nD) Se maquilla todos los días por la mañana.\nBu cümle \"Her gün sabahları makyaj yapar\" anlamına gelir. Todos los días rutin anlatır. Bu seçenek doğru bağlamı vermez çünkü şu anda devam eden eylemi anlatmaz.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap B seçeneğidir."},
+  {n:38,q:"Tu hermano está muy nervioso porque tiene un examen importante. Lo ves respirando rápido, caminando por la habitación y repitiendo: \"No estoy tranquilo\". Quieres decir que se está sintiendo nervioso ahora mismo. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se está sintiendo nervioso ahora mismo.", "Se siente nervioso antes de cada examen.", "Se va a sentir nervioso mañana.", "Normalmente se siente tranquilo en clase."],a:0,exp:"Doğru cevap: A\nA) Se está sintiendo nervioso ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Kardeşin önemli bir sınavı olduğu için çok gergin. Onu hızlı hızlı nefes alırken, odada yürürken ve 'Sakin değilim' derken görüyorsun. Onun şu anda kendini gergin hissettiğini söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada anlatılan durum o anda yaşanan bir duygudur. Kişi şu anda gerginlik hissediyor. Bu yüzden estar + gerundio yapısı kullanılabilir.\n\nSe está sintiendo nervioso ahora mismo cümlesi \"Şu anda kendini gergin hissediyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• sintiendo → sentirse fiilinin düzensiz gerundio hâli\n• se → dönüşlü zamir\n\nSentirse dönüşlü ve düzensiz bir fiildir. Gerundio hâlinde e → i değişimi olur:\nsentir → sintiendo\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está sintiendo nervioso ahora mismo.\nveya\n• Está sintiéndose nervioso ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden doğrudur?\nA) Se está sintiendo nervioso ahora mismo.\nBu cümle \"Şu anda kendini gergin hissediyor\" anlamına gelir. Ahora mismo ifadesi o anda devam eden durumu gösterir. Bu yüzden A seçeneği doğrudur.\n\nB seçeneği neden yanlıştır?\nB) Se siente nervioso antes de cada examen.\nBu cümle \"Her sınavdan önce kendini gergin hisseder\" anlamına gelir. Burada genel bir durum ve alışkanlık vardır. Geniş zaman kullanılmıştır: se siente. Ancak soru şu anda yaşanan duyguyu soruyor.\n\nC seçeneği neden yanlıştır?\nC) Se va a sentir nervioso mañana.\nBu cümle \"Yarın kendini gergin hissedecek\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek durum anlatır. Ama soruda gerginlik şu anda yaşanmaktadır.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se siente tranquilo en clase.\nBu cümle \"Normalde derste kendini sakin hisseder\" anlamına gelir. Normalmente genel bir alışkanlık veya durum anlatır. Ayrıca anlam olarak sorudaki \"gerginlik\" durumuyla da uyuşmaz.\n\nSonuç olarak, soru \"tam o anda devam eden durum\" sorduğu için doğru cevap A seçeneğidir."},
+  {n:39,q:"Estás en una fiesta y ves a tus amigos riendo, bailando y jugando juntos. La música está sonando y todos parecen muy felices en ese momento. ¿Cuál de las siguientes opciones es la más adecuada para decir que se están divirtiendo ahora mismo?",o:["Se divierten todos los fines de semana.", "Se van a divertir en la fiesta de mañana.", "Normalmente se divierten mucho juntos.", "Se están divirtiendo ahora mismo."],a:3,exp:"Doğru cevap: D\nD) Se están divirtiendo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Bir partidesin ve arkadaşlarını gülerken, dans ederken ve birlikte oyun oynarken görüyorsun. Müzik çalıyor ve herkes o anda çok mutlu görünüyor. Onların şu anda eğlendiklerini söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem ve durum tam konuşma anında devam ediyor. Arkadaşlar şu anda eğleniyorlar. Bu nedenle estar + gerundio yapısı kullanılır.\n\nSe están divirtiendo ahora mismo cümlesi \"Şu anda eğleniyorlar\" anlamına gelir. Burada:\n• están → estar fiilinin ellos çekimi\n• divirtiendo → divertirse fiilinin düzensiz gerundio hâli\n• se → dönüşlü zamir\n\nDivertirse dönüşlü ve düzensiz bir fiildir. Gerundio hâlinde e → i değişimi olur:\ndivertir → divirtiendo\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se están divirtiendo ahora mismo.\nveya\n• Están divirtiéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se divierten todos los fines de semana.\nBu cümle \"Her hafta sonu eğlenirler\" anlamına gelir. Todos los fines de semana tekrar eden bir alışkanlık anlatır. Bu yüzden geniş zaman kullanılmıştır: se divierten. Ama soru şu anda devam eden eğlenme durumunu istemektedir.\n\nB seçeneği neden yanlıştır?\nB) Se van a divertir en la fiesta de mañana.\nBu cümle \"Yarınki partide eğlenecekler\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se van a divertir. Bu gelecek planı anlatır. Ancak soruda parti şu anda devam ediyor.\n\nC seçeneği neden yanlıştır?\nC) Normalmente se divierten mucho juntos.\nBu cümle \"Normalde birlikte çok eğlenirler\" anlamına gelir. Normalmente genel alışkanlık anlatır. Cümle doğru olabilir ama o anda ne olduğunu anlatmaz.\n\nD seçeneği neden doğrudur?\nD) Se están divirtiendo ahora mismo.\nBu cümle \"Şu anda eğleniyorlar\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle doğru cevap D seçeneğidir.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap D seçeneğidir."},
+  {n:40,q:"Estás en la cocina y ves a tu madre con una toalla en la cabeza. Acaba de lavarse el pelo y en este momento usa el secador frente al espejo. ¿Cuál de las siguientes opciones es la más adecuada para decir que se está secando el pelo ahora mismo?",o:["Se seca el pelo todos los días después de ducharse.", "Se va a secar el pelo después de desayunar.", "Se está secando el pelo ahora mismo.", "Normalmente se seca el pelo en el baño."],a:2,exp:"Doğru cevap: C\nC) Se está secando el pelo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Mutfaktasın ve anneni başında havluyla görüyorsun. Az önce saçını yıkamış ve şu anda aynanın karşısında saç kurutma makinesini kullanıyor. Şu anda saçını kuruttuğunu söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu durumda eylem açıkça konuşma anında devam ediyor. Saç kurutma makinesi kullanılıyor ve kişi şu anda saçını kurutuyor. Bu yüzden estar + gerundio kullanılır.\n\nSe está secando el pelo ahora mismo cümlesi \"Şu anda saçını kurutuyor\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• secando → secarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está secando el pelo ahora mismo.\nveya\n• Está secándose el pelo ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se seca el pelo todos los días después de ducharse.\nBu cümle \"Her gün duş aldıktan sonra saçını kurutur\" anlamına gelir. Todos los días rutin anlatır. Bu yüzden geniş zaman kullanılmıştır: se seca. Ancak soru o anda devam eden eylemi istemektedir.\n\nB seçeneği neden yanlıştır?\nB) Se va a secar el pelo después de desayunar.\nBu cümle \"Kahvaltıdan sonra saçını kurutacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır: se va a secar. Bu gelecek planı anlatır. Ama soruda kişi şu anda saç kurutma makinesini kullanıyor.\n\nC seçeneği neden doğrudur?\nC) Se está secando el pelo ahora mismo.\nBu cümle \"Şu anda saçını kurutuyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle doğru cevap C seçeneğidir.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se seca el pelo en el baño.\nBu cümle \"Normalde saçını banyoda kurutur\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda ne yaptığını söylemez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap C seçeneğidir."},
+  {n:41,q:"Tu amigo está delante de la puerta de casa con un abrigo en la mano. Hace frío afuera y él está metiendo los brazos en las mangas mientras habla contigo. ¿Cuál de las siguientes opciones es la más adecuada para decir que se está poniendo el abrigo en ese preciso momento?",o:["Se pone el abrigo cuando hace frío.", "Se va a poner el abrigo antes de salir.", "Se está poniendo el abrigo ahora mismo.", "Normalmente se pone el abrigo en invierno."],a:2,exp:"Doğru cevap: C\nC) Se está poniendo el abrigo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Arkadaşın evin kapısının önünde elinde paltoyla duruyor. Dışarısı soğuk ve seninle konuşurken kollarını paltonun kollarına geçiriyor. Tam o anda paltoyu giydiğini söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem konuşma anında gerçekleşiyor. Kişi paltoyu giymeye başlamış ve hâlâ giyme sürecinde. Bu yüzden estar + gerundio kullanılır.\n\nSe está poniendo el abrigo ahora mismo cümlesi \"Şu anda paltoyu giyiyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• poniendo → ponerse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está poniendo el abrigo ahora mismo.\nveya\n• Está poniéndose el abrigo ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se pone el abrigo cuando hace frío.\nBu cümle \"Hava soğuk olduğunda palto giyer\" anlamına gelir. Bu genel bir alışkanlık veya genel durumdur. Geniş zaman kullanılmıştır: se pone. Ancak soru şu anda devam eden eylemi istiyor.\n\nB seçeneği neden yanlıştır?\nB) Se va a poner el abrigo antes de salir.\nBu cümle \"Dışarı çıkmadan önce palto giyecek\" anlamına gelir. Burada ir a + infinitivo yapısı vardır. Bu gelecek planı anlatır. Ama soruda kişi zaten paltoyu giymektedir.\n\nC seçeneği neden doğrudur?\nC) Se está poniendo el abrigo ahora mismo.\nBu cümle \"Şu anda paltoyu giyiyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu nedenle doğru cevap C seçeneğidir.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se pone el abrigo en invierno.\nBu cümle \"Normalde kışın palto giyer\" anlamına gelir. Normalmente rutin anlatır. Ancak kişinin şu anda ne yaptığını ifade etmez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap C seçeneğidir."},
+  {n:42,q:"Estás en el parque con tu hermana pequeña. Ella corre muy rápido, tropieza con una piedra y en ese instante pierde el equilibrio. Quieres decir que se está cayendo justo ahora. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se cae a veces cuando corre.", "Se está cayendo ahora mismo.", "Se va a caer si no tiene cuidado mañana.", "Normalmente se cae en el parque."],a:1,exp:"Doğru cevap: B\nB) Se está cayendo ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Küçük kız kardeşinle parktasın. O çok hızlı koşuyor, bir taşa takılıyor ve o anda dengesini kaybediyor. Onun tam şu anda düşmekte olduğunu söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem konuşma anında gerçekleşen bir süreçtir. Kişi henüz yere düşmüş olmak zorunda değil; düşme hareketi devam ediyor. Bu nedenle estar + gerundio yapısı kullanılır.\n\nSe está cayendo ahora mismo cümlesi \"Şu anda düşüyor / düşmek üzere\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• cayendo → caerse fiilinin düzensiz gerundio hâli\n• se → dönüşlü zamir\n\nCaerse dönüşlü ve gerundio açısından düzensizdir. Çünkü caer → cayendo olur; iki sesli harf arasında i, y olur.\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está cayendo ahora mismo.\nveya\n• Está cayéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se cae a veces cuando corre.\nBu cümle \"Koşarken bazen düşer\" anlamına gelir. A veces tekrar eden bir durum anlatır. Geniş zaman kullanılmıştır: se cae. Ancak soru o anda gerçekleşen düşme eylemini anlatmak istiyor.\n\nB seçeneği neden doğrudur?\nB) Se está cayendo ahora mismo.\nBu cümle \"Şu anda düşüyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu yüzden doğru cevap B seçeneğidir.\n\nC seçeneği neden yanlıştır?\nC) Se va a caer si no tiene cuidado mañana.\nBu cümle \"Yarın dikkatli olmazsa düşecek\" anlamına gelir. Burada ir a + infinitivo yapısı gelecek ihtimali anlatır. Ama soruda düşme durumu şu anda gerçekleşiyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se cae en el parque.\nBu cümle \"Normalde parkta düşer\" anlamına gelir. Normalmente genel alışkanlık veya tekrar eden durum anlatır. Bu cümle o anda devam eden eylemi anlatmaz.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap B seçeneğidir."},
+  {n:43,q:"Estás en una videollamada con tu amiga. Ella está sentada en la cama, tiene el pijama puesto y está apagando la luz mientras bosteza. Quieres decir que se está acostando en ese preciso momento. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se está acostando ahora mismo.", "Se acuesta todos los días a las once.", "Se va a acostar después de leer.", "Normalmente se acuesta temprano."],a:0,exp:"Doğru cevap: A\nA) Se está acostando ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Arkadaşınla görüntülü konuşuyorsun. O yatağın üzerinde oturuyor, pijamasını giymiş ve esnerken ışığı kapatıyor. Tam o anda yatmakta olduğunu söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada kişi yatmaya hazırlanma ve yatağa gitme eylemini şu anda yapıyor. Bu eylem konuşma anında devam ettiği için estar + gerundio kullanılır.\n\nSe está acostando ahora mismo cümlesi \"Şu anda yatıyor / yatağa giriyor\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• acostando → acostarse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nAcostarse geniş zamanda kök değiştirir: o → ue. Ancak gerundio hâli düzenlidir: acostando.\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está acostando ahora mismo.\nveya\n• Está acostándose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden doğrudur?\nA) Se está acostando ahora mismo.\nBu cümle \"Şu anda yatıyor / yatağa giriyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Bu nedenle A seçeneği doğrudur.\n\nB seçeneği neden yanlıştır?\nB) Se acuesta todos los días a las once.\nBu cümle \"Her gün saat on birde yatar\" anlamına gelir. Todos los días rutin anlatır. Geniş zaman kullanılmıştır: se acuesta. Ancak soru şu andaki eylemi istemektedir.\n\nC seçeneği neden yanlıştır?\nC) Se va a acostar después de leer.\nBu cümle \"Okuduktan sonra yatacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır. Bu gelecek planı anlatır. Ancak soruda kişi şu anda ışığı kapatıyor ve yatma eylemi devam ediyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se acuesta temprano.\nBu cümle \"Normalde erken yatar\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda yatıyor anlamını vermez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap A seçeneğidir."},
+  {n:44,q:"Estás en una excursión con tus compañeros. De repente empieza a llover y ves que todos sacan sus chaquetas de la mochila y se las colocan mientras caminan. ¿Cuál de las siguientes opciones es la más adecuada para decir que se están poniendo las chaquetas ahora mismo?",o:["Se ponen las chaquetas cuando llueve.", "Se van a poner las chaquetas más tarde.", "Normalmente se ponen chaquetas en invierno.", "Se están poniendo las chaquetas ahora mismo."],a:3,exp:"Doğru cevap: D\nD) Se están poniendo las chaquetas ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Sınıf arkadaşlarınla bir gezidesin. Birden yağmur başlıyor ve herkesin çantasından ceketlerini çıkarıp yürürken üzerlerine geçirdiğini görüyorsun. Şu anda ceketlerini giydiklerini söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem tam konuşma anında devam ediyor. Kişiler ceketlerini giymeye başlamış ve hâlâ o eylemi yapıyorlar. Bu nedenle estar + gerundio gerekir.\n\nSe están poniendo las chaquetas ahora mismo cümlesi \"Şu anda ceketlerini giyiyorlar\" anlamına gelir. Burada:\n• están → estar fiilinin ellos/ellas çekimi\n• poniendo → ponerse fiilinin gerundio hâli\n• se → dönüşlü zamir\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se están poniendo las chaquetas ahora mismo.\nveya\n• Están poniéndose las chaquetas ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden yanlıştır?\nA) Se ponen las chaquetas cuando llueve.\nBu cümle \"Yağmur yağdığında ceketlerini giyerler\" anlamına gelir. Bu genel bir alışkanlık veya genel durumdur. Geniş zaman kullanılmıştır: se ponen. Ancak soru şu anda devam eden eylemi sorar.\n\nB seçeneği neden yanlıştır?\nB) Se van a poner las chaquetas más tarde.\nBu cümle \"Ceketlerini daha sonra giyecekler\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek planı anlatır. Ama soruda kişiler ceketlerini şu anda giyiyorlar.\n\nC seçeneği neden yanlıştır?\nC) Normalmente se ponen chaquetas en invierno.\nBu cümle \"Normalde kışın ceket giyerler\" anlamına gelir. Normalmente alışkanlık anlatır. Şu andaki eylemi ifade etmez.\n\nD seçeneği neden doğrudur?\nD) Se están poniendo las chaquetas ahora mismo.\nBu cümle \"Şu anda ceketlerini giyiyorlar\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Bu yüzden doğru cevap D seçeneğidir.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap D seçeneğidir."},
+  {n:45,q:"Tu profesor entra en clase y ve a los estudiantes con los cuadernos abiertos. Todos tienen bolígrafos en la mano y están copiando las instrucciones de la pizarra en ese momento. ¿Cuál de las siguientes opciones es la más adecuada para decir que están escribiendo ahora mismo?",o:["Están escribiendo las instrucciones ahora mismo.", "Escriben instrucciones todos los días.", "Van a escribir las instrucciones después del descanso.", "Normalmente escriben en sus cuadernos."],a:0,exp:"Doğru cevap: A\nA) Están escribiendo las instrucciones ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Öğretmenin sınıfa giriyor ve öğrencileri defterleri açık şekilde görüyor. Hepsinin elinde kalem var ve o anda tahtadaki yönergeleri defterlerine kopyalıyorlar. Şu anda yazdıklarını söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada öğrenciler o anda yazma eylemini yapıyorlar. Eylem konuşma anında devam ettiği için estar + gerundio kullanılır.\n\nEstán escribiendo las instrucciones ahora mismo cümlesi \"Şu anda yönergeleri yazıyorlar\" anlamına gelir. Burada:\n• están → estar fiilinin ellos çekimi\n• escribiendo → escribir fiilinin gerundio hâli\n\nBu fiil dönüşlü değildir ama gerundio yapısı konuşma anında devam eden eylemi anlatır.\n\nA seçeneği neden doğrudur?\nA) Están escribiendo las instrucciones ahora mismo.\nBu cümle \"Şu anda yönergeleri yazıyorlar\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu yüzden doğru cevap A seçeneğidir.\n\nB seçeneği neden yanlıştır?\nB) Escriben instrucciones todos los días.\nBu cümle \"Her gün yönergeler yazarlar\" anlamına gelir. Todos los días rutin anlatır. Bu yüzden geniş zaman kullanılmıştır: escriben. Ama soru şu anda gerçekleşen yazma eylemini soruyor.\n\nC seçeneği neden yanlıştır?\nC) Van a escribir las instrucciones después del descanso.\nBu cümle \"Teneffüsten sonra yönergeleri yazacaklar\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek planı anlatır. Ama soruda öğrenciler şu anda yazıyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente escriben en sus cuadernos.\nBu cümle \"Normalde defterlerine yazarlar\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda devam eden eylemi ifade etmez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap A seçeneğidir."},
+  {n:46,q:"Estás en una clase de español y tu compañera tiene un libro abierto. Sus ojos se mueven por las líneas y no te responde porque está concentrada en el texto. ¿Cuál de las siguientes opciones es la más adecuada para decir que está leyendo ahora mismo?",o:["Lee libros todos los días por la noche.", "Va a leer el texto después de clase.", "Normalmente lee muy rápido.", "Está leyendo el texto ahora mismo."],a:3,exp:"Doğru cevap: D\nD) Está leyendo el texto ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"İspanyolca dersindesin ve sınıf arkadaşının önünde açık bir kitap var. Gözleri satırlar üzerinde hareket ediyor ve sana cevap vermiyor çünkü metne odaklanmış durumda. Şu anda okuduğunu söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu soruda kişi tam konuşma anında okuma eylemini yapıyor. Bu yüzden estar + gerundio yapısı gerekir.\n\nEstá leyendo el texto ahora mismo cümlesi \"Şu anda metni okuyor\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• leyendo → leer fiilinin düzensiz gerundio hâli\n\nLeer fiilinin gerundio hâli düzensizdir:\nleer → leyendo\nÇünkü iki sesli harf arasında i, y olur.\n\nA seçeneği neden yanlıştır?\nA) Lee libros todos los días por la noche.\nBu cümle \"Her gün geceleri kitap okur\" anlamına gelir. Todos los días rutin anlatır. Geniş zaman kullanılmıştır: lee. Ancak soru şu anda yapılan eylemi soruyor.\n\nB seçeneği neden yanlıştır?\nB) Va a leer el texto después de clase.\nBu cümle \"Dersten sonra metni okuyacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek planı anlatır. Fakat soruda kişi zaten kitabı açmış ve şu anda okuyor.\n\nC seçeneği neden yanlıştır?\nC) Normalmente lee muy rápido.\nBu cümle \"Normalde çok hızlı okur\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda okuduğunu belirtmez.\n\nD seçeneği neden doğrudur?\nD) Está leyendo el texto ahora mismo.\nBu cümle \"Şu anda metni okuyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Ayrıca leyendo gerundio hâli düzensizdir. Bu yüzden doğru cevap D seçeneğidir.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap D seçeneğidir."},
+  {n:47,q:"Estás en la calle y ves a tu amiga con una bolsa pesada. Ella avanza lentamente hacia tu casa y está cada vez más cerca. Tú quieres decir que ella está viniendo ahora mismo. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Viene a mi casa todos los viernes.", "Va a venir mañana por la tarde.", "Está viniendo a mi casa ahora mismo.", "Normalmente viene en autobús."],a:2,exp:"Doğru cevap: C\nC) Está viniendo a mi casa ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Sokaktasın ve arkadaşını ağır bir çantayla görüyorsun. Yavaş yavaş senin evine doğru ilerliyor ve giderek yaklaşıyor. Onun şu anda gelmekte olduğunu söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu durumda eylem konuşma anında devam ediyor. Arkadaşın henüz tamamen gelmemiş olabilir ama gelme hareketi şu anda sürüyor. Bu yüzden estar + gerundio kullanılır.\n\nEstá viniendo a mi casa ahora mismo cümlesi \"Şu anda evime geliyor\" anlamına gelir. Burada:\n• está → estar fiilinin ella çekimi\n• viniendo → venir fiilinin düzensiz gerundio hâli\n\nVenir fiilinin gerundio hâli düzensizdir:\nvenir → viniendo\nBurada e → i değişimi vardır.\n\nA seçeneği neden yanlıştır?\nA) Viene a mi casa todos los viernes.\nBu cümle \"Her cuma evime gelir\" anlamına gelir. Todos los viernes tekrar eden alışkanlık anlatır. Geniş zaman kullanılmıştır: viene. Ancak soru şu anda devam eden gelme eylemini sorar.\n\nB seçeneği neden yanlıştır?\nB) Va a venir mañana por la tarde.\nBu cümle \"Yarın öğleden sonra gelecek\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek planı anlatır. Ama soruda kişi şu anda eve doğru geliyor.\n\nC seçeneği neden doğrudur?\nC) Está viniendo a mi casa ahora mismo.\nBu cümle \"Şu anda evime geliyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Ayrıca viniendo gerundio hâli düzensizdir. Bu yüzden doğru cevap C seçeneğidir.\n\nD seçeneği neden yanlıştır?\nD) Normalmente viene en autobús.\nBu cümle \"Normalde otobüsle gelir\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda gelmekte olduğunu ifade etmez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap C seçeneğidir."},
+  {n:48,q:"Tu hermano está en la mesa con una lista de compras. Tiene el teléfono en la mano y está diciendo los productos uno por uno a la persona de la tienda. ¿Cuál de las siguientes opciones es la más adecuada para decir que está pidiendo comida ahora mismo?",o:["Pide comida todos los sábados.", "Está pidiendo comida ahora mismo.", "Va a pedir comida esta noche.", "Normalmente pide pizza."],a:1,exp:"Doğru cevap: B\nB) Está pidiendo comida ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Kardeşin masada bir alışveriş listesiyle oturuyor. Elinde telefon var ve marketteki kişiye ürünleri tek tek söylüyor. Şu anda yemek / yiyecek sipariş ettiğini söylemek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada eylem şu anda devam ediyor. Kişi telefonla sipariş verme sürecindedir. Bu yüzden estar + gerundio kullanılır.\n\nEstá pidiendo comida ahora mismo cümlesi \"Şu anda yemek sipariş ediyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• pidiendo → pedir fiilinin düzensiz gerundio hâli\n\nPedir fiilinin gerundio hâli düzensizdir:\npedir → pidiendo\nBurada e → i değişimi vardır.\n\nA seçeneği neden yanlıştır?\nA) Pide comida todos los sábados.\nBu cümle \"Her cumartesi yemek sipariş eder\" anlamına gelir. Todos los sábados rutin anlatır. Geniş zaman kullanılmıştır: pide. Ama soru şu anda devam eden sipariş verme eylemini soruyor.\n\nB seçeneği neden doğrudur?\nB) Está pidiendo comida ahora mismo.\nBu cümle \"Şu anda yemek sipariş ediyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Ayrıca pidiendo gerundio hâli düzensizdir. Bu yüzden doğru cevap B seçeneğidir.\n\nC seçeneği neden yanlıştır?\nC) Va a pedir comida esta noche.\nBu cümle \"Bu gece yemek sipariş edecek\" anlamına gelir. Burada ir a + infinitivo yapısı gelecek planı anlatır. Ancak soruda kişi zaten telefonla sipariş veriyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente pide pizza.\nBu cümle \"Normalde pizza sipariş eder\" anlamına gelir. Normalmente genel alışkanlık anlatır. Şu anda ne yaptığını belirtmez.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap B seçeneğidir."},
+  {n:49,q:"Estás escuchando a tu profesor durante la clase. Él mira a toda la clase y explica una regla importante palabra por palabra en este momento. ¿Cuál de las siguientes opciones es la más adecuada para decir que está diciendo algo importante ahora mismo?",o:["Dice cosas importantes todos los días.", "Está diciendo algo importante ahora mismo.", "Va a decir algo importante al final de la clase.", "Normalmente dice la verdad."],a:1,exp:"Doğru cevap: B\nB) Está diciendo algo importante ahora mismo.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Derste öğretmenini dinliyorsun. O tüm sınıfa bakıyor ve şu anda önemli bir kuralı kelime kelime açıklıyor. Şu anda önemli bir şey söylediğini ifade etmek için aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBu durumda konuşma eylemi tam o anda devam etmektedir. Bu nedenle estar + gerundio yapısı gerekir.\n\nEstá diciendo algo importante ahora mismo cümlesi \"Şu anda önemli bir şey söylüyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• diciendo → decir fiilinin düzensiz gerundio hâli\n\nDecir fiilinin gerundio hâli düzensizdir:\ndecir → diciendo\nBurada e → i değişimi vardır.\n\nA seçeneği neden yanlıştır?\nA) Dice cosas importantes todos los días.\nBu cümle \"Her gün önemli şeyler söyler\" anlamına gelir. Todos los días rutin anlatır. Geniş zaman kullanılmıştır: dice. Ama soru şu anda söylediği şeyi anlatmak istiyor.\n\nB seçeneği neden doğrudur?\nB) Está diciendo algo importante ahora mismo.\nBu cümle \"Şu anda önemli bir şey söylüyor\" anlamına gelir. Ahora mismo konuşma anında devam eden eylemi gösterir. Ayrıca diciendo gerundio hâli düzensizdir. Bu yüzden doğru cevap B seçeneğidir.\n\nC seçeneği neden yanlıştır?\nC) Va a decir algo importante al final de la clase.\nBu cümle \"Dersin sonunda önemli bir şey söyleyecek\" anlamına gelir. Burada ir a + infinitivo yapısı gelecek planı anlatır. Ancak soruda öğretmen şu anda konuşuyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente dice la verdad.\nBu cümle \"Normalde doğruyu söyler\" anlamına gelir. Normalmente genel alışkanlık anlatır. Sorudaki anlık durumu karşılamaz.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap B seçeneğidir."},
+  {n:50,q:"Estás en la sala y ves a tu abuelo con el mando en la mano. La televisión está encendida, pero él cierra los ojos lentamente y deja de prestar atención al programa. Quieres decir que se está durmiendo ahora mismo. ¿Cuál de las siguientes opciones es la más adecuada?",o:["Se está durmiendo ahora mismo frente a la televisión.", "Se duerme todos los días después de comer.", "Se va a dormir en su habitación más tarde.", "Normalmente se duerme viendo la televisión."],a:0,exp:"Doğru cevap: A\nA) Se está durmiendo ahora mismo frente a la televisión.\n\nSorudaki durumun Türkçesi şöyledir:\n\"Salondasın ve dedeni elinde kumandayla görüyorsun. Televizyon açık ama o gözlerini yavaşça kapatıyor ve programa dikkat etmeyi bırakıyor. Onun şu anda televizyon karşısında uykuya dalmakta olduğunu söylemek istiyorsun. Aşağıdaki seçeneklerden hangisi en uygundur?\"\n\nBurada kişi tam konuşma anında uykuya dalma sürecindedir. Bu bir rutin ya da gelecek planı değildir. Şu anda devam eden bir durumdur. Bu yüzden estar + gerundio kullanılır.\n\nSe está durmiendo ahora mismo frente a la televisión cümlesi \"Şu anda televizyon karşısında uykuya dalıyor\" anlamına gelir. Burada:\n• está → estar fiilinin él çekimi\n• durmiendo → dormirse fiilinin düzensiz gerundio hâli\n• se → dönüşlü zamir\n\nDormirse dönüşlü ve düzensiz bir fiildir. Gerundio hâlinde o → u değişimi olur:\ndormir → durmiendo\n\nDönüşlü fiil olduğu için iki doğru kullanım mümkündür:\n• Se está durmiendo ahora mismo.\nveya\n• Está durmiéndose ahora mismo.\nİkisi de doğrudur.\n\nA seçeneği neden doğrudur?\nA) Se está durmiendo ahora mismo frente a la televisión.\nBu cümle \"Şu anda televizyon karşısında uykuya dalıyor\" anlamına gelir. Ahora mismo ifadesi konuşma anında devam eden eylemi gösterir. Bu yüzden doğru cevap A seçeneğidir.\n\nB seçeneği neden yanlıştır?\nB) Se duerme todos los días después de comer.\nBu cümle \"Her gün yemekten sonra uykuya dalar\" anlamına gelir. Todos los días rutin anlatır. Geniş zaman kullanılmıştır: se duerme. Ancak soru şu anda yaşanan durumu sormaktadır.\n\nC seçeneği neden yanlıştır?\nC) Se va a dormir en su habitación más tarde.\nBu cümle \"Daha sonra odasında uyuyacak\" anlamına gelir. Burada ir a + infinitivo yapısı vardır ve gelecek planı anlatır. Ama soruda kişi şu anda televizyon karşısında uykuya dalıyor.\n\nD seçeneği neden yanlıştır?\nD) Normalmente se duerme viendo la televisión.\nBu cümle \"Normalde televizyon izlerken uykuya dalar\" anlamına gelir. Normalmente genel alışkanlık anlatır. Anlam olarak yakın görünse de soruda istenen şey o anda devam eden eylemdir. Bu yüzden D seçeneği doğru değildir.\n\nSonuç olarak, soru \"tam o anda devam eden eylem\" sorduğu için doğru cevap A seçeneğidir."},
+];
+
+
+/* ── INIT STATE ── */
+function initState(){
+  answered=new Array(50).fill(false);
+  scores=new Array(50).fill(0);
+  myAnswers=new Array(50).fill(null);
+}
+
+function startQuiz(){
+  var n=$('nameSelect').value;
+  if(!n){alert('Lütfen adınızı seçin.');return;}
+  studentName=n;
+  initState();
+  $('introCard').classList.add('hidden');
+  $('quizCard').classList.remove('hidden');
+  cur=0;okCount=0;errCount=0;
+  renderQ();
+}
+function syncName(){studentName=$('nameSelect2').value;}
+
+/* ── RENDER ── */
+function renderQ(){
+  var i=cur;
+  $('progFill').style.width=(i/50*100)+'%';
+  $('qLabel').textContent='Soru '+(i+1)+' / 50';
+  $('cntOk').textContent='\u2713 '+okCount;
+  $('cntErr').textContent=' \u00a0\u2717 '+errCount;
+  $('btnCheck').style.display='flex';
+  $('btnCheck').disabled=false;
+  $('btnNext').style.display='none';
+  if(i<30)renderFill(i);
+  else renderMC(i-30);
+}
+
+function renderFill(i){
+  var q=FILL[i];
+  var done=answered[i];
+  var saved=myAnswers[i]||[];
+  var html='<div class="q-header">'+esc(q.h)+'</div>';
+  html+='<div class="q-instruction">Aşağıdaki cümlelerde verilen özneye, fiile ve zaman ifadesine göre boşluğu doğru şekilde tamamlayınız.<br>Geniş zaman, estar + gerundio veya ir a + infinitivo yapılarını kullanınız.</div>';
+  q.subs.forEach(function(sub,j){
+    var v=saved[j]||'';
+    var cls='';
+    if(done){cls=matchAns(v,sub.ans)?'correct':'wrong';}
+    html+='<div class="sub-item">';
+    html+='<div class="sub-label">'+esc(sub.lbl)+'</div>';
+    html+='<div class="sub-sent">'+esc(sub.sent)+'</div>';
+    html+='<input type="text" class="sub-inp '+cls+'" id="inp_'+i+'_'+j+'" value="'+esc(v)+'"'+(done?' disabled':'')+' placeholder="Cevabınızı yazın...">';
+    if(done){
+      var ok=matchAns(v,sub.ans);
+      html+='<div class="sub-ans '+(ok?'ok':'err')+'">';
+      html+=ok?'✓ Doğru':'✗ Doğru: '+esc(sub.ans.join(' veya '));
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+  html+='<div class="exp-box'+(done?' show':'')+'" id="expBox">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=html;
+  if(done){$('btnCheck').style.display='none';showNext();}
+}
+
+function renderMC(j){
+  var q=MC[j];
+  var i=j+30;
+  var done=answered[i];
+  var saved=myAnswers[i];
+  var L=['A','B','C','D'];
+  var html='<div class="mc-badge">Çoktan Seçmeli &bull; Soru '+(i+1)+'</div>';
+  html+='<div class="mc-q">'+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  q.o.forEach(function(opt,k){
+    var cls='opt-btn';
+    if(done){
+      if(k===q.a)cls+=' correct';
+      else if(k===saved&&saved!==q.a)cls+=' wrong';
+    }
+    html+='<button class="'+cls+'"'+(done?' disabled':'')+' onclick="pickMC('+k+')">';
+    html+='<span class="opt-letter">'+L[k]+')</span> '+esc(opt)+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="exp-box'+(done?' show':'')+'" id="expBox">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=html;
+  if(done){$('btnCheck').style.display='none';showNext();}
+}
+
+/* ── PICK MC (auto-check on click) ── */
+function pickMC(k){
+  var i=cur; var j=i-30;
+  if(answered[i])return;
+  var q=MC[j];
+  myAnswers[i]=k;
+  answered[i]=true;
+  if(k===q.a){okCount++;scores[i]=1;}
+  else{errCount++;scores[i]=0;}
+  // Re-render to show colors + explanation
+  renderMC(j);
+  $('btnCheck').style.display='none';
+  showNext();
+}
+
+/* ── CHECK FILL ── */
+function checkAnswer(){
+  var i=cur;
+  if(i>=30){return;} // MC handled by pickMC
+  if(answered[i])return;
+  var q=FILL[i];
+  var vals=[];
+  var qOk=0,qErr=0;
+  q.subs.forEach(function(sub,j){
+    var inp=$('inp_'+i+'_'+j);
+    var v=inp?inp.value:'';
+    vals.push(v);
+    if(matchAns(v,sub.ans)){
+      qOk++;
+      if(inp){inp.classList.add('correct');}
+    } else {
+      qErr++;
+      if(inp){inp.classList.add('wrong');}
+    }
+    if(inp)inp.disabled=true;
+    // show answer label
+    var ans=document.createElement('div');
+    ans.className='sub-ans '+(matchAns(v,sub.ans)?'ok':'err');
+    ans.textContent=matchAns(v,sub.ans)?'✓ Doğru':'✗ Doğru: '+sub.ans.join(' veya ');
+    if(inp)inp.parentNode.insertBefore(ans,inp.nextSibling);
+  });
+  myAnswers[i]=vals;
+  answered[i]=true;
+  // score: all 3 correct = 1 point (×2 pts); partial = 0
+  // Actually: each sub = 0.67pt → total per question ≈ 2pts
+  // We track how many subs correct; score[i] = correct subs out of 3
+  if(qOk===3){okCount++;scores[i]=1;}
+  else if(qErr===3){errCount++;scores[i]=0;}
+  else{
+    // partial: count as wrong for ok/err display but calculate score properly
+    errCount++;scores[i]=qOk/3;
+  }
+  // show explanation
+  var eb=$('expBox');
+  if(eb)eb.classList.add('show');
+  $('btnCheck').style.display='none';
+  showNext();
+}
+
+function showNext(){
+  if(cur<49){
+    $('btnNext').style.display='flex';
+    $('btnNext').style.flex='2';
+  }else{
+    $('btnNext').style.display='none';
+  }
+}
+
+function nextQ(){
+  if(cur<49){cur++;renderQ();}
+  else{showResult();}
+}
+
+/* ── FINISH ── */
+function askFinish(){
+  var unanswered=0;
+  for(var i=0;i<50;i++)if(!answered[i])unanswered++;
+  var msg='Şu ana kadar '+okCount+' doğru, '+errCount+' yanlış yaptınız.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru henüz cevaplanmadı. Testi bitirmek istediğinizden emin misiniz?';
+  else msg+='\n\nTüm soruları cevapladınız. Testi bitirmek istiyor musunuz?';
+  openConfirm(msg,showResult);
+}
+
+/* ── RESULT ── */
+function showResult(){
+  $('quizCard').classList.add('hidden');
+  // calculate total score
+  var total=0;
+  for(var i=0;i<50;i++){total+=scores[i];}
+  var pts=Math.round(total*2*10)/10; // each question worth 2 pts
+  var correctCount=0,wrongCount=0;
+  for(var i=0;i<50;i++){
+    if(scores[i]===1)correctCount++;
+    else if(scores[i]===0&&answered[i])wrongCount++;
+  }
+  $('rScore').textContent=pts+'/100';
+  $('rOk').textContent=correctCount+' Tam Doğru';
+  $('rErr').textContent=wrongCount+' Yanlış';
+  $('rNote').textContent='50 sorudan '+correctCount+' tanesi tam doğru (her soru 2 puan)';
+  $('nameSelect2').value=studentName;
+  $('resultCard').classList.remove('hidden');
+  buildReview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildReview(){
+  var L=['A','B','C','D'];
+  var html='';
+  // Fill questions
+  for(var i=0;i<30;i++){
+    if(!answered[i])continue;
+    var q=FILL[i];
+    var vals=myAnswers[i]||[];
+    var allOk=true;
+    q.subs.forEach(function(sub,j){if(!matchAns(vals[j],sub.ans))allOk=false;});
+    if(allOk)continue;
+    html+='<div class="rev-item">';
+    html+='<div class="rev-q">Soru '+(i+1)+': '+esc(q.h)+'</div>';
+    q.subs.forEach(function(sub,j){
+      if(!matchAns(vals[j],sub.ans)){
+        html+='<div class="rev-my">✗ '+esc(sub.lbl)+': '+(vals[j]?esc(vals[j]):'(boş)')+'</div>';
+        html+='<div class="rev-ok">Doğru: '+esc(sub.ans.join(' veya '))+'</div>';
+      }
+    });
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  // MC questions
+  for(var i=30;i<50;i++){
+    if(!answered[i])continue;
+    var j=i-30; var q=MC[j];
+    if(myAnswers[i]===q.a)continue;
+    html+='<div class="rev-item">';
+    html+='<div class="rev-q">Soru '+(i+1)+'</div>';
+    html+='<div class="rev-my">✗ Seçiminiz: '+(myAnswers[i]>=0?L[myAnswers[i]]+') '+esc(q.o[myAnswers[i]]):'(boş)')+'</div>';
+    html+='<div class="rev-ok">✓ Doğru: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  $('reviewList').innerHTML=html||'<div style="padding:8px;color:#666;text-align:center">Tüm sorular doğru! 🎉</div>';
+}
+
+function toggleReview(){
+  var rv=$('reviewList');
+  if(rv.style.display==='flex'){rv.style.display='none';}
+  else{rv.style.display='flex';}
+}
+
+/* ── SUBMIT ── */
+function submitResult(){
+  var name=$('nameSelect2').value;
+  if(!name){alert('Lütfen adınızı seçin.');return;}
+  var total=0;
+  for(var i=0;i<50;i++){total+=scores[i];}
+  var pts=Math.round(total*2*10)/10;
+  var correctCount=0,wrongCount=0;
+  for(var i=0;i<50;i++){
+    if(scores[i]===1)correctCount++;
+    else if(scores[i]===0&&answered[i])wrongCount++;
+  }
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV,grup:'A1.2',
+    puan:pts,dogru:correctCount,yanlis:wrongCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  $('warningBox').style.display='none';
+  $('submitMsg').style.display='block';
+  $('submitMsg').textContent='Gönderiliyor...';
+  $('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){
+      $('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';
+    })
+    .catch(function(){
+      $('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';
+    });
+}
+
+/* ── CONFIRM ── */
+var confirmCb=null;
+function openConfirm(msg,cb){
+  $('confirmMsg').textContent=msg;
+  confirmCb=cb;
+  $('confirmOk').onclick=function(){closeConfirm();if(confirmCb)confirmCb();};
+  $('confirmOverlay').classList.add('open');
+}
+function closeConfirm(){$('confirmOverlay').classList.remove('open');}
+
+</script>
+</body>
+</html>
