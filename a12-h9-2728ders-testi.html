@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H7 – 27-28.Ders | A1.2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:14px}
+.wrap{max-width:720px;margin:0 auto}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px}
+.hidden{display:none!important}
+
+/* INTRO */
+.pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.intro-title{font-size:1.05rem;font-weight:800;color:#3d2a7a;margin-bottom:4px}
+.intro-sub{color:#888;font-size:.82rem;margin-bottom:5px}
+.intro-teacher{color:#9b7de0;font-weight:700;font-size:.8rem;margin-bottom:6px}
+.yt-cover-btn{display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:.88rem;font-weight:700;margin:10px 0 16px;font-family:inherit}
+.yt-cover-btn svg{flex-shrink:0}
+select{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.93rem;font-family:inherit;color:#333;background:#fff;outline:none;margin-bottom:12px;cursor:pointer}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:13px;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+.score-info{background:#f0edf8;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:#555;line-height:1.7}
+.score-info strong{color:#6c4eb8}
+
+/* PROGRESS */
+.prog-bar{height:7px;background:#e8e0f8;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.prog-fill{height:100%;background:linear-gradient(90deg,#6c4eb8,#9b7de0);border-radius:4px;transition:width .3s}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#888;margin-bottom:14px}
+.cnt-ok{color:#2e9e6b;font-weight:700}
+.cnt-err{color:#d94040;font-weight:700;margin-left:8px}
+
+/* SECTION BADGE */
+.sec-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.sec-fill{background:#e8f4fd;color:#1a6fb5}
+.sec-read{background:#fef3e2;color:#b06000}
+.sec-yt{background:#ffe8e8;color:#c00000}
+
+/* FILL question */
+.q-text{font-size:.92rem;color:#333;font-weight:600;line-height:1.7;margin-bottom:12px;white-space:pre-wrap}
+.q-instruction{font-size:.79rem;color:#777;margin-bottom:12px;font-style:italic;background:#faf8ff;padding:8px 12px;border-radius:8px;border-left:3px solid #c0b0e8}
+.sub-inp{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;color:#333;transition:border-color .15s;margin-bottom:6px}
+.sub-inp:focus{border-color:#6c4eb8}
+.sub-inp.correct{border-color:#2e9e6b!important;background:#eafaf2;color:#1a5c3a;font-weight:600}
+.sub-inp.wrong{border-color:#d94040!important;background:#fde8e8;color:#8b1a1a}
+.sub-inp:disabled{cursor:default}
+.ans-label{font-size:.82rem;padding:6px 12px;border-radius:6px;margin-bottom:8px;display:none;line-height:1.5}
+.ans-label.ok{background:#eafaf2;color:#1a5c3a;display:block}
+.ans-label.err{background:#fde8e8;color:#8b1a1a;display:block}
+
+/* READING text */
+.reading-text{background:#fafbff;border:1px solid #e0d8f8;border-radius:10px;padding:14px 16px;font-size:.84rem;color:#333;line-height:1.85;margin-bottom:14px;white-space:pre-wrap}
+.reading-title{font-size:.9rem;font-weight:800;color:#3d2a7a;margin-bottom:6px}
+
+/* YT banner */
+.yt-banner{display:flex;align-items:center;gap:10px;background:#fff5f5;border:2px solid #ffcccc;border-radius:10px;padding:10px 14px;margin-bottom:14px;text-decoration:none}
+.yt-banner-text{font-size:.82rem;font-weight:700;color:#c00000;line-height:1.4}
+.yt-banner-sub{font-size:.75rem;color:#888;font-weight:400}
+
+/* MC opts */
+.mc-q{font-size:.9rem;color:#333;font-weight:600;line-height:1.68;margin-bottom:14px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt-btn{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:2px solid #e0d8f8;border-radius:9px;cursor:pointer;font-size:.88rem;color:#444;font-family:inherit;background:#fff;text-align:left;line-height:1.5;transition:all .12s;width:100%}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-letter{font-weight:700;color:#6c4eb8;min-width:22px;flex-shrink:0;padding-top:1px}
+.opt-btn.correct{background:#eafaf2;border-color:#2e9e6b;color:#1a5c3a}
+.opt-btn.correct .opt-letter{color:#2e9e6b}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn.wrong .opt-letter{color:#d94040}
+.opt-btn:disabled{cursor:default}
+
+/* explanation */
+.exp-box{background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 10px 10px 0;padding:14px 16px;font-size:.83rem;color:#333;line-height:1.85;margin-top:12px;white-space:pre-wrap;display:none}
+.exp-box.show{display:block}
+
+/* nav buttons */
+.btn-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-check{flex:2;padding:12px;background:#6c4eb8;color:#fff;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center}
+.btn-check:hover:not(:disabled){background:#5a3ea0}
+.btn-check:disabled{opacity:.35;cursor:not-allowed}
+.btn-next{flex:2;padding:12px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;display:none;align-items:center;justify-content:center}
+.btn-next:hover{background:#d5c9f0}
+.btn-finish{flex:1;padding:12px 10px;background:#c94040;color:#fff;border:none;border-radius:9px;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;min-width:90px}
+
+/* RESULT */
+.res-score{text-align:center;font-size:3.2rem;font-weight:800;color:#6c4eb8;margin:8px 0 10px}
+.res-stats{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+.stat-box{padding:5px 14px;border-radius:8px;font-weight:700;font-size:.82rem}
+.warning-box{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:14px 18px;text-align:center;margin-bottom:14px}
+.warning-title{font-size:1.1rem;font-weight:800;color:#856404;letter-spacing:.3px}
+.warning-sub{font-size:.8rem;color:#856404;margin-top:3px}
+.btn-submit{width:100%;padding:14px;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:10px}
+.btn-submit:hover:not(:disabled){background:#237a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.submit-msg{background:#eafaf2;border:1px solid #b0e8d0;border-radius:8px;padding:12px;font-size:.88rem;color:#1a5c3a;text-align:center;font-weight:600;line-height:1.65;display:none;margin-bottom:10px}
+.btn-review{width:100%;padding:11px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px}
+.review-list{display:none;flex-direction:column;gap:10px;margin-top:12px}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:12px;font-size:.8rem}
+.rev-q{font-weight:700;color:#3d2a7a;margin-bottom:4px}
+.rev-my{color:#d94040;margin-bottom:3px}
+.rev-ok{color:#2e9e6b;font-weight:700;margin-bottom:4px}
+.rev-exp{color:#555;line-height:1.7;white-space:pre-wrap;margin-top:5px;font-size:.78rem}
+
+/* overlay */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.confirm-card{background:#fff;border-radius:14px;padding:22px;max-width:380px;width:100%}
+.confirm-msg{font-size:.9rem;color:#333;line-height:1.65;margin-bottom:18px}
+.confirm-btns{display:flex;gap:10px}
+.btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit}
+@media(max-width:480px){.btn-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- INTRO -->
+<div id="introCard" class="card">
+  <div class="pill">7. HAFTA ÖDEVİ &bull; A1.2</div>
+  <div class="intro-title">H7 – 27-28. DERS</div>
+  <div class="intro-sub">Pretérito Perfecto (Haber + Participio)</div>
+  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <a class="yt-cover-btn" href="https://www.youtube.com/watch?v=VHTXDkdS0YU&t=12s" target="_blank" rel="noopener">
+    <svg width="22" height="16" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.6A3 3 0 0 0 21.4.5C19.5 0 12 0 12 0S4.5 0 2.6.5A3 3 0 0 0 .5 2.6C0 4.5 0 8.5 0 8.5s0 4 .5 5.9A3 3 0 0 0 2.6 16.5C4.5 17 12 17 12 17s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 12.5 24 8.5 24 8.5s0-4-.5-5.9zM9.5 12.1V4.9l6.3 3.6-6.3 3.6z"/></svg>
+    51-70. Sorular İçin Videoyu İzle
+  </a>
+  <div class="score-info">
+    <strong>Puanlama:</strong><br>
+    📝 1-50. Sorular &rarr; Her soru <strong>1 puan</strong> (Toplam 50 puan)<br>
+    🎬 51-70. Sorular &rarr; Her soru <strong>2.5 puan</strong> (Toplam 50 puan)<br>
+    🏆 <strong>Toplam: 100 Puan</strong>
+  </div>
+  <select id="nameSelect">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem Şeker</option><option>Deneme Öğrencisi</option><option>Ece Turhanoğlu</option>
+    <option>Elif Şafak</option><option>Esra Özkaya</option><option>Kardelen Kuşçu</option>
+    <option>Sümeyye Şahin</option><option>Yiğit Öz</option><option>Zeynep Ertürk</option>
+    <option>Zümeyra Doğan</option><option>Şeyma Koçak</option>
+  </select>
+  <button class="btn-start" onclick="startQuiz()">Teste Başla →</button>
+</div>
+
+<!-- QUIZ CARD -->
+<div id="quizCard" class="card hidden">
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-meta">
+    <span id="qLabel">Soru 1 / 70</span>
+    <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr">&nbsp;✗ 0</span></span>
+  </div>
+  <div id="qContent"></div>
+  <div class="btn-row">
+    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✓ Kontrol Et</button>
+    <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
+    <button class="btn-finish" onclick="askFinish()">Testi Bitir</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultCard" class="card hidden">
+  <div style="text-align:center"><div class="pill">7. HAFTA &bull; 27-28. DERS &bull; A1.2</div></div>
+  <div style="text-align:center;font-weight:800;color:#3d2a7a;font-size:.95rem;margin:6px 0">H7 – Pretérito Perfecto</div>
+  <div class="res-score" id="rScore">0/100</div>
+  <div class="res-stats" id="rStats"></div>
+  <p style="text-align:center;color:#888;font-size:.82rem;margin-bottom:14px" id="rNote"></p>
+  <div class="warning-box" id="warningBox">
+    <div class="warning-title">⚠ ÖDEVİNİZ TESLİM EDİLMEDİ</div>
+    <div class="warning-sub">Lütfen adınızı seçip aşağıdaki butona tıklayın.</div>
+  </div>
+  <select id="nameSelect2" onchange="syncName()" style="margin-bottom:12px">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Busem Şeker</option><option>Deneme Öğrencisi</option><option>Ece Turhanoğlu</option>
+    <option>Elif Şafak</option><option>Esra Özkaya</option><option>Kardelen Kuşçu</option>
+    <option>Sümeyye Şahin</option><option>Yiğit Öz</option><option>Zeynep Ertürk</option>
+    <option>Zümeyra Doğan</option><option>Şeyma Koçak</option>
+  </select>
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör ▼</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+</div>
+<!-- confirm -->
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-card">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">İptal</button>
+      <button class="btn-ok-red" id="confirmOk">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var FILL=[{"n": 1, "q": "Bu sabah kahvaltı yaptım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta mañana he desayunado"], "exp": "\"Bu sabah\" ifadesi İspanyolcada esta mañana olur. \"Kahvaltı yapmak\" fiili desayunar fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Desayunar düzenli -ar fiilidir ve participio hâli desayunado olur. Bu yüzden doğru cevap Esta mañana he desayunado olur."}, {"n": 2, "q": "Bugün çalıştın.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Hoy has trabajado"], "exp": "\"Bugün\" ifadesi İspanyolcada hoy olur. \"Çalışmak\" fiili trabajar fiilidir. Özne \"sen\" olduğu için haber fiili has olur. Trabajar düzenli -ar fiilidir ve participio hâli trabajado olur. Bu yüzden doğru cevap Hoy has trabajado olur."}, {"n": 3, "q": "Bu hafta öğrendik.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta semana hemos aprendido"], "exp": "\"Bu hafta\" ifadesi İspanyolcada esta semana olur. \"Öğrenmek\" fiili aprender fiilidir. Özne \"biz\" olduğu için haber fiili hemos olur. Aprender düzenli -er fiilidir ve participio hâli aprendido olur. Bu yüzden doğru cevap Esta semana hemos aprendido olur."}, {"n": 4, "q": "Bu ay okudum.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Este mes he leído", "Este mes he leido"], "exp": "\"Bu ay\" ifadesi İspanyolcada este mes olur. \"Okumak\" fiili leer fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Leer fiilinin participio hâli leído olur. Burada aksan önemlidir. Bu yüzden doğru cevap Este mes he leído olur."}, {"n": 5, "q": "Bu yıl seyahat ettik.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Este año hemos viajado", "Este ano hemos viajado"], "exp": "\"Bu yıl\" ifadesi İspanyolcada este año olur. \"Seyahat etmek\" fiili viajar fiilidir. Özne \"biz\" olduğu için haber fiili hemos olur. Viajar düzenli -ar fiilidir ve participio hâli viajado olur. Bu yüzden doğru cevap Este año hemos viajado olur."}, {"n": 6, "q": "Son zamanlarda içtim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Últimamente he bebido", "Ultimamente he bebido"], "exp": "\"Son zamanlarda\" ifadesi İspanyolcada últimamente olur. \"İçmek\" fiili beber fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Beber düzenli -er fiilidir ve participio hâli bebido olur. Bu yüzden doğru cevap Últimamente he bebido olur."}, {"n": 7, "q": "Zaten yaptım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Ya he hecho"], "exp": "\"Zaten\" ifadesi İspanyolcada ya olur. \"Yapmak\" fiili hacer fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Hacer fiilinin participio hâli düzensizdir ve hecho olur. Bu yüzden doğru cevap Ya he hecho olur."}, {"n": 8, "q": "Henüz görmedim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Todavía no he visto", "Todavia no he visto"], "exp": "\"Henüz\" ifadesi olumsuz cümlede todavía no olur. \"Görmek\" fiili ver fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Ver fiilinin participio hâli düzensizdir ve visto olur. Olumsuzlukta no, haber fiilinden önce gelir. Bu yüzden doğru cevap Todavía no he visto olur."}, {"n": 9, "q": "Hiç yedin mi?\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["¿Alguna vez has comido?", "Alguna vez has comido", "¿Alguna vez has comido", "Alguna vez has comido?"], "exp": "\"Hiç\" soru cümlelerinde İspanyolcada alguna vez olur. \"Yemek yemek\" fiili comer fiilidir. Özne \"sen\" olduğu için haber fiili has olur. Comer düzenli -er fiilidir ve participio hâli comido olur. Bu yüzden doğru cevap ¿Alguna vez has comido? olur."}, {"n": 10, "q": "Hiç yemedim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Nunca he comido"], "exp": "\"Hiç / asla\" ifadesi İspanyolcada nunca olur. \"Yemek yemek\" fiili comer fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Comer fiilinin participio hâli comido olur. Nunca cümlenin başında kullanıldığında ayrıca no kullanılmaz. Bu yüzden doğru cevap Nunca he comido olur."}, {"n": 11, "q": "Bu sabah açtın.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta mañana has abierto", "Esta manana has abierto"], "exp": "\"Bu sabah\" ifadesi İspanyolcada esta mañana olur. \"Açmak\" fiili abrir fiilidir. Özne \"sen\" olduğu için haber fiili has olur. Abrir fiilinin participio hâli düzensizdir ve abierto olur. Bu yüzden doğru cevap Esta mañana has abierto olur."}, {"n": 12, "q": "Bugün yazdım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Hoy he escrito"], "exp": "\"Bugün\" ifadesi İspanyolcada hoy olur. \"Yazmak\" fiili escribir fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Escribir fiilinin participio hâli düzensizdir ve escrito olur. Bu yüzden doğru cevap Hoy he escrito olur."}, {"n": 13, "q": "Bu hafta kaybettim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta semana he perdido"], "exp": "\"Bu hafta\" ifadesi İspanyolcada esta semana olur. \"Kaybetmek\" fiili perder fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Perder fiilinin participio hâli düzenlidir ve perdido olur. Bu yüzden doğru cevap Esta semana he perdido olur."}, {"n": 14, "q": "Bu ay çözdük.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Este mes hemos resuelto"], "exp": "\"Bu ay\" ifadesi İspanyolcada este mes olur. \"Çözmek\" fiili resolver fiilidir. Özne \"biz\" olduğu için haber fiili hemos olur. Resolver fiilinin participio hâli düzensizdir ve resuelto olur. Bu yüzden doğru cevap Este mes hemos resuelto olur."}, {"n": 15, "q": "Son zamanlarda uyudunuz.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Últimamente habéis dormido", "Ultimamente habeis dormido", "Últimamente habeis dormido", "Ultimamente habéis dormido"], "exp": "\"Son zamanlarda\" ifadesi İspanyolcada últimamente olur. \"Uyumak\" fiili dormir fiilidir. Özne \"siz\" yani vosotros/vosotras olduğu için haber fiili habéis olur. Dormir fiilinin participio hâli dormido olur. Bu yüzden doğru cevap Últimamente habéis dormido olur."}, {"n": 16, "q": "Bugün döndüler.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Hoy han vuelto"], "exp": "\"Bugün\" ifadesi İspanyolcada hoy olur. \"Geri dönmek\" fiili volver fiilidir. Özne \"onlar\" olduğu için haber fiili han olur. Volver fiilinin participio hâli düzensizdir ve vuelto olur. Bu yüzden doğru cevap Hoy han vuelto olur."}, {"n": 17, "q": "Bu sabah kırdım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta mañana he roto", "Esta manana he roto"], "exp": "\"Bu sabah\" ifadesi İspanyolcada esta mañana olur. \"Kırmak / bozmak\" fiili romper fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Romper fiilinin participio hâli düzensizdir ve roto olur. Bu yüzden doğru cevap Esta mañana he roto olur."}, {"n": 18, "q": "Zaten koyduk.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Ya hemos puesto"], "exp": "\"Zaten\" ifadesi İspanyolcada ya olur. \"Koymak\" fiili poner fiilidir. Özne \"biz\" olduğu için haber fiili hemos olur. Poner fiilinin participio hâli düzensizdir ve puesto olur. Bu yüzden doğru cevap Ya hemos puesto olur."}, {"n": 19, "q": "Henüz yazmadı.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Todavía no ha escrito", "Todavia no ha escrito"], "exp": "\"Henüz\" ifadesi olumsuz cümlede todavía no olur. \"Yazmak\" fiili escribir fiilidir. Özne \"o\" olduğu için haber fiili ha olur. Escribir fiilinin participio hâli düzensizdir ve escrito olur. Olumsuzlukta no, haber fiilinden önce gelir. Bu yüzden doğru cevap Todavía no ha escrito olur."}, {"n": 20, "q": "Hiç bulundunuz mu?\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["¿Alguna vez habéis estado?", "Alguna vez habeis estado", "¿Alguna vez habeis estado?", "Alguna vez habéis estado"], "exp": "\"Hiç\" soru cümlelerinde İspanyolcada alguna vez olur. \"Bulunmak / olmak\" fiili burada estar fiilidir. Özne \"siz\" yani vosotros/vosotras olduğu için haber fiili habéis olur. Estar fiilinin participio hâli estado olur. Bu yüzden doğru cevap ¿Alguna vez habéis estado? olur."}, {"n": 21, "q": "Bu hafta keşfettim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta semana he descubierto"], "exp": "\"Bu hafta\" ifadesi İspanyolcada esta semana olur. \"Keşfetmek\" fiili descubrir fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Descubrir fiilinin participio hâli düzensizdir ve descubierto olur. Bu yüzden doğru cevap Esta semana he descubierto olur."}, {"n": 22, "q": "Bugün yazdırdım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Hoy he imprimido", "Hoy he impreso"], "exp": "\"Bugün\" ifadesi İspanyolcada hoy olur. \"Yazıcıdan çıkartmak\" fiili imprimir fiilidir. Özne \"ben\" olduğu için haber fiili he olur. Imprimir fiilinin iki participio biçimi vardır: imprimido ve impreso. Bu cevapta imprimido kullanılmıştır. Bu yüzden doğru cevap Hoy he imprimido olur."}, {"n": 23, "q": "Bu sabah kızarttın.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta mañana has freído", "Esta mañana has frito", "Esta manana has freido", "Esta manana has frito"], "exp": "\"Bu sabah\" ifadesi İspanyolcada esta mañana olur. \"Kızartmak\" fiili freír fiilidir. Özne \"sen\" olduğu için haber fiili has olur. Freír fiilinin iki participio biçimi vardır: freído ve frito. Bu cevapta freído kullanılmıştır. Bu yüzden doğru cevap Esta mañana has freído olur."}, {"n": 24, "q": "Son zamanlarda söylediler.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Últimamente han dicho", "Ultimamente han dicho"], "exp": "\"Son zamanlarda\" ifadesi İspanyolcada últimamente olur. \"Söylemek\" fiili decir fiilidir. Özne \"onlar\" olduğu için haber fiili han olur. Decir fiilinin participio hâli düzensizdir ve dicho olur. Bu yüzden doğru cevap Últimamente han dicho olur."}, {"n": 25, "q": "Bu ay iade ettik.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Este mes hemos devuelto"], "exp": "\"Bu ay\" ifadesi İspanyolcada este mes olur. \"İade etmek / geri vermek\" fiili devolver fiilidir. Özne \"biz\" olduğu için haber fiili hemos olur. Devolver fiilinin participio hâli düzensizdir ve devuelto olur. Bu yüzden doğru cevap Este mes hemos devuelto olur."}, {"n": 26, "q": "Bugün giyindim.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Hoy me he vestido"], "exp": "\"Bugün\" ifadesi İspanyolcada hoy olur. \"Giyinmek\" dönüşlü fiildir ve İspanyolcada vestirse şeklindedir. Özne \"ben\" olduğu için dönüşlü zamir me, haber fiili ise he olur. Vestirse fiilinin participio hâli vestido olur. Pretérito Perfecto'da dönüşlü zamir haber fiilinden önce gelir. Bu yüzden doğru cevap Hoy me he vestido olur."}, {"n": 27, "q": "Bu sabah uyandın.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta mañana te has despertado", "Esta manana te has despertado"], "exp": "\"Bu sabah\" ifadesi İspanyolcada esta mañana olur. \"Uyanmak\" dönüşlü fiildir ve İspanyolcada despertarse şeklindedir. Özne \"sen\" olduğu için dönüşlü zamir te, haber fiili ise has olur. Despertarse fiilinin participio hâli despertado olur. Bu yüzden doğru cevap Esta mañana te has despertado olur."}, {"n": 28, "q": "Bu hafta eğlendik.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Esta semana nos hemos divertido"], "exp": "\"Bu hafta\" ifadesi İspanyolcada esta semana olur. \"Eğlenmek\" dönüşlü fiildir ve İspanyolcada divertirse şeklindedir. Özne \"biz\" olduğu için dönüşlü zamir nos, haber fiili ise hemos olur. Divertirse fiilinin participio hâli divertido olur. Bu yüzden doğru cevap Esta semana nos hemos divertido olur."}, {"n": 29, "q": "Henüz duş almadınız.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Todavía no os habéis duchado", "Todavia no os habeis duchado", "Todavía no os habeis duchado", "Todavia no os habéis duchado"], "exp": "\"Henüz\" ifadesi olumsuz cümlede todavía no olur. \"Duş almak\" dönüşlü fiildir ve İspanyolcada ducharse şeklindedir. Özne \"siz\" yani vosotros/vosotras olduğu için dönüşlü zamir os, haber fiili ise habéis olur. Duchar fiilinin participio hâli duchado olur. Olumsuzlukta no, dönüşlü zamirden önce gelir. Bu yüzden doğru cevap Todavía no os habéis duchado olur."}, {"n": 30, "q": "Hiç kalkmadım.\n(Cevapta özne kullanmayınız. ZAMAN ZARFI + FİİL ÇEKİMİ sıralamasında cevabınızı yazınız.)", "ans": ["Nunca me he levantado"], "exp": "\"Hiç / asla\" ifadesi İspanyolcada nunca olur. \"Kalkmak\" dönüşlü fiildir ve İspanyolcada levantarse şeklindedir. Özne \"ben\" olduğu için dönüşlü zamir me, haber fiili ise he olur. Levantarse fiilinin participio hâli levantado olur. Nunca cümlenin başında kullanıldığında ayrıca no kullanılmaz. Bu yüzden doğru cevap Nunca me he levantado olur."}];
+var TEXTS={"31": "Una semana de clase\nEsta semana Laura y sus compañeros han practicado el pretérito perfecto en clase.\nLaura ha escrito diez frases en su cuaderno.\nMario ha leído las frases en voz alta.\nAna y Luis han corregido algunos errores.\nLa profesora ha explicado los participios irregulares.\nTodos han repetido las formas de haber.\nHoy no han hecho un examen.\nYa han aprendido la diferencia entre he, has y ha.\nTodavía no han estudiado el pretérito indefinido.\nAl final, la clase ha terminado con una actividad oral.", "32": "Un día en casa\nHoy Marta ha limpiado su habitación.\nTambién ha ordenado sus libros.\nSu hermano ha preparado el desayuno.\nSus padres han comprado pan.\nMarta no ha visto la televisión.\nYa ha terminado sus deberes.\nTodavía no ha llamado a su amiga.\nEsta mañana todos han desayunado juntos.\nDespués, Marta ha estudiado español.\nEl día ha sido tranquilo.", "33": "Una visita al museo\nEsta semana Pablo ha visitado un museo de arte.\nHa visto muchas pinturas antiguas.\nSu amiga Elena ha comprado las entradas.\nLos dos han escuchado a una guía.\nLa guía ha explicado la historia de varios cuadros.\nPablo ha aprendido palabras nuevas en español.\nTodavía no ha escrito un resumen.\nYa ha tomado algunas fotos.\nNo ha tocado las obras.\nLa visita ha sido muy interesante.", "34": "Una mañana en la biblioteca\nEsta mañana Sofía ha ido a la biblioteca.\nHa buscado un libro de historia.\nEl bibliotecario ha recomendado una novela.\nSofía ha leído dos páginas.\nTambién ha escrito algunas palabras nuevas.\nNo ha hablado por teléfono.\nYa ha devuelto un libro viejo.\nTodavía no ha terminado la novela.\nSu amiga ha estudiado en otra mesa.\nLa biblioteca ha estado silenciosa.", "35": "Un curso de cocina\nEste mes Daniel ha empezado un curso de cocina.\nHa aprendido recetas sencillas.\nLa profesora ha explicado los ingredientes.\nLos estudiantes han preparado una sopa.\nDaniel ha cortado verduras.\nSu compañera ha lavado los platos.\nHoy no han cocinado carne.\nYa han probado la sopa.\nTodavía no han hecho un postre.\nLa clase ha terminado a las seis.", "36": "Un viaje a Sevilla\nEsta semana Irene y su primo han viajado a Sevilla.\nHan visitado la catedral.\nIrene ha visto la Giralda.\nSu primo ha comprado una postal.\nLos dos han caminado por el centro.\nYa han probado un plato típico.\nTodavía no han visitado el Alcázar.\nNo han perdido el mapa.\nHan hablado con una guía local.\nEl viaje ha sido agradable.", "37": "Una tarde deportiva\nHoy los estudiantes han jugado al baloncesto.\nCarlos ha marcado dos puntos.\nLucía ha corrido mucho.\nEl entrenador ha explicado una regla nueva.\nEl equipo ha practicado durante una hora.\nNo han ganado el partido.\nYa han terminado el entrenamiento.\nTodavía no han bebido agua.\nAlgunos alumnos han descansado en el banco.\nLa tarde ha sido activa.", "38": "Una clase de música\nEsta semana Julia ha empezado clases de guitarra.\nHa aprendido tres acordes.\nSu profesor ha tocado una canción sencilla.\nJulia ha practicado en casa.\nTambién ha escuchado música española.\nNo ha comprado una guitarra nueva.\nYa ha escrito una lista de canciones.\nTodavía no ha cantado delante de la clase.\nSus padres han escuchado su práctica.\nLa experiencia ha sido positiva.", "39": "Un problema técnico\nHoy Andrés ha abierto su ordenador.\nHa intentado entrar en la plataforma.\nLa página no ha funcionado bien.\nAndrés ha escrito un mensaje al profesor.\nEl profesor ha respondido rápidamente.\nTambién ha enviado una solución.\nAndrés ha probado la solución.\nYa ha entrado en la clase virtual.\nTodavía no ha entregado la tarea.\nEl problema ha terminado antes del mediodía.", "40": "Una mañana de compras\nEsta mañana Eva ha ido al mercado.\nHa comprado fruta.\nSu madre ha elegido verduras.\nEl vendedor ha recomendado queso.\nEva ha pagado con tarjeta.\nNo ha comprado pescado.\nYa ha vuelto a casa.\nTodavía no ha guardado la compra.\nSu hermano ha preparado la mesa.\nLa mañana ha sido organizada.", "41": "Un proyecto escolar\nEste mes un grupo de alumnos ha preparado un proyecto.\nHan elegido el tema de la naturaleza.\nSara ha buscado información.\nMiguel ha escrito la introducción.\nLaura ha hecho un dibujo.\nEl profesor ha revisado el trabajo.\nTodavía no han presentado el proyecto.\nYa han corregido algunos errores.\nNo han usado inteligencia artificial.\nEl grupo ha trabajado con responsabilidad.", "42": "Una visita al médico\nHoy Ramón ha ido al médico.\nHa explicado sus síntomas.\nLa médica ha escuchado con atención.\nTambién ha tomado algunas notas.\nRamón ha recibido una receta.\nNo ha esperado mucho tiempo.\nYa ha comprado la medicina.\nTodavía no ha empezado el tratamiento.\nSu hermana ha acompañado a Ramón.\nLa visita ha sido rápida.", "43": "Una tarde de cine\nEsta semana Paula ha visto una película española.\nHa comprado la entrada por internet.\nSu amiga ha llegado a tiempo.\nLas dos han elegido asientos centrales.\nPaula ha entendido muchas palabras.\nNo ha usado subtítulos en turco.\nYa ha recomendado la película.\nTodavía no ha escrito una opinión.\nDespués del cine, han hablado de la historia.\nLa película ha sido emocionante.", "44": "Un día en el trabajo\nHoy Alberto ha llegado a la oficina.\nHa encendido el ordenador.\nSu jefe ha enviado un correo.\nAlberto ha leído el mensaje.\nTambién ha preparado un informe.\nNo ha imprimido el documento.\nYa ha llamado a un cliente.\nTodavía no ha terminado la reunión.\nSus compañeros han trabajado en silencio.\nEl día ha sido productivo.", "45": "Un cumpleaños familiar\nEste mes mi familia ha celebrado un cumpleaños.\nMi madre ha preparado una tarta.\nMi padre ha comprado flores.\nMis primos han llegado temprano.\nTodos han cantado una canción.\nYo he abierto varios regalos.\nNo hemos invitado a muchos vecinos.\nYa hemos sacado fotos.\nTodavía no hemos limpiado la cocina.\nLa fiesta ha sido alegre.", "46": "Una clase en línea\nHoy los alumnos han tenido una clase en línea.\nLa profesora ha abierto la reunión virtual.\nLos estudiantes han apagado los micrófonos.\nPedro ha hecho una pregunta.\nLa profesora ha respondido con un ejemplo.\nAna ha escrito la respuesta en el chat.\nNo han tenido problemas de conexión.\nYa han terminado la actividad.\nTodavía no han enviado la tarea.\nLa clase ha durado cuarenta minutos.", "47": "Una visita a los abuelos\nEsta semana Nora ha visitado a sus abuelos.\nHa llevado flores.\nSu abuela ha preparado café.\nSu abuelo ha contado una historia.\nNora ha escuchado con atención.\nTambién ha visto fotos antiguas.\nNo ha usado el móvil durante la visita.\nYa ha vuelto a casa.\nTodavía no ha llamado a su madre.\nLa visita ha sido especial.", "48": "Una mañana de estudio\nHoy Diego ha estudiado español.\nHa repasado los verbos irregulares.\nHa escrito cinco ejemplos.\nSu hermana ha leído sus frases.\nDiego ha corregido dos errores.\nNo ha abierto el diccionario.\nYa ha entendido la regla principal.\nTodavía no ha memorizado todos los participios.\nDespués, ha descansado un poco.\nLa mañana ha sido útil.", "49": "Un fin de semana tranquilo\nEste fin de semana Clara ha descansado en casa.\nHa leído una revista.\nHa escuchado música tranquila.\nSu hermano ha cocinado pasta.\nSus padres han visto una serie.\nClara no ha salido con sus amigos.\nYa ha ordenado su escritorio.\nTodavía no ha lavado la ropa.\nLa familia ha comido junta.\nEl fin de semana ha sido relajante.", "50": "Una excursión escolar\nEsta semana la clase ha hecho una excursión.\nHan visitado un parque natural.\nLa profesora ha explicado las normas.\nLos alumnos han caminado por un sendero.\nMarcos ha visto muchos árboles.\nLucía ha tomado notas.\nNo han tirado basura.\nYa han vuelto al colegio.\nTodavía no han escrito el informe.\nLa excursión ha sido educativa."};
+var MC=[{"n": 31, "t": "Según el texto, ¿cuál es correcta?", "o": ["Laura ha escrito diez frases.", "Mario has leído las frases.", "La profesora ha estudiado el pretérito indefinido.", "Hoy han hecho un examen."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde açıkça \"Laura ha escrito diez frases en su cuaderno.\" deniyor. Yani Laura on cümle yazmıştır.\nB yanlıştır çünkü \"Mario\" üçüncü tekil kişi olduğu için has leído değil, ha leído olmalıydı.\nC yanlıştır çünkü metinde öğretmenin pretérito indefinido çalıştığı değil, participios irregulares açıkladığı söyleniyor.\nD yanlıştır çünkü metinde \"Hoy no han hecho un examen.\" deniyor; yani bugün sınav yapmamışlardır."}, {"n": 32, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Marta ha limpiado su habitación.", "Su hermano ha preparado el desayuno.", "Marta ha visto la televisión.", "Marta ha estudiado español."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü soru bizden yanlış olanı bulmamızı istiyor. Metinde \"Marta no ha visto la televisión.\" deniyor. Yani Marta televizyon izlememiştir.\nA doğrudur çünkü Marta odasını temizlemiştir.\nB doğrudur çünkü kardeşi kahvaltı hazırlamıştır.\nD doğrudur çünkü Marta İspanyolca çalışmıştır."}, {"n": 33, "t": "Según el texto, ¿qué NO se puede deducir?", "o": ["Pablo ha visitado un museo.", "Elena ha comprado las entradas.", "Pablo ha visto pinturas antiguas.", "Pablo ha ido al museo en autobús."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde Pablo'nun müzeye nasıl gittiği söylenmiyor. Otobüsle gitmiş olabilir ama bu bilgi metinden çıkarılamaz.\nA doğrudur çünkü metinde Pablo'nun müze ziyaret ettiği açıkça yazıyor.\nB doğrudur çünkü Elena'nın biletleri aldığı belirtilmiştir.\nC doğrudur çünkü Pablo'nun eski tablolar gördüğü söylenmiştir."}, {"n": 34, "t": "Según el texto, ¿cuál es correcta?", "o": ["Sofía ha terminado la novela.", "Sofía ha devuelto un libro viejo.", "Sofía ha hablado por teléfono.", "El bibliotecario ha comprado una novela."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Ya ha devuelto un libro viejo.\" deniyor. Yani Sofía eski bir kitabı iade etmiştir.\nA yanlıştır çünkü metinde \"Todavía no ha terminado la novela.\" deniyor.\nC yanlıştır çünkü Sofía telefonda konuşmamıştır.\nD yanlıştır çünkü bibliotecario roman satın almamış, roman tavsiye etmiştir."}, {"n": 35, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Hoy han cocinado carne.", "Daniel ha cortado verduras.", "Los estudiantes han preparado una sopa.", "Todavía no han hecho un postre."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü soru bizden yanlış ifadeyi bulmamızı istiyor. Metinde \"Hoy no han cocinado carne.\" deniyor. Yani bugün et pişirmemişlerdir.\nB doğrudur çünkü Daniel sebze kesmiştir.\nC doğrudur çünkü öğrenciler çorba hazırlamıştır.\nD doğrudur çünkü henüz tatlı yapmamışlardır."}, {"n": 36, "t": "Según el texto, ¿cuál es correcta?", "o": ["Irene y su primo han viajado a Valencia.", "Han perdido el mapa.", "Todavía no han visitado el Alcázar.", "Irene no ha visto la Giralda."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde açıkça \"Todavía no han visitado el Alcázar.\" deniyor.\nA yanlıştır çünkü metinde Valencia değil, Sevilla geçiyor.\nB yanlıştır çünkü metinde \"No han perdido el mapa.\" deniyor.\nD yanlıştır çünkü Irene'nin Giralda'yı gördüğü belirtilmiştir."}, {"n": 37, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["El equipo ha practicado durante una hora.", "Han ganado el partido.", "Carlos ha marcado dos puntos.", "El entrenador ha explicado una regla nueva."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"No han ganado el partido.\" deniyor. Yani maçı kazanmamışlardır.\nA doğrudur çünkü takım bir saat antrenman yapmıştır.\nC doğrudur çünkü Carlos iki sayı atmıştır.\nD doğrudur çünkü antrenör yeni bir kural açıklamıştır."}, {"n": 38, "t": "Según el texto, ¿qué NO se puede deducir?", "o": ["Julia tiene una guitarra roja.", "Julia ha aprendido tres acordes.", "Julia no ha comprado una guitarra nueva.", "Sus padres han escuchado su práctica."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde Julia'nın gitarının rengiyle ilgili hiçbir bilgi yoktur. Bu yüzden \"gitarı kırmızıdır\" ifadesi metinden çıkarılamaz.\nB metinde açıkça vardır: Julia üç akor öğrenmiştir.\nC doğrudur çünkü yeni gitar satın almadığı belirtilmiştir.\nD doğrudur çünkü ailesi onun çalışmasını dinlemiştir."}, {"n": 39, "t": "Según el texto, ¿cuál es correcta?", "o": ["Andrés ha entregado la tarea.", "El profesor no ha respondido.", "Andrés no ha entrado en la clase virtual.", "Andrés ha escrito un mensaje al profesor."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Andrés ha escrito un mensaje al profesor.\" deniyor.\nA yanlıştır çünkü metinde \"Todavía no ha entregado la tarea.\" deniyor.\nB yanlıştır çünkü öğretmen hızlıca cevap vermiştir.\nC yanlıştır çünkü Andrés sanal derse girmiştir."}, {"n": 40, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Eva ha comprado fruta.", "Eva ha pagado con tarjeta.", "Eva ha comprado pescado.", "Su madre ha elegido verduras."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"No ha comprado pescado.\" deniyor. Yani Eva balık almamıştır.\nA doğrudur çünkü Eva meyve almıştır.\nB doğrudur çünkü kartla ödeme yapmıştır.\nD doğrudur çünkü annesi sebze seçmiştir."}, {"n": 41, "t": "Según el texto, ¿cuál es correcta?", "o": ["Ya han presentado el proyecto.", "Han usado inteligencia artificial.", "Miguel ha escrito la introducción.", "El profesor no ha revisado el trabajo."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde açıkça \"Miguel ha escrito la introducción.\" deniyor.\nA yanlıştır çünkü projeyi henüz sunmamışlardır.\nB yanlıştır çünkü metinde yapay zekâ kullanmadıkları söyleniyor.\nD yanlıştır çünkü öğretmen çalışmayı kontrol etmiştir."}, {"n": 42, "t": "Según el texto, ¿qué NO se puede deducir?", "o": ["Ramón ha recibido una receta.", "Ramón tiene fiebre alta.", "Su hermana ha acompañado a Ramón.", "La visita ha sido rápida."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde Ramón'un ateşi olduğuna dair bilgi yoktur. Sadece semptomlarını anlattığı söylenmiştir. Bu yüzden \"fiebre alta\" metinden çıkarılamaz.\nA doğrudur çünkü reçete aldığı belirtilmiştir.\nC doğrudur çünkü kız kardeşi Ramón'a eşlik etmiştir.\nD doğrudur çünkü ziyaretin hızlı olduğu söylenmiştir."}, {"n": 43, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Paula ha usado subtítulos en turco.", "Paula ha visto una película española.", "Su amiga ha llegado a tiempo.", "Paula ha entendido muchas palabras."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"No ha usado subtítulos en turco.\" deniyor. Yani Paula Türkçe altyazı kullanmamıştır.\nB doğrudur çünkü İspanyolca bir film izlemiştir.\nC doğrudur çünkü arkadaşı zamanında gelmiştir.\nD doğrudur çünkü Paula birçok kelime anlamıştır."}, {"n": 44, "t": "Según el texto, ¿cuál es correcta?", "o": ["Alberto ha imprimido el documento.", "Alberto no ha leído el mensaje.", "Sus compañeros han trabajado con música.", "Alberto ha preparado un informe."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"También ha preparado un informe.\" deniyor.\nA yanlıştır çünkü belgeyi yazdırmamıştır.\nB yanlıştır çünkü mesajı okumuştur.\nC yanlıştır çünkü metinde arkadaşlarının müzikle çalıştığı değil, sessiz çalıştığı söylenmiştir."}, {"n": 45, "t": "Según el texto, ¿cuál es correcta?", "o": ["Mi madre ha preparado una tarta.", "Hemos invitado a muchos vecinos.", "Todavía no hemos sacado fotos.", "Mis primos han llegado tarde."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Mi madre ha preparado una tarta.\" deniyor.\nB yanlıştır çünkü çok komşu davet edilmemiştir.\nC yanlıştır çünkü fotoğraflar zaten çekilmiştir.\nD yanlıştır çünkü kuzenlerin erken geldiği belirtilmiştir."}, {"n": 46, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Pedro ha hecho una pregunta.", "Ana ha escrito la respuesta en el chat.", "La clase ha durado cuarenta minutos.", "Han tenido problemas de conexión."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"No han tenido problemas de conexión.\" deniyor. Yani bağlantı problemi yaşamamışlardır.\nA doğrudur çünkü Pedro soru sormuştur.\nB doğrudur çünkü Ana cevabı sohbete yazmıştır.\nC doğrudur çünkü ders kırk dakika sürmüştür."}, {"n": 47, "t": "Según el texto, ¿qué NO se puede deducir?", "o": ["Nora ha visitado a sus abuelos.", "Su abuelo ha contado una historia.", "La abuela de Nora vive en Madrid.", "Nora no ha usado el móvil durante la visita."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde Nora'nın büyükannesinin nerede yaşadığı söylenmemiştir. Madrid bilgisi metinden çıkarılamaz.\nA doğrudur çünkü Nora büyükanne ve büyükbabasını ziyaret etmiştir.\nB doğrudur çünkü büyükbabası bir hikâye anlatmıştır.\nD doğrudur çünkü Nora ziyaret sırasında telefon kullanmamıştır."}, {"n": 48, "t": "Según el texto, ¿cuál es correcta?", "o": ["Diego ha abierto el diccionario.", "Diego ha corregido dos errores.", "Diego ha memorizado todos los participios.", "Su hermana ha escrito cinco ejemplos."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Diego ha corregido dos errores.\" deniyor.\nA yanlıştır çünkü Diego sözlüğü açmamıştır.\nC yanlıştır çünkü henüz tüm participio'ları ezberlememiştir.\nD yanlıştır çünkü beş örneği kız kardeşi değil, Diego yazmıştır."}, {"n": 49, "t": "Según el texto, ¿cuál es incorrecta?", "o": ["Clara ha descansado en casa.", "Clara ha salido con sus amigos.", "Su hermano ha cocinado pasta.", "La familia ha comido junta."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Clara no ha salido con sus amigos.\" deniyor. Yani Clara arkadaşlarıyla dışarı çıkmamıştır.\nA doğrudur çünkü evde dinlenmiştir.\nC doğrudur çünkü kardeşi makarna pişirmiştir.\nD doğrudur çünkü aile birlikte yemek yemiştir."}, {"n": 50, "t": "Según el texto, ¿cuál es correcta?", "o": ["La clase ha visitado un parque natural.", "Los alumnos han tirado basura.", "Ya han escrito el informe.", "La profesora no ha explicado las normas."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Han visitado un parque natural.\" deniyor. Yani sınıf doğal bir parkı ziyaret etmiştir.\nB yanlıştır çünkü çöp atmamışlardır.\nC yanlıştır çünkü raporu henüz yazmamışlardır.\nD yanlıştır çünkü öğretmen kuralları açıklamıştır."}];
+var YT=[{"n": 51, "q": "¿Cómo describe Hazel su mañana de hoy?", "o": ["Me he levantado muy temprano.", "Me he levantado un poco tarde.", "No me he levantado todavía.", "Me he levantado a las cinco."], "a": 1, "exp": "Hazel videonun başında \"Hoy me he levantado un poco tarde\" (Bugün biraz geç kalktım) diyerek güne nasıl başladığını belirtiyor. Pretérito Perfecto, içinde bulunduğumuz zaman dilimindeki (hoy) eylemleri anlatmak için kullanılır."}, {"n": 52, "q": "¿Qué dice sobre su descanso nocturno?", "o": ["He dormido muy bien hoy.", "No he dormido nada.", "He tenido pesadillas.", "He dormido solo tres horas."], "a": 0, "exp": "Hazel, geç kalkmasının sebebinin iyi uyuması olduğunu \"He dormido muy bien hoy\" cümlesiyle ifade ediyor. \"Dormir\" fiili bu zamanda \"dormido\" halini alır."}, {"n": 53, "q": "¿Qué ha desayunado Hazel?", "o": ["He desayunado una pizza.", "He desayunado huevos con jamón.", "He desayunado algo ligero.", "No he desayunado hoy."], "a": 2, "exp": "Videoda kahvaltısının ağır olmadığını \"He desayunado algo ligero\" (Hafif bir şeyler yedim) şeklinde açıklıyor."}, {"n": 54, "q": "¿Cómo está el clima en Antalya según el video?", "o": ["Está lloviendo mucho.", "Hace mucho viento.", "Está nublado y gris.", "Ha salido el sol y hace calor."], "a": 3, "exp": "Antalya'daki güncel durumu anlatırken \"Hoy ha salido el sol y hace calor\" diyor. Hava olayları henüz tamamlanmış veya etkisi süren durumlar olduğu için bu zaman tercih edilmiştir."}, {"n": 55, "q": "¿Cómo ha sido el trabajo de Hazel esta semana?", "o": ["No he tenido clases.", "He trabajado solo un día.", "He estado de vacaciones.", "He trabajado mucho en mis clases."], "a": 3, "exp": "\"Esta semana\" (Bu hafta) bitmemiş bir zaman dilimi olduğu için Hazel \"He trabajado mucho\" diyerek yoğunluğunu Pretérito Perfecto ile ifade ediyor."}, {"n": 56, "q": "¿Qué materiales ha preparado para sus alumnos?", "o": ["He comprado libros nuevos.", "He grabado un pódcast.", "He escrito muchos ejemplos y tareas.", "He hecho un examen difícil."], "a": 2, "exp": "Öğrencileri için hazırlık sürecinden bahsederken \"He escrito muchos ejemplos\" (Birçok örnek yazdım) diyor. \"Escribir\" fiilinin bu zamandaki düzensiz hali \"escrito\"dur."}, {"n": 57, "q": "¿A qué país ha viajado Hazel varias veces como experiencia?", "o": ["He viajado a España varias veces.", "He viajado a México una vez.", "He viajado a Argentina.", "Nunca he viajado fuera."], "a": 0, "exp": "Yaşam tecrübelerinden bahsederken \"He viajado a España varias veces\" örneğini veriyor. Tecrübeler anlatılırken zaman belirtilmediği için bu yapı kullanılır."}, {"n": 58, "q": "¿Qué comida probó en Valencia?", "o": ["He comido un bocadillo.", "He comido paella en Valencia.", "He comido gazpacho.", "He comido tapas ricas."], "a": 1, "exp": "İspanya tecrübelerini detaylandırırken Valencia'da paella yediğini \"He comido paella\" diyerek anlatıyor."}, {"n": 59, "q": "¿Qué ha logrado gracias a su canal de YouTube e Instagram?", "o": ["He conocido a muchas personas.", "He ganado mucho dinero.", "He aprendido a editar vídeos.", "He comprado una cámara."], "a": 0, "exp": "Sosyal medyanın hayatındaki etkisinden bahsederken \"He conocido a muchas personas\" (Birçok kişi tanıdım) diyerek \"conocer\" fiilini kullanıyor."}, {"n": 60, "q": "¿Qué objeto ha perdido Hazel para explicar el tercer uso del tiempo?", "o": ["He perdido mi teléfono.", "He perdido mi dinero.", "He perdido mis llaves.", "He perdido mi bolso."], "a": 2, "exp": "Eylemin bitip sonucunun devam ettiği durumu anlatırken \"He perdido mis llaves\" (Anahtarlarımı kaybettim) örneğini veriyor; yani şu an anahtarları yok."}, {"n": 61, "q": "¿Por qué su habitación está perfecta ahora?", "o": ["Porque he comprado muebles.", "He limpiado mi habitación.", "Porque he pintado la pared.", "He invitado a una decoradora."], "a": 1, "exp": "\"He limpiado mi habitación\" (Odamı temizledim) eylemi bitti ama sonuç olarak oda şu an temiz ve düzenli."}, {"n": 62, "q": "¿Qué ha preparado Hazel para la cena?", "o": ["He preparado una ensalada.", "He preparado pasta italiana.", "He preparado una tortilla.", "He preparado una cena muy rica."], "a": 3, "exp": "\"He preparado una cena muy rica\" diyerek akşam için lezzetli bir hazırlık yaptığını belirtiyor."}, {"n": 63, "q": "¿Para qué ha abierto la puerta de su casa?", "o": ["Para que salga el gato.", "Porque alguien ha llamado.", "Para ver el sol.", "Para que entre un poco de aire."], "a": 3, "exp": "Kapıyı açma eylemi bitti ama etkisi (havanın girmesi) devam ediyor: \"He abierto la puerta para que entre un poco de aire.\""}, {"n": 64, "q": "¿Cuál es el resumen de lo que Hazel ha compartido hoy?", "o": ["He hablado de gramática pura.", "He hablado de la historia de España.", "He compartido mi rutina y experiencias.", "He hablado de mis planes futuros."], "a": 2, "exp": "Videonun sonunda \"He compartido mis experiencias de viaje y rutina\" diyerek videonun içeriğini özetliyor."}, {"n": 65, "q": "¿Qué dice sobre su propio proceso de aprender idiomas?", "o": ["He pasado por lo mismo que vosotros.", "Siempre me ha resultado fácil.", "Nunca he estudiado otros idiomas.", "He aprendido todo sin ayuda."], "a": 0, "exp": "Öğrencilerini motive etmek için \"He pasado por lo mismo\" (Ben de aynı yollardan geçtim) diyerek empati kuruyor."}, {"n": 66, "q": "¿Qué admite haber hecho mientras aprendía?", "o": ["He olvidado las palabras.", "He cometido errores.", "He dejado de estudiar.", "He viajado sola."], "a": 1, "exp": "Hata yapmanın normal olduğunu \"He cometido errores\" (Hatalar yaptım) diyerek vurguluyor."}, {"n": 67, "q": "¿Qué bebida vuelve a mencionar al final del video?", "o": ["Hoy he tomado un café muy rico.", "Hoy he tomado un té verde.", "Hoy he tomado mucha agua.", "Hoy he tomado un zumo."], "a": 0, "exp": "Videonun başındaki kahvesini hatırlatarak \"Hoy he tomado un café\" diyerek konuyu pekiştiriyor."}, {"n": 68, "q": "¿Qué ejemplo da sobre sus tareas escolares?", "o": ["No he hecho los deberes.", "He terminado mis deberes.", "He perdido mis apuntes.", "He buscado mis libros."], "a": 1, "exp": "Bir sonucun şu anı etkilemesi örneği olarak \"He terminado mis deberes\" (Ödevlerimi bitirdim) cümlesini kullanıyor."}, {"n": 69, "q": "¿Qué frase pide Hazel que escribas en los comentarios?", "o": ["Hoy he comido chocolate.", "Hoy he visto una película.", "Hoy he estudiado español.", "Hoy he caminado en el parque."], "a": 2, "exp": "Ödev olarak yorumlara \"Hoy he estudiado español\" (Bugün İspanyolca çalıştım) gibi bir cümle yazılmasını istiyor."}, {"n": 70, "q": "¿Qué nos pide Hazel hacer con el video al final?", "o": ["Que lo borremos.", "Que no hagamos nada.", "Que lo veamos diez veces.", "Que lo compartamos con otros."], "a": 3, "exp": "Videoyu \"Compártelo con alguien\" (Birileriyle paylaş) diyerek bitiriyor: \"Si este video te ha servido, compártelo.\""}];
+
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+var ODEV='H7 \u2013 27-28.Ders';
+var YT_URL='https://www.youtube.com/watch?v=VHTXDkdS0YU&t=12s';
+var studentName='';
+
+/* ── NORMALIZE ── */
+function norm(s){
+  if(!s)return'';
+  return s.trim()
+    .replace(/\u0130/g,'i').replace(/I/g,'i').replace(/\u0131/g,'i')
+    .replace(/\u011e/g,'g').replace(/\u011f/g,'g')
+    .replace(/\u015e/g,'s').replace(/\u015f/g,'s')
+    .replace(/\u00c7/g,'c').replace(/\u00e7/g,'c')
+    .replace(/\u00dc/g,'u').replace(/\u00fc/g,'u')
+    .replace(/\u00d6/g,'o').replace(/\u00f6/g,'o')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,' ')
+    .replace(/[¿¡]/g,'')
+    .replace(/[?!]/g,'');
+}
+function matchAns(input,answers){
+  var ni=norm(input);
+  if(!ni)return false;
+  for(var i=0;i<answers.length;i++){
+    if(ni===norm(answers[i]))return true;
+    if(ni.indexOf(norm(answers[i]))!==-1&&norm(answers[i]).length>5)return true;
+  }
+  return false;
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function $(id){return document.getElementById(id);}
+
+/* ── STATE ── */
+var cur=0;
+var okCount=0,errCount=0;
+var answered=new Array(70).fill(false);
+var scores=new Array(70).fill(0);
+var myAnswers=new Array(70).fill(null);
+
+function startQuiz(){
+  var n=$('nameSelect').value;
+  if(!n){alert('Lütfen adınızı seçin.');return;}
+  studentName=n;
+  $('introCard').classList.add('hidden');
+  $('quizCard').classList.remove('hidden');
+  cur=0;okCount=0;errCount=0;
+  answered=new Array(70).fill(false);
+  scores=new Array(70).fill(0);
+  myAnswers=new Array(70).fill(null);
+  renderQ();
+}
+function syncName(){studentName=$('nameSelect2').value;}
+
+/* ── RENDER ── */
+function renderQ(){
+  var i=cur;
+  $('progFill').style.width=((i)/70*100)+'%';
+  $('qLabel').textContent='Soru '+(i+1)+' / 70';
+  $('cntOk').textContent='\u2713 '+okCount;
+  $('cntErr').textContent=' \u00a0\u2717 '+errCount;
+  $('btnCheck').style.display='flex';
+  $('btnCheck').disabled=false;
+  $('btnNext').style.display='none';
+  if(i<30)renderFill(i);
+  else if(i<50)renderMC(i);
+  else renderYT(i);
+}
+
+/* ── FILL (1-30) ── */
+function renderFill(i){
+  var q=FILL[i];
+  var done=answered[i];
+  var saved=myAnswers[i]||'';
+  var html='<div class="sec-badge sec-fill">📝 Bölüm 1 – Çeviri (1-30) &bull; 1 Puan</div>';
+  html+='<div class="q-text">Soru '+(i+1)+':\n'+esc(q.q)+'</div>';
+  html+='<input type="text" class="sub-inp'+(done?(matchAns(saved,q.ans)?' correct':' wrong'):'')
+    +'" id="fillInp" value="'+esc(saved)+'"'+(done?' disabled':'')+' placeholder="Cevabınızı İspanyolca olarak yazın...">';
+  if(done){
+    var ok=matchAns(saved,q.ans);
+    html+='<div class="ans-label '+(ok?'ok':'err')+'">';
+    html+=ok?'✓ Doğru':'✗ Doğru cevap: '+esc(q.ans[0]);
+    html+='</div>';
+  }
+  html+='<div class="exp-box'+(done?' show':'')+'" id="expBox">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=html;
+  if(!done){
+    var inp=$('fillInp');
+    if(inp){inp.focus();inp.addEventListener('keydown',function(e){if(e.key==='Enter')checkAnswer();});}
+  }
+  if(done){$('btnCheck').style.display='none';showNext();}
+}
+
+/* ── READING MC (31-50) ── */
+function renderMC(i){
+  var q=MC[i-30];
+  var txt=TEXTS[String(q.n)];
+  var done=answered[i];
+  var saved=myAnswers[i];
+  var L=['A','B','C','D'];
+  var html='<div class="sec-badge sec-read">📖 Bölüm 2 – Okuma Anlama (31-50) &bull; 1 Puan</div>';
+  var lines=txt.split('\n');
+  var title=lines[0];
+  var body=lines.slice(1).join('\n');
+  html+='<div class="reading-text"><div class="reading-title">'+esc(title)+'</div>'+esc(body)+'</div>';
+  html+='<div class="mc-q">Soru '+q.n+': '+esc(q.t)+'</div>';
+  html+='<div class="opts">';
+  q.o.forEach(function(opt,k){
+    var cls='opt-btn';
+    if(done){if(k===q.a)cls+=' correct';else if(k===saved&&saved!==q.a)cls+=' wrong';}
+    html+='<button class="'+cls+'"'+(done?' disabled':'')+' onclick="pickMC('+k+')">';
+    html+='<span class="opt-letter">'+L[k]+')</span> '+esc(opt)+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="exp-box'+(done?' show':'')+'" id="expBox">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=html;
+  if(done){$('btnCheck').style.display='none';showNext();}
+}
+
+/* ── YOUTUBE MC (51-70) ── */
+function renderYT(i){
+  var q=YT[i-50];
+  var done=answered[i];
+  var saved=myAnswers[i];
+  var L=['A','B','C','D'];
+  var html='<div class="sec-badge sec-yt">🎬 Bölüm 3 – Video Soruları (51-70) &bull; 2.5 Puan</div>';
+  html+='<a class="yt-banner" href="'+YT_URL+'" target="_blank" rel="noopener">';
+  html+='<svg width="32" height="22" viewBox="0 0 24 17" fill="#c00000"><path d="M23.5 2.6A3 3 0 0 0 21.4.5C19.5 0 12 0 12 0S4.5 0 2.6.5A3 3 0 0 0 .5 2.6C0 4.5 0 8.5 0 8.5s0 4 .5 5.9A3 3 0 0 0 2.6 16.5C4.5 17 12 17 12 17s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 12.5 24 12.5 24 8.5s0-4-.5-5.9zM9.5 12.1V4.9l6.3 3.6-6.3 3.6z"/></svg>';
+  html+='<div><div class="yt-banner-text">Pretérito Perfecto – Profe Hazel</div><div class="yt-banner-sub">Videoyu izleyerek soruları yanıtlayın &rarr;</div></div></a>';
+  html+='<div class="mc-q">Soru '+q.n+': '+esc(q.q)+'</div>';
+  html+='<div class="opts">';
+  q.o.forEach(function(opt,k){
+    var cls='opt-btn';
+    if(done){if(k===q.a)cls+=' correct';else if(k===saved&&saved!==q.a)cls+=' wrong';}
+    html+='<button class="'+cls+'"'+(done?' disabled':'')+' onclick="pickYT('+k+')">';
+    html+='<span class="opt-letter">'+L[k]+')</span> '+esc(opt)+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="exp-box'+(done?' show':'')+'" id="expBox">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=html;
+  if(done){$('btnCheck').style.display='none';showNext();}
+}
+
+/* ── PICK MC/YT ── */
+function pickMC(k){
+  var i=cur;
+  if(answered[i])return;
+  var q=MC[i-30];
+  myAnswers[i]=k;
+  answered[i]=true;
+  if(k===q.a){okCount++;scores[i]=1;}
+  else{errCount++;scores[i]=0;}
+  renderMC(i);
+  $('btnCheck').style.display='none';
+  showNext();
+}
+function pickYT(k){
+  var i=cur;
+  if(answered[i])return;
+  var q=YT[i-50];
+  myAnswers[i]=k;
+  answered[i]=true;
+  if(k===q.a){okCount++;scores[i]=1;}
+  else{errCount++;scores[i]=0;}
+  renderYT(i);
+  $('btnCheck').style.display='none';
+  showNext();
+}
+
+/* ── CHECK FILL ── */
+function checkAnswer(){
+  var i=cur;
+  if(i>=30)return;
+  if(answered[i])return;
+  var q=FILL[i];
+  var inp=$('fillInp');
+  var v=inp?inp.value:'';
+  myAnswers[i]=v;
+  answered[i]=true;
+  var ok=matchAns(v,q.ans);
+  if(ok){okCount++;scores[i]=1;}else{errCount++;scores[i]=0;}
+  if(inp){
+    inp.disabled=true;
+    inp.classList.add(ok?'correct':'wrong');
+  }
+  var al=document.createElement('div');
+  al.className='ans-label '+(ok?'ok':'err');
+  al.textContent=ok?'✓ Doğru':'✗ Doğru cevap: '+q.ans[0];
+  if(inp)inp.insertAdjacentElement('afterend',al);
+  var eb=$('expBox');
+  if(eb)eb.classList.add('show');
+  $('btnCheck').style.display='none';
+  showNext();
+}
+
+function showNext(){
+  if(cur<69){
+    $('btnNext').style.display='flex';
+    $('btnNext').style.flex='2';
+  } else {
+    $('btnNext').style.display='none';
+  }
+}
+function nextQ(){if(cur<69){cur++;renderQ();}else{showResult();}}
+
+/* ── FINISH ── */
+function askFinish(){
+  var unanswered=0;
+  for(var i=0;i<70;i++)if(!answered[i])unanswered++;
+  var msg='Şu ana kadar '+okCount+' doğru, '+errCount+' yanlış yaptınız.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru henüz cevaplanmadı.';
+  msg+='\n\nTesti bitirmek istediğinizden emin misiniz?';
+  openConfirm(msg,showResult);
+}
+
+/* ── SCORE CALC ── */
+function calcScore(){
+  var fill=0,mc=0,yt=0;
+  for(var i=0;i<30;i++)fill+=scores[i];      // 1pt each
+  for(var i=30;i<50;i++)mc+=scores[i];        // 1pt each
+  for(var i=50;i<70;i++)yt+=scores[i]*2.5;    // 2.5pt each
+  return {fill:fill,mc:mc,yt:yt,total:fill+mc+yt};
+}
+
+/* ── RESULT ── */
+function showResult(){
+  $('quizCard').classList.add('hidden');
+  var s=calcScore();
+  var pts=Math.round(s.total*10)/10;
+  $('rScore').textContent=pts+'/100';
+  var statsHtml='';
+  statsHtml+='<span class="stat-box" style="background:#e8f4fd;color:#1a6fb5">📝 Çeviri: '+s.fill+'/30</span>';
+  statsHtml+='<span class="stat-box" style="background:#fef3e2;color:#b06000">📖 Okuma: '+s.mc+'/20</span>';
+  statsHtml+='<span class="stat-box" style="background:#ffe8e8;color:#c00000">🎬 Video: '+s.yt+'/50</span>';
+  $('rStats').innerHTML=statsHtml;
+  var totalOk=okCount,totalErr=errCount;
+  $('rNote').textContent='70 sorudan '+totalOk+' tanesi doğru.';
+  $('nameSelect2').value=studentName;
+  $('resultCard').classList.remove('hidden');
+  buildReview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildReview(){
+  var L=['A','B','C','D'];
+  var html='';
+  for(var i=0;i<30;i++){
+    if(!answered[i]||scores[i]===1)continue;
+    var q=FILL[i];
+    html+='<div class="rev-item"><div class="rev-q">Soru '+(i+1)+': '+esc(q.q.split('\n')[0])+'</div>';
+    html+='<div class="rev-my">✗ Yazdığınız: '+(myAnswers[i]?esc(myAnswers[i]):'(boş)')+'</div>';
+    html+='<div class="rev-ok">✓ Doğru: '+esc(q.ans[0])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  for(var i=30;i<50;i++){
+    if(!answered[i]||scores[i]===1)continue;
+    var q=MC[i-30];
+    html+='<div class="rev-item"><div class="rev-q">Soru '+q.n+'</div>';
+    html+='<div class="rev-my">✗ Seçiminiz: '+(myAnswers[i]>=0?L[myAnswers[i]]+') '+esc(q.o[myAnswers[i]]):'(boş)')+'</div>';
+    html+='<div class="rev-ok">✓ Doğru: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  for(var i=50;i<70;i++){
+    if(!answered[i]||scores[i]===1)continue;
+    var q=YT[i-50];
+    html+='<div class="rev-item"><div class="rev-q">Soru '+q.n+'</div>';
+    html+='<div class="rev-my">✗ Seçiminiz: '+(myAnswers[i]>=0?L[myAnswers[i]]+') '+esc(q.o[myAnswers[i]]):'(boş)')+'</div>';
+    html+='<div class="rev-ok">✓ Doğru: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html+='<div class="rev-exp">'+esc(q.exp)+'</div></div>';
+  }
+  $('reviewList').innerHTML=html||'<div style="padding:8px;color:#666;text-align:center">Tüm sorular doğru! 🎉</div>';
+}
+
+function toggleReview(){
+  var rv=$('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+/* ── SUBMIT ── */
+function submitResult(){
+  var name=$('nameSelect2').value;
+  if(!name){alert('Lütfen adınızı seçin.');return;}
+  var s=calcScore();
+  var pts=Math.round(s.total*10)/10;
+  var payload=JSON.stringify({
+    ogrenci:name,odev:ODEV,grup:'A1.2',
+    puan:pts,dogru:okCount,yanlis:errCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+  $('warningBox').style.display='none';
+  $('submitMsg').style.display='block';
+  $('submitMsg').textContent='Gönderiliyor...';
+  $('btnSubmit').disabled=true;
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
+    .then(function(){$('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';})
+    .catch(function(){$('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';});
+}
+
+/* ── CONFIRM ── */
+var confirmCb=null;
+function openConfirm(msg,cb){
+  $('confirmMsg').textContent=msg;
+  confirmCb=cb;
+  $('confirmOk').onclick=function(){closeConfirm();if(confirmCb)confirmCb();};
+  $('confirmOverlay').classList.add('open');
+}
+function closeConfirm(){$('confirmOverlay').classList.remove('open');}
+</script>
+</body>
+</html>
