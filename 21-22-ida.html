@@ -93,17 +93,31 @@ select:focus{border-color:#6c4eb8}
   <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
   <select id="introName">
     <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-    <option>Busem &#350;eker</option>
-    <option>Deneme &#214;&#287;rencisi</option>
-    <option>Ece Turhano&#287;lu</option>
-    <option>Elif &#350;afak</option>
-    <option>Esra &#214;zkaya</option>
-    <option>Kardelen Ku&#351;&#231;u</option>
-    <option>S&#252;meyye &#350;ahin</option>
-    <option>Yi&#287;it &#214;z</option>
-    <option>Zeynep Ert&#252;rk</option>
-    <option>Z&#252;meyra Do&#287;an</option>
-    <option>&#350;eyma Ko&#231;ak</option>
+    <option>Ayse Gurkan</option>
+    <option>Birce Suzen</option>
+    <option>Burakhan Kaydi</option>
+    <option>Ceren Erdogan</option>
+    <option>Doga Degirmenci</option>
+    <option>Ecem Sukas</option>
+    <option>Elif Atac</option>
+    <option>Elif Bozkurt Alvurdu</option>
+    <option>Elif Cetin</option>
+    <option>Elif Ozgur Atli</option>
+    <option>Emel Kanburoglu</option>
+    <option>Gorkem Dursun</option>
+    <option>Gulce Eyibilir</option>
+    <option>Harun Ozmen</option>
+    <option>Mehtap Keklik</option>
+    <option>Meltem Ciftci</option>
+    <option>Meryem Ozbek</option>
+    <option>Murat Sahin</option>
+    <option>Seher Ercin</option>
+    <option>Serra Sancakli</option>
+    <option>Simal Gurkan</option>
+    <option>Yasemin Kurtulus Tunc</option>
+    <option>Zeynep Geylan</option>
+    <option>Zeynep Ozay</option>
+    <option>Zeynep Oztaskin</option>
   </select>
   <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
 </div>
@@ -141,17 +155,31 @@ select:focus{border-color:#6c4eb8}
   </div>
   <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
     <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-    <option>Busem &#350;eker</option>
-    <option>Deneme &#214;&#287;rencisi</option>
-    <option>Ece Turhano&#287;lu</option>
-    <option>Elif &#350;afak</option>
-    <option>Esra &#214;zkaya</option>
-    <option>Kardelen Ku&#351;&#231;u</option>
-    <option>S&#252;meyye &#350;ahin</option>
-    <option>Yi&#287;it &#214;z</option>
-    <option>Zeynep Ert&#252;rk</option>
-    <option>Z&#252;meyra Do&#287;an</option>
-    <option>&#350;eyma Ko&#231;ak</option>
+    <option>Ayse Gurkan</option>
+    <option>Birce Suzen</option>
+    <option>Burakhan Kaydi</option>
+    <option>Ceren Erdogan</option>
+    <option>Doga Degirmenci</option>
+    <option>Ecem Sukas</option>
+    <option>Elif Atac</option>
+    <option>Elif Bozkurt Alvurdu</option>
+    <option>Elif Cetin</option>
+    <option>Elif Ozgur Atli</option>
+    <option>Emel Kanburoglu</option>
+    <option>Gorkem Dursun</option>
+    <option>Gulce Eyibilir</option>
+    <option>Harun Ozmen</option>
+    <option>Mehtap Keklik</option>
+    <option>Meltem Ciftci</option>
+    <option>Meryem Ozbek</option>
+    <option>Murat Sahin</option>
+    <option>Seher Ercin</option>
+    <option>Serra Sancakli</option>
+    <option>Simal Gurkan</option>
+    <option>Yasemin Kurtulus Tunc</option>
+    <option>Zeynep Geylan</option>
+    <option>Zeynep Ozay</option>
+    <option>Zeynep Oztaskin</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
   <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM EDIN</button>
@@ -174,10 +202,31 @@ select:focus{border-color:#6c4eb8}
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
 var ODEV_ADI='H6 \u2013 21-22.Ders';
 var GROUPS={
-  "Busem \u015eeker":"A1.2","Deneme \u00d6\u011frencisi":"A1.2","Ece Turhano\u011flu":"A1.2",
-  "Elif \u015eafak":"A1.2","Esra \u00d6zkaya":"A1.2","Kardelen Ku\u015f\u00e7u":"A1.2",
-  "S\u00fcmeyye \u015eahin":"A1.2","Yi\u011fit \u00d6z":"A1.2","Zeynep Ert\u00fcrk":"A1.2",
-  "Z\u00fcmeyra Do\u011fan":"A1.2","\u015eeyma Ko\u00e7ak":"A1.2"
+  'Ayse Gurkan':"A1.2",
+  'Birce Suzen':"A1.2",
+  'Burakhan Kaydi':"A1.2",
+  'Ceren Erdogan':"A1.2",
+  'Doga Degirmenci':"A1.2",
+  'Ecem Sukas':"A1.2",
+  'Elif Atac':"A1.2",
+  'Elif Bozkurt Alvurdu':"A1.2",
+  'Elif Cetin':"A1.2",
+  'Elif Ozgur Atli':"A1.2",
+  'Emel Kanburoglu':"A1.2",
+  'Gorkem Dursun':"A1.2",
+  'Gulce Eyibilir':"A1.2",
+  'Harun Ozmen':"A1.2",
+  'Mehtap Keklik':"A1.2",
+  'Meltem Ciftci':"A1.2",
+  'Meryem Ozbek':"A1.2",
+  'Murat Sahin':"A1.2",
+  'Seher Ercin':"A1.2",
+  'Serra Sancakli':"A1.2",
+  'Simal Gurkan':"A1.2",
+  'Yasemin Kurtulus Tunc':"A1.2",
+  'Zeynep Geylan':"A1.2",
+  'Zeynep Ozay':"A1.2",
+  'Zeynep Oztaskin':"A1.2"
 };
 
 var TEXT_LOCURA = '<div class="reading-title">Una Semana de Locura</div>Hola a todos, me llamo Clara. Mi mejor amiga se llama Luc\u00eda. Nosotras somos <span class="idiom-num">(1)</span> u\u00f1a y carne porque hacemos todo juntas. Ahora mismo, nosotras estamos planeando una fiesta sorpresa para su hermano, Mateo. Mateo es <span class="idiom-num">(2)</span> un bomb\u00f3n, es muy guapo y tiene muchas fans. Ma\u00f1ana nosotras vamos a decorar el sal\u00f3n para la gran sorpresa.\n\nSin embargo, hoy Luc\u00eda est\u00e1 <span class="idiom-num">(3)</span> de mala leche porque su jefe es muy estricto. Ella est\u00e1 trabajando mucho en la oficina y se siente estresada. Luc\u00eda me dice: \u201cClara, estoy <span class="idiom-num">(4)</span> hasta las narices de los informes, \u00a1necesito bailar!\u201d. Yo le digo que este fin de semana ella va a descansar mucho en la fiesta y va a olvidar el estr\u00e9s.\n\nA veces la gente piensa que Mateo es <span class="idiom-num">(5)</span> un bicho raro porque prefiere leer mitolog\u00eda egipcia que ir al f\u00fatbol. Pero a Luc\u00eda <span class="idiom-num">(6)</span> le importa un pimiento la opini\u00f3n de los dem\u00e1s; ella adora a su hermano. En este momento, ella est\u00e1 buscando un regalo especial en las tiendas del centro. Ella va a comprar algo muy original para \u00e9l.\n\nEl problema es que el regalo ideal es un libro muy antiguo y <span class="idiom-num">(7)</span> cuesta un ojo de la cara. Nosotras no tenemos mucho dinero, as\u00ed que tenemos que <span class="idiom-num">(8)</span> ponernos las pilas. Ahora yo estoy ahorrando todo mi salario y Luc\u00eda est\u00e1 buscando un trabajo extra. Estoy segura de que nosotras vamos a conseguir el dinero antes del s\u00e1bado.\n\nAyer fuimos a un mercado y un vendedor nos quiso <span class="idiom-num">(9)</span> dar gato por liebre con un libro falso. Yo <span class="idiom-num">(10)</span> no tengo pelos en la lengua y le dije la verdad: \u201cSe\u00f1or, esto no es original\u201d. \u00c9l pens\u00f3 que nos pod\u00edamos <span class="idiom-num">(11)</span> tomar el pelo porque somos j\u00f3venes, pero nosotras somos muy inteligentes. Ma\u00f1ana vamos a denunciar a ese vendedor.\n\nAhora nosotras estamos intentando <span class="idiom-num">(12)</span> darle la vuelta a la tortilla. Vamos a organizar un sorteo para ganar m\u00e1s dinero. Luc\u00eda est\u00e1 sonriendo porque ya tenemos muchos participantes. Ella dice: \u201cClara, con tu ayuda, organizar esta fiesta va a ser <span class="idiom-num">(13)</span> pan comido\u201d. Al final, todo va a salir perfectamente bien.\n\nFinalmente, llega el d\u00eda de la fiesta. Mi madre dice que nosotras estamos <span class="idiom-num">(14)</span> como una cabra porque estamos saltando y cantando por toda la casa. Todo est\u00e1 listo y Mateo va a llegar en cinco minutos. \u00a1Es fant\u00e1stico usar estas expresiones con mi mejor amiga mientras estamos celebrando la vida!';
