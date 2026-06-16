@@ -263,7 +263,7 @@ select#studentName:focus{border-color:var(--primary);}
     <div class="writing-title">Describe la imagen usando estar + gerundio</div>
 
     <div class="image-box">
-      <img src="https://images.squarespace-cdn.com/content/v1/5bbac14b8dfc8c36ff3ae85a/1541015574028-NBQM79H7Z7HVMWVOMQNB/Silly+Swim.jpg"
+      <img src="https://i.imgur.com/E5C8cMq.jpg"
            alt="Silly Swim - Piscina"
            onerror="this.style.display='none'; document.getElementById('imgFallback').style.display='block';">
       <div id="imgFallback" style="display:none;padding:20px;text-align:center;background:#f3f0fa;font-size:14px;color:var(--muted);">
@@ -657,9 +657,9 @@ function updateCharCount(){
 }
 
 async function submitWriting(){
-  const name=document.getElementById('writerName').value.trim();
+  const name=document.getElementById('studentName').value||document.getElementById('introName').value;
   const text=document.getElementById('writingText').value.trim();
-  if(!name){alert('Lütfen adınızı ve soyadınızı yazın!');return;}
+  if(!name){alert('Lütfen adınızı seçin!');return;}
   if(text.length<50){alert('Lütfen daha uzun bir metin yazın (en az 50 karakter).');return;}
 
   const btn=document.getElementById('writingSubmitBtn');
