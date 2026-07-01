@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A1.2 · 15-16. Ders İçi Etkinlik</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f0ff;
+  --surface:#ffffff;
+  --primary:#6b21a8;
+  --primary-mid:#7c3aed;
+  --primary-light:#ede9fe;
+  --accent:#f59e0b;
+  --ok:#16a34a;
+  --ok-bg:#dcfce7;
+  --err:#dc2626;
+  --err-bg:#fee2e2;
+  --text:#1e1b2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ─── HEADER ─── */
+.header{background:linear-gradient(135deg,var(--primary) 0%,#9333ea 100%);padding:1.25rem 1.5rem 1rem;text-align:center;position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") repeat;pointer-events:none}
+.header-tag{display:inline-block;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:.25rem .9rem;border-radius:999px;margin-bottom:.6rem}
+.header h1{font-family:'Nunito',sans-serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:900;color:#fff;line-height:1.2;position:relative;z-index:1}
+.header-sub{font-size:.78rem;color:rgba(255,255,255,.78);margin-top:.3rem;position:relative;z-index:1}
+
+/* ─── LAYOUT ─── */
+.page{max-width:900px;margin:0 auto;padding:1.25rem 1rem 3rem}
+
+/* ─── INTRO ─── */
+#introScreen{display:block}
+.intro-card{background:var(--surface);border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:0 2px 16px rgba(107,33,168,.09);text-align:center;border-top:4px solid var(--primary)}
+.intro-icon{font-size:2.8rem;margin-bottom:.75rem}
+.intro-title{font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:900;color:var(--primary);margin-bottom:.4rem}
+.intro-desc{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto 1.5rem}
+.intro-chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem}
+.chip{background:var(--primary-light);color:var(--primary);border-radius:999px;padding:.28rem .8rem;font-size:.72rem;font-weight:700}
+.start-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary);color:#fff;border:none;border-radius:10px;padding:.85rem 2rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all .15s;box-shadow:0 4px 14px rgba(107,33,168,.3)}
+.start-btn:hover{background:#9333ea;transform:translateY(-2px)}
+
+/* ─── QUIZ ─── */
+#quizScreen{display:none}
+
+.top-bar{background:var(--surface);border-radius:var(--radius);padding:.9rem 1.2rem;margin-bottom:1rem;box-shadow:0 1px 8px rgba(107,33,168,.07);display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.prog-wrap{flex:1;min-width:120px;height:8px;background:#e9e0ff;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),#9333ea);border-radius:4px;transition:width .4s ease}
+.prog-label{font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:800;color:var(--primary);white-space:nowrap}
+.score-row{display:flex;gap:.75rem;margin-left:auto}
+.sc{font-size:.8rem;font-weight:700}
+.sc.ok{color:var(--ok)}
+.sc.err{color:var(--err)}
+
+/* Reading text */
+.reading-card{background:#faf8ff;border:1.5px solid #ddd6fe;border-radius:var(--radius);padding:1.25rem 1.4rem;margin-bottom:1rem;cursor:pointer;transition:all .2s;position:relative}
+.reading-card.collapsed .reading-body{display:none}
+.reading-toggle{display:flex;align-items:center;justify-content:space-between;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:800;color:var(--primary);letter-spacing:.5px;text-transform:uppercase;margin-bottom:.75rem}
+.reading-toggle .arrow{transition:transform .2s;font-size:.9rem}
+.reading-card.collapsed .reading-toggle .arrow{transform:rotate(-90deg)}
+.reading-card:not(.collapsed) .reading-toggle .arrow{transform:rotate(0deg)}
+.reading-body p{font-size:.88rem;line-height:1.85;color:#2d2040;margin-bottom:.7rem}
+.reading-body p:last-child{margin-bottom:0}
+.reading-badge{display:inline-block;background:var(--primary);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.18rem .65rem;border-radius:999px;margin-bottom:.65rem}
+
+/* Question card */
+.q-card{background:var(--surface);border-radius:var(--radius);padding:1.25rem 1.2rem 1rem;box-shadow:0 2px 12px rgba(107,33,168,.07);animation:fadeUp .25s ease}
+.q-num{font-size:.68rem;font-weight:900;color:#a78bfa;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem}
+.q-text{font-size:.97rem;font-weight:700;line-height:1.55;margin-bottom:1rem}
+.opts{display:flex;flex-direction:column;gap:.55rem}
+.opt-btn{text-align:left;padding:.7rem .95rem;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Nunito Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;line-height:1.4;display:flex;align-items:flex-start;gap:.6rem}
+.opt-btn:hover:not(:disabled){border-color:var(--primary-mid);background:var(--primary-light);transform:translateX(3px)}
+.opt-btn.correct{border-color:var(--ok);background:var(--ok-bg);color:#15803d}
+.opt-btn.wrong{border-color:var(--err);background:var(--err-bg);color:#991b1b}
+.opt-btn:disabled{cursor:default}
+.opt-letter{width:22px;height:22px;border-radius:6px;background:var(--primary-light);color:var(--primary);font-size:.72rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.opt-btn.correct .opt-letter{background:var(--ok);color:#fff}
+.opt-btn.wrong .opt-letter{background:var(--err);color:#fff}
+
+.exp-box{margin-top:.85rem;background:#faf5ff;border-left:3px solid var(--primary-mid);border-radius:0 8px 8px 0;padding:.8rem 1rem;font-size:.83rem;line-height:1.7;color:#3b2d5a;display:none}
+.exp-box.show{display:block}
+
+.nav-row{display:flex;gap:.6rem;margin-top:.9rem;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:70px;padding:.65rem;border:2px solid var(--border);border-radius:9px;background:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s}
+.nav-btn:hover:not(:disabled){border-color:var(--primary-mid);color:var(--primary)}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.nav-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary);margin-left:auto}
+.nav-btn.primary:hover:not(:disabled){background:#9333ea}
+.finish-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:.45rem .95rem;font-size:.78rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;margin-left:auto}
+
+/* ─── RESULT ─── */
+#resultScreen{display:none}
+.result-card{background:var(--surface);border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:0 2px 16px rgba(107,33,168,.1);text-align:center;border-top:4px solid var(--primary);animation:fadeUp .4s ease;margin-bottom:1rem}
+.result-emoji{font-size:3.2rem;margin-bottom:.5rem}
+.result-badge{display:inline-block;background:var(--primary-light);color:var(--primary);font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;padding:.28rem 1rem;border-radius:999px;letter-spacing:1px;margin-bottom:.75rem}
+.score-big{font-family:'Nunito',sans-serif;font-size:4rem;font-weight:900;color:var(--primary);line-height:1;margin-bottom:.2rem}
+.score-big span{font-size:1.5rem;color:#a78bfa}
+.score-row-res{display:flex;justify-content:center;gap:2rem;margin:1rem 0 1.5rem}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900}
+.score-item .lbl{font-size:.73rem;color:var(--muted)}
+.val.ok{color:var(--ok)}
+.val.err{color:var(--err)}
+.result-msg{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.res-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.res-btn{padding:.8rem 1.5rem;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;transition:all .15s}
+.res-btn.primary{background:var(--primary);color:#fff;box-shadow:0 3px 12px rgba(107,33,168,.3)}
+.res-btn.secondary{background:var(--primary-light);color:var(--primary)}
+
+/* Review */
+#reviewSection{margin-top:.75rem}
+.rev-item{background:var(--surface);border-radius:10px;padding:1rem 1.1rem;margin-bottom:.65rem;border-left:3px solid var(--err);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.rev-num{font-size:.67rem;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:.3rem}
+.rev-q{font-size:.85rem;font-weight:700;margin-bottom:.5rem}
+.rev-wrong{font-size:.8rem;color:var(--err)}
+.rev-correct{font-size:.8rem;color:var(--ok);font-weight:700}
+.rev-exp{font-size:.78rem;color:#555;margin-top:.35rem;line-height:1.65;border-left:2px solid #ddd6fe;padding-left:.6rem;margin-left:.1rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.score-big{font-size:3rem}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">A1.2 · 15-16. Ders İçi Etkinlik</div>
+  <h1>📖 Una tarde especial en la clase de español</h1>
+  <div class="header-sub">Okuma Anlama · Gustar ailesi · Estar + Gerundio · 20 Soru</div>
+</div>
+
+<div class="page">
+
+<!-- INTRO -->
+<div id="introScreen">
+  <div class="intro-card">
+    <div class="intro-icon">📚</div>
+    <div class="intro-title">Ders İçi Okuma Etkinliği</div>
+    <div class="intro-desc">
+      Metni dikkatlice okuduktan sonra 20 soruyu cevaplayın.<br>
+      Her sorudan sonra açıklama göreceksiniz.
+    </div>
+    <div class="intro-chips">
+      <span class="chip">Estar + Gerundio</span>
+      <span class="chip">Gustar ailesi</span>
+      <span class="chip">Okuma Anlama</span>
+      <span class="chip">A1.2</span>
+    </div>
+    <button class="start-btn" onclick="startQuiz()">▶ Etkinliğe Başla</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quizScreen">
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 20</div>
+    <div class="score-row">
+      <span class="sc ok">✓ <span id="sCorrect">0</span></span>
+      <span class="sc err">✗ <span id="sWrong">0</span></span>
+      <button class="finish-btn" onclick="finishQuiz()">Bitir →</button>
+    </div>
+  </div>
+
+  <!-- Reading text (collapsible) -->
+  <div class="reading-card" id="readingCard" onclick="toggleReading(event)">
+    <div class="reading-toggle">
+      <span>📖 Okuma Metni</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="reading-body" id="readingBody">
+      <div class="reading-badge">Una tarde especial en la clase de español</div>
+      <p>Hoy es miércoles y los estudiantes están llegando a la academia de español. La clase empieza a las cinco de la tarde, pero algunos estudiantes llegan temprano porque les gusta hablar un poco antes de la clase. La profesora se llama Elena. Ella está preparando la pizarra, está abriendo su ordenador y está organizando unas tarjetas de colores sobre la mesa.</p>
+      <p>En la clase hay ocho estudiantes: Marta, Leo, Sara, Daniel, Julia, Andrés, Camila y Tomás. Todos estudian español en nivel A1.2. A algunos estudiantes les gusta mucho hablar, pero a otros les cuesta un poco hablar en voz alta. La profesora lo sabe y por eso está preparando una actividad divertida y tranquila.</p>
+      <p>Marta está sentada cerca de la ventana. Ella está mirando sus apuntes y está repitiendo algunas frases en voz baja. A Marta le encanta la gramática, pero no le gusta mucho hablar delante de todos. En este momento, está subrayando los verbos con un lápiz rosa.</p>
+      <p>Leo está hablando con Daniel. Los dos están comentando la tarea de la semana. A Leo le gusta mucho aprender vocabulario nuevo, especialmente palabras sobre comida, viajes y música. Daniel, en cambio, prefiere practicar conversación. A Daniel le encanta escuchar podcasts en español, pero le cuesta entender cuando las personas hablan muy rápido.</p>
+      <p>Sara está entrando en la clase con una botella de agua y una mochila pequeña. Ella está sonriendo porque hoy tiene muchas ganas de aprender. A Sara le fascina la cultura española: la música, las fiestas, las ciudades y la comida. También le interesa mucho viajar a España el próximo verano.</p>
+      <p>Julia y Camila están mirando unas fotos en el teléfono. En las fotos hay playas, calles bonitas, cafeterías pequeñas y museos. A Julia le encantan las playas, pero a Camila le interesan más los museos. Julia dice: "Me gusta la playa porque es tranquila." Camila responde: "A mí me interesan los museos porque me gusta la historia."</p>
+      <p>Andrés está buscando un bolígrafo en su mochila. No encuentra su bolígrafo azul y está un poco nervioso. A Andrés le molesta no tener sus materiales listos antes de la clase. Tomás está sentado a su lado y le da un bolígrafo extra. A Andrés le parece muy amable este gesto y dice: "Gracias, Tomás."</p>
+      <p>La profesora Elena empieza la clase con una pregunta simple: "¿Qué os gusta hacer en vuestro tiempo libre?" La profesora escribe en la pizarra: "me gusta", "me encanta", "me interesa", "me molesta", "me cuesta" y "me parece".</p>
+      <p>Marta responde: "Me gusta leer libros y estudiar gramática." Leo dice: "Me encanta escuchar música y aprender canciones en español." Daniel añade: "A mí me gusta hablar con personas, pero me cuesta recordar los verbos."</p>
+      <p>Después, los estudiantes hacen una actividad en parejas con tarjetas. Marta dice: "La chica está leyendo en el parque." Sara dice: "La familia está comiendo en un restaurante." Leo dice sobre una tarjeta: "Los amigos están tocando la guitarra." Daniel añade: "A ellos les encanta la música." La profesora dice que la frase está muy bien y Daniel se pone contento porque normalmente le cuesta usar los pronombres.</p>
+      <p>Julia y Camila tienen una imagen de una playa. Julia dice: "Me encanta esta foto porque me gustan mucho las playas." Camila dice: "A mí no me interesan mucho las playas, pero me gusta la foto porque es bonita."</p>
+      <p>Andrés está escribiendo muchas frases en su cuaderno: "Me interesa la historia", "Me molesta el ruido", "Me cuesta hablar rápido" y "Me encanta el café." Tomás dice: "A mí también me encanta el café." Los dos están riendo.</p>
+      <p>En la segunda actividad, cada estudiante pregunta a tres compañeros. Sara pregunta a Leo: "¿Te gusta cocinar?" Leo responde: "Sí, me gusta cocinar pasta, pero no me gusta lavar los platos." Luego pregunta a Camila: "¿Te interesa la historia?" Camila responde: "Sí, me interesa mucho, especialmente la historia de España."</p>
+      <p>Daniel pregunta a Marta: "¿Te cuesta hablar español?" Marta responde: "Sí, me cuesta un poco hablar, pero me gusta aprender." Los dos se sienten más tranquilos porque entienden que todos tienen dificultades.</p>
+      <p>Al final, la profesora da una pequeña tarea: los estudiantes tienen que escribir diez frases sobre sus gustos y cinco frases con "estar + gerundio" sobre una foto. Cuando la clase termina, todos salen con una sensación positiva.</p>
+    </div>
+  </div>
+
+  <div id="qArea"></div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen">
+  <div class="result-card">
+    <div class="result-emoji" id="resultEmoji">🎉</div>
+    <div class="result-badge">A1.2 · 15-16. Ders İçi Etkinlik</div>
+    <div class="score-big" id="scoreBig">0<span>/20</span></div>
+    <div class="score-row-res">
+      <div class="score-item"><div class="val ok" id="rCorrect">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="rPct" style="color:var(--primary)">%0</div><div class="lbl">Başarı</div></div>
+    </div>
+    <div class="result-msg" id="resultMsg"></div>
+    <div class="res-actions">
+      <button class="res-btn secondary" onclick="toggleReview()">🔍 Hataları Gör</button>
+      <button class="res-btn primary" onclick="retryQuiz()">🔄 Tekrar</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+var Q=[
+{q:'¿Por qué algunos estudiantes llegan temprano a la academia?',o:['Porque tienen un examen difícil antes de la clase.','Porque les gusta hablar un poco antes de la clase.','Porque la profesora llega tarde todos los días.','Porque quieren limpiar la clase.'],a:1,exp:'Doğru cevap B\'dir. Metinde bazı öğrencilerin dersten önce biraz konuşmayı sevdikleri için erken geldikleri söyleniyor.\nA yanlış: metinde sınavdan bahsedilmiyor.\nC yanlış: öğretmenin geç geldiğine dair bilgi yok.\nD yanlış: öğrenciler sınıfı temizlemek için gelmiyor.'},
+{q:'¿Qué está haciendo la profesora Elena al principio?',o:['Está preparando la pizarra, abriendo su ordenador y organizando tarjetas.','Está escribiendo una carta a sus estudiantes.','Está hablando por teléfono con Sara.','Está cerrando la academia.'],a:0,exp:'Doğru cevap A\'dır. Metnin başında öğretmen Elena\'nın tahtayı hazırladığı, bilgisayarını açtığı ve renkli kartları düzenlediği anlatılır.\nB yanlış: mektup yazmıyor.\nC yanlış: Sara ile telefonla konuşmuyor.\nD yanlış: akademiyi kapatmıyor.'},
+{q:'¿Qué le encanta a Marta?',o:['Hablar delante de todos.','Escuchar podcasts rápidos.','La gramática.','Cocinar pasta.'],a:2,exp:'Doğru cevap C\'dir. Metinde "A Marta le encanta la gramática" ifadesi geçer.\nA yanlış: Marta herkesin önünde konuşmayı sevmez.\nB yanlış: bu Daniel\'in durumudur.\nD yanlış: bu Leo\'nun verdiği cevapla ilgilidir.'},
+{q:'¿Qué está haciendo Marta cerca de la ventana?',o:['Está escuchando música.','Está buscando un bolígrafo.','Está mirando fotos de playas.','Está mirando sus apuntes y repitiendo algunas frases.'],a:3,exp:'Doğru cevap D\'dir. Marta pencerenin yanında notlarına bakıyor ve bazı cümleleri alçak sesle tekrar ediyor.\nA yanlış: müzik dinlemiyor.\nB yanlış: bu Andrés\'in yaptığıdır.\nC yanlış: bu Julia ve Camila\'nın yaptığıdır.'},
+{q:'¿Qué le gusta mucho a Leo?',o:['Hablar delante de todos.','Estudiar solo en casa.','Aprender vocabulario nuevo.','Buscar bolígrafos en su mochila.'],a:2,exp:'Doğru cevap C\'dir. Metinde Leo\'nun yeni kelimeler öğrenmeyi çok sevdiği söylenir.\nA yanlış: doğrudan Leo için verilmez.\nB yanlış: metinde yoktur.\nD yanlış: Andrés\'in yaşadığı durumdur.'},
+{q:'¿Por qué Sara está sonriendo cuando entra en la clase?',o:['Porque no quiere estudiar hoy.','Porque está hablando con su madre.','Porque tiene sueño.','Porque tiene muchas ganas de aprender.'],a:3,exp:'Doğru cevap D\'dir. Sara sınıfa gülümseyerek giriyor çünkü bugün öğrenmek için çok istekli.\nA yanlış: Sara çalışmak istemiyor değil, aksine öğrenmek istiyor.\nB ve C yanlış: metinde yoktur.'},
+{q:'¿Qué le fascina a Sara?',o:['El ruido de la ciudad.','La cultura española.','Lavar los platos.','Usar un lápiz rosa.'],a:1,exp:'Doğru cevap B\'dir. Metinde Sara\'nın İspanyol kültürüne hayran olduğu belirtilir: müzik, festivaller, şehirler ve yemek.\nA yanlış: metinde yoktur.\nC yanlış: Leo\'nun sevmediği şeydir.\nD yanlış: Marta\'nın renkli kalem kullanmasıyla ilgilidir.'},
+{q:'¿Qué están mirando Julia y Camila en el teléfono?',o:['Unas fotos de playas, calles bonitas, cafeterías y museos.','Un video de una clase de gramática.','Una lista de verbos irregulares.','Un mensaje de la profesora.'],a:0,exp:'Doğru cevap A\'dır. Julia ve Camila telefonda plaj, güzel sokaklar, küçük kafeler ve müzelerin olduğu fotoğraflara bakıyorlar.\nB yanlış: video izledikleri söylenmez.\nC ve D yanlış: metinde geçmez.'},
+{q:'¿Qué le molesta a Andrés?',o:['No tener sus materiales listos antes de la clase.','Escuchar música en español.','Trabajar con Tomás.','Usar un bolígrafo azul.'],a:0,exp:'Doğru cevap A\'dır. Andrés dersten önce materyallerinin hazır olmamasından rahatsız olur.\nB yanlış: bu Daniel/Leo ile ilgili olabilir ama Andrés için doğru değildir.\nC yanlış: Tomás ona yardım eder.\nD yanlış: mavi kalemden değil, onu bulamamaktan rahatsız olur.'},
+{q:'¿Qué hace Tomás cuando Andrés no encuentra su bolígrafo?',o:['Se ríe de Andrés.','Sale de la clase.','Le pide ayuda a la profesora.','Le da un bolígrafo extra.'],a:3,exp:'Doğru cevap D\'dir. Tomás, Andrés\'e fazladan bir kalem verir.\nA yanlış: onunla dalga geçmez.\nB yanlış: metinde yoktur.\nC yanlış: Tomás doğrudan kendisi yardım eder.'},
+{q:'¿Qué estructuras escribe la profesora en la pizarra?',o:['Solo verbos en pasado.','Me gusta, me encanta, me interesa, me molesta, me cuesta y me parece.','Números, países y nacionalidades.','Saludos y despedidas.'],a:1,exp:'Doğru cevap B\'dir. Öğretmen tahtaya gustar ailesinden ifadeler yazar: "me gusta", "me encanta", "me interesa", "me molesta", "me cuesta" ve "me parece".\nA, C ve D yanlış: bunlar bu dersin konusu değildir.'},
+{q:'¿Qué responde Marta cuando la profesora pregunta "¿Qué te gusta hacer?"?',o:['Me gusta cocinar pasta.','Me encanta escuchar música.','Me gusta leer libros y estudiar gramática.','Me cuesta recordar los verbos.'],a:2,exp:'Doğru cevap C\'dir. Marta "Me gusta leer libros y estudiar gramática" der.\nA yanlış: Leo\'nun yemek pişirme cevabına benzer.\nB yanlış: Leo\'nun müzikle ilgili cevabıdır.\nD yanlış: Daniel\'in yaşadığı zorluktur.'},
+{q:'¿Qué tienen que describir los estudiantes con "estar + gerundio"?',o:['Sus casas y sus familias.','Sus planes para el verano.','Las reglas de la academia.','Las imágenes de las tarjetas.'],a:3,exp:'Doğru cevap D\'dir. Öğrenciler kartlardaki görselleri "estar + gerundio" yapısıyla tarif etmek zorundadır.\nA yanlış: metinde yoktur.\nB yanlış: Sara\'nın seyahat ilgisiyle karıştırılabilir ama etkinliğin amacı değildir.\nC yanlış: akademi kuralları anlatılmıyor.'},
+{q:'¿Qué frase dice Marta en la actividad de tarjetas?',o:['Los amigos están tocando la guitarra.','La chica está leyendo en el parque.','La familia está cenando en casa.','El niño está lavando los platos.'],a:1,exp:'Doğru cevap B\'dir. Marta kartlardan birini alır ve "La chica está leyendo en el parque" der.\nA yanlış: bu Leo\'nun söylediği cümledir.\nC yanlış: metinde "La familia está comiendo en un restaurante" vardır, "cenando en casa" değil.\nD yanlış: metinde yoktur.'},
+{q:'¿Qué frase dice Leo sobre la tarjeta con dos amigos?',o:['Los amigos están tocando la guitarra.','Los amigos están leyendo una revista.','Los amigos están cocinando pasta.','Los amigos están nadando en la playa.'],a:0,exp:'Doğru cevap A\'dır. Leo, iki arkadaşın gitar çaldığı kart için "Los amigos están tocando la guitarra" der.\nB yanlış: dergi okuma görseli plaj sahnesindeki kadındır.\nC yanlış: karttaki eylem bu değildir.\nD yanlış: plaj görseli farklı bir karttır.'},
+{q:'¿Por qué Daniel se pone contento?',o:['Porque no quiere participar en la clase.','Porque la profesora termina la clase temprano.','Porque usa bien una frase y está mejorando poco a poco.','Porque encuentra su bolígrafo azul.'],a:2,exp:'Doğru cevap C\'dir. Daniel doğru bir cümle kurar, öğretmen cümlenin iyi olduğunu söyler ve Daniel sevinir. Çünkü normalde zamirleri kullanmak ona zor gelir ama şimdi gelişmektedir.\nA yanlış: derse katılır.\nB yanlış: metinde yoktur.\nD yanlış: bu Andrés\'in kalem problemiyle karıştırılmıştır.'},
+{q:'¿Qué está haciendo Andrés mientras los estudiantes están trabajando?',o:['Está mirando fotos en el teléfono.','Está escribiendo muchas frases en su cuaderno.','Está leyendo una revista en la playa.','Está hablando con Sara sobre Madrid.'],a:1,exp:'Doğru cevap B\'dir. Andrés, öğrenciler çalışırken defterine birçok cümle yazmaktadır.\nA yanlış: bu Julia ve Camila\'nın yaptığıdır.\nC yanlış: bu karttaki fotoğrafın içeriğidir.\nD yanlış: metinde Andrés\'in Sara ile konuştuğu yazmaz.'},
+{q:'¿Qué pregunta Sara a Leo en la segunda actividad?',o:['¿Te gusta cocinar?','¿Te interesa la historia?','¿Te molesta estudiar por la noche?','¿Te cuesta pronunciar la erre?'],a:0,exp:'Doğru cevap A\'dır. İkinci etkinlikte Sara, Leo\'ya "¿Te gusta cocinar?" diye sorar.\nB yanlış: Sara bunu Camila\'ya sorar.\nC ve D yanlış: öğretmenin yazdığı örnek sorulardır ama Sara\'nın Leo\'ya sorduğu soru değildir.'},
+{q:'¿Qué comprende Marta cuando habla con Daniel?',o:['Que no quiere estudiar español.','Que Daniel habla español perfectamente.','Que la clase es demasiado difícil para todos.','Que todos tienen dificultades y pueden aprender poco a poco.'],a:3,exp:'Doğru cevap D\'dir. Marta ve Daniel ikisi de bazı şeylerin kendilerine zor geldiğini fark ederler. Bu onları rahatlatır çünkü herkesin zorlandığını ve adım adım öğrenebileceğini anlarlar.\nA yanlış: Marta öğrenmek istiyor.\nB yanlış: Daniel\'in bazı fiilleri hatırlamakta zorlandığı söylenir.\nC yanlış: abartılıdır; ders çok zor değil, bazı konularda zorlanıyorlar.'},
+{q:'¿Qué tienen que escribir los estudiantes como tarea?',o:['Una carta larga sobre sus vacaciones.','Diez frases sobre sus gustos y cinco frases con "estar + gerundio" sobre una foto.','Solo una lista de verbos en pasado.','Un diálogo sobre una visita al médico.'],a:1,exp:'Doğru cevap B\'dir. Öğretmen ödev olarak öğrencilerden zevkleri hakkında on cümle ve bir fotoğrafla ilgili "estar + gerundio" kullanarak beş cümle yazmalarını ister.\nA yanlış: metinde yoktur.\nC yanlış: sadece geçmiş zaman fiil listesi değil.\nD yanlış: metinde geçmeyen farklı bir konudur.'}
+];
+
+var cur=0,score=0,err=0,state=[],wrongList=[];
+
+function startQuiz(){
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  state=new Array(Q.length).fill(null);
+  wrongList=[];cur=0;score=0;err=0;
+  render();
+}
+
+function toggleReading(e){
+  if(e.target.closest('.opt-btn')||e.target.closest('.nav-row'))return;
+  var card=document.getElementById('readingCard');
+  card.classList.toggle('collapsed');
+}
+
+function render(){
+  var q=Q[cur];
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+
+  var letters=['A','B','C','D'];
+  var optsHtml=q.o.map(function(o,j){
+    var cls='opt-btn';
+    var s=state[cur];
+    if(s!==null){
+      if(j===q.a)cls+=' correct';
+      else if(j===s&&s!==q.a)cls+=' wrong';
+    }
+    var dis=state[cur]!==null?'disabled':'';
+    return '<button class="'+cls+'" '+dis+' onclick="answer('+cur+','+j+')">'
+      +'<span class="opt-letter">'+letters[j]+'</span>'
+      +'<span>'+escH(o)+'</span></button>';
+  }).join('');
+
+  var expCls='exp-box'+(state[cur]!==null?' show':'');
+  var expTxt=state[cur]!==null?escH(q.exp).replace(/\n/g,'<br>'):'';
+  var expIcon=state[cur]!==null&&state[cur]===q.a?'✅ ':'❌ ';
+
+  var navNext=cur===Q.length-1
+    ?'<button class="nav-btn primary" onclick="finishQuiz()">Sonuçları Gör →</button>'
+    :'<button class="nav-btn primary" onclick="nextQ()">İleri →</button>';
+
+  document.getElementById('qArea').innerHTML=
+    '<div class="q-card">'
+    +'<div class="q-num">SORU '+(cur+1)+' / '+Q.length+'</div>'
+    +'<div class="q-text">'+escH(q.q)+'</div>'
+    +'<div class="opts">'+optsHtml+'</div>'
+    +'<div class="'+expCls+'">'+(state[cur]!==null?expIcon:'')+expTxt+'</div>'
+    +'<div class="nav-row">'
+    +'<button class="nav-btn" onclick="prevQ()" '+(cur===0?'disabled':'')+'>\u2190 Geri</button>'
+    +navNext
+    +'</div>'
+    +'</div>';
+}
+
+function answer(i,j){
+  if(state[i]!==null)return;
+  state[i]=j;
+  if(j===Q[i].a)score++;
+  else{err++;wrongList.push(i);}
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  render();
+}
+
+function nextQ(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);}}
+function prevQ(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
+
+function finishQuiz(){
+  document.getElementById('quizScreen').style.display='none';
+  var pct=Math.round(score/Q.length*100);
+  document.getElementById('scoreBig').innerHTML=score+'<span>/'+Q.length+'</span>';
+  document.getElementById('rCorrect').textContent=score;
+  document.getElementById('rWrong').textContent=err;
+  document.getElementById('rPct').textContent='%'+pct;
+
+  var emoji='🎉',msg='';
+  if(pct>=90){emoji='🏆';msg='Mükemmel! Metni çok iyi anladınız.';}
+  else if(pct>=70){emoji='👏';msg='Çok iyi! Büyük bölümünü doğru cevapladınız.';}
+  else if(pct>=50){emoji='📚';msg='Güzel bir çalışma! Metni tekrar okuyarak hataları gözden geçirin.';}
+  else{emoji='💪';msg='Devam edin! Metni tekrar okuyup tekrar deneyin.';}
+  document.getElementById('resultEmoji').textContent=emoji;
+  document.getElementById('resultMsg').textContent=msg;
+
+  document.getElementById('resultScreen').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function toggleReview(){
+  var sec=document.getElementById('reviewSection');
+  if(sec.innerHTML!==''){sec.innerHTML='';return;}
+  if(wrongList.length===0){
+    sec.innerHTML='<div style="text-align:center;padding:1.2rem;color:var(--ok);font-weight:700;font-family:Nunito,sans-serif;">🎯 Hiç hata yok! Tebrikler!</div>';return;
+  }
+  sec.innerHTML=wrongList.map(function(i){
+    var q=Q[i];
+    return '<div class="rev-item">'
+      +'<div class="rev-num">SORU '+(i+1)+'</div>'
+      +'<div class="rev-q">'+escH(q.q)+'</div>'
+      +'<div class="rev-wrong">✗ Senin cevabın: '+escH(q.o[state[i]])+'</div>'
+      +'<div class="rev-correct">✓ Doğrusu: '+escH(q.o[q.a])+'</div>'
+      +'<div class="rev-exp">'+escH(q.exp).replace(/\n/g,'<br>')+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function retryQuiz(){
+  document.getElementById('resultScreen').style.display='none';
+  document.getElementById('reviewSection').innerHTML='';
+  startQuiz();
+}
+
+function escH(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
