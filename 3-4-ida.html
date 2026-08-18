@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Karşılaştırma | A1.2 H1 3-4.Ders</title>
+<title>Video & Comparaciones | A1.2 Ödevi</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -25,7 +25,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
 /* Dekoratif arka plan */
 body::before{
   content:'';position:fixed;top:0;left:0;width:100%;height:100%;
@@ -35,9 +34,7 @@ body::before{
     radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
   pointer-events:none;z-index:0;
 }
-
 .wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
-
 /* INTRO */
 #intro{
   background:var(--surface);border-radius:var(--radius);
@@ -56,17 +53,17 @@ body::before{
   padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
 }
 #intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-pink-line{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--accent);margin-bottom:6px;}
 .intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
 .intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
-
-.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.intro-note{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:22px;}
 .chip{
   padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
   background:rgba(108,92,231,0.09);color:var(--primary);
 }
 .chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
 .chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
-
 .name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
 select.name-select{
   width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
@@ -77,7 +74,6 @@ select.name-select{
   background-repeat:no-repeat;background-position:right 14px center;
 }
 select.name-select:focus{border-color:var(--primary);}
-
 .start-btn{
   width:100%;margin-top:20px;padding:15px;
   background:linear-gradient(135deg,var(--primary),var(--primary-light));
@@ -89,7 +85,6 @@ select.name-select:focus{border-color:var(--primary);}
 }
 .start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
 .start-btn:active{transform:translateY(0);}
-
 /* QUIZ */
 #quiz{display:none;}
 .top-bar{
@@ -104,7 +99,6 @@ select.name-select:focus{border-color:var(--primary);}
 .sc{font-size:13px;font-weight:700;}
 .sc.ok{color:var(--ok);}
 .sc.err{color:var(--err);}
-
 .q-card{
   background:var(--surface);border-radius:var(--radius);
   padding:26px 24px 22px;box-shadow:var(--shadow);
@@ -121,7 +115,6 @@ select.name-select:focus{border-color:var(--primary);}
   background:rgba(108,92,231,0.1);color:var(--primary);
 }
 .q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
-
 .choices{display:flex;flex-direction:column;gap:9px;}
 .choice-btn{
   display:flex;align-items:center;gap:12px;padding:12px 16px;
@@ -140,7 +133,6 @@ select.name-select:focus{border-color:var(--primary);}
 .choice-btn.ok .cletter{background:var(--ok);color:#fff;}
 .choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
 .choice-btn.err .cletter{background:var(--err);color:#fff;}
-
 .explanation{
   margin-top:14px;padding:14px 16px;border-radius:12px;
   font-size:13px;line-height:1.6;display:none;
@@ -151,7 +143,6 @@ select.name-select:focus{border-color:var(--primary);}
 .exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
 .exp-tr{display:block;margin-top:2px;color:var(--muted);}
 .exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
-
 .nav-row{display:flex;gap:8px;margin-top:18px;}
 .nav-btn{
   padding:9px 18px;border-radius:10px;border:2px solid var(--border);
@@ -164,7 +155,40 @@ select.name-select:focus{border-color:var(--primary);}
   margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
 }
 .nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
-
+.finish-btn{
+  padding:7px 14px;border-radius:20px;border:2px solid var(--accent);
+  background:#fff;color:var(--accent);font-family:'Nunito',sans-serif;
+  font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;
+  transition:all .15s;flex-shrink:0;
+}
+.finish-btn:hover{background:var(--accent);color:#fff;}
+.quiz-header{
+  background:var(--surface);border-radius:var(--radius);padding:12px 18px;
+  margin-bottom:10px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:10px;border-left:4px solid var(--primary);
+}
+.quiz-header .qh-icon{font-size:20px;flex-shrink:0;}
+.quiz-header .qh-text{display:flex;flex-direction:column;min-width:0;}
+.quiz-header .qh-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--primary);line-height:1.3;}
+.quiz-header .qh-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.passage-box{
+  margin-bottom:16px;background:rgba(108,92,231,0.05);border:1px solid rgba(108,92,231,0.15);
+  border-radius:12px;overflow:hidden;
+}
+.passage-box summary{
+  cursor:pointer;padding:10px 14px;font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:13px;color:var(--primary);list-style:none;display:flex;align-items:center;gap:6px;
+}
+.passage-box summary::-webkit-details-marker{display:none;}
+.passage-box summary::after{content:'▾';margin-left:auto;transition:transform .2s;}
+.passage-box[open] summary::after{transform:rotate(180deg);}
+.passage-box .passage-body{padding:0 16px 14px;font-size:13px;line-height:1.7;color:var(--text);}
+.passage-body p{margin-bottom:10px;}
+.passage-body p:last-child{margin-bottom:0;}
+.video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000;}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.video-link{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--primary);text-decoration:none;}
+.video-link:hover{text-decoration:underline;}
 /* RESULT */
 #result{display:none;}
 .result-card{
@@ -190,17 +214,16 @@ select.name-select:focus{border-color:var(--primary);}
 .score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
 .val.ok{color:var(--ok);}
 .val.err{color:var(--err);}
-
 .name-confirm-box{margin:20px 0 16px;}
 .name-confirm-box label{
   font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
-  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+  color:var(--primary);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px;
 }
-.confirm-row{display:flex;gap:8px;}
+.confirm-row{display:flex;flex-direction:column;align-items:center;gap:10px;}
 select#studentName{
-  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  flex:none;width:100%;max-width:300px;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
   font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
-  background:#fff;outline:none;cursor:pointer;
+  background:#fff;outline:none;cursor:pointer;text-align:center;
   appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 10px center;
@@ -210,6 +233,7 @@ select#studentName:focus{border-color:var(--primary);}
   padding:11px 20px;background:var(--primary);color:#fff;border:none;
   border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
   cursor:pointer;transition:background .15s;white-space:nowrap;
+  max-width:300px;margin:0 auto;
 }
 .confirm-btn:hover{background:var(--primary-dark);}
 .confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
@@ -221,7 +245,6 @@ select#studentName:focus{border-color:var(--primary);}
 }
 .summary-card p{font-size:13px;margin-bottom:4px;}
 .summary-card strong{color:var(--primary);}
-
 .submit-cta{
   background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
   border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
@@ -229,9 +252,9 @@ select#studentName:focus{border-color:var(--primary);}
 }
 .submit-hint{
   font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
-  color:var(--accent);margin-bottom:4px;
+  color:var(--err);margin-bottom:4px;
 }
-.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-hint2{font-size:12px;color:var(--err);}
 .submit-big{
   width:100%;padding:16px;font-size:17px!important;
   background:linear-gradient(135deg,var(--accent),#e84393)!important;
@@ -251,7 +274,6 @@ select#studentName:focus{border-color:var(--primary);}
 .btn-review:hover{background:rgba(108,92,231,0.18);}
 .btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
 .btn-retry:hover{background:var(--primary-dark);}
-
 /* REVIEW */
 #reviewSection{display:none;margin-top:16px;}
 .review-item{
@@ -263,13 +285,11 @@ select#studentName:focus{border-color:var(--primary);}
 .review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
 .review-item .ri-wrong{font-size:13px;color:var(--err);}
 .review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
 <!-- INTRO -->
 <div id="intro">
   <div class="brand-bar">
@@ -277,49 +297,39 @@ select#studentName:focus{border-color:var(--primary);}
     <span class="brand-name">@ispanyolcacim · Profe Hazel</span>
   </div>
   <div class="intro-badge">ÖDEV · A1.2</div>
-  <h1>Comparaciones</h1>
-  <div class="intro-sub">Kıyaslama — más/menos/tan/tanto</div>
-  <div class="intro-desc">100 soru &middot; Çoktan seçmeli (a–d)</div>
+  <h1>Video &amp; Comparaciones</h1>
+  <div class="intro-pink-line">A1.2 (3+4. Ders Ödevi — 1. Kısım)</div>
+  <div class="intro-sub">Comprehensible Input · Verdadero/Falso · Lectura</div>
+  <div class="intro-desc">50 soru · Çoktan seçmeli / Verdadero-Falso</div>
   <div class="chip-row">
-    <span class="chip">Superioridad</span>
-    <span class="chip c2">Inferioridad</span>
-    <span class="chip c3">Igualdad</span>
-    <span class="chip">mejor / peor / mayor / menor</span>
+    <span class="chip">🎥 1-20: Video İzleme</span>
+    <span class="chip c2">✅❌ 21-30: Verdadero / Falso</span>
+    <span class="chip c3">📖 31-50: Okuduğunu Anlama</span>
   </div>
+  <div class="intro-note">📝 Not: Yazma bölümü (2. Kısım) ayrı bir belge olarak gönderilecektir.</div>
   <div class="name-label">👤 Adınızı seçin</div>
   <select id="introName" class="name-select">
-    <option value="">— Adınızı seçin —</option>
-    <option value="Ayse Gurkan">Ayse Gurkan</option>
-    <option value="Birce Suzen">Birce Suzen</option>
-    <option value="Burakhan Kaydi">Burakhan Kaydi</option>
-    <option value="Ceren Erdogan">Ceren Erdogan</option>
-    <option value="Doga Degirmenci">Doga Degirmenci</option>
-    <option value="Ecem Sukas">Ecem Sukas</option>
-    <option value="Elif Atac">Elif Atac</option>
-    <option value="Elif Bozkurt Alvurdu">Elif Bozkurt Alvurdu</option>
-    <option value="Elif Cetin">Elif Cetin</option>
-    <option value="Elif Ozgur Atli">Elif Ozgur Atli</option>
-    <option value="Emel Kanburoglu">Emel Kanburoglu</option>
-    <option value="Gorkem Dursun">Gorkem Dursun</option>
-    <option value="Gulce Eyibilir">Gulce Eyibilir</option>
-    <option value="Harun Ozmen">Harun Ozmen</option>
-    <option value="Mehtap Keklik">Mehtap Keklik</option>
-    <option value="Meltem Ciftci">Meltem Ciftci</option>
-    <option value="Meryem Ozbek">Meryem Ozbek</option>
-    <option value="Murat Sahin">Murat Sahin</option>
-    <option value="Seher Ercin">Seher Ercin</option>
-    <option value="Serra Sancakli">Serra Sancakli</option>
-    <option value="Simal Gurkan">Simal Gurkan</option>
-    <option value="Yasemin Kurtulus Tunc">Yasemin Kurtulus Tunc</option>
-    <option value="Zeynep Geylan">Zeynep Geylan</option>
-    <option value="Zeynep Ozay">Zeynep Ozay</option>
-    <option value="Zeynep Oztaskin">Zeynep Oztaskin</option>
-  </select>
+        <option value="">— Adınızı seçin —</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
+    </select>
   <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
 </div>
-
 <!-- QUIZ -->
 <div id="quiz">
+  <div class="quiz-header">
+    <span class="qh-icon">📘</span>
+    <div class="qh-text">
+      <span class="qh-title">Video &amp; Comparaciones</span>
+      <span class="qh-sub">A1.2 Ödevi (3+4. Ders — 1. Kısım)</span>
+    </div>
+  </div>
   <div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
@@ -327,10 +337,10 @@ select#studentName:focus{border-color:var(--primary);}
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
     </div>
+    <button class="finish-btn" onclick="finishTest()">🏁 Bitir</button>
   </div>
   <div id="qArea"></div>
 </div>
-
 <!-- RESULT -->
 <div id="result">
   <div class="result-card">
@@ -342,7 +352,6 @@ select#studentName:focus{border-color:var(--primary);}
       <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
       <div class="score-item"><div class="val" id="rPuan" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
     </div>
-
     <div class="submit-cta" id="submitCta">
       <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
       <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
@@ -351,45 +360,26 @@ select#studentName:focus{border-color:var(--primary);}
       <label>👤 Adınızı seçin</label>
       <div class="confirm-row">
         <select id="studentName">
-    <option value="">— Adınızı seçin —</option>
-    <option value="Ayse Gurkan">Ayse Gurkan</option>
-    <option value="Birce Suzen">Birce Suzen</option>
-    <option value="Burakhan Kaydi">Burakhan Kaydi</option>
-    <option value="Ceren Erdogan">Ceren Erdogan</option>
-    <option value="Doga Degirmenci">Doga Degirmenci</option>
-    <option value="Ecem Sukas">Ecem Sukas</option>
-    <option value="Elif Atac">Elif Atac</option>
-    <option value="Elif Bozkurt Alvurdu">Elif Bozkurt Alvurdu</option>
-    <option value="Elif Cetin">Elif Cetin</option>
-    <option value="Elif Ozgur Atli">Elif Ozgur Atli</option>
-    <option value="Emel Kanburoglu">Emel Kanburoglu</option>
-    <option value="Gorkem Dursun">Gorkem Dursun</option>
-    <option value="Gulce Eyibilir">Gulce Eyibilir</option>
-    <option value="Harun Ozmen">Harun Ozmen</option>
-    <option value="Mehtap Keklik">Mehtap Keklik</option>
-    <option value="Meltem Ciftci">Meltem Ciftci</option>
-    <option value="Meryem Ozbek">Meryem Ozbek</option>
-    <option value="Murat Sahin">Murat Sahin</option>
-    <option value="Seher Ercin">Seher Ercin</option>
-    <option value="Serra Sancakli">Serra Sancakli</option>
-    <option value="Simal Gurkan">Simal Gurkan</option>
-    <option value="Yasemin Kurtulus Tunc">Yasemin Kurtulus Tunc</option>
-    <option value="Zeynep Geylan">Zeynep Geylan</option>
-    <option value="Zeynep Ozay">Zeynep Ozay</option>
-    <option value="Zeynep Oztaskin">Zeynep Oztaskin</option>
-  </select>
+                    <option value="">— Adınızı seçin —</option>
+          <option>Arman Kaykac</option>
+          <option>Arzu Bayram</option>
+          <option>Aysen Gurkan</option>
+          <option>Didem Akbal</option>
+          <option>Rabia Nur Tok</option>
+          <option>Selva Akyuz</option>
+          <option>Sena Yamak</option>
+          <option>Suleyman Bektas</option>
+          </select>
         <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
       </div>
       <div id="sendStatus"></div>
     </div>
-
     <div class="summary-card" id="summaryCard">
       <p>👤 <strong id="summaryName"></strong></p>
       <p>📚 <strong id="summaryOdev"></strong></p>
       <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
       <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
     </div>
-
     <div class="result-actions">
       <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
       <button class="btn-retry" onclick="retryQuiz()">🔄 Testi Tekrar Çöz</button>
@@ -397,145 +387,85 @@ select#studentName:focus{border-color:var(--primary);}
   </div>
   <div id="reviewSection"></div>
 </div>
-
 </div><!-- /wrap -->
-
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-const ODEV_ADI="H1 – 3-4.Ders";
+const ODEV_ADI='H1 – 3-4.Ders';
 const GROUPS={
-  'Ayse Gurkan':'A1.2',
-  'Birce Suzen':'A1.2',
-  'Burakhan Kaydi':'A1.2',
-  'Ceren Erdogan':'A1.2',
-  'Doga Degirmenci':'A1.2',
-  'Ecem Sukas':'A1.2',
-  'Elif Atac':'A1.2',
-  'Elif Bozkurt Alvurdu':'A1.2',
-  'Elif Cetin':'A1.2',
-  'Elif Ozgur Atli':'A1.2',
-  'Emel Kanburoglu':'A1.2',
-  'Gorkem Dursun':'A1.2',
-  'Gulce Eyibilir':'A1.2',
-  'Harun Ozmen':'A1.2',
-  'Mehtap Keklik':'A1.2',
-  'Meltem Ciftci':'A1.2',
-  'Meryem Ozbek':'A1.2',
-  'Murat Sahin':'A1.2',
-  'Seher Ercin':'A1.2',
-  'Serra Sancakli':'A1.2',
-  'Simal Gurkan':'A1.2',
-  'Yasemin Kurtulus Tunc':'A1.2',
-  'Zeynep Geylan':'A1.2',
-  'Zeynep Ozay':'A1.2',
-  'Zeynep Oztaskin':'A1.2'
+  "Zümeyra Doğan":"A1.2",
+  "Elif Şafak":"A1.2",
+  "Esra Özkaya":"A1.2",
+  "Zeynep Ertürk":"A1.2",
+  "Sümeyye Şahin":"A1.2",
+  "Yiğit Öz":"A1.2",
+  "Kardelen Kuşçu":"A1.2",
+  "Ece Turhanoğlu":"A1.2",
+  "Şeyma Koçak":"A1.2",
+  "Busem Şeker":"A1.2"
 };
-
+const VIDEO_ID='-uVb6hn1F-E';
+const VIDEO_URL='https://www.youtube.com/watch?v='+VIDEO_ID;
+const READING_TEXT2=`<p>Hola, me llamo Rosa. Quiero hablar sobre mi vida y la vida de mi hermano, David. Somos hermanos, pero nuestras vidas son muy diferentes. Yo soy mayor que David. Yo tengo 28 años y él tiene 24.</p>
+<p>Yo vivo en una ciudad grande. Mi ciudad es más ruidosa que el pueblo de David. El pueblo de David es más tranquilo y tiene menos tráfico que mi ciudad. En mi ciudad, los edificios son más altos que en su pueblo.</p>
+<p>David tiene una casa muy grande. Mi apartamento es más pequeño que su casa. Pero mi apartamento es tan bonito como su casa. David tiene un jardín. En su jardín, él tiene tantos árboles como un parque.</p>
+<p>Yo tengo un gato negro. Se llama Zeytin. David tiene un perro que se llama Toby. Zeytin es más perezoso que Toby. Zeytin duerme más horas que el perro. Pero Toby es más juguetón que Zeytin. Toby corre más rápido que mi gato.</p>
+<p>En nuestro tiempo libre, hacemos cosas diferentes. Yo leo más libros que David. Los libros de historia son mis favoritos. Para mí, leer es mejor que ver la televisión. David ve más películas que yo. Él dice que las películas de acción son mejores que las películas románticas.</p>
+<p>Los fines de semana, yo cocino. Cocino mejor que mi hermano. La comida de David es peor que mi comida, porque él solo prepara sándwiches. Yo preparo tantas comidas como un chef.</p>
+<p>David viaja menos que yo. Yo voy de vacaciones a la playa más veces que él. Él prefiere la montaña, pero para mí, la playa es más relajante que la montaña. Además, en la playa hace más calor que en la montaña.</p>`;
 const Q=[
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nAna es ___ alta que Laura.",o:["m\u00e1s", "menos", "tan", "tanto"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Ana es m\u00e1s alta que Laura. | \ud83c\uddf9\ud83c\uddf7 Ana Laura'dan daha uzundur. | \ud83c\uddec\ud83c\udde7 Ana is taller than Laura.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Ana Laura'dan daha uzundur.",en:"Ana is taller than Laura."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi coche es ___ r\u00e1pido que el tuyo.",o:["m\u00e1s", "menos", "tanto", "tan"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi coche es m\u00e1s r\u00e1pido que el tuyo. | \ud83c\uddf9\ud83c\uddf7 Benim arabam seninkinden daha h\u0131zl\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 My car is faster than yours.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim arabam seninkinden daha h\u0131zl\u0131d\u0131r.",en:"My car is faster than yours."},
-{t:"mc",q:"Este libro es ___ interesante como ese.",o:["tanto", "menos", "m\u00e1s", "tan"],a:3,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este libro es tan interesante como ese. | \ud83c\uddf9\ud83c\uddf7 Bu kitap o kitap kadar ilgin\u00e7tir. | \ud83c\uddec\ud83c\udde7 This book is as interesting as that one.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu kitap o kitap kadar ilgin\u00e7tir.",en:"This book is as interesting as that one."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nPedro estudia ___ que su hermano.",o:["tan", "m\u00e1s", "tanto", "menos"],a:3,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Pedro estudia menos que su hermano. | \ud83c\uddf9\ud83c\uddf7 Pedro karde\u015finden daha az \u00e7al\u0131\u015f\u0131r. | \ud83c\uddec\ud83c\udde7 Pedro studies less than his brother.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Pedro karde\u015finden daha az \u00e7al\u0131\u015f\u0131r.",en:"Pedro studies less than his brother."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMarta cocina ___ que yo.",o:["tan", "m\u00e1s", "menor", "mejor"],a:3,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Marta cocina mejor que yo. | \ud83c\uddf9\ud83c\uddf7 Marta benden daha iyi yemek yapar. | \ud83c\uddec\ud83c\udde7 Marta cooks better than me.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Marta benden daha iyi yemek yapar.",en:"Marta cooks better than me."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nHoy hace ___ fr\u00edo que ayer.",o:["tanto", "menos", "mayor", "tan"],a:1,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy hace menos fr\u00edo que ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn d\u00fcnden daha az so\u011fuktur. | \ud83c\uddec\ud83c\udde7 It is less cold today than yesterday.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn d\u00fcnden daha az so\u011fuktur.",en:"It is less cold today than yesterday."},
-{t:"mc",q:"Julia tiene ___ paciencia como su madre.",o:["tan", "m\u00e1s", "menos", "tanta"],a:3,exp:"tanta + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Julia tiene tanta paciencia como su madre. | \ud83c\uddf9\ud83c\uddf7 Julia annesi kadar sab\u0131rl\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 Julia has as much patience as her mother.",es:"tanta + isim + como = e\u015fitlik.",tr:"Julia annesi kadar sab\u0131rl\u0131d\u0131r.",en:"Julia has as much patience as her mother."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi habitaci\u00f3n es ___ grande que la tuya.",o:["mayor", "m\u00e1s", "tan", "menos"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi habitaci\u00f3n es m\u00e1s grande que la tuya. | \ud83c\uddf9\ud83c\uddf7 Benim odam seninkinden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My room is bigger than yours.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim odam seninkinden daha b\u00fcy\u00fckt\u00fcr.",en:"My room is bigger than yours."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste examen es ___ dif\u00edcil que el anterior.",o:["m\u00e1s", "peor", "tan", "tanto"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este examen es m\u00e1s dif\u00edcil que el anterior. | \ud83c\uddf9\ud83c\uddf7 Bu s\u0131nav \u00f6ncekinden daha zordur. | \ud83c\uddec\ud83c\udde7 This exam is more difficult than the previous one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu s\u0131nav \u00f6ncekinden daha zordur.",en:"This exam is more difficult than the previous one."},
-{t:"mc",q:"Luis corre ___ r\u00e1pido como Andr\u00e9s.",o:["menos", "tan", "tanto", "m\u00e1s"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Luis corre tan r\u00e1pido como Andr\u00e9s. | \ud83c\uddf9\ud83c\uddf7 Luis Andr\u00e9s kadar h\u0131zl\u0131 ko\u015far. | \ud83c\uddec\ud83c\udde7 Luis runs as fast as Andr\u00e9s.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Luis Andr\u00e9s kadar h\u0131zl\u0131 ko\u015far.",en:"Luis runs as fast as Andr\u00e9s."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan a\u015fa\u011f\u0131l\u0131k)\nNosotros tenemos ___ dinero que antes.",o:["m\u00e1s", "menos", "menor", "tanto"],a:1,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Nosotros tenemos menos dinero que antes. | \ud83c\uddf9\ud83c\uddf7 Eskisinden daha az param\u0131z var. | \ud83c\uddec\ud83c\udde7 We have less money than before.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Eskisinden daha az param\u0131z var.",en:"We have less money than before."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nElla habla franc\u00e9s ___ que yo.",o:["m\u00e1s", "mejor", "tanto", "tan"],a:1,exp:"mejor d\u00fczensiz formdur. | \ud83c\uddea\ud83c\uddf8 Ella habla franc\u00e9s mejor que yo. | \ud83c\uddf9\ud83c\uddf7 O benden daha iyi Frans\u0131zca konu\u015fur. | \ud83c\uddec\ud83c\udde7 She speaks French better than me.",es:"mejor d\u00fczensiz formdur.",tr:"O benden daha iyi Frans\u0131zca konu\u015fur.",en:"She speaks French better than me."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi perro es ___ tranquilo que el tuyo.",o:["m\u00e1s", "tanto", "mayor", "menos"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi perro es m\u00e1s tranquilo que el tuyo. | \ud83c\uddf9\ud83c\uddf7 Benim k\u00f6pe\u011fim seninkinden daha sakindir. | \ud83c\uddec\ud83c\udde7 My dog is calmer than yours.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim k\u00f6pe\u011fim seninkinden daha sakindir.",en:"My dog is calmer than yours."},
-{t:"mc",q:"Esta silla es ___ c\u00f3moda como la otra.",o:["tanto", "menos", "tan", "mejor"],a:2,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta silla es tan c\u00f3moda como la otra. | \ud83c\uddf9\ud83c\uddf7 Bu sandalye di\u011feri kadar rahatt\u0131r. | \ud83c\uddec\ud83c\udde7 This chair is as comfortable as the other.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu sandalye di\u011feri kadar rahatt\u0131r.",en:"This chair is as comfortable as the other."},
-{t:"mc",q:"(olumsuz kalite kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nTu respuesta es ___ que la m\u00eda.",o:["mayor", "menos", "tan", "peor"],a:3,exp:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Tu respuesta es peor que la m\u00eda. | \ud83c\uddf9\ud83c\uddf7 Senin cevab\u0131n benimkinden daha k\u00f6t\u00fcd\u00fcr. | \ud83c\uddec\ud83c\udde7 Your answer is worse than mine.",es:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Senin cevab\u0131n benimkinden daha k\u00f6t\u00fcd\u00fcr.",en:"Your answer is worse than mine."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nHoy estoy ___ cansado que ayer.",o:["tanto", "tan", "m\u00e1s", "menos"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy estoy m\u00e1s cansado que ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn d\u00fcnden daha yorgunum. | \ud83c\uddec\ud83c\udde7 I am more tired today than yesterday.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn d\u00fcnden daha yorgunum.",en:"I am more tired today than yesterday."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMar\u00eda tiene ___ libros que su amiga.",o:["tanto", "mejor", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131. | \ud83c\uddea\ud83c\uddf8 Mar\u00eda tiene m\u00e1s libros que su amiga. | \ud83c\uddf9\ud83c\uddf7 Mar\u00eda'n\u0131n arkada\u015f\u0131ndan daha \u00e7ok kitab\u0131 var. | \ud83c\uddec\ud83c\udde7 Mar\u00eda has more books than her friend.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131.",tr:"Mar\u00eda'n\u0131n arkada\u015f\u0131ndan daha \u00e7ok kitab\u0131 var.",en:"Mar\u00eda has more books than her friend."},
-{t:"mc",q:"El caf\u00e9 de aqu\u00ed es ___ bueno como el de mi casa.",o:["tanto", "peor", "menos", "tan"],a:3,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El caf\u00e9 de aqu\u00ed es tan bueno como el de mi casa. | \ud83c\uddf9\ud83c\uddf7 Buradaki kahve evdeki kadar iyidir. | \ud83c\uddec\ud83c\udde7 The coffee here is as good as the one at home.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Buradaki kahve evdeki kadar iyidir.",en:"The coffee here is as good as the one at home."},
-{t:"mc",q:"Mi hermano es ___ que yo.",o:["mayor", "tan", "m\u00e1s", "tanto"],a:0,exp:"mayor = grande/viejo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (ya\u015f). | \ud83c\uddea\ud83c\uddf8 Mi hermano es mayor que yo. | \ud83c\uddf9\ud83c\uddf7 Karde\u015fim benden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My brother is older than me.",es:"mayor = grande/viejo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (ya\u015f).",tr:"Karde\u015fim benden daha b\u00fcy\u00fckt\u00fcr.",en:"My brother is older than me."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsta falda es ___ cara que esa.",o:["tan", "menos", "tanto", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta falda es m\u00e1s cara que esa. | \ud83c\uddf9\ud83c\uddf7 Bu etek o etekten daha pahal\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 This skirt is more expensive than that one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu etek o etekten daha pahal\u0131d\u0131r.",en:"This skirt is more expensive than that one."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan a\u015fa\u011f\u0131l\u0131k)\nT\u00fa comes ___ que antes.",o:["tan", "menos", "mayor", "m\u00e1s"],a:1,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 T\u00fa comes menos que antes. | \ud83c\uddf9\ud83c\uddf7 Sen eskisinden daha az yemek yiyorsun. | \ud83c\uddec\ud83c\udde7 You eat less than before.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Sen eskisinden daha az yemek yiyorsun.",en:"You eat less than before."},
-{t:"mc",q:"El tren es ___ r\u00e1pido como el avi\u00f3n.",o:["tanto", "mejor", "tan", "menos"],a:2,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El tren es tan r\u00e1pido como el avi\u00f3n. | \ud83c\uddf9\ud83c\uddf7 Tren u\u00e7ak kadar h\u0131zl\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 The train is as fast as the plane.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Tren u\u00e7ak kadar h\u0131zl\u0131d\u0131r.",en:"The train is as fast as the plane."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste problema es ___ dif\u00edcil que el otro.",o:["menos", "tanto", "m\u00e1s", "mayor"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este problema es m\u00e1s dif\u00edcil que el otro. | \ud83c\uddf9\ud83c\uddf7 Bu problem di\u011ferinden daha zordur. | \ud83c\uddec\ud83c\udde7 This problem is more difficult than the other.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu problem di\u011ferinden daha zordur.",en:"This problem is more difficult than the other."},
-{t:"mc",q:"Mi hermana canta ___ que yo.",o:["tan", "peor", "mejor", "menos"],a:2,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Mi hermana canta mejor que yo. | \ud83c\uddf9\ud83c\uddf7 K\u0131z karde\u015fim benden daha iyi \u015fark\u0131 s\u00f6yler. | \ud83c\uddec\ud83c\udde7 My sister sings better than me.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"K\u0131z karde\u015fim benden daha iyi \u015fark\u0131 s\u00f6yler.",en:"My sister sings better than me."},
-{t:"mc",q:"Sof\u00eda es ___ alta de la clase.",o:["tan", "m\u00e1s", "la m\u00e1s", "menos"],a:2,exp:"el/la + m\u00e1s + s\u0131fat + de = superlativo (en \u00fcst\u00fcn derece). | \ud83c\uddea\ud83c\uddf8 Sof\u00eda es la m\u00e1s alta de la clase. | \ud83c\uddf9\ud83c\uddf7 Sof\u00eda s\u0131n\u0131f\u0131n en uzunudur. | \ud83c\uddec\ud83c\udde7 Sof\u00eda is the tallest in the class.",es:"el/la + m\u00e1s + s\u0131fat + de = superlativo (en \u00fcst\u00fcn derece).",tr:"Sof\u00eda s\u0131n\u0131f\u0131n en uzunudur.",en:"Sof\u00eda is the tallest in the class."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan a\u015fa\u011f\u0131l\u0131k)\nHoy tengo ___ tiempo que ayer.",o:["mayor", "tan", "menos", "m\u00e1s"],a:2,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy tengo menos tiempo que ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn d\u00fcnden daha az zaman\u0131m var. | \ud83c\uddec\ud83c\udde7 I have less time today than yesterday.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn d\u00fcnden daha az zaman\u0131m var.",en:"I have less time today than yesterday."},
-{t:"mc",q:"Este bolso es ___ bonito como el negro.",o:["tanto", "tan", "m\u00e1s", "peor"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este bolso es tan bonito como el negro. | \ud83c\uddf9\ud83c\uddf7 Bu \u00e7anta siyah olan kadar g\u00fczeldir. | \ud83c\uddec\ud83c\udde7 This bag is as beautiful as the black one.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu \u00e7anta siyah olan kadar g\u00fczeldir.",en:"This bag is as beautiful as the black one."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEl gato duerme ___ que el perro.",o:["m\u00e1s", "mejor", "menos", "tanto"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El gato duerme m\u00e1s que el perro. | \ud83c\uddf9\ud83c\uddf7 Kedi k\u00f6pekten daha \u00e7ok uyur. | \ud83c\uddec\ud83c\udde7 The cat sleeps more than the dog.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Kedi k\u00f6pekten daha \u00e7ok uyur.",en:"The cat sleeps more than the dog."},
-{t:"mc",q:"Tu idea es ___ que la m\u00eda.",o:["mejor", "tan", "tanto", "mayor"],a:0,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Tu idea es mejor que la m\u00eda. | \ud83c\uddf9\ud83c\uddf7 Senin fikrin benimkinden daha iyidir. | \ud83c\uddec\ud83c\udde7 Your idea is better than mine.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Senin fikrin benimkinden daha iyidir.",en:"Your idea is better than mine."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl verano es ___ fr\u00edo que el invierno.",o:["m\u00e1s", "tan", "peor", "menos"],a:3,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El verano es menos fr\u00edo que el invierno. | \ud83c\uddf9\ud83c\uddf7 Yaz k\u0131\u015ftan daha az so\u011fuktur. | \ud83c\uddec\ud83c\udde7 Summer is less cold than winter.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Yaz k\u0131\u015ftan daha az so\u011fuktur.",en:"Summer is less cold than winter."},
-{t:"mc",q:"Nosotros tenemos ___ amigos como ellos.",o:["tan", "m\u00e1s", "menor", "tantos"],a:3,exp:"tantos + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Nosotros tenemos tantos amigos como ellos. | \ud83c\uddf9\ud83c\uddf7 Bizim onlar kadar arkada\u015f\u0131m\u0131z var. | \ud83c\uddec\ud83c\udde7 We have as many friends as they do.",es:"tantos + isim + como = e\u015fitlik.",tr:"Bizim onlar kadar arkada\u015f\u0131m\u0131z var.",en:"We have as many friends as they do."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsta mesa es ___ grande que la otra.",o:["mejor", "menos", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta mesa es m\u00e1s grande que la otra. | \ud83c\uddf9\ud83c\uddf7 Bu masa di\u011ferinden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 This table is bigger than the other.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu masa di\u011ferinden daha b\u00fcy\u00fckt\u00fcr.",en:"This table is bigger than the other."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nLa pel\u00edcula es ___ interesante que el libro.",o:["tan", "menor", "tanto", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 La pel\u00edcula es m\u00e1s interesante que el libro. | \ud83c\uddf9\ud83c\uddf7 Film kitaptan daha ilgin\u00e7tir. | \ud83c\uddec\ud83c\udde7 The movie is more interesting than the book.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Film kitaptan daha ilgin\u00e7tir.",en:"The movie is more interesting than the book."},
-{t:"mc",q:"(ya\u015f bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMi primo es ___ que mi hermano.",o:["tan", "menos", "mayor", "m\u00e1s"],a:2,exp:"mayor = ya\u015f bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck (d\u00fczensiz form). | \ud83c\uddea\ud83c\uddf8 Mi primo es mayor que mi hermano. | \ud83c\uddf9\ud83c\uddf7 Kuzenim karde\u015fimden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My cousin is older than my brother.",es:"mayor = ya\u015f bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck (d\u00fczensiz form).",tr:"Kuzenim karde\u015fimden daha b\u00fcy\u00fckt\u00fcr.",en:"My cousin is older than my brother."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nTu casa tiene ___ habitaciones que la m\u00eda.",o:["mejor", "menos", "tanto", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131. | \ud83c\uddea\ud83c\uddf8 Tu casa tiene m\u00e1s habitaciones que la m\u00eda. | \ud83c\uddf9\ud83c\uddf7 Senin evinde benimkinden daha \u00e7ok oda var. | \ud83c\uddec\ud83c\udde7 Your house has more rooms than mine.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131.",tr:"Senin evinde benimkinden daha \u00e7ok oda var.",en:"Your house has more rooms than mine."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEse restaurante cocina ___ que este.",o:["mejor", "peor", "menor", "tan"],a:0,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Ese restaurante cocina mejor que este. | \ud83c\uddf9\ud83c\uddf7 O restoran bu restorandan daha iyi yemek yapar. | \ud83c\uddec\ud83c\udde7 That restaurant cooks better than this one.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"O restoran bu restorandan daha iyi yemek yapar.",en:"That restaurant cooks better than this one."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsta tarea es ___ dif\u00edcil que la de ayer.",o:["mejor", "tanto", "m\u00e1s", "tan"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta tarea es m\u00e1s dif\u00edcil que la de ayer. | \ud83c\uddf9\ud83c\uddf7 Bu g\u00f6rev d\u00fcnk\u00fcnden daha zordur. | \ud83c\uddec\ud83c\udde7 This task is more difficult than yesterday's.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu g\u00f6rev d\u00fcnk\u00fcnden daha zordur.",en:"This task is more difficult than yesterday's."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi m\u00f3vil es ___ caro que el tuyo.",o:["m\u00e1s", "tanto", "menos", "peor"],a:2,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi m\u00f3vil es menos caro que el tuyo. | \ud83c\uddf9\ud83c\uddf7 Benim telefonum seninkinden daha az pahal\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 My phone is less expensive than yours.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim telefonum seninkinden daha az pahal\u0131d\u0131r.",en:"My phone is less expensive than yours."},
-{t:"mc",q:"Yo estudio ___ horas como t\u00fa.",o:["tantas", "m\u00e1s", "tan", "menor"],a:0,exp:"tantas + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Yo estudio tantas horas como t\u00fa. | \ud83c\uddf9\ud83c\uddf7 Ben senin kadar saat \u00e7al\u0131\u015f\u0131yorum. | \ud83c\uddec\ud83c\udde7 I study as many hours as you.",es:"tantas + isim + como = e\u015fitlik.",tr:"Ben senin kadar saat \u00e7al\u0131\u015f\u0131yorum.",en:"I study as many hours as you."},
-{t:"mc",q:"El hermano de Ana es ___ que ella.",o:["mejor", "m\u00e1s", "menor", "tan"],a:2,exp:"menor = peque\u00f1o'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (ya\u015f). | \ud83c\uddea\ud83c\uddf8 El hermano de Ana es menor que ella. | \ud83c\uddf9\ud83c\uddf7 Ana'n\u0131n erkek karde\u015fi ondan daha k\u00fc\u00e7\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 Ana's brother is younger than her.",es:"menor = peque\u00f1o'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (ya\u015f).",tr:"Ana'n\u0131n erkek karde\u015fi ondan daha k\u00fc\u00e7\u00fckt\u00fcr.",en:"Ana's brother is younger than her."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste ejercicio es ___ f\u00e1cil que el n\u00famero 10.",o:["tanto", "tan", "m\u00e1s", "peor"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este ejercicio es m\u00e1s f\u00e1cil que el n\u00famero 10. | \ud83c\uddf9\ud83c\uddf7 Bu al\u0131\u015ft\u0131rma 10 numaral\u0131 olandan daha kolayd\u0131r. | \ud83c\uddec\ud83c\udde7 This exercise is easier than number 10.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu al\u0131\u015ft\u0131rma 10 numaral\u0131 olandan daha kolayd\u0131r.",en:"This exercise is easier than number 10."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl caf\u00e9 est\u00e1 ___ caliente que el t\u00e9.",o:["tanto", "menos", "m\u00e1s", "mayor"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El caf\u00e9 est\u00e1 m\u00e1s caliente que el t\u00e9. | \ud83c\uddf9\ud83c\uddf7 Kahve \u00e7aydan daha s\u0131cakt\u0131r. | \ud83c\uddec\ud83c\udde7 The coffee is hotter than the tea.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Kahve \u00e7aydan daha s\u0131cakt\u0131r.",en:"The coffee is hotter than the tea."},
-{t:"mc",q:"Mis zapatos son ___ c\u00f3modos como los tuyos.",o:["tanto", "tan", "peor", "m\u00e1s"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mis zapatos son tan c\u00f3modos como los tuyos. | \ud83c\uddf9\ud83c\uddf7 Ayakkab\u0131lar\u0131m seninkiler kadar rahatt\u0131r. | \ud83c\uddec\ud83c\udde7 My shoes are as comfortable as yours.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Ayakkab\u0131lar\u0131m seninkiler kadar rahatt\u0131r.",en:"My shoes are as comfortable as yours."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan a\u015fa\u011f\u0131l\u0131k)\nMi abuelo camina ___ que antes.",o:["tan", "menos", "m\u00e1s", "mejor"],a:1,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi abuelo camina menos que antes. | \ud83c\uddf9\ud83c\uddf7 Dedem eskisinden daha az y\u00fcr\u00fcr. | \ud83c\uddec\ud83c\udde7 My grandfather walks less than before.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Dedem eskisinden daha az y\u00fcr\u00fcr.",en:"My grandfather walks less than before."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEste hotel es ___ que aquel.",o:["mayor", "tan", "mejor", "tanto"],a:2,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Este hotel es mejor que aquel. | \ud83c\uddf9\ud83c\uddf7 Bu otel \u015fu otelden daha iyidir. | \ud83c\uddec\ud83c\udde7 This hotel is better than that one.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Bu otel \u015fu otelden daha iyidir.",en:"This hotel is better than that one."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl gato es ___ pesado que el perro.",o:["tanto", "tan", "m\u00e1s", "menos"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El gato es m\u00e1s pesado que el perro. | \ud83c\uddf9\ud83c\uddf7 Kedi k\u00f6pekten daha a\u011f\u0131rd\u0131r. | \ud83c\uddec\ud83c\udde7 The cat is heavier than the dog.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Kedi k\u00f6pekten daha a\u011f\u0131rd\u0131r.",en:"The cat is heavier than the dog."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nYo tengo ___ paciencia que t\u00fa.",o:["m\u00e1s", "menor", "tanto", "tan"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Yo tengo m\u00e1s paciencia que t\u00fa. | \ud83c\uddf9\ud83c\uddf7 Ben senden daha sab\u0131rl\u0131y\u0131m. | \ud83c\uddec\ud83c\udde7 I have more patience than you.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Ben senden daha sab\u0131rl\u0131y\u0131m.",en:"I have more patience than you."},
-{t:"mc",q:"Esta clase es ___ divertida como la de ayer.",o:["m\u00e1s", "peor", "menos", "tan"],a:3,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta clase es tan divertida como la de ayer. | \ud83c\uddf9\ud83c\uddf7 Bu ders d\u00fcnk\u00fc kadar e\u011flencelidir. | \ud83c\uddec\ud83c\udde7 This class is as fun as yesterday's.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu ders d\u00fcnk\u00fc kadar e\u011flencelidir.",en:"This class is as fun as yesterday's."},
-{t:"mc",q:"Mi maleta es ___ grande de todas.",o:["la m\u00e1s", "la", "m\u00e1s", "tan"],a:0,exp:"el/la + m\u00e1s + s\u0131fat + de = superlativo. | \ud83c\uddea\ud83c\uddf8 Mi maleta es la m\u00e1s grande de todas. | \ud83c\uddf9\ud83c\uddf7 Benim valizim hepsinin en b\u00fcy\u00fc\u011f\u00fcd\u00fcr. | \ud83c\uddec\ud83c\udde7 My suitcase is the biggest of all.",es:"el/la + m\u00e1s + s\u0131fat + de = superlativo.",tr:"Benim valizim hepsinin en b\u00fcy\u00fc\u011f\u00fcd\u00fcr.",en:"My suitcase is the biggest of all."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl chocolate es ___ dulce que el lim\u00f3n.",o:["tan", "m\u00e1s", "tanto", "menor"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El chocolate es m\u00e1s dulce que el lim\u00f3n. | \ud83c\uddf9\ud83c\uddf7 \u00c7ikolata limondan daha tatl\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 Chocolate is sweeter than lemon.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"\u00c7ikolata limondan daha tatl\u0131d\u0131r.",en:"Chocolate is sweeter than lemon."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nHoy trabajo ___ que la semana pasada.",o:["menos", "tan", "m\u00e1s", "mayor"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy trabajo m\u00e1s que la semana pasada. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn ge\u00e7en haftadan daha \u00e7ok \u00e7al\u0131\u015f\u0131yorum. | \ud83c\uddec\ud83c\udde7 I work more today than last week.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn ge\u00e7en haftadan daha \u00e7ok \u00e7al\u0131\u015f\u0131yorum.",en:"I work more today than last week."},
-{t:"mc",q:"Tu camiseta es ___ bonita como la m\u00eda.",o:["tan", "tanto", "peor", "m\u00e1s"],a:0,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Tu camiseta es tan bonita como la m\u00eda. | \ud83c\uddf9\ud83c\uddf7 Senin ti\u015f\u00f6rt\u00fcn benimki kadar g\u00fczeldir. | \ud83c\uddec\ud83c\udde7 Your T-shirt is as beautiful as mine.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Senin ti\u015f\u00f6rt\u00fcn benimki kadar g\u00fczeldir.",en:"Your T-shirt is as beautiful as mine."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste sof\u00e1 es ___ c\u00f3modo que esa silla.",o:["m\u00e1s", "menos", "tan", "mejor"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este sof\u00e1 es m\u00e1s c\u00f3modo que esa silla. | \ud83c\uddf9\ud83c\uddf7 Bu koltuk o sandalyeden daha rahatt\u0131r. | \ud83c\uddec\ud83c\udde7 This sofa is more comfortable than that chair.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu koltuk o sandalyeden daha rahatt\u0131r.",en:"This sofa is more comfortable than that chair."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nElena habla alem\u00e1n ___ que su padre.",o:["tanto", "mejor", "m\u00e1s", "peor"],a:1,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (kalite). | \ud83c\uddea\ud83c\uddf8 Elena habla alem\u00e1n mejor que su padre. | \ud83c\uddf9\ud83c\uddf7 Elena babas\u0131ndan daha iyi Almanca konu\u015fur. | \ud83c\uddec\ud83c\udde7 Elena speaks German better than her father.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu (kalite).",tr:"Elena babas\u0131ndan daha iyi Almanca konu\u015fur.",en:"Elena speaks German better than her father."},
-{t:"mc",q:"(ya\u015f bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMi hermana tiene ___ a\u00f1os que yo.",o:["mejor", "m\u00e1s", "menor", "tan"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 ya\u015f kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi hermana tiene m\u00e1s a\u00f1os que yo. | \ud83c\uddf9\ud83c\uddf7 K\u0131z karde\u015fim benden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My sister is older than me.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 ya\u015f kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"K\u0131z karde\u015fim benden daha b\u00fcy\u00fckt\u00fcr.",en:"My sister is older than me."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nLa monta\u00f1a es ___ alta que la colina.",o:["tan", "m\u00e1s", "tanto", "menos"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 La monta\u00f1a es m\u00e1s alta que la colina. | \ud83c\uddf9\ud83c\uddf7 Da\u011f tepeden daha y\u00fcksektir. | \ud83c\uddec\ud83c\udde7 The mountain is higher than the hill.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Da\u011f tepeden daha y\u00fcksektir.",en:"The mountain is higher than the hill."},
-{t:"mc",q:"Ellos tienen ___ dinero como nosotros.",o:["m\u00e1s", "menor", "tanto", "tan"],a:2,exp:"tanto + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Ellos tienen tanto dinero como nosotros. | \ud83c\uddf9\ud83c\uddf7 Onlar\u0131n bizim kadar paras\u0131 var. | \ud83c\uddec\ud83c\udde7 They have as much money as we do.",es:"tanto + isim + como = e\u015fitlik.",tr:"Onlar\u0131n bizim kadar paras\u0131 var.",en:"They have as much money as we do."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEste l\u00e1piz escribe ___ que ese bol\u00edgrafo.",o:["m\u00e1s", "peor", "mejor", "menos"],a:2,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Este l\u00e1piz escribe mejor que ese bol\u00edgrafo. | \ud83c\uddf9\ud83c\uddf7 Bu kalem o t\u00fckenmezden daha iyi yazar. | \ud83c\uddec\ud83c\udde7 This pencil writes better than that pen.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Bu kalem o t\u00fckenmezden daha iyi yazar.",en:"This pencil writes better than that pen."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi pueblo es ___ tranquilo que la ciudad.",o:["menos", "tanto", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi pueblo es m\u00e1s tranquilo que la ciudad. | \ud83c\uddf9\ud83c\uddf7 Benim kasabam \u015fehirden daha sakindir. | \ud83c\uddec\ud83c\udde7 My town is calmer than the city.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim kasabam \u015fehirden daha sakindir.",en:"My town is calmer than the city."},
-{t:"mc",q:"(olumsuz kalite kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nTu soluci\u00f3n es ___ que la de Pedro.",o:["tan", "peor", "m\u00e1s", "tanto"],a:1,exp:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Tu soluci\u00f3n es peor que la de Pedro. | \ud83c\uddf9\ud83c\uddf7 Senin \u00e7\u00f6z\u00fcm\u00fcn Pedro'nunkinden daha k\u00f6t\u00fcd\u00fcr. | \ud83c\uddec\ud83c\udde7 Your solution is worse than Pedro's.",es:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Senin \u00e7\u00f6z\u00fcm\u00fcn Pedro'nunkinden daha k\u00f6t\u00fcd\u00fcr.",en:"Your solution is worse than Pedro's."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEl perro come ___ que antes.",o:["m\u00e1s", "menor", "tan", "tanto"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El perro come m\u00e1s que antes. | \ud83c\uddf9\ud83c\uddf7 K\u00f6pek eskisinden daha \u00e7ok yemek yer. | \ud83c\uddec\ud83c\udde7 The dog eats more than before.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"K\u00f6pek eskisinden daha \u00e7ok yemek yer.",en:"The dog eats more than before."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsta calle es ___ ancha que la otra.",o:["tanto", "menos", "m\u00e1s", "mayor"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta calle es m\u00e1s ancha que la otra. | \ud83c\uddf9\ud83c\uddf7 Bu sokak di\u011ferinden daha geni\u015ftir. | \ud83c\uddec\ud83c\udde7 This street is wider than the other one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu sokak di\u011ferinden daha geni\u015ftir.",en:"This street is wider than the other one."},
-{t:"mc",q:"Mi hermana y yo tenemos ___ ropa como ellas.",o:["tanta", "peor", "tan", "m\u00e1s"],a:0,exp:"tanta + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Mi hermana y yo tenemos tanta ropa como ellas. | \ud83c\uddf9\ud83c\uddf7 K\u0131z karde\u015fimle benim onlar\u0131nki kadar k\u0131yafetimiz var. | \ud83c\uddec\ud83c\udde7 My sister and I have as many clothes as they do.",es:"tanta + isim + como = e\u015fitlik.",tr:"K\u0131z karde\u015fimle benim onlar\u0131nki kadar k\u0131yafetimiz var.",en:"My sister and I have as many clothes as they do."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl t\u00e9 ingl\u00e9s es ___ fuerte que este.",o:["m\u00e1s", "tan", "mejor", "menos"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El t\u00e9 ingl\u00e9s es m\u00e1s fuerte que este. | \ud83c\uddf9\ud83c\uddf7 \u0130ngiliz \u00e7ay\u0131 bundan daha g\u00fc\u00e7l\u00fcd\u00fcr. | \ud83c\uddec\ud83c\udde7 English tea is stronger than this one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"\u0130ngiliz \u00e7ay\u0131 bundan daha g\u00fc\u00e7l\u00fcd\u00fcr.",en:"English tea is stronger than this one."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nCarla estudia ___ que su amigo.",o:["mejor", "tanto", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Carla estudia m\u00e1s que su amigo. | \ud83c\uddf9\ud83c\uddf7 Carla arkada\u015f\u0131ndan daha \u00e7ok \u00e7al\u0131\u015f\u0131r. | \ud83c\uddec\ud83c\udde7 Carla studies more than her friend.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Carla arkada\u015f\u0131ndan daha \u00e7ok \u00e7al\u0131\u015f\u0131r.",en:"Carla studies more than her friend."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste edificio es ___ antiguo que aquel.",o:["mayor", "m\u00e1s", "menos", "tan"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este edificio es m\u00e1s antiguo que aquel. | \ud83c\uddf9\ud83c\uddf7 Bu bina \u015fu binadan daha eskidir. | \ud83c\uddec\ud83c\udde7 This building is older than that one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu bina \u015fu binadan daha eskidir.",en:"This building is older than that one."},
-{t:"mc",q:"Yo tengo ___ energ\u00eda como t\u00fa hoy.",o:["m\u00e1s", "tanta", "tan", "menor"],a:1,exp:"tanta + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Yo tengo tanta energ\u00eda como t\u00fa hoy. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn benim senin kadar enerjim var. | \ud83c\uddec\ud83c\udde7 I have as much energy as you today.",es:"tanta + isim + como = e\u015fitlik.",tr:"Bug\u00fcn benim senin kadar enerjim var.",en:"I have as much energy as you today."},
-{t:"mc",q:"(olumsuz kalite kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEl examen de hoy fue ___ que el de ayer.",o:["mejor", "tan", "m\u00e1s", "peor"],a:3,exp:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 El examen de hoy fue peor que el de ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcnk\u00fc s\u0131nav d\u00fcnk\u00fcnden daha k\u00f6t\u00fcyd\u00fc. | \ud83c\uddec\ud83c\udde7 Today's exam was worse than yesterday's.",es:"peor = malo'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Bug\u00fcnk\u00fc s\u0131nav d\u00fcnk\u00fcnden daha k\u00f6t\u00fcyd\u00fc.",en:"Today's exam was worse than yesterday's."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi bici es ___ r\u00e1pida que tu moto.",o:["mayor", "tanto", "menos", "m\u00e1s"],a:2,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi bici es menos r\u00e1pida que tu moto. | \ud83c\uddf9\ud83c\uddf7 Benim bisikletim senin motosikletinden daha yava\u015ft\u0131r. | \ud83c\uddec\ud83c\udde7 My bicycle is less fast than your motorcycle.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim bisikletim senin motosikletinden daha yava\u015ft\u0131r.",en:"My bicycle is less fast than your motorcycle."},
-{t:"mc",q:"El espa\u00f1ol es ___ f\u00e1cil como el italiano para m\u00ed.",o:["m\u00e1s", "tan", "tanto", "peor"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El espa\u00f1ol es tan f\u00e1cil como el italiano para m\u00ed. | \ud83c\uddf9\ud83c\uddf7 \u0130spanyolca benim i\u00e7in \u0130talyanca kadar kolayd\u0131r. | \ud83c\uddec\ud83c\udde7 Spanish is as easy as Italian for me.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"\u0130spanyolca benim i\u00e7in \u0130talyanca kadar kolayd\u0131r.",en:"Spanish is as easy as Italian for me."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMarta tiene ___ cuadernos que su hermano.",o:["menos", "mayor", "m\u00e1s", "tan"],a:2,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131. | \ud83c\uddea\ud83c\uddf8 Marta tiene m\u00e1s cuadernos que su hermano. | \ud83c\uddf9\ud83c\uddf7 Marta'n\u0131n karde\u015finden daha \u00e7ok defteri var. | \ud83c\uddec\ud83c\udde7 Marta has more notebooks than her brother.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131.",tr:"Marta'n\u0131n karde\u015finden daha \u00e7ok defteri var.",en:"Marta has more notebooks than her brother."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEste ordenador funciona ___ que el viejo.",o:["mejor", "tanto", "tan", "menos"],a:0,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 Este ordenador funciona mejor que el viejo. | \ud83c\uddf9\ud83c\uddf7 Bu bilgisayar eskisinden daha iyi \u00e7al\u0131\u015f\u0131r. | \ud83c\uddec\ud83c\udde7 This computer works better than the old one.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Bu bilgisayar eskisinden daha iyi \u00e7al\u0131\u015f\u0131r.",en:"This computer works better than the old one."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nTu casa es ___ grande que la m\u00eda.",o:["m\u00e1s", "menor", "tanto", "tan"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Tu casa es m\u00e1s grande que la m\u00eda. | \ud83c\uddf9\ud83c\uddf7 Senin evin benimkinden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 Your house is bigger than mine.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Senin evin benimkinden daha b\u00fcy\u00fckt\u00fcr.",en:"Your house is bigger than mine."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nHoy hay ___ gente que ayer en la plaza.",o:["tan", "menos", "mejor", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131. | \ud83c\uddea\ud83c\uddf8 Hoy hay m\u00e1s gente que ayer en la plaza. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn meydanda d\u00fcnden daha fazla insan var. | \ud83c\uddec\ud83c\udde7 There are more people in the square today than yesterday.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck \u2014 miktar kar\u015f\u0131la\u015ft\u0131rmas\u0131.",tr:"Bug\u00fcn meydanda d\u00fcnden daha fazla insan var.",en:"There are more people in the square today than yesterday."},
-{t:"mc",q:"Nosotros tenemos ___ tiempo libre como vosotros.",o:["peor", "tanto", "m\u00e1s", "menor"],a:1,exp:"tanto + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Nosotros tenemos tanto tiempo libre como vosotros. | \ud83c\uddf9\ud83c\uddf7 Bizim sizin kadar bo\u015f zaman\u0131m\u0131z var. | \ud83c\uddec\ud83c\udde7 We have as much free time as you.",es:"tanto + isim + como = e\u015fitlik.",tr:"Bizim sizin kadar bo\u015f zaman\u0131m\u0131z var.",en:"We have as much free time as you."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsa tienda es ___ barata que esta.",o:["m\u00e1s", "mejor", "tan", "menos"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esa tienda es m\u00e1s barata que esta. | \ud83c\uddf9\ud83c\uddf7 O ma\u011faza bundan daha ucuzdur. | \ud83c\uddec\ud83c\udde7 That shop is cheaper than this one.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"O ma\u011faza bundan daha ucuzdur.",en:"That shop is cheaper than this one."},
-{t:"mc",q:"Esta sopa est\u00e1 ___ rica como la de mi madre.",o:["peor", "tan", "m\u00e1s", "tanto"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta sopa est\u00e1 tan rica como la de mi madre. | \ud83c\uddf9\ud83c\uddf7 Bu \u00e7orba annemin yapt\u0131\u011f\u0131 kadar lezzetlidir. | \ud83c\uddec\ud83c\udde7 This soup is as tasty as my mother's.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu \u00e7orba annemin yapt\u0131\u011f\u0131 kadar lezzetlidir.",en:"This soup is as tasty as my mother's."},
-{t:"mc",q:"(ya\u015f bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nMi padre es ___ que mi t\u00edo.",o:["tan", "menor", "m\u00e1s", "mayor"],a:3,exp:"mayor = b\u00fcy\u00fck/ya\u015fl\u0131 i\u00e7in d\u00fczensiz form. | \ud83c\uddea\ud83c\uddf8 Mi padre es mayor que mi t\u00edo. | \ud83c\uddf9\ud83c\uddf7 Babam amcamdan daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My father is older than my uncle.",es:"mayor = b\u00fcy\u00fck/ya\u015fl\u0131 i\u00e7in d\u00fczensiz form.",tr:"Babam amcamdan daha b\u00fcy\u00fckt\u00fcr.",en:"My father is older than my uncle."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nHoy estoy ___ nervioso que ayer.",o:["tanto", "menos", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy estoy m\u00e1s nervioso que ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn d\u00fcnden daha gerginim. | \ud83c\uddec\ud83c\udde7 I am more nervous today than yesterday.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn d\u00fcnden daha gerginim.",en:"I am more nervous today than yesterday."},
-{t:"mc",q:"El libro de historia es ___ interesante como el de arte.",o:["tan", "tanto", "peor", "m\u00e1s"],a:0,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 El libro de historia es tan interesante como el de arte. | \ud83c\uddf9\ud83c\uddf7 Tarih kitab\u0131 sanat kitab\u0131 kadar ilgin\u00e7tir. | \ud83c\uddec\ud83c\udde7 The history book is as interesting as the art book.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Tarih kitab\u0131 sanat kitab\u0131 kadar ilgin\u00e7tir.",en:"The history book is as interesting as the art book."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan a\u015fa\u011f\u0131l\u0131k)\nT\u00fa corres ___ que yo por la ma\u00f1ana.",o:["tan", "mayor", "menos", "m\u00e1s"],a:2,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 T\u00fa corres menos que yo por la ma\u00f1ana. | \ud83c\uddf9\ud83c\uddf7 Sen sabahlar\u0131 benden daha az ko\u015fars\u0131n. | \ud83c\uddec\ud83c\udde7 You run less than me in the morning.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Sen sabahlar\u0131 benden daha az ko\u015fars\u0131n.",en:"You run less than me in the morning."},
-{t:"mc",q:"Este restaurante es ___ bueno como el otro.",o:["tan", "mejor", "tanto", "menos"],a:0,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este restaurante es tan bueno como el otro. | \ud83c\uddf9\ud83c\uddf7 Bu restoran di\u011feri kadar iyidir. | \ud83c\uddec\ud83c\udde7 This restaurant is as good as the other one.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu restoran di\u011feri kadar iyidir.",en:"This restaurant is as good as the other one."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi cuarto es ___ ordenado que antes.",o:["menor", "m\u00e1s", "peor", "tan"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi cuarto es m\u00e1s ordenado que antes. | \ud83c\uddf9\ud83c\uddf7 Odam eskisinden daha d\u00fczenlidir. | \ud83c\uddec\ud83c\udde7 My room is more organized than before.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Odam eskisinden daha d\u00fczenlidir.",en:"My room is more organized than before."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nLaura estudia ___ que su hermana.",o:["m\u00e1s", "tanto", "tan", "mejor"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Laura estudia m\u00e1s que su hermana. | \ud83c\uddf9\ud83c\uddf7 Laura k\u0131z karde\u015finden daha \u00e7ok \u00e7al\u0131\u015f\u0131r. | \ud83c\uddec\ud83c\udde7 Laura studies more than her sister.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Laura k\u0131z karde\u015finden daha \u00e7ok \u00e7al\u0131\u015f\u0131r.",en:"Laura studies more than her sister."},
-{t:"mc",q:"Pedro tiene ___ a\u00f1os como Juan.",o:["tanto", "la m\u00e1s", "tantos", "menor"],a:2,exp:"tantos + isim + como = e\u015fitlik. 'a\u00f1os' \u00e7o\u011ful isim oldu\u011fu i\u00e7in 'tantos' kullan\u0131l\u0131r. | \ud83c\uddea\ud83c\uddf8 Pedro tiene tantos a\u00f1os como Juan. | \ud83c\uddf9\ud83c\uddf7 Pedro, Juan ile ayn\u0131 ya\u015ftad\u0131r. | \ud83c\uddec\ud83c\udde7 Pedro is the same age as Juan.",es:"tantos + isim + como = e\u015fitlik. 'a\u00f1os' \u00e7o\u011ful isim oldu\u011fu i\u00e7in 'tantos' kullan\u0131l\u0131r.",tr:"Pedro, Juan ile ayn\u0131 ya\u015ftad\u0131r.",en:"Pedro is the same age as Juan."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEsta pel\u00edcula es ___ larga que la otra.",o:["mayor", "menos", "tanto", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta pel\u00edcula es m\u00e1s larga que la otra. | \ud83c\uddf9\ud83c\uddf7 Bu film di\u011ferinden daha uzundur. | \ud83c\uddec\ud83c\udde7 This movie is longer than the other.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu film di\u011ferinden daha uzundur.",en:"This movie is longer than the other."},
-{t:"mc",q:"Nosotros tenemos ___ problemas como ellos.",o:["tan", "peor", "m\u00e1s", "tantos"],a:3,exp:"tantos + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 Nosotros tenemos tantos problemas como ellos. | \ud83c\uddf9\ud83c\uddf7 Bizim onlar\u0131nki kadar problemimiz var. | \ud83c\uddec\ud83c\udde7 We have as many problems as they do.",es:"tantos + isim + como = e\u015fitlik.",tr:"Bizim onlar\u0131nki kadar problemimiz var.",en:"We have as many problems as they do."},
-{t:"mc",q:"(a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nLa tortuga camina ___ que el conejo.",o:["m\u00e1s", "tan", "mejor", "menos"],a:3,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 La tortuga camina menos que el conejo. | \ud83c\uddf9\ud83c\uddf7 Kaplumba\u011fa tav\u015fandan daha yava\u015f y\u00fcr\u00fcr. | \ud83c\uddec\ud83c\udde7 The turtle walks less than the rabbit.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Kaplumba\u011fa tav\u015fandan daha yava\u015f y\u00fcr\u00fcr.",en:"The turtle walks less than the rabbit."},
-{t:"mc",q:"Este ejercicio es ___ dif\u00edcil de todos.",o:["el m\u00e1s", "m\u00e1s", "tan", "peor"],a:0,exp:"el/la + m\u00e1s + s\u0131fat + de = superlativo. | \ud83c\uddea\ud83c\uddf8 Este ejercicio es el m\u00e1s dif\u00edcil de todos. | \ud83c\uddf9\ud83c\uddf7 Bu al\u0131\u015ft\u0131rma hepsinin en zorudur. | \ud83c\uddec\ud83c\udde7 This exercise is the most difficult of all.",es:"el/la + m\u00e1s + s\u0131fat + de = superlativo.",tr:"Bu al\u0131\u015ft\u0131rma hepsinin en zorudur.",en:"This exercise is the most difficult of all."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi bolso es ___ pesado que el tuyo.",o:["tan", "menos", "mayor", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi bolso es m\u00e1s pesado que el tuyo. | \ud83c\uddf9\ud83c\uddf7 Benim \u00e7antam seninkinden daha a\u011f\u0131rd\u0131r. | \ud83c\uddec\ud83c\udde7 My bag is heavier than yours.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim \u00e7antam seninkinden daha a\u011f\u0131rd\u0131r.",en:"My bag is heavier than yours."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nYo tengo ___ hambre que t\u00fa.",o:["menor", "tanto", "tan", "m\u00e1s"],a:3,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Yo tengo m\u00e1s hambre que t\u00fa. | \ud83c\uddf9\ud83c\uddf7 Ben senden daha a\u00e7\u0131m. | \ud83c\uddec\ud83c\udde7 I am hungrier than you.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Ben senden daha a\u00e7\u0131m.",en:"I am hungrier than you."},
-{t:"mc",q:"Esta chaqueta es ___ bonita como esa.",o:["tanto", "peor", "tan", "m\u00e1s"],a:2,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Esta chaqueta es tan bonita como esa. | \ud83c\uddf9\ud83c\uddf7 Bu ceket o ceket kadar g\u00fczeldir. | \ud83c\uddec\ud83c\udde7 This jacket is as beautiful as that one.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu ceket o ceket kadar g\u00fczeldir.",en:"This jacket is as beautiful as that one."},
-{t:"mc",q:"Mi hermana peque\u00f1a come ___ que yo.",o:["m\u00e1s", "tan", "menos", "mejor"],a:2,exp:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi hermana peque\u00f1a come menos que yo. | \ud83c\uddf9\ud83c\uddf7 K\u00fc\u00e7\u00fck k\u0131z karde\u015fim benden daha az yemek yer. | \ud83c\uddec\ud83c\udde7 My little sister eats less than me.",es:"menos \u2026 que a\u015fa\u011f\u0131l\u0131k kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"K\u00fc\u00e7\u00fck k\u0131z karde\u015fim benden daha az yemek yer.",en:"My little sister eats less than me."},
-{t:"mc",q:"(kalite bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nEl ingl\u00e9s de Sara es ___ que el m\u00edo.",o:["tanto", "mejor", "peor", "m\u00e1s"],a:1,exp:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu. | \ud83c\uddea\ud83c\uddf8 El ingl\u00e9s de Sara es mejor que el m\u00edo. | \ud83c\uddf9\ud83c\uddf7 Sara'n\u0131n \u0130ngilizcesi benimkinden daha iyidir. | \ud83c\uddec\ud83c\udde7 Sara's English is better than mine.",es:"mejor = bueno'nun d\u00fczensiz kar\u015f\u0131la\u015ft\u0131rmal\u0131 formu.",tr:"Sara'n\u0131n \u0130ngilizcesi benimkinden daha iyidir.",en:"Sara's English is better than mine."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste parque es ___ grande que el de mi barrio.",o:["m\u00e1s", "menos", "tan", "menor"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este parque es m\u00e1s grande que el de mi barrio. | \ud83c\uddf9\ud83c\uddf7 Bu park benim mahallemdeki parktan daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 This park is bigger than the one in my neighborhood.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu park benim mahallemdeki parktan daha b\u00fcy\u00fckt\u00fcr.",en:"This park is bigger than the one in my neighborhood."},
-{t:"mc",q:"(miktar bak\u0131m\u0131ndan \u00fcst\u00fcnl\u00fck)\nHoy hay ___ ruido que ayer.",o:["m\u00e1s", "tan", "mejor", "menos"],a:0,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Hoy hay m\u00e1s ruido que ayer. | \ud83c\uddf9\ud83c\uddf7 Bug\u00fcn d\u00fcnden daha fazla g\u00fcr\u00fclt\u00fc var. | \ud83c\uddec\ud83c\udde7 There is more noise today than yesterday.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bug\u00fcn d\u00fcnden daha fazla g\u00fcr\u00fclt\u00fc var.",en:"There is more noise today than yesterday."},
-{t:"mc",q:"T\u00fa tienes ___ paciencia como tu madre.",o:["mejor", "tanta", "mayor", "menos"],a:1,exp:"tanta + isim + como = e\u015fitlik. | \ud83c\uddea\ud83c\uddf8 T\u00fa tienes tanta paciencia como tu madre. | \ud83c\uddf9\ud83c\uddf7 Sen annen kadar sab\u0131rl\u0131s\u0131n. | \ud83c\uddec\ud83c\udde7 You have as much patience as your mother.",es:"tanta + isim + como = e\u015fitlik.",tr:"Sen annen kadar sab\u0131rl\u0131s\u0131n.",en:"You have as much patience as your mother."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nEste restaurante es ___ caro que el otro.",o:["mejor", "m\u00e1s", "tan", "menos"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este restaurante es m\u00e1s caro que el otro. | \ud83c\uddf9\ud83c\uddf7 Bu restoran di\u011ferinden daha pahal\u0131d\u0131r. | \ud83c\uddec\ud83c\udde7 This restaurant is more expensive than the other.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu restoran di\u011ferinden daha pahal\u0131d\u0131r.",en:"This restaurant is more expensive than the other."},
-{t:"mc",q:"(\u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131)\nMi ciudad es ___ grande que la tuya.",o:["tan", "m\u00e1s", "tanto", "menor"],a:1,exp:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Mi ciudad es m\u00e1s grande que la tuya. | \ud83c\uddf9\ud83c\uddf7 Benim \u015fehrim seninkinden daha b\u00fcy\u00fckt\u00fcr. | \ud83c\uddec\ud83c\udde7 My city is bigger than yours.",es:"m\u00e1s \u2026 que \u00fcst\u00fcnl\u00fck kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Benim \u015fehrim seninkinden daha b\u00fcy\u00fckt\u00fcr.",en:"My city is bigger than yours."},
-{t:"mc",q:"Este ejercicio es ___ f\u00e1cil como el anterior.",o:["m\u00e1s", "tan", "tanto", "peor"],a:1,exp:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r. | \ud83c\uddea\ud83c\uddf8 Este ejercicio es tan f\u00e1cil como el anterior. | \ud83c\uddf9\ud83c\uddf7 Bu al\u0131\u015ft\u0131rma \u00f6ncekisi kadar kolayd\u0131r. | \ud83c\uddec\ud83c\udde7 This exercise is as easy as the previous one.",es:"tan \u2026 como e\u015fitlik kar\u015f\u0131la\u015ft\u0131rmas\u0131d\u0131r.",tr:"Bu al\u0131\u015ft\u0131rma \u00f6ncekisi kadar kolayd\u0131r.",en:"This exercise is as easy as the previous one."}
+{t:"mc",q:"¿Cuál es el tema principal de este vídeo?",o:["Reglas gramaticales del español", "Lugares turísticos de España", "Expresiones en español con animales", "Los hábitos alimenticios de los animales salvajes"],a:2,exp:"",es:"La presentadora menciona desde el principio que el tema de la clase son las expresiones relacionadas con animales.",tr:"Sunucu Asaí, videonun en başında bu dersin konusunun hayvanları içeren İspanyolca deyimler olduğunu belirtiyor.",en:"The host mentions from the beginning that the topic of the class is expressions related to animals."},
+{t:"mc",q:"¿Qué detalle importante destaca Asaí sobre estas expresiones al principio del vídeo?",o:["Se usan y se entienden en todos los países que hablan español.", "Solo las entienden las personas que viven en México.", "Son palabras antiguas que ya no se usan.", "Solo se deben usar en situaciones formales."],a:0,exp:"",es:"Asaí aclara que seleccionó intencionalmente expresiones que son comunes y entendidas en todos los países hispanohablantes, dejando a un lado las regionales.",tr:"Asaí, sadece Meksika'ya özgü olanları elediğini ve seçtiği deyimlerin İspanyolca konuşulan tüm ülkelerde ortak kullanıldığını vurguluyor.",en:"Asaí clarifies that she intentionally chose expressions that are common and understood in every Spanish-speaking country, leaving regional ones aside."},
+{t:"mc",q:"Aunque hay unas 15 expresiones en total, ¿cuántas se verán en este vídeo para que sea más digerible?",o:["15", "10", "8", "5"],a:3,exp:"",es:"Para que el vídeo sea más corto y la información fácil de entender, ella decide enseñar solo 5 expresiones el día de hoy.",tr:"Videonun kısa ve öğrencilerin yeni bilgileri kolayca sindirebilmesi (digerible) için toplamda 15 ifade olsa da bu videoda sadece 5 tanesini işleyeceğini söylüyor.",en:"So the video stays short and easy to digest, she decides to teach only 5 expressions today."},
+{t:"mc",q:"¿Qué significa la expresión \"Tener memoria de elefante\"?",o:["Olvidar las cosas muy rápido.", "Tener una memoria excelente y recordar muy bien las cosas.", "Repetir las mismas palabras constantemente.", "Ser una persona que piensa muy lento."],a:1,exp:"",es:"Se cree que los elefantes tienen una memoria increíble. Por eso, esta expresión se usa para personas que no olvidan casi nada.",tr:"Fillerin hafızası çok güçlü kabul edildiğinden, \"fil hafızası\" deyimi hiçbir şeyi unutmayan ve olayları çok net hatırlayan insanlar için kullanılır.",en:"Elephants are believed to have an incredible memory, so this expression is used for people who almost never forget anything."},
+{t:"mc",q:"¿Qué ejemplo da Asaí sobre sí misma para explicar la \"memoria de elefante\"?",o:["Nunca olvida un número de teléfono de 10 dígitos.", "Recuerda de memoria un código civil de 15 dígitos de México (CURP).", "Olvidó por completo algo que pasó hace 5 años.", "Puede nombrar a todos los animales de memoria."],a:1,exp:"",es:"Ella pone como ejemplo que puede recordar de memoria un código de identidad de 15 dígitos que el registro civil da a los mexicanos al nacer.",tr:"Meksika'da yeni doğanlara verilen 15 haneli karmaşık nüfus kayıt kodunu uzun yıllardır ezbere bildiğini örnek gösteriyor.",en:"She gives the example that she can recall from memory a 15-digit identity code given to Mexicans at birth by the civil registry."},
+{t:"mc",q:"¿En qué situaciones se usa la expresión \"Repetir como un loro\"?",o:["Para las personas que hablan muy rápido y no se les entiende.", "Para las personas que nunca hablan y son muy silenciosas.", "Para alguien que repite la misma palabra u oración una y otra vez.", "Para las personas a las que solo les gusta cantar."],a:2,exp:"",es:"Los loros tienen la cualidad natural de imitar y repetir sonidos. Se usa para las personas que dicen lo mismo constantemente.",tr:"Papağanların duyduklarını durmadan tekrar etme özelliğinden yola çıkılarak, aynı kelime veya cümleleri sürekli söyleyenler için \"papağan gibi tekrar etmek\" deyimi kullanılır.",en:"Parrots naturally imitate and repeat sounds, so this is used for people who keep saying the same thing over and over."},
+{t:"mc",q:"Según la presentadora, al aprender un idioma, ¿cómo es la acción de \"repetir como un loro\"?",o:["Es muy buena para aprender y entender mejor.", "Es una pérdida de tiempo y no se debe hacer.", "Solo es un método adecuado para los niños pequeños.", "Es un mal hábito que arruina la pronunciación."],a:0,exp:"",es:"Asaí afirma que repetir las palabras (como ella lo hace para sus estudiantes en el vídeo) ayuda muchísimo en el proceso de aprendizaje.",tr:"Asaí, dil öğrenenlerin kelimeleri papağan gibi sesli tekrar etmesinin konuyu kavramak ve pratik yapmak için harika bir yöntem olduğunu söylüyor.",en:"Asaí states that repeating words out loud, like she does for her students in the video, helps a lot with the learning process."},
+{t:"mc",q:"¿Qué describe la expresión \"Ir como tortuga\" o \"A paso de tortuga\"?",o:["Amar correr y hacer mucho deporte.", "Esconderse de la gente por timidez.", "Disfrutar mucho nadar en el mar.", "Caminar de manera muy lenta, ir muy despacio."],a:3,exp:"",es:"Las tortugas caminan muy lento por naturaleza. Esta frase describe a alguien que va a una velocidad extremadamente baja.",tr:"Kaplumbağalar çok yavaş hareket ettiği için, bu deyim yavaş yürüyen, hazırlanan veya bir yere ağır ağır giden kişiler için kullanılır.",en:"Turtles naturally move very slowly, so this phrase describes someone going at an extremely low speed."},
+{t:"mc",q:"¿A quiénes recomienda Asaí decirles la frase \"Vas a paso de tortuga\"?",o:["A personas mayores desconocidas en la calle.", "A tu jefe o gerente en el trabajo.", "Únicamente a los niños pequeños.", "A personas muy cercanas a ti con las que tienes confianza (hermano, amigo)."],a:3,exp:"",es:"Al ser una crítica en tono de broma, se debe tener la confianza suficiente con la persona (amigo, hermana) antes de decírselo.",tr:"Bu tabir tatlı bir eleştiri/şaka barındırdığı için, sadece yanınızda yürüyen ve aranızda samimiyet, güven (confianza) olan yakın kişilere söylenmelidir.",en:"Since it's a joking kind of criticism, you should only say it to people you trust and are close with, like a friend or sibling."},
+{t:"mc",q:"¿Qué connotación tiene la expresión \"Ser un cerdo / una cerda\"?",o:["Es una expresión muy despectiva y mala.", "Es un término positivo para alabar a personas inteligentes.", "Es una forma divertida de llamar a alguien que come mucho.", "Describe a una persona que tiene mucha suerte."],a:0,exp:"",es:"Asaí advierte que esta expresión es \"despectiva\", lo que significa que expresa desprecio y es muy negativa.",tr:"Sunucu, kelimenin günlük hayatta oldukça küçümseyici, aşağılayıcı ve kötü niyetli (despectivo) bir anlama sahip olduğu konusunda uyarıyor.",en:"Asaí warns that this expression is \"despectivo\", meaning it expresses contempt and is very negative."},
+{t:"mc",q:"Según el vídeo, ¿por qué razones se le diría a alguien que \"es un cerdo\"?",o:["Porque camina muy rápido y tiene mucha energía.", "Porque se queda en casa todo el tiempo y duerme mucho.", "Porque tiene una actitud muy mala o su higiene personal es terrible.", "Porque tiene una inteligencia capaz de recordar cada detalle."],a:2,exp:"",es:"Se usa principalmente para describir a una persona con una actitud horrible hacia los demás o que está muy sucia y huele mal.",tr:"Bu deyim, çevresine karşı tutumu, davranışı çok kötü olan veya kişisel temizliği (higiene) berbat olup kötü kokan kişiler için kullanılır.",en:"It's mainly used to describe someone with a terrible attitude towards others, or who is very dirty and smells bad."},
+{t:"mc",q:"¿Qué precaución menciona Asaí sobre el uso de la expresión \"Ser un cerdo\"?",o:["Que hay que escribirla correctamente con caracteres especiales.", "Que es muy mala y solo se debe decir a personas de extrema confianza.", "Que solo se debe usar dentro del territorio de España.", "Que se debe decir solo por las mañanas, al despertar."],a:1,exp:"",es:"Debido a que es un insulto fuerte, recomienda tener mucho cuidado y no decirla si no conoces bien a la otra persona.",tr:"Çok sert ve kırıcı bir ifade olduğu için, karşınızdaki kişiyle aranızda çok güçlü bir samimiyet bağı yoksa bu tabiri kesinlikle kullanmamak gerekir.",en:"Since it's a strong insult, she recommends being very careful and not saying it unless you know the other person well."},
+{t:"mc",q:"¿Qué significa el refrán \"Más vale pájaro en mano que 100 volando\"?",o:["Es mejor tener algo seguro, aunque sea poco, que muchas cosas inseguras.", "Tener pájaros o estar en la naturaleza es bueno para la salud mental.", "Poseer muchas cosas al mismo tiempo trae felicidad a la persona.", "Es muy importante proteger la naturaleza y el ecosistema."],a:0,exp:"",es:"Este refrán enseña que es más inteligente asegurar lo que tenemos, en lugar de arriesgarnos por ilusiones más grandes pero poco probables.",tr:"\"Eldeki serçe, daldaki güvercinden iyidir\" atasözüyle birebir aynıdır. Az da olsa kesin ve garantili olan şeylerin, büyük ama belirsiz ihtimallerden çok daha değerli olduğunu anlatır.",en:"This proverb teaches that it's smarter to hold onto what we already have than to risk it for bigger but unlikely possibilities."},
+{t:"mc",q:"¿Qué tipo de personas suelen utilizar la frase del pájaro en mano, según Asaí?",o:["Aventureros que viajan constantemente entre países.", "Personas a las que les gusta tomar riesgos y vivir situaciones peligrosas.", "Trabajadores de zoológicos o clínicas veterinarias.", "Personas que prefieren situaciones seguras, de poco riesgo y tener el control."],a:3,exp:"",es:"Es una frase típica de las personas que buscan la seguridad, quieren tener el control de sus acciones y evitan el riesgo.",tr:"Kontrolü elinde tutmayı seven, risk almaktan kaçınan ve güvenli, garantici yolları tercih eden insanların bu atasözünü daha çok kullandığı belirtiliyor.",en:"It's a typical phrase for people who look for security, want to stay in control of their actions, and avoid risk."},
+{t:"mc",q:"¿Qué ejemplo de la vida diaria da la presentadora para ilustrar el último refrán?",o:["Liberar pájaros comprados en jaulas hacia la naturaleza.", "Pedir un gran préstamo al banco para comprar una casa.", "Guardar las monedas en un lugar seguro para no perderlas.", "Abrir un restaurante nuevo invirtiendo todos los ahorros."],a:2,exp:"",es:"Ella ilustra el refrán con la idea de guardar las monedas sueltas en un lugar seguro (el bolsillo) en lugar de arriesgarse a perderlas por ahí.",tr:"\"Eldeki kuş\" deyimini somutlaştırmak için; kaybolma riski olan bozuk paraları güvenli bir yere, cebe veya cüzdana koymaktan, yani mevcut olanı güvenceye almaktan bahsediyor.",en:"She illustrates the proverb with the idea of keeping loose coins somewhere safe, like a pocket, instead of risking losing them."},
+{t:"mc",q:"Al final del vídeo, ¿cuál es el mayor beneficio de conocer estas expresiones para los estudiantes?",o:["Que tendrán éxito garantizado en sus exámenes de gramática.", "Que su español sonará más nativo y natural al hablar.", "Que aprenderán otros idiomas como italiano o francés más rápido.", "Que solo aumentará la dificultad de su vocabulario."],a:1,exp:"",es:"Asaí afirma que el uso de frases hechas y refranes culturales hará que el nivel de español de los estudiantes suene mucho más natural y \"nativo\".",tr:"Öğrenciler günlük konuşmalarına bu deyimleri eklediklerinde, İspanyolcalarının bir yabancı gibi değil, çok daha \"anadil seviyesine yakın\" (nativo) duyulacağı belirtiliyor.",en:"Asaí states that using set phrases and cultural sayings will make students' Spanish sound much more natural and \"native\"."},
+{t:"mc",q:"¿Cuál será la reacción de los hispanohablantes al escuchar a un estudiante usar estas expresiones?",o:["Se enojarán porque están arruinando el idioma.", "Se sorprenderán de manera positiva.", "Cambiarán de tema sin mostrar ninguna reacción.", "Dirán que están pronunciando mal las palabras."],a:1,exp:"",es:"La gente nativa se sorprenderá positivamente al darse cuenta de que el estudiante domina estas frases cotidianas.",tr:"Anadili İspanyolca olan kişilerin, bir öğrenciden bu kültürel deyimleri duyduğunda olumlu yönde çok şaşıracağı (sorprenderse de manera positiva) ifade ediliyor.",en:"Native speakers will be pleasantly surprised to realize the student has mastered these everyday phrases."},
+{t:"mc",q:"¿Por qué la creadora del vídeo decidió enseñar solo 5 expresiones en lugar de las 15 juntas?",o:["Porque hacer vídeos cortos hace que la información sea más digerible.", "Porque se le terminó el tiempo de grabación en el estudio.", "Porque ella misma olvidó el significado de las otras expresiones.", "Porque los algoritmos de YouTube no permiten vídeos largos."],a:0,exp:"",es:"Explicar 15 expresiones a la vez sería mucha información, así que en vídeos cortos se vuelve mucho más digerible para el estudiante.",tr:"15 deyimi aynı anda yüklemektense kısa videolar halinde sunmanın, öğrencinin algılaması ve sindirmesi açısından daha faydalı (más digerible) olduğunu vurguluyor.",en:"Explaining 15 expressions at once would be too much information, so shorter videos are much easier for students to digest."},
+{t:"mc",q:"Según el ejemplo de Asaí, ¿hasta qué punto del pasado abarca la \"memoria de elefante\"?",o:["Solo recordar eventos del pasado reciente, como el día de ayer.", "Solo la capacidad de realizar operaciones matemáticas complejas.", "Solo recordar las caras de las personas recién conocidas.", "Recordar muy bien cosas que pasaron hace mucho tiempo, como 5, 10 o 15 años atrás."],a:3,exp:"",es:"Ella menciona explícitamente que alguien con esta memoria puede recordar detalles exactos de eventos que pasaron hace 5, 10 o incluso 15 años atrás.",tr:"Fil hafızasına sahip kişilerin sadece yakın geçmişi değil; 5, 10 veya 15 yıl gibi oldukça uzun bir süre önce yaşanan olayları bile çok net hatırlayabildikleri videoda örneklendiriliyor.",en:"She explicitly mentions that someone with this memory can recall exact details of events from 5, 10, or even 15 years ago."},
+{t:"mc",q:"¿En qué orden se analizaron las expresiones con animales en este vídeo?",o:["Gato, perro, pájaro, cerdo, loro.", "Elefante, león, tortuga, cerdo, paloma.", "Elefante, loro, tortuga, cerdo, pájaro.", "Ratón, loro, serpiente, caballo, pájaro."],a:2,exp:"",es:"El orden exacto de los animales analizados es: elefante (1), loro (2), tortuga (3), cerdo (4) y pájaro (5).",tr:"Videoda deyimleri anlatılan hayvanların sırası tam olarak şu şekildedir: Elefante (Fil), Loro (Papağan), Tortuga (Kaplumbağa), Cerdo (Domuz) ve Pájaro (Kuş).",en:"The exact order of animals covered is: elephant (1), parrot (2), turtle (3), pig (4), and bird (5)."},
+{t:"mc",q:"\"El español es tan difícil como el francés.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:0,exp:"",es:"La estructura \"tan + adjetivo + como\" se usa correctamente para comparaciones de igualdad.",tr:"Eşitlik karşılaştırmalarında \"tan + sıfat + como\" yapısı doğru kullanılmıştır.",en:"The structure \"tan + adjective + como\" is used correctly for equality comparisons."},
+{t:"mc",q:"\"Mi gato Zeytin duerme más horas de mi perro.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:1,exp:"",es:"En las comparaciones de superioridad o inferioridad se usa \"que\", no \"de\" (a menos que siga un número). Lo correcto es: \"...más horas que...\".",tr:"Üstünlük veya azlık karşılaştırmalarında \"de\" değil \"que\" kullanılır (eğer sonrasında bir sayı gelmiyorsa). Doğrusu \"...más horas que...\" olmalıdır.",en:"In superiority/inferiority comparisons \"que\" is used, not \"de\" (unless followed by a number). The correct form is \"...más horas que...\"."},
+{t:"mc",q:"\"Harun tiene tantas ideas como tú.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:0,exp:"",es:"\"Tantas\" concuerda en género y número con el sustantivo femenino plural \"ideas\".",tr:"\"Tantas\" kelimesi, dişil ve çoğul bir isim olan \"ideas\" ile cinsiyet ve sayı bakımından doğru bir şekilde uyum sağlamıştır.",en:"\"Tantas\" correctly agrees in gender and number with the feminine plural noun \"ideas\"."},
+{t:"mc",q:"\"A mis alumnos les encanta mucho jugar en clase tanto como aprender.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:1,exp:"",es:"El verbo \"encantar\" ya significa \"gustar mucho\", por lo tanto, nunca se usa con \"mucho\". Lo correcto es: \"A mis alumnos les encanta jugar...\".",tr:"\"Encantar\" fiili zaten \"çok sevmek\" anlamına geldiği için \"mucho\" ile kesinlikle kullanılmaz. Doğrusu \"A mis alumnos les encanta jugar...\" şeklinde olmalıdır.",en:"The verb \"encantar\" already means \"to love/like a lot\", so it's never used with \"mucho\". The correct form is \"A mis alumnos les encanta jugar...\"."},
+{t:"mc",q:"\"Shakira baila mejor que nadie.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:0,exp:"",es:"\"Mejor\" es el comparativo irregular del adjetivo \"bueno\" o del adverbio \"bien\". La estructura es completamente correcta.",tr:"\"Mejor\", \"bueno\" sıfatının veya \"bien\" zarfının düzensiz karşılaştırma halidir. Kurulan yapı tamamen doğrudur.",en:"\"Mejor\" is the irregular comparative of the adjective \"bueno\" or the adverb \"bien\". The structure is completely correct."},
+{t:"mc",q:"\"Este libro es más bueno que el anterior.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:1,exp:"",es:"No se dice \"más bueno\" para comparar la calidad; la forma correcta e irregular es \"mejor\".",tr:"Kaliteyi karşılaştırırken \"más bueno\" denmez; doğru ve düzensiz yapı \"mejor\" kelimesidir.",en:"You don't say \"más bueno\" to compare quality; the correct irregular form is \"mejor\"."},
+{t:"mc",q:"\"Hoy hace menos frío que ayer.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:0,exp:"",es:"La estructura \"menos + sustantivo/adjetivo/adverbio + que\" es correcta para comparaciones de inferioridad.",tr:"Azlık karşılaştırmaları için \"menos + isim/sıfat/zarf + que\" yapısı doğru oluşturulmuştur.",en:"The structure \"menos + noun/adjective/adverb + que\" is correct for inferiority comparisons."},
+{t:"mc",q:"\"Tenemos tan problemas como ellos.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:1,exp:"",es:"\"Problemas\" es un sustantivo (masculino plural), por lo que se debe usar \"tantos\", no \"tan\". Lo correcto es \"tantos problemas\".",tr:"\"Problemas\" eril ve çoğul bir isimdir, bu yüzden \"tan\" değil \"tantos\" kullanılmalıdır. Doğrusu \"tantos problemas\" olmalıdır.",en:"\"Problemas\" is a noun (masculine plural), so \"tantos\" must be used, not \"tan\". The correct form is \"tantos problemas\"."},
+{t:"mc",q:"\"Mi hermana menor es más inteligente que yo.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:0,exp:"",es:"\"Menor\" funciona aquí como adjetivo para referirse a la edad, y la comparación \"más inteligente que\" está formada correctamente.",tr:"Burada \"menor\" kelimesi yaşı belirtmek için sıfat olarak kullanılmıştır ve \"más inteligente que\" karşılaştırması dilbilgisi kurallarına uygundur.",en:"Here \"menor\" works as an adjective referring to age, and the comparison \"más inteligente que\" is formed correctly."},
+{t:"mc",q:"\"Él es más mayor que su primo.\" — Bu cümlenin karşılaştırma dilbilgisi doğru mu?",o:["Verdadero", "Falso"],a:1,exp:"",es:"\"Mayor\" ya es una palabra comparativa, por lo tanto, agregar \"más\" antes de ella es un error gramatical. Lo correcto es solo \"mayor que\".",tr:"\"Mayor\" kelimesi zaten kendiliğinden bir karşılaştırma ifade eder, bu yüzden önüne \"más\" getirmek (más mejor demek gibi) bir dilbilgisi hatasıdır. Doğrusu sadece \"mayor que\" olmalıdır.",en:"\"Mayor\" is already a comparative word, so adding \"más\" before it is a grammar mistake (like saying \"more better\"). The correct form is just \"mayor que\"."},
+{t:"mc",q:"Según el texto, ¿quién es mayor?",o:["Rosa es menor que David.", "Rosa tiene 24 años.", "David es mayor que Rosa.", "Rosa es mayor que David."],a:3,exp:"",es:"\"Yo soy mayor que David.\"",tr:"Metinde Rosa \"Yo soy mayor que David\" (Ben David'den daha büyüğüm) diyor. Yaş karşılaştırmalarında \"daha büyük / daha yaşlı\" demek için \"mayor que\" kalıbı kullanılır. İspanyolcada yaş için \"más grande\" yerine \"mayor\" tercih edilir.",en:"I am older than David."},
+{t:"mc",q:"¿Cómo es la ciudad de Rosa?",o:["La ciudad de Rosa es más ruidosa que el pueblo.", "La ciudad es menos ruidosa.", "El pueblo es más ruidoso.", "El pueblo y la ciudad son tan ruidosos como un parque."],a:0,exp:"",es:"\"Mi ciudad es más ruidosa que el pueblo.\"",tr:"Rosa şehrinin David'in kasabasından daha gürültülü olduğunu söylüyor: \"Mi ciudad es más ruidosa que el pueblo\". Sıfatlarla üstünlük karşılaştırması yaparken \"más + sıfat + que\" yapısı kullanılır.",en:"My city is noisier than the town."},
+{t:"mc",q:"¿Qué dice Rosa sobre el tráfico?",o:["El pueblo tiene menos tráfico que la ciudad.", "El pueblo tiene más tráfico.", "El pueblo tiene tanto tráfico como la ciudad.", "La ciudad no tiene tráfico."],a:0,exp:"",es:"\"El pueblo tiene menos tráfico que mi ciudad.\"",tr:"Metinde kasabanın şehirden daha az trafiğe sahip olduğu belirtiliyor: \"El pueblo... tiene menos tráfico que mi ciudad\". İsimlerle (tráfico) azlık karşılaştırması yaparken \"menos + isim + que\" kalıbı kullanılır.",en:"The town has less traffic than my city."},
+{t:"mc",q:"¿Cómo es el apartamento de Rosa?",o:["Es más grande que la casa.", "Es más feo que la casa.", "Es más pequeño que la casa, pero tan bonito como la casa.", "Es menos bonito que la casa."],a:2,exp:"",es:"\"Mi apartamento es más pequeño que su casa. Pero mi apartamento es tan bonito como su casa.\"",tr:"Rosa, dairesinin David'in evinden daha küçük (más pequeño que) ama onun evi kadar güzel (tan bonito como) olduğunu söylüyor. Sıfatlarla eşitlik bildirirken \"tan + sıfat + como\" yapısı kullanılır (kadar güzel).",en:"My apartment is smaller than his house. But my apartment is as pretty as his house."},
+{t:"mc",q:"¿Qué hay en el jardín de David?",o:["Tantas flores como un bosque.", "Tantos árboles como un parque.", "Menos árboles que un bosque.", "Más gatos que en la calle."],a:1,exp:"",es:"\"Tiene tantos árboles como un parque.\"",tr:"Metinde David'in bahçesinde bir park kadar çok ağaç olduğu söyleniyor: \"tantos árboles como un parque\". İsimlerle eşitlik yaparken ismin cinsiyetine ve sayısına bakılır. \"Árboles\" eril ve çoğul olduğu için \"tantos + isim + como\" kullanılmıştır.",en:"He has as many trees as a park."},
+{t:"mc",q:"¿Quién es Zeytin?",o:["El hermano de Rosa.", "El perro de David.", "El pueblo de David.", "El gato negro de Rosa."],a:3,exp:"",es:"\"Tengo un gato negro. Se llama Zeytin.\"",tr:"Rosa \"Yo tengo un gato negro. Se llama Zeytin\" diyor. Zeytin, Rosa'nın siyah kedisidir. Bu direkt bir okuduğunu anlama (comprensión de lectura) sorusudur.",en:"I have a black cat. His name is Zeytin."},
+{t:"mc",q:"¿Qué animal duerme más?",o:["Toby duerme más que Zeytin.", "Los dos duermen igual.", "Zeytin duerme más horas que Toby.", "Toby duerme tantas horas como Zeytin."],a:2,exp:"",es:"\"Zeytin duerme más horas que el perro.\"",tr:"Zeytin'in Toby'den daha fazla saat uyuduğu belirtiliyor: \"Zeytin duerme más horas que el perro\". İsimlerle (\"horas\") üstünlük kurarken \"más + isim + que\" kullanılır.",en:"Zeytin sleeps more hours than the dog."},
+{t:"mc",q:"¿Quién es más rápido?",o:["Rosa.", "Zeytin.", "David.", "Toby es más rápido que Zeytin."],a:3,exp:"",es:"\"Toby corre más rápido que mi gato.\"",tr:"Metne göre köpek Toby, kedi Zeytin'den daha hızlı koşuyor: \"Toby corre más rápido que mi gato\". Burada \"rápido\" bir zarf olarak kullanılmıştır ve zarflarla da \"más + zarf + que\" kuralı geçerlidir.",en:"Toby runs faster than my cat."},
+{t:"mc",q:"¿Qué hace Rosa en su tiempo libre?",o:["Lee más libros que David.", "Ve más películas que David.", "Lee menos libros que David.", "No lee libros."],a:0,exp:"",es:"\"Yo leo más libros que David.\"",tr:"Rosa boş zamanlarında kardeşinden daha fazla kitap okuduğunu ifade ediyor: \"Yo leo más libros que David\". \"Libros\" isimdir, bu yüzden \"más + isim + que\" kalıbı doğru bir şekilde kullanılmıştır.",en:"I read more books than David."},
+{t:"mc",q:"Para Rosa, leer es...",o:["Peor que ver la televisión.", "Mejor que ver la televisión.", "Tan aburrido como ver la televisión.", "Menos interesante que ver la televisión."],a:1,exp:"",es:"\"Para mí, leer es mejor que ver la televisión.\"",tr:"Rosa okumanın televizyon izlemekten daha iyi olduğunu düşünüyor: \"leer es mejor que ver la televisión\". İspanyolcada \"bueno\" (iyi) sıfatının karşılaştırma hali düzensizdir ve \"mejor\" (daha iyi) olarak kullanılır. \"Más bueno\" ASLA kullanılmaz.",en:"For me, reading is better than watching television."},
+{t:"mc",q:"¿Qué películas prefiere David?",o:["Las películas románticas.", "Las películas de acción.", "Los libros de historia.", "Las películas de terror."],a:1,exp:"",es:"\"Las películas de acción son mejores que las películas románticas.\"",tr:"David, aksiyon filmlerinin romantik filmlerden daha iyi olduğunu söylüyor. Bu da onun aksiyon filmlerini tercih ettiğini gösteriyor: \"las películas de acción son mejores...\"",en:"Action movies are better than romantic movies."},
+{t:"mc",q:"Según David, ¿cómo son las películas de acción?",o:["Son mejores que las películas románticas.", "Son peores que las películas románticas.", "Son tan malas como las películas románticas.", "Son menos divertidas."],a:0,exp:"",es:"\"Las películas de acción son mejores que las películas románticas.\"",tr:"David, aksiyon filmlerinin romantik filmlerden \"daha iyi\" (mejores que) olduğunu söylüyor. Filmler (películas) çoğul olduğu için \"mejor\" kelimesi de çoğul yapılarak \"mejores\" haline getirilmiştir.",en:"Action movies are better than romantic movies."},
+{t:"mc",q:"¿Quién cocina mejor?",o:["David cocina mejor que Rosa.", "Toby cocina mejor.", "Rosa cocina mejor que David.", "Cocinan tan bien como un chef juntos."],a:2,exp:"",es:"\"Cocino mejor que mi hermano.\"",tr:"Rosa kardeşinden daha iyi yemek pişirdiğini belirtiyor: \"Cocino mejor que mi hermano\". \"Bien\" (iyi) zarfının karşılaştırma hali de sıfat olan \"bueno\" gibi düzensizdir ve \"mejor\" olarak çekimlenir.",en:"I cook better than my brother."},
+{t:"mc",q:"¿Por qué la comida de David es peor?",o:["Porque cocina paella todos los días.", "Porque no compra comida en el supermercado.", "Porque no come los fines de semana.", "Porque solo prepara sándwiches."],a:3,exp:"",es:"\"La comida de David es peor que mi comida, porque él solo prepara sándwiches.\"",tr:"Rosa, kardeşinin yemeğinin onunkinden \"daha kötü\" (peor que) olduğunu, çünkü sadece sandviç hazırladığını söylüyor. \"Malo\" (kötü) kelimesinin düzensiz karşılaştırma hali \"peor\"dur (daha kötü).",en:"David's food is worse than mine, because he only makes sandwiches."},
+{t:"mc",q:"¿Cuánta comida prepara Rosa?",o:["Más comida que un restaurante.", "Menos comida que su hermano.", "Tanta comida como su madre.", "Tantas comidas como un chef."],a:3,exp:"",es:"\"Yo preparo tantas comidas como un chef.\"",tr:"Rosa bir şef \"kadar çok\" yemek hazırladığını söylüyor: \"Tantas comidas como un chef\". \"Comidas\" dişil ve çoğul bir isim olduğu için, miktar eşitliği kurarken \"tantas + isim + como\" yapısı kullanılmıştır.",en:"I prepare as many meals as a chef."},
+{t:"mc",q:"¿Quién viaja más?",o:["David viaja más que Rosa.", "Viajan tanto como sus padres.", "Rosa viaja más que David.", "Viajan menos que sus amigos."],a:2,exp:"",es:"\"David viaja menos que yo.\"",tr:"Metinde David'in Rosa'dan \"daha az\" seyahat ettiği (David viaja menos que yo) yazıyor. Bu da Rosa'nın daha fazla seyahat ettiği anlamına gelir. Fiilleri karşılaştırırken \"fiil + menos que\" (daha az) veya \"fiil + más que\" (daha çok) kalıbı kullanılır.",en:"David travels less than me."},
+{t:"mc",q:"¿Adónde prefiere ir David de vacaciones?",o:["A la playa.", "A la montaña.", "A la ciudad.", "Al parque."],a:1,exp:"",es:"\"Él prefiere la montaña.\"",tr:"Okuduğunu anlama sorusudur. Metinde David'in dağı tercih ettiği net olarak belirtiliyor: \"Él prefiere la montaña\".",en:"He prefers the mountain."},
+{t:"mc",q:"Para Rosa, la playa es...",o:["Más relajante que la montaña.", "Menos relajante que la montaña.", "Tan estresante como la montaña.", "Peor que la montaña."],a:0,exp:"",es:"\"Para mí, la playa es más relajante que la montaña.\"",tr:"Rosa'ya göre plaj dağdan daha rahatlatıcıdır: \"la playa es más relajante que la montaña\". \"Relajante\" bir sıfattır ve üstünlük karşılaştırması \"más + sıfat + que\" ile yapılmıştır.",en:"For me, the beach is more relaxing than the mountain."},
+{t:"mc",q:"¿Qué tiempo hace en la playa según el texto?",o:["Hace más calor que en la montaña.", "Hace más frío que en la montaña.", "Hace menos sol que en la montaña.", "Hace tan frío como en la ciudad."],a:0,exp:"",es:"\"En la playa hace más calor que en la montaña.\"",tr:"Rosa, plajda dağdan \"daha fazla sıcak\" (más calor) olduğunu söylüyor: \"hace más calor que en la montaña\". \"Calor\" (sıcaklık) isim olduğu için \"más + isim + que\" yapısı doğru kuraldır.",en:"At the beach it's hotter than in the mountains."},
+{t:"mc",q:"¿Cómo son las vidas de Rosa y David en general?",o:["Son exactamente iguales.", "Son diferentes, pero con muchas comparaciones.", "Rosa tiene una vida peor que David.", "David tiene una vida aburrida."],a:1,exp:"",es:"\"Nuestras vidas son muy diferentes.\"",tr:"Metnin ana fikri üzerine bir sorudur. Metnin başında Rosa \"Nuestras vidas son muy diferentes\" (Hayatlarımız çok farklı) diyerek durumu özetliyor ve metin boyunca hayatlarını bolca \"karşılaştırma\" (comparaciones) yaparak anlatıyor.",en:"Our lives are very different."}
 ];
 let cur=0,score=0,err=0,state=[],wrongList=[];
 const WARN='';
-
 function startQuiz(){
   const n=document.getElementById('introName').value;
   if(!n){alert('Lütfen adınızı seçin!');return;}
@@ -549,7 +479,6 @@ function startQuiz(){
   document.getElementById('quiz').style.display='block';
   render();
 }
-
 function render(){
   document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
   document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
@@ -559,18 +488,29 @@ function render(){
   document.getElementById('qArea').innerHTML=WARN+buildMC(q,cur);
   if(state[cur]!==null)restoreState(cur);
 }
-
 function buildMC(q,i){
-  const letters=['a','b','c','d'];
+  const isVF = q.o.length===2 && q.o[0]==='Verdadero';
+  const letters = isVF ? ['V','F'] : ['a','b','c','d'];
+  let badge, passage;
+  if(i<20){
+    badge='🎥 VİDEO İZLEME';
+    passage='<details class="passage-box"'+(i===0?' open':'')+'><summary>▶️ Videoyu İzle / Gizle — Expresiones en español con animales</summary><div class="passage-body"><div class="video-wrap"><iframe src="https://www.youtube.com/embed/'+VIDEO_ID+'" title="Expresiones en español con animales" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><a class="video-link" href="'+VIDEO_URL+'" target="_blank" rel="noopener">🔗 YouTube\'ta Aç</a></div></details>';
+  } else if(i<30){
+    badge='✅❌ VERDADERO / FALSO';
+    passage='';
+  } else {
+    badge='📖 OKUDUĞUNU ANLAMA';
+    passage='<details class="passage-box"'+(i===30?' open':'')+'><summary>📖 Metni Oku / Gizle — Las vidas de Rosa y David</summary><div class="passage-body">'+READING_TEXT2+'</div></details>';
+  }
   return '<div class="q-card">'+
     '<div class="q-num">SORU '+(i+1)+'</div>'+
-    '<span class="q-type-badge">ÇOKTAN SEÇMELİ</span>'+
-    '<div class="q-text" style="white-space:pre-line;">'+q.q+'</div>'+
+    '<span class="q-type-badge">'+badge+'</span>'+
+    passage+
+    '<div class="q-text">'+q.q+'</div>'+
     '<div class="choices" id="ch'+i+'">'+
     q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+letters[j]+'</span>'+o+'</button>').join('')+
     '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
 }
-
 function navRow(i){
   return '<div class="nav-row">'+
     '<button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button>'+
@@ -578,7 +518,6 @@ function navRow(i){
     '<button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button>'+
     '</div>';
 }
-
 function answerMC(i,j){
   if(state[i]!==null)return;
   const q=Q[i],ok=j===q.a;
@@ -597,7 +536,6 @@ function answerMC(i,j){
     setTimeout(()=>showResult(),700);
   }
 }
-
 function restoreState(i){
   const s=state[i];if(!s)return;
   const q=Q[i];
@@ -609,7 +547,6 @@ function restoreState(i){
   }
   showExp(i,s.ok);
 }
-
 function showExp(i,ok){
   const q=Q[i],el=document.getElementById('exp'+i);
   if(!el)return;
@@ -619,11 +556,21 @@ function showExp(i,ok){
     '<span class="exp-tr">🇹🇷 '+q.tr+'</span>'+
     '<span class="exp-en">🇬🇧 '+q.en+'</span>';
 }
-
 function next(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);} else showResult();}
 function prev(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
 function skipQ(){if(state[cur]===null){state[cur]={chosen:null,ok:false};} next();}
-
+function finishTest(){
+  const answered=state.filter(s=>s!==null).length;
+  if(answered<Q.length){
+    if(!confirm('Testi şimdi bitirmek istediğinize emin misiniz?\n\nCevaplanmamış '+(Q.length-answered)+' soru boş sayılacak. Bu işlem geri alınamaz.'))return;
+  } else {
+    if(!confirm('Testi bitirmek istediğinize emin misiniz?'))return;
+  }
+  for(let i=0;i<Q.length;i++){
+    if(state[i]===null)state[i]={chosen:null,ok:false};
+  }
+  showResult();
+}
 function showResult(){
   document.getElementById('quiz').style.display='none';
   const pct=Math.round(score/Q.length*100);
@@ -640,7 +587,6 @@ function showResult(){
   document.getElementById('summaryCard').style.display='none';
   window.scrollTo(0,0);
 }
-
 function confirmName(){
   const val=document.getElementById('studentName').value;
   if(!val){alert('Lütfen adınızı seçin!');return;}
@@ -663,7 +609,6 @@ function confirmName(){
   .then(()=>{st.textContent='';})
   .catch(()=>{st.style.color='var(--err)';st.textContent='⚠️ Bağlantı hatası.';});
 }
-
 function toggleReview(){
   const sec=document.getElementById('reviewSection');
   if(sec.style.display==='block'){sec.style.display='none';return;}
@@ -679,7 +624,6 @@ function toggleReview(){
       '</div>';
   }).join('');
 }
-
 function retryQuiz(){
   state=new Array(Q.length).fill(null);
   wrongList=[];cur=0;score=0;err=0;
@@ -693,7 +637,6 @@ function retryQuiz(){
   document.getElementById('summaryCard').style.display='none';
   render();window.scrollTo(0,0);
 }
-
 </script>
 </body>
 </html>
