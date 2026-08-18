@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>¿Bodrum o Capadocia? | A1.2 (3+4. Ders Ödevi — 2. Kısım Yazma Ödevi)</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+/* INTRO */
+#intro{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 28px 32px;border-top:5px solid var(--primary);animation:fadeUp .5s ease;}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-pink-line{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--accent);margin-bottom:10px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:16px;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(108,92,231,0.09);color:var(--primary);}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);background:#fff;cursor:pointer;outline:none;transition:border .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+select.name-select:focus{border-color:var(--primary);}
+.start-btn{width:100%;margin-top:20px;padding:15px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(108,92,231,0.35);letter-spacing:.3px;}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+/* WRITING */
+#writing{display:none;}
+.writing-card{background:var(--surface);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);border-top:5px solid var(--accent);animation:fadeUp .5s ease;}
+.writing-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),#e84393);color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;}
+.writing-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--accent);margin-bottom:16px;}
+.scenario-box{background:rgba(108,92,231,0.05);border:1.5px solid rgba(108,92,231,0.15);border-radius:12px;padding:16px;margin-bottom:18px;}
+.scenario-title{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;color:var(--primary);letter-spacing:.5px;margin-bottom:10px;}
+.scenario-box p{font-size:13px;line-height:1.7;margin-bottom:8px;}
+.whatsapp-bubble{background:#dcf8c6;border-radius:12px;border-bottom-left-radius:3px;padding:10px 14px;font-size:13px;font-style:italic;color:#2d3436;display:inline-block;margin:4px 0;}
+.yonerge-box{background:rgba(253,121,168,0.06);border:1.5px solid rgba(253,121,168,0.2);border-radius:12px;padding:18px 16px;margin-bottom:18px;}
+.yonerge-title{font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:var(--accent);letter-spacing:.5px;margin-bottom:12px;}
+.yonerge-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.yonerge-list li{font-size:13px;line-height:1.6;display:flex;align-items:flex-start;gap:8px;}
+.yonerge-list li::before{content:'→';color:var(--accent);font-weight:900;flex-shrink:0;margin-top:1px;}
+.ornek-box{background:rgba(0,206,201,0.06);border:1.5px solid rgba(0,206,201,0.2);border-radius:12px;padding:14px 16px;margin-bottom:18px;}
+.ornek-title{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;color:var(--accent2);letter-spacing:.5px;margin-bottom:10px;}
+.ornek-subtitle{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--primary);margin:10px 0 4px;}
+.ornek-item{font-size:13px;color:var(--text);margin-bottom:4px;font-style:italic;}
+.vocab-box{margin-bottom:18px;}
+.vocab-title{font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:var(--primary);margin-bottom:10px;}
+.rubric-table,.vocab-table{width:100%;border-collapse:collapse;font-size:13px;}
+.rubric-table th,.vocab-table th{background:var(--primary);color:#fff;padding:8px 12px;text-align:left;font-size:11px;letter-spacing:.5px;text-transform:uppercase;}
+.rubric-table td,.vocab-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
+.rubric-table tr:last-child td{border-bottom:none;font-weight:800;background:rgba(108,92,231,0.06);}
+.rubric-table td:last-child{text-align:right;color:var(--primary);font-weight:700;}
+.checklist-box{background:rgba(108,92,231,0.04);border:1.5px solid rgba(108,92,231,0.15);border-radius:12px;padding:16px;margin-bottom:18px;}
+.checklist-title{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;color:var(--primary);letter-spacing:.5px;margin-bottom:10px;}
+.checklist-item{font-size:13px;line-height:1.6;padding:3px 0;color:var(--text);}
+.header-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+.field-label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--primary);margin-bottom:4px;}
+.field-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-family:'Nunito Sans',sans-serif;font-size:14px;color:var(--text);background:#f5f0ff;outline:none;font-weight:700;}
+.writing-textarea{width:100%;min-height:220px;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-family:'Nunito Sans',sans-serif;font-size:14px;line-height:1.7;color:var(--text);background:#fff;resize:vertical;outline:none;transition:border .2s;}
+.writing-textarea:focus{border-color:var(--accent);}
+.char-count{font-size:12px;color:var(--muted);margin-top:6px;text-align:right;}
+.copy-confirm-box{background:rgba(0,206,201,0.07);border:1.5px solid rgba(0,206,201,0.3);border-radius:12px;padding:14px 16px;margin:18px 0 4px;display:flex;align-items:flex-start;gap:10px;}
+.copy-confirm-box input[type=checkbox]{width:20px;height:20px;margin-top:2px;accent-color:var(--accent2);cursor:pointer;flex-shrink:0;}
+.copy-confirm-box label{font-size:13px;font-weight:700;color:var(--text);cursor:pointer;line-height:1.5;}
+.writing-submit-btn{width:100%;margin-top:16px;padding:15px;background:linear-gradient(135deg,var(--accent),#e84393);color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(253,121,168,0.4);}
+.writing-submit-btn:hover:not(:disabled){transform:translateY(-2px);}
+.writing-submit-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+/* RESULT */
+#result{display:none;}
+.result-card{background:var(--surface);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow);text-align:center;border-top:5px solid var(--primary);animation:fadeUp .5s ease;}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;}
+.result-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--primary);margin-bottom:16px;}
+.writing-result-note{background:rgba(253,121,168,0.08);border:1.5px solid rgba(253,121,168,0.2);border-radius:12px;padding:14px 16px;margin:4px 0 16px;font-size:13px;color:var(--accent);font-weight:700;text-align:left;}
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px;}
+.confirm-row{display:flex;flex-direction:column;align-items:center;gap:10px;}
+select#studentName{flex:none;width:100%;max-width:300px;padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);background:#fff;outline:none;cursor:pointer;text-align:center;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{padding:11px 20px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:background .15s;white-space:nowrap;max-width:300px;margin:0 auto;}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+.confirm-btn.submit-big{background:linear-gradient(135deg,var(--accent),#e84393);box-shadow:0 4px 16px rgba(253,121,168,0.35);}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));border:1px solid rgba(108,92,231,0.15);border-radius:12px;padding:16px;margin-top:14px;text-align:left;display:none;}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+.submit-cta{background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));border:2px dashed rgba(253,121,168,0.4);border-radius:14px;padding:16px;margin-bottom:16px;text-align:center;}
+.submit-hint{font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:var(--err);margin-bottom:4px;}
+.submit-hint2{font-size:12px;color:var(--err);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- INTRO -->
+<div id="intro">
+  <div class="brand-bar">
+    <div class="brand-dot"></div><div class="brand-dot"></div><div class="brand-dot"></div>
+    <span class="brand-name">@ispanyolcacim · Profe Hazel</span>
+  </div>
+  <div class="intro-badge">YAZMA ÖDEVİ · A1.2</div>
+  <h1>¿Bodrum o Capadocia?</h1>
+  <div class="intro-pink-line">A1.2 (3+4. Ders Ödevi — 2. Kısım Yazma Ödevi)</div>
+  <div class="intro-sub">Comparaciones: Superioridad, Inferioridad, Igualdad</div>
+  <div class="intro-desc">WhatsApp mesajı · 20-25 cümle · 100 puan</div>
+  <div class="chip-row">
+    <span class="chip">más + adj + que</span>
+    <span class="chip c2">menos + adj + que</span>
+    <span class="chip c3">tan + adj + como</span>
+  </div>
+  <div class="name-label">👤 Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
+  </select>
+  <button class="start-btn" onclick="startWriting()">Yazmaya Başla →</button>
+</div>
+<!-- WRITING -->
+<div id="writing">
+  <div class="writing-card">
+    <div class="writing-badge">✍️ YAZMA BÖLÜMÜ – A1.2 (3+4. Ders) — 2. KISIM</div>
+    <div class="writing-title">¿Bodrum o Capadocia?</div>
+
+    <div class="scenario-box">
+      <div class="scenario-title">📱 DURUM</div>
+      <p>İspanyol arkadaşın Carlos, bu yaz Türkiye'ye geliyor. Sana WhatsApp'tan yazıyor:</p>
+      <div class="whatsapp-bubble">¡Hola! Tengo 7 días de vacaciones. ¿Qué es mejor: Bodrum o Capadocia? ¿Me ayudas?</div>
+      <p>Carlos'a cevap ver ve Bodrum ile Kapadokya'yı karşılaştır.</p>
+    </div>
+
+    <div class="yonerge-box">
+      <div class="yonerge-title">✍️ GÖREVİN</div>
+      <ul class="yonerge-list">
+        <li>İspanyolca <strong>20-25 cümlelik</strong> bir WhatsApp mesajı yaz.</li>
+        <li>Bodrum ve Kapadokya'yı kısaca tanıt.</li>
+        <li><strong>Superioridad</strong> (üstünlük) kullan: <em>más + adjetivo + que</em> — Örnek: <em>Bodrum es más caro que Capadocia.</em></li>
+        <li><strong>Inferioridad</strong> (eşitsizlik / daha az) kullan: <em>menos + adjetivo + que</em> — Örnek: <em>Capadocia es menos cara que Bodrum.</em></li>
+        <li><strong>Igualdad</strong> (eşitlik) kullan: <em>tan + adjetivo + como</em> — Örnek: <em>Bodrum es tan bonito como Capadocia.</em></li>
+        <li>En az <strong>iki farklı özellik</strong> karşılaştır: ☀️ hava, 🌊 deniz, 🍴 yemek, 💰 fiyat, 🏨 oteller, 🌳 doğa, 🏙️ şehir, 🎉 aktiviteler.</li>
+        <li>Son cümlede <strong>kendi tavsiyeni</strong> ver.</li>
+      </ul>
+    </div>
+
+    <div class="ornek-box">
+      <div class="ornek-title">📌 KULLANABİLECEĞİN YAPILAR</div>
+      <div class="ornek-subtitle">Superioridad</div>
+      <div class="ornek-item">🔸 Bodrum es más caro que Capadocia.</div>
+      <div class="ornek-item">🔸 Capadocia es más tranquila que Bodrum.</div>
+      <div class="ornek-item">🔸 Bodrum tiene más playas que Capadocia.</div>
+      <div class="ornek-subtitle">Inferioridad</div>
+      <div class="ornek-item">🔸 Capadocia es menos cara que Bodrum.</div>
+      <div class="ornek-item">🔸 Bodrum es menos tranquila que Capadocia.</div>
+      <div class="ornek-item">🔸 Capadocia tiene menos playas que Bodrum.</div>
+      <div class="ornek-subtitle">Igualdad</div>
+      <div class="ornek-item">🔸 Bodrum es tan bonita como Capadocia.</div>
+      <div class="ornek-item">🔸 La comida de Bodrum es tan deliciosa como la comida de Capadocia.</div>
+      <div class="ornek-item">🔸 Los dos lugares son tan interesantes como el otro.</div>
+    </div>
+
+    <div class="vocab-box">
+      <div class="vocab-title">🧩 Yardımcı Kelimeler</div>
+      <table class="vocab-table">
+        <thead><tr><th>Español</th><th>Türkçe</th></tr></thead>
+        <tbody>
+          <tr><td>caro/a</td><td>pahalı</td></tr>
+          <tr><td>barato/a</td><td>ucuz</td></tr>
+          <tr><td>bonito/a</td><td>güzel</td></tr>
+          <tr><td>tranquilo/a</td><td>sakin</td></tr>
+          <tr><td>interesante</td><td>ilginç</td></tr>
+          <tr><td>famoso/a</td><td>ünlü</td></tr>
+          <tr><td>caliente</td><td>sıcak</td></tr>
+          <tr><td>frío/a</td><td>soğuk</td></tr>
+          <tr><td>delicioso/a</td><td>lezzetli</td></tr>
+          <tr><td>divertido/a</td><td>eğlenceli</td></tr>
+          <tr><td>playa</td><td>plaj</td></tr>
+          <tr><td>mar</td><td>deniz</td></tr>
+          <tr><td>montaña</td><td>dağ</td></tr>
+          <tr><td>paisaje</td><td>manzara</td></tr>
+          <tr><td>comida</td><td>yemek</td></tr>
+          <tr><td>hotel</td><td>otel</td></tr>
+          <tr><td>ciudad</td><td>şehir</td></tr>
+          <tr><td>viajar</td><td>seyahat etmek</td></tr>
+          <tr><td>nadar</td><td>yüzmek</td></tr>
+          <tr><td>visitar</td><td>ziyaret etmek</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="checklist-box">
+      <div class="checklist-title">📋 KONTROL LİSTESİ</div>
+      <div class="checklist-item">☐ 20-25 cümle yazdım.</div>
+      <div class="checklist-item">☐ Bodrum ve Kapadokya'yı karşılaştırdım.</div>
+      <div class="checklist-item">☐ Superioridad kullandım. En az 2 superioridad kullandım.</div>
+      <div class="checklist-item">☐ Inferioridad kullandım. En az 2 inferioridad kullandım.</div>
+      <div class="checklist-item">☐ Igualdad kullandım. En az 2 igualdad kullandım.</div>
+      <div class="checklist-item">☐ Hava durumundan bahsettim.</div>
+      <div class="checklist-item">☐ Fiyatlardan bahsettim.</div>
+      <div class="checklist-item">☐ Deniz, doğa, manzara, yemek veya aktivitelerden bahsettim.</div>
+      <div class="checklist-item">☐ Sonunda kendi tavsiyemi verdim.</div>
+      <div class="checklist-item">☐ más ... que, menos ... que ve tan ... como yapılarına dikkat ettim.</div>
+      <div class="checklist-item">☐ Tilde ve yazım kurallarını kontrol ettim.</div>
+      <div class="checklist-item">☐ Mesajımı İspanyolca ve anlaşılır bir şekilde yazdım.</div>
+    </div>
+
+    <div class="header-fields">
+      <div>
+        <div class="field-label">Número de tarea</div>
+        <input type="text" class="field-input" value="A1.2 3+4" readonly>
+      </div>
+      <div>
+        <div class="field-label">Tema de la tarea</div>
+        <input type="text" class="field-input" value="Comparaciones: ¿Bodrum o Capadocia? (mensaje de WhatsApp)" readonly>
+      </div>
+    </div>
+
+    <div class="field-label">✏️ Yazınızı aşağıya yazın:</div>
+    <textarea id="writingText" class="writing-textarea" placeholder="Metninizi buraya yazın... ¡Hola Carlos! ile başlayabilirsiniz, sonra Bodrum ve Kapadokya'yı karşılaştırın." oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0 karakter</div>
+
+    <div class="vocab-box">
+      <div class="vocab-title">📊 Puanlama Cetveli</div>
+      <table class="rubric-table">
+        <thead><tr><th>Kriter</th><th>Puan</th></tr></thead>
+        <tbody>
+          <tr><td>Konuya uygunluk ve görevi yerine getirme</td><td>10</td></tr>
+          <tr><td>20-25 cümle yazılması</td><td>10</td></tr>
+          <tr><td>Superioridad yapılarının doğru ve yeterli kullanımı</td><td>15</td></tr>
+          <tr><td>Inferioridad yapılarının doğru ve yeterli kullanımı</td><td>15</td></tr>
+          <tr><td>Igualdad yapılarının doğru ve yeterli kullanımı</td><td>15</td></tr>
+          <tr><td>Bodrum ve Kapadokya'nın farklı özelliklerinin karşılaştırılması</td><td>10</td></tr>
+          <tr><td>Kişisel tavsiye ve görüşün açıkça belirtilmesi</td><td>5</td></tr>
+          <tr><td>Cümlelerin açık, anlamlı ve A1.2 seviyesine uygun olması</td><td>10</td></tr>
+          <tr><td>Kelime kullanımı ve konuya uygun kelime çeşitliliği</td><td>5</td></tr>
+          <tr><td>Yazım, noktalama ve tilde kullanımı</td><td>5</td></tr>
+          <tr><td><strong>TOPLAM</strong></td><td><strong>100</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="copy-confirm-box">
+      <input type="checkbox" id="copyConfirm" onchange="toggleSubmitBtn()">
+      <label for="copyConfirm">📋 Yazımın bir kopyasını aldım, göndermeye hazırım.</label>
+    </div>
+    <button class="writing-submit-btn" id="writingSubmitBtn" onclick="submitWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
+  </div>
+</div>
+<!-- RESULT -->
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji">✅</div>
+    <div class="result-badge">YAZMA ÖDEVİ · A1.2</div>
+    <div class="result-title">Yazınız Gönderildi!</div>
+    <div class="writing-result-note" id="writingNote">
+      ✍️ Yazma bölümünüz <strong>Profe Hazel'e e-posta olarak gönderildi</strong>. Ayrıca değerlendirilecektir (100 puan).
+    </div>
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+          <option value="">— Adınızı seçin —</option>
+          <option>Arman Kaykac</option>
+          <option>Arzu Bayram</option>
+          <option>Aysen Gurkan</option>
+          <option>Didem Akbal</option>
+          <option>Rabia Nur Tok</option>
+          <option>Selva Akyuz</option>
+          <option>Sena Yamak</option>
+          <option>Suleyman Bektas</option>
+        </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+  </div>
+</div>
+</div><!-- /wrap -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE  = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+const ODEV_ADI='H1 – 3-4.Ders (2. Kısım Yazma)';
+const GROUPS={
+  'Arman Kaykac':'A1.2','Arzu Bayram':'A1.2','Aysen Gurkan':'A1.2','Didem Akbal':'A1.2',
+  'Rabia Nur Tok':'A1.2','Selva Akyuz':'A1.2','Sena Yamak':'A1.2','Suleyman Bektas':'A1.2'
+};
+
+function startWriting(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  document.getElementById('studentName').value=n;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('writing').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function updateCharCount(){
+  const len=document.getElementById('writingText').value.length;
+  document.getElementById('charCount').textContent=len+' karakter';
+}
+
+function toggleSubmitBtn(){
+  document.getElementById('writingSubmitBtn').disabled=!document.getElementById('copyConfirm').checked;
+}
+
+async function submitWriting(){
+  const name=document.getElementById('studentName').value||document.getElementById('introName').value;
+  const text=document.getElementById('writingText').value.trim();
+  const confirmed=document.getElementById('copyConfirm').checked;
+  if(!name){alert('Lütfen adınızı seçin!');return;}
+  if(!confirmed){alert('Lütfen göndermeden önce yazınızın bir kopyasını aldığınızı onaylayın.');return;}
+  if(text.length<60){alert('Lütfen daha uzun bir metin yazın (en az 20-25 cümle).');return;}
+  const btn=document.getElementById('writingSubmitBtn');
+  btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
+  const now=new Date();
+  const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
+  try{
+    await emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{
+      student_name:name,
+      lesson:'A1.2 H1 – 3-4.Ders – 2. Kısım Yazma Ödevi (¿Bodrum o Capadocia?)',
+      submit_date:tarih,
+      writing_text:'=== BAŞLIK BİLGİLERİ ===\nAd Soyad: '+name+'\nÖdev No: A1.2 3+4\nKonu: Comparaciones – ¿Bodrum o Capadocia? (mensaje de WhatsApp)\n\n=== YAZMA METNİ ===\n'+text
+    });
+    showResult();
+  }catch(e){
+    btn.disabled=false;
+    btn.textContent='✔ Yazıyı Tamamladım, Teslim Et';
+    alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin. (Yazınızın bir kopyasını aldığınızdan emin olun!)');
+  }
+}
+
+function showResult(){
+  document.getElementById('writing').style.display='none';
+  document.getElementById('result').style.display='block';
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='📬 ÖDEVİ TESLİM ET';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').textContent='';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.2';
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('summaryCard').style.display='block';
+  const cta=document.getElementById('submitCta');if(cta)cta.style.display='none';
+  const st=document.getElementById('sendStatus');
+  st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:'Yazma (öğretmen değerlendirecek)',dogru:'',yanlis:''})})
+  .then(()=>{st.textContent='';})
+  .catch(()=>{st.style.color='var(--err)';st.textContent='⚠️ Bağlantı hatası.';});
+}
+</script>
+</body>
+</html>
