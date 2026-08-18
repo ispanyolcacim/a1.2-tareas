@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Video & Comparaciones | A1.2 Ödevi</title>
+<title>Video & Comparaciones | A1.2 Ödevi (3+4) </title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -58,6 +58,13 @@ body::before{
 .intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
 .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
 .intro-note{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:22px;}
+.writing-alert{
+  background:linear-gradient(135deg,rgba(253,121,168,0.12),rgba(253,203,110,0.12));
+  border:2px dashed var(--accent);border-radius:14px;
+  padding:16px 18px;margin-bottom:22px;text-align:center;
+}
+.writing-alert .wa-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:var(--accent);margin-bottom:5px;line-height:1.3;}
+.writing-alert .wa-sub{font-size:12px;color:var(--muted);}
 .chip{
   padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
   background:rgba(108,92,231,0.09);color:var(--primary);
@@ -306,7 +313,10 @@ select#studentName:focus{border-color:var(--primary);}
     <span class="chip c2">✅❌ 21-30: Verdadero / Falso</span>
     <span class="chip c3">📖 31-50: Okuduğunu Anlama</span>
   </div>
-  <div class="intro-note">📝 Not: Yazma bölümü (2. Kısım) ayrı bir belge olarak gönderilecektir.</div>
+  <div class="writing-alert">
+    <p class="wa-title">⚠️ YAZMA ÖDEVİNİZİ DE UNUTMAYIN LÜTFEN!</p>
+    <p class="wa-sub">📝 Not: Yazma bölümü (2. Kısım) ayrı bir LİNK olarak gönderilecektir.</p>
+  </div>
   <div class="name-label">👤 Adınızı seçin</div>
   <select id="introName" class="name-select">
         <option value="">— Adınızı seçin —</option>
