@@ -25,7 +25,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
 /* Dekoratif arka plan */
 body::before{
   content:'';position:fixed;top:0;left:0;width:100%;height:100%;
@@ -35,9 +34,7 @@ body::before{
     radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
   pointer-events:none;z-index:0;
 }
-
 .wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
-
 /* INTRO */
 #intro{
   background:var(--surface);border-radius:var(--radius);
@@ -56,9 +53,9 @@ body::before{
   padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
 }
 #intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-pink-line{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--accent);margin-bottom:6px;}
 .intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
 .intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
-
 .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
 .chip{
   padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
@@ -66,7 +63,6 @@ body::before{
 }
 .chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
 .chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
-
 .name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
 select.name-select{
   width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
@@ -77,7 +73,6 @@ select.name-select{
   background-repeat:no-repeat;background-position:right 14px center;
 }
 select.name-select:focus{border-color:var(--primary);}
-
 .start-btn{
   width:100%;margin-top:20px;padding:15px;
   background:linear-gradient(135deg,var(--primary),var(--primary-light));
@@ -89,7 +84,6 @@ select.name-select:focus{border-color:var(--primary);}
 }
 .start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
 .start-btn:active{transform:translateY(0);}
-
 /* QUIZ */
 #quiz{display:none;}
 .top-bar{
@@ -104,7 +98,6 @@ select.name-select:focus{border-color:var(--primary);}
 .sc{font-size:13px;font-weight:700;}
 .sc.ok{color:var(--ok);}
 .sc.err{color:var(--err);}
-
 .q-card{
   background:var(--surface);border-radius:var(--radius);
   padding:26px 24px 22px;box-shadow:var(--shadow);
@@ -121,7 +114,6 @@ select.name-select:focus{border-color:var(--primary);}
   background:rgba(108,92,231,0.1);color:var(--primary);
 }
 .q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
-
 .choices{display:flex;flex-direction:column;gap:9px;}
 .choice-btn{
   display:flex;align-items:center;gap:12px;padding:12px 16px;
@@ -140,7 +132,6 @@ select.name-select:focus{border-color:var(--primary);}
 .choice-btn.ok .cletter{background:var(--ok);color:#fff;}
 .choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
 .choice-btn.err .cletter{background:var(--err);color:#fff;}
-
 .explanation{
   margin-top:14px;padding:14px 16px;border-radius:12px;
   font-size:13px;line-height:1.6;display:none;
@@ -151,7 +142,6 @@ select.name-select:focus{border-color:var(--primary);}
 .exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
 .exp-tr{display:block;margin-top:2px;color:var(--muted);}
 .exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
-
 .nav-row{display:flex;gap:8px;margin-top:18px;}
 .nav-btn{
   padding:9px 18px;border-radius:10px;border:2px solid var(--border);
@@ -164,7 +154,36 @@ select.name-select:focus{border-color:var(--primary);}
   margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
 }
 .nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
-
+.finish-btn{
+  padding:7px 14px;border-radius:20px;border:2px solid var(--accent);
+  background:#fff;color:var(--accent);font-family:'Nunito',sans-serif;
+  font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;
+  transition:all .15s;flex-shrink:0;
+}
+.finish-btn:hover{background:var(--accent);color:#fff;}
+.quiz-header{
+  background:var(--surface);border-radius:var(--radius);padding:12px 18px;
+  margin-bottom:10px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:10px;border-left:4px solid var(--primary);
+}
+.quiz-header .qh-icon{font-size:20px;flex-shrink:0;}
+.quiz-header .qh-text{display:flex;flex-direction:column;min-width:0;}
+.quiz-header .qh-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--primary);line-height:1.3;}
+.quiz-header .qh-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.passage-box{
+  margin-bottom:16px;background:rgba(108,92,231,0.05);border:1px solid rgba(108,92,231,0.15);
+  border-radius:12px;overflow:hidden;
+}
+.passage-box summary{
+  cursor:pointer;padding:10px 14px;font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:13px;color:var(--primary);list-style:none;display:flex;align-items:center;gap:6px;
+}
+.passage-box summary::-webkit-details-marker{display:none;}
+.passage-box summary::after{content:'▾';margin-left:auto;transition:transform .2s;}
+.passage-box[open] summary::after{transform:rotate(180deg);}
+.passage-box .passage-body{padding:0 16px 14px;font-size:13px;line-height:1.7;color:var(--text);}
+.passage-body p{margin-bottom:10px;}
+.passage-body p:last-child{margin-bottom:0;}
 /* RESULT */
 #result{display:none;}
 .result-card{
@@ -190,17 +209,16 @@ select.name-select:focus{border-color:var(--primary);}
 .score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
 .val.ok{color:var(--ok);}
 .val.err{color:var(--err);}
-
 .name-confirm-box{margin:20px 0 16px;}
 .name-confirm-box label{
   font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
-  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+  color:var(--primary);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px;
 }
-.confirm-row{display:flex;gap:8px;}
+.confirm-row{display:flex;flex-direction:column;align-items:center;gap:10px;}
 select#studentName{
-  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  flex:none;width:100%;max-width:300px;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
   font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
-  background:#fff;outline:none;cursor:pointer;
+  background:#fff;outline:none;cursor:pointer;text-align:center;
   appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 10px center;
@@ -210,6 +228,7 @@ select#studentName:focus{border-color:var(--primary);}
   padding:11px 20px;background:var(--primary);color:#fff;border:none;
   border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
   cursor:pointer;transition:background .15s;white-space:nowrap;
+  max-width:300px;margin:0 auto;
 }
 .confirm-btn:hover{background:var(--primary-dark);}
 .confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
@@ -221,7 +240,6 @@ select#studentName:focus{border-color:var(--primary);}
 }
 .summary-card p{font-size:13px;margin-bottom:4px;}
 .summary-card strong{color:var(--primary);}
-
 .submit-cta{
   background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
   border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
@@ -229,9 +247,9 @@ select#studentName:focus{border-color:var(--primary);}
 }
 .submit-hint{
   font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
-  color:var(--accent);margin-bottom:4px;
+  color:var(--err);margin-bottom:4px;
 }
-.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-hint2{font-size:12px;color:var(--err);}
 .submit-big{
   width:100%;padding:16px;font-size:17px!important;
   background:linear-gradient(135deg,var(--accent),#e84393)!important;
@@ -251,7 +269,6 @@ select#studentName:focus{border-color:var(--primary);}
 .btn-review:hover{background:rgba(108,92,231,0.18);}
 .btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
 .btn-retry:hover{background:var(--primary-dark);}
-
 /* REVIEW */
 #reviewSection{display:none;margin-top:16px;}
 .review-item{
@@ -263,13 +280,11 @@ select#studentName:focus{border-color:var(--primary);}
 .review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
 .review-item .ri-wrong{font-size:13px;color:var(--err);}
 .review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
 <!-- INTRO -->
 <div id="intro">
   <div class="brand-bar">
@@ -278,49 +293,36 @@ select#studentName:focus{border-color:var(--primary);}
   </div>
   <div class="intro-badge">ÖDEV · A1.2</div>
   <h1>Las Oraciones Comparativas</h1>
+  <div class="intro-pink-line">A1.2 (1+2. Ders Ödevi)</div>
   <div class="intro-sub">Karşılaştırma Cümleleri</div>
-  <div class="intro-desc">100 soru · Çoktan seçmeli (a–d)</div>
+  <div class="intro-desc">50 soru · Çoktan seçmeli (a–d)</div>
   <div class="chip-row">
-    <span class="chip">Superioridad</span>
-    <span class="chip c2">Inferioridad</span>
-    <span class="chip c3">Igualdad</span>
-    <span class="chip">mejor / peor / mayor / menor</span>
+    <span class="chip">📖 1-25: Okuma Metni</span>
+    <span class="chip c2">✏️ 26-50: Gramer Tekrarı</span>
   </div>
   <div class="name-label">👤 Adınızı seçin</div>
   <select id="introName" class="name-select">
         <option value="">— Adınızı seçin —</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
-    <option>Deneme Ogrencisi</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
     </select>
   <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
 </div>
-
 <!-- QUIZ -->
 <div id="quiz">
+  <div class="quiz-header">
+    <span class="qh-icon">📘</span>
+    <div class="qh-text">
+      <span class="qh-title">Las Oraciones Comparativas</span>
+      <span class="qh-sub">Karşılaştırma Cümleleri · A1.2 Ödevi (1+2. Ders)</span>
+    </div>
+  </div>
   <div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
@@ -328,10 +330,10 @@ select#studentName:focus{border-color:var(--primary);}
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
     </div>
+    <button class="finish-btn" onclick="finishTest()">🏁 Bitir</button>
   </div>
   <div id="qArea"></div>
 </div>
-
 <!-- RESULT -->
 <div id="result">
   <div class="result-card">
@@ -343,7 +345,6 @@ select#studentName:focus{border-color:var(--primary);}
       <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
       <div class="score-item"><div class="val" id="rPuan" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
     </div>
-
     <div class="submit-cta" id="submitCta">
       <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
       <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
@@ -353,45 +354,25 @@ select#studentName:focus{border-color:var(--primary);}
       <div class="confirm-row">
         <select id="studentName">
                     <option value="">— Adınızı seçin —</option>
-          <option>Ayse Gurkan</option>
-          <option>Birce Suzen</option>
-          <option>Burakhan Kaydi</option>
-          <option>Ceren Erdogan</option>
-          <option>Doga Degirmenci</option>
-          <option>Ecem Sukas</option>
-          <option>Elif Atac</option>
-          <option>Elif Bozkurt Alvurdu</option>
-          <option>Elif Cetin</option>
-          <option>Elif Ozgur Atli</option>
-          <option>Emel Kanburoglu</option>
-          <option>Gorkem Dursun</option>
-          <option>Gulce Eyibilir</option>
-          <option>Harun Ozmen</option>
-          <option>Mehtap Keklik</option>
-          <option>Meltem Ciftci</option>
-          <option>Meryem Ozbek</option>
-          <option>Murat Sahin</option>
-          <option>Seher Ercin</option>
-          <option>Serra Sancakli</option>
-          <option>Simal Gurkan</option>
-          <option>Yasemin Kurtulus Tunc</option>
-          <option>Zeynep Geylan</option>
-          <option>Zeynep Ozay</option>
-          <option>Zeynep Oztaskin</option>
-          <option>Deneme Ogrencisi</option>
+          <option>Arman Kaykac</option>
+          <option>Arzu Bayram</option>
+          <option>Aysen Gurkan</option>
+          <option>Didem Akbal</option>
+          <option>Rabia Nur Tok</option>
+          <option>Selva Akyuz</option>
+          <option>Sena Yamak</option>
+          <option>Suleyman Bektas</option>
           </select>
         <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
       </div>
       <div id="sendStatus"></div>
     </div>
-
     <div class="summary-card" id="summaryCard">
       <p>👤 <strong id="summaryName"></strong></p>
       <p>📚 <strong id="summaryOdev"></strong></p>
       <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
       <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
     </div>
-
     <div class="result-actions">
       <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
       <button class="btn-retry" onclick="retryQuiz()">🔄 Testi Tekrar Çöz</button>
@@ -399,9 +380,7 @@ select#studentName:focus{border-color:var(--primary);}
   </div>
   <div id="reviewSection"></div>
 </div>
-
 </div><!-- /wrap -->
-
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
 const ODEV_ADI='H1 – 1-2.Ders';
@@ -415,115 +394,69 @@ const GROUPS={
   "Kardelen Kuşçu":"A1.2",
   "Ece Turhanoğlu":"A1.2",
   "Şeyma Koçak":"A1.2",
-  "Busem Şeker":"A1.2",
-  "Deneme Öğrencisi":"A1.2"
+  "Busem Şeker":"A1.2"
 };
-
+const READING_TEXT=`<p>¡Hola a todos! Me llamo Carlos y vivo en España. España es un país maravilloso y tiene ciudades muy diferentes. Hoy comparo Madrid y Barcelona. Madrid es la capital y está en el centro del país. Barcelona está en la costa y tiene playa. Las dos ciudades son increíbles, pero tienen ritmos de vida distintos.</p>
+<p>En Madrid, la gente es muy abierta. Los madrileños salen mucho por la noche. La ciudad tiene un ambiente nocturno mejor que muchas otras capitales. Por las mañanas, yo siempre paseo por el Parque del Retiro. Es el parque más famoso de la ciudad. Después, desayuno unos churros deliciosos con chocolate caliente en una cafetería antigua. Me encanta el sabor del chocolate aquí.</p>
+<p>Barcelona, por otro lado, tiene tanta arquitectura modernista como ninguna otra ciudad de Europa. Gaudí es el arquitecto más importante de Barcelona y sus edificios son mágicos. La Sagrada Familia es el monumento más visitado. En verano, Barcelona es más turística que Madrid porque tiene el mar Mediterráneo. A los turistas les encanta la playa.</p>
+<p>Mi hermano menor, Iñaki, vive en Barcelona. Él prefiere Barcelona por el mar y el clima. Él dice que el clima en Barcelona es mejor, con inviernos menos fríos. Sin embargo, en Madrid el verano es muy caluroso y seco. Yo visito a Iñaki a veces y nosotros comemos paella en la playa.</p>
+<p>Para moverse por la ciudad, Madrid tiene un metro fantástico. Es más grande y más antiguo que el metro de Barcelona. Pero Barcelona tiene un diseño de calles muy interesante, especialmente en el barrio del Eixample. Las calles son rectas y forman bloques perfectos.</p>
+<p>En cuanto a la comida, las tapas en Madrid son espectaculares. En muchos bares, cuando pides una bebida, el camarero te da una tapa gratis. En Barcelona, la cultura es un poco diferente; allí comen 'pintxos' o pagan por las tapas, pero la calidad de la gastronomía catalana es altísima.</p>
+<p>La gente en Barcelona habla español y catalán. Es una ciudad bilingüe. En Madrid, solo hablan español. Para mí, las dos ciudades ofrecen una calidad de vida muy buena, pero Madrid es mi ciudad favorita.</p>`;
 const Q=[
-{t:"mc",q:"Üstünlük karşılaştırmasında kullanılan yapı hangisidir?",o:["tan + sıfat + como", "menos + sıfat + que", "tanto + isim + como", "más + sıfat + que"],a:3,exp:"más + sıfat + que = superioridad yapısıdır.",es:"Soy más alta que tú.",tr:"Üstünlük = más + ... + que",en:"Superiority = más + ... + que"},
-{t:"mc",q:"\"Tengo ______ gatos que tú.\" (Senden fazla kedim var.):",o:["menos", "tanto", "más", "tan"],a:2,exp:"Superioridad yapısı: más + isim + que.",es:"Tengo más gatos que tú.",tr:"más + isim + que = üstünlük",en:"más + noun + que = superiority"},
-{t:"mc",q:"\"Corres ______ rápido que yo.\" (Benden daha az hızlı koşuyorsun.):",o:["más", "menos", "tan", "tanto"],a:1,exp:"Inferioridad yapısı: menos + zarf + que.",es:"Corres menos rápido que yo.",tr:"menos + zarf + que = aşağılık",en:"menos + adverb + que = inferiority"},
-{t:"mc",q:"Eşitlik karşılaştırmasında fiille birlikte hangisi kullanılır?",o:["tan", "tanta", "tanto", "más"],a:2,exp:"Fiil + tanto + como = eşitlik.",es:"Hablo tanto como tú.",tr:"Fiil + tanto + como = eşitlik",en:"verb + tanto + como = equality"},
-{t:"mc",q:"\"Soy ______ alta como tú.\" — Boşluğa ne gelir?",o:["tan", "tanto", "tantos", "tanta"],a:0,exp:"Sıfat/zarfla eşitlik: tan + sıfat + como.",es:"Soy tan alta como tú.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"},
-{t:"mc",q:"\"bueno\" kelimesinin karşılaştırmalı düzensiz formu nedir?",o:["más bueno", "buenísimo", "mejor", "mayor"],a:2,exp:"bueno → mejor (düzensiz karşılaştırmalı form).",es:"Este restaurante es mejor que aquel.",tr:"bueno → mejor (daha iyi)",en:"bueno → mejor (better)"},
-{t:"mc",q:"\"malo\" kelimesinin karşılaştırmalı düzensiz formu nedir?",o:["más malo", "menor", "malísimo", "peor"],a:3,exp:"malo → peor (düzensiz karşılaştırmalı form).",es:"El primer libro es peor que el segundo.",tr:"malo → peor (daha kötü)",en:"malo → peor (worse)"},
-{t:"mc",q:"\"grande\" kelimesinin yaş/önem bakımından karşılaştırmalı formu nedir?",o:["mayor", "más grande", "mejor", "menor"],a:0,exp:"grande → mayor (yaş ve önem bakımından daha büyük).",es:"Mi hermano es mayor que yo.",tr:"grande → mayor (yaş/önem)",en:"grande → mayor (older/greater)"},
-{t:"mc",q:"\"pequeño\" kelimesinin yaş bakımından karşılaştırmalı formu nedir?",o:["más pequeño", "peor", "mejor", "menor"],a:3,exp:"pequeño → menor (yaşça daha küçük).",es:"Mi hermana es menor que yo.",tr:"pequeño → menor (yaşça küçük)",en:"pequeño → menor (younger)"},
-{t:"mc",q:"\"Tengo ______ hambre como tú.\" — hambre dişil isimdir:",o:["tanta", "tanto", "tan", "tantos"],a:0,exp:"\"hambre\" dişil tekil isim → tanta.",es:"Tengo tanta hambre como tú.",tr:"hambre dişil → tanta + isim + como",en:"hambre is feminine → tanta"},
-{t:"mc",q:"\"Corro ______ que tú.\" (Senden daha az koşuyorum.):",o:["más", "menos", "tan", "tanto"],a:1,exp:"Fiil + menos + que = inferioridad.",es:"Corro menos que tú.",tr:"Fiil + menos + que = aşağılık",en:"verb + menos + que = inferiority"},
-{t:"mc",q:"\"Tengo ______ amigas como tú.\" (Eşit sayıda arkadaş, dişil çoğul):",o:["tanto", "tan", "tantas", "tanta"],a:2,exp:"\"amigas\" dişil çoğul → tantas.",es:"Tengo tantas amigas como tú.",tr:"amigas dişil çoğul → tantas",en:"amigas feminine plural → tantas"},
-{t:"mc",q:"\"Este coche es ______ más caro que aquel.\" (Çok daha pahalı):",o:["mucho", "muy", "tanto", "tan"],a:0,exp:"mucho más = çok daha fazla. \"muy más\" yanlıştır!",es:"Este coche es mucho más caro que aquel.",tr:"mucho más = çok daha fazla",en:"mucho más = much more (not muy más)"},
-{t:"mc",q:"\"El clima está ______ más cálido.\" (Giderek daha sıcak):",o:["mucho", "muy", "cada vez", "tan"],a:2,exp:"cada vez más/menos = giderek artan/azalan yoğunluk.",es:"El clima está cada vez más cálido.",tr:"cada vez más = giderek daha fazla",en:"cada vez más = increasingly more"},
-{t:"mc",q:"\"Este es el ______ alto edificio de la ciudad.\" (En yüksek):",o:["más", "muy", "mucho", "tan"],a:0,exp:"el/la + más + sıfat = superlativo (en üstün derece).",es:"Este es el más alto edificio de la ciudad.",tr:"el/la + más + sıfat = en üstün derece",en:"el/la + más + adj = superlative"},
-{t:"mc",q:"\"Eres ______ inteligente como yo.\" (Benimle aynı zekâda):",o:["tanto", "tantos", "tan", "tanta"],a:2,exp:"tan + sıfat + como = igualdad.",es:"Eres tan inteligente como yo.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"},
-{t:"mc",q:"\"Ella come ______ menos que su hermano.\" (Çok daha az):",o:["muy", "tan", "cada vez", "mucho"],a:3,exp:"mucho menos = çok daha az. \"muy menos\" yanlıştır!",es:"Ella come mucho menos que su hermano.",tr:"mucho menos = çok daha az",en:"mucho menos = much less"},
-{t:"mc",q:"\"Tengo ______ gatos como tú.\" (Eşit sayıda, eril çoğul):",o:["tanta", "tantos", "tanto", "tan"],a:1,exp:"\"gatos\" eril çoğul → tantos.",es:"Tengo tantos gatos como tú.",tr:"gatos eril çoğul → tantos",en:"gatos masculine plural → tantos"},
-{t:"mc",q:"Aşağılık karşılaştırmasında hangi yapı kullanılır?",o:["más + sıfat + que", "tan + sıfat + como", "menos + sıfat + que", "tanto + como"],a:2,exp:"Inferioridad: menos + sıfat/zarf/isim + que.",es:"Eres menos alto que yo.",tr:"Aşağılık = menos + ... + que",en:"Inferiority = menos + ... + que"},
-{t:"mc",q:"\"Tu idea es ______ que la mía.\" (Daha iyi):",o:["más buena", "mayor", "buenísima", "mejor"],a:3,exp:"bueno → mejor (düzensiz form). \"más buena\" kullanılmaz.",es:"Tu idea es mejor que la mía.",tr:"mejor = bueno'nun düzensiz karşılaştırmalı formu",en:"mejor = irregular comparative of bueno"},
-{t:"mc",q:"\"igual de... que\" yapısı ne için kullanılır?",o:["Üstünlük", "Aşağılık", "Eşitlik (sıfat/zarf ile)", "En üstün derece"],a:2,exp:"igual de + sıfat/zarf + que = eşitlik, tan...como'nun alternatifidir.",es:"Soy igual de alta que tú.",tr:"igual de + sıfat + que = eşitlik",en:"igual de + adjective + que = equality"},
-{t:"mc",q:"\"Corro igual de ______ que tú.\" — Hızla eşitlik kurun:",o:["tanto", "rápido", "más rápido", "rápida"],a:1,exp:"igual de + zarf + que = eşitlik.",es:"Corro igual de rápido que tú.",tr:"igual de + zarf + que = eşitlik",en:"igual de + adverb + que = equality"},
-{t:"mc",q:"\"viejo\" kelimesinin insanlar için karşılaştırmalı formu nedir?",o:["más viejo", "peor", "menor", "mayor"],a:3,exp:"viejo (yaşlı) → mayor (daha yaşlı, insanlar için).",es:"Es mayor que su vecino.",tr:"viejo → mayor (insanlar için daha yaşlı)",en:"viejo → mayor (older, for people)"},
-{t:"mc",q:"\"Esta película es ______ que la anterior.\" (Daha kötü):",o:["peor", "menor", "más mala", "mayor"],a:0,exp:"malo → peor (düzensiz form). \"más mala\" kullanılmaz.",es:"Esta película es peor que la anterior.",tr:"peor = malo'nun düzensiz formu",en:"peor = irregular comparative of malo"},
-{t:"mc",q:"\"Tienes ______ gatos que yo.\" (Benden az kedi):",o:["más", "tanto", "menos", "tan"],a:2,exp:"menos + isim + que = inferioridad.",es:"Tienes menos gatos que yo.",tr:"menos + isim + que = aşağılık",en:"menos + noun + que = inferiority"},
-{t:"mc",q:"\"Hablo tanto como tú.\" — \"tanto\" hangi görevdedir?",o:["Sıfat", "Fiille eşitlik kuran zarf", "İsim", "Bağlaç"],a:1,exp:"Fiil + tanto + como'da tanto değişmez (invariable).",es:"Hablo tanto como tú.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como (invariable tanto)"},
-{t:"mc",q:"\"Tengo tanto sueño como tú.\" — \"tanto\" neden bu formda?",o:["Dişil isim", "Çoğul isim", "Eril tekil isim", "Fiil"],a:2,exp:"\"sueño\" eril tekil isim → tanto.",es:"Tengo tanto sueño como tú.",tr:"sueño eril tekil → tanto",en:"sueño masculine singular → tanto"},
-{t:"mc",q:"\"Mi hermano es ______ que yo.\" (Kardeşim benden büyük, yaşça):",o:["más grande", "mayor", "mejor", "más viejo"],a:1,exp:"Yaşça büyüklük için mayor kullanılır, más grande değil.",es:"Mi hermano es mayor que yo.",tr:"Yaşça büyüklük → mayor",en:"For age comparison: mayor (not más grande)"},
-{t:"mc",q:"\"Corres menos rápido que yo.\" — Bu cümle ne anlatır?",o:["Benden daha az hızlı koşuyorsun", "Benimle aynı hızda koşuyorsun", "Benden daha hızlı koşuyorsun", "En yavaş koşuyorsun"],a:0,exp:"menos + zarf + que = aşağılık karşılaştırması.",es:"Corres menos rápido que yo.",tr:"menos rápido que = daha az hızlı",en:"menos + adverb + que = less ... than"},
-{t:"mc",q:"\"Cada vez más\" yapısı ne anlama gelir?",o:["Çok daha az", "En fazla", "Giderek daha fazla", "Aynı miktarda"],a:2,exp:"cada vez más = giderek artan yoğunluk.",es:"El clima está cada vez más cálido.",tr:"cada vez más = giderek daha fazla",en:"cada vez más = increasingly more"},
-{t:"mc",q:"\"Este es el más ______ de la clase.\" — En zeki:",o:["inteligentes", "inteligente", "mucho inteligente", "tan inteligente"],a:1,exp:"el + más + sıfat (tekil) + de = superlativo.",es:"Este es el más inteligente de la clase.",tr:"el + más + sıfat = en üstün derece",en:"el + más + adjective = superlative"},
-{t:"mc",q:"\"Ella come mucho menos que su hermano.\" — \"mucho\" burada ne işlev görür?",o:["Eşitlik kurar", "Karşılaştırmayı zayıflatır", "Sıfat niteler", "Karşılaştırmayı pekiştirir"],a:3,exp:"mucho más/menos karşılaştırmanın şiddetini artırır.",es:"Este coche es mucho más caro que aquel.",tr:"mucho karşılaştırmayı pekiştirir",en:"mucho intensifies the comparison"},
-{t:"mc",q:"\"Soy ______ de alta que tú.\" — igual de yapısıyla:",o:["igual", "más", "tan", "tanto"],a:0,exp:"igual de + sıfat + que = eşitlik. \"tan...como\"nun alternatifidir.",es:"Soy igual de alta que tú.",tr:"igual de + sıfat + que = eşitlik",en:"igual de + adjective + que = equality"},
-{t:"mc",q:"\"Tengo tantas amigas como tú.\" — \"tantas\" neden bu formda?",o:["Eril tekil", "Eril çoğul", "Dişil çoğul", "Dişil tekil"],a:2,exp:"\"amigas\" dişil çoğul → tantas.",es:"Tengo tantas amigas como tú.",tr:"amigas dişil çoğul → tantas",en:"amigas feminine plural → tantas"},
-{t:"mc",q:"\"más bueno\" yerine hangi düzensiz form kullanılır?",o:["mayor", "mejor", "peor", "menor"],a:1,exp:"bueno → mejor (düzensiz). \"más bueno\" genellikle kullanılmaz.",es:"Este restaurante es mejor que aquel.",tr:"bueno → mejor (düzensiz form)",en:"bueno → mejor (irregular comparative)"},
-{t:"mc",q:"\"Corres ______ rápido que yo.\" (Benden daha az hızlı):",o:["más", "tan", "igual de", "menos"],a:3,exp:"menos + zarf + que = inferioridad.",es:"Corres menos rápido que yo.",tr:"menos + zarf + que = aşağılık",en:"menos + adverb + que = inferiority"},
-{t:"mc",q:"Hangisi \"en üstün derece\" (superlativo) yapısıdır?",o:["más alto que", "tan alto como", "el más alto de", "mucho más alto"],a:2,exp:"el/la + más + sıfat + de = superlativo.",es:"Este es el más alto edificio de la ciudad.",tr:"el/la + más + sıfat + de = superlativo",en:"el/la + más + adj + de = superlative"},
-{t:"mc",q:"\"Hablas menos que yo.\" — Bu nasıl bir karşılaştırmadır?",o:["Aşağılık — fiille", "Üstünlük — fiille", "Eşitlik — fiille", "En üstün derece"],a:0,exp:"Fiil + menos + que = inferioridad.",es:"Hablas menos que yo.",tr:"Fiil + menos + que = aşağılık",en:"verb + menos + que = inferiority"},
-{t:"mc",q:"\"más malo\" yerine hangi düzensiz form kullanılır?",o:["mayor", "peor", "menor", "mejor"],a:1,exp:"malo → peor (düzensiz form).",es:"El primer libro es peor que el segundo.",tr:"malo → peor (düzensiz form)",en:"malo → peor (irregular comparative)"},
-{t:"mc",q:"\"Tengo ______ sueño como tú.\" — sueño eril tekil:",o:["tanto", "tanta", "tan", "tantos"],a:0,exp:"\"sueño\" eril tekil → tanto.",es:"Tengo tanto sueño como tú.",tr:"sueño eril tekil → tanto",en:"sueño masculine singular → tanto"},
-{t:"mc",q:"\"cada vez menos\" ne anlama gelir?",o:["Giderek daha fazla", "Çok daha az", "En az", "Giderek daha az"],a:3,exp:"cada vez menos = giderek azalan yoğunluk.",es:"Habla cada vez menos.",tr:"cada vez menos = giderek daha az",en:"cada vez menos = less and less"},
-{t:"mc",q:"\"Corro ______ como tú.\" (Fiille eşitlik, seninle aynı miktarda):",o:["tan", "tanta", "tanto", "tantos"],a:2,exp:"Fiil + tanto + como = eşitlik (tanto değişmez).",es:"Corro tanto como tú.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como = equality"},
-{t:"mc",q:"\"Este coche es ______ más caro que aquel.\" (Çok daha pahalı — pekiştirme):",o:["muy", "tan", "tanto", "mucho"],a:3,exp:"mucho más karşılaştırmayı pekiştirir. \"muy más\" denmez!",es:"Este coche es mucho más caro que aquel.",tr:"mucho más = çok daha fazla",en:"mucho más = much more (not muy más)"},
-{t:"mc",q:"\"La película es ______ que el libro.\" (Film kitaptan daha iyi):",o:["mejor", "más buena", "mayor", "buenísima"],a:0,exp:"mejor = bueno'nun düzensiz karşılaştırmalı formu.",es:"La película es mejor que el libro.",tr:"mejor = daha iyi (düzensiz form)",en:"mejor = better (irregular)"},
-{t:"mc",q:"\"Tengo ______ hambre como tú.\" — hambre dişil tekil:",o:["tanto", "tantos", "tanta", "tan"],a:2,exp:"\"hambre\" dişil tekil → tanta.",es:"Tengo tanta hambre como tú.",tr:"hambre dişil tekil → tanta",en:"hambre is feminine singular → tanta"},
-{t:"mc",q:"\"Soy más alta que tú.\" — Bu cümle hangi karşılaştırma türüdür?",o:["Igualdad", "Superioridad", "Inferioridad", "Superlativo"],a:1,exp:"más + sıfat + que = superioridad.",es:"Soy más alta que tú.",tr:"más ... que = üstünlük",en:"más ... que = superiority"},
-{t:"mc",q:"\"Tienes menos gatos que yo.\" — \"menos\" nasıl bir karşılaştırma kurar?",o:["Eşitlik", "Üstünlük", "Aşağılık", "En üstün derece"],a:2,exp:"menos + isim + que = inferioridad.",es:"Tienes menos gatos que yo.",tr:"menos ... que = aşağılık",en:"menos ... que = inferiority"},
-{t:"mc",q:"\"Mi hermana es ______ que yo.\" (Kardeşim benden küçük, yaşça):",o:["más pequeña", "peor", "mejor", "menor"],a:3,exp:"pequeño → menor (yaşça küçük). más pequeña kullanılmaz.",es:"Mi hermana es menor que yo.",tr:"pequeño → menor (yaşça küçük)",en:"pequeño → menor (younger)"},
-{t:"mc",q:"\"Corro ______ rápido como tú.\" (Seninle aynı hızda):",o:["tan", "tanto", "tanta", "más"],a:0,exp:"tan + zarf + como = igualdad.",es:"Corro tan rápido como tú.",tr:"tan + zarf + como = eşitlik",en:"tan + adverb + como = equality"},
-{t:"mc",q:"\"Hablas ______ que yo.\" (Benden çok daha az konuşuyorsun):",o:["menos", "menos que yo", "cada vez menos", "mucho menos"],a:3,exp:"mucho menos + que = çok daha az (pekiştirme).",es:"Hablas mucho menos que yo.",tr:"mucho menos = çok daha az",en:"mucho menos = much less"},
-{t:"mc",q:"\"igual de rápido ______ tú\" — Boşluğa ne gelir?",o:["que", "como", "de", "y"],a:0,exp:"igual de + sıfat/zarf + QUE kullanılır, como değil!",es:"Corro igual de rápido que tú.",tr:"igual de ... que (como değil!)",en:"igual de ... que (not como!)"},
-{t:"mc",q:"\"El primer libro es ______ que el segundo.\" (Daha kötü):",o:["menor", "mayor", "más malo", "peor"],a:3,exp:"malo → peor (düzensiz form).",es:"El primer libro es peor que el segundo.",tr:"peor = malo'nun düzensiz formu",en:"peor = worse (irregular)"},
-{t:"mc",q:"\"tanto/tanta/tantos/tantas\" hangi unsurla uyum sağlar?",o:["Fiil", "İsim (cinsiyet ve sayı)", "Sıfat", "Zarf"],a:1,exp:"tanto/tanta/tantos/tantas ismin cinsiyeti ve sayısına göre değişir.",es:"Tengo tantos gatos / tantas amigas como tú.",tr:"tanto → isimle cinsiyet/sayı uyumu",en:"tanto agrees in gender/number with the noun"},
-{t:"mc",q:"\"Soy tan alta como tú.\" — \"tan\" burada neyi niteler?",o:["Fiil", "İsim", "Zarf", "Sıfat"],a:3,exp:"tan + sıfat + como = eşitlik.",es:"Soy tan alta como tú.",tr:"tan sıfatı niteler",en:"tan modifies the adjective"},
-{t:"mc",q:"\"El clima está cada vez más cálido.\" — Bu cümle ne anlatır?",o:["İklim her zaman sıcaktır", "İklim giderek daha sıcak oluyor", "İklim en sıcak oluyor", "İklim çok sıcaktır"],a:1,exp:"cada vez más = giderek artan bir süreç anlatır.",es:"El clima está cada vez más cálido.",tr:"cada vez más = giderek artan",en:"cada vez más = increasingly more"},
-{t:"mc",q:"\"mejor\" kelimesi hangi sıfatın düzensiz karşılaştırmalı formudur?",o:["malo", "grande", "bueno", "pequeño"],a:2,exp:"bueno → mejor. malo → peor. grande → mayor. pequeño → menor.",es:"Este restaurante es mejor que aquel.",tr:"bueno → mejor",en:"bueno = good → mejor = better"},
-{t:"mc",q:"\"Tengo ______ libros como tú.\" (Eşit sayıda kitap, eril çoğul):",o:["tanto", "tantos", "tanta", "tan"],a:1,exp:"\"libros\" eril çoğul → tantos.",es:"Tengo tantos libros como tú.",tr:"libros eril çoğul → tantos",en:"libros masculine plural → tantos"},
-{t:"mc",q:"\"más grande\" yerine yaş/önem bağlamında hangisi kullanılır?",o:["mayor", "mejor", "peor", "menor"],a:0,exp:"grande → mayor (yaş ve önem bakımından). \"más grande\" fiziksel büyüklük içindir.",es:"Mi hermano es mayor que yo.",tr:"grande → mayor (yaş/önem)",en:"grande → mayor (age/importance)"},
-{t:"mc",q:"\"Corres ______ que yo.\" (Benden daha hızlı koşuyorsun — fiille üstünlük):",o:["tanto más", "más", "mucho", "tan"],a:1,exp:"Fiil + más + que = superioridad.",es:"Corres más que yo.",tr:"Fiil + más + que = üstünlük",en:"verb + más + que = superiority"},
-{t:"mc",q:"\"peor\" kelimesi hangi sıfatın düzensiz karşılaştırmalı formudur?",o:["malo", "bueno", "grande", "viejo"],a:0,exp:"malo → peor. bueno → mejor.",es:"Esta película es peor que la anterior.",tr:"malo → peor",en:"malo = bad → peor = worse"},
-{t:"mc",q:"\"Tengo ______ sed como tú.\" — sed dişil tekil:",o:["tanto", "tan", "tantos", "tanta"],a:3,exp:"\"sed\" dişil tekil isim → tanta.",es:"Tengo tanta sed como tú.",tr:"sed dişil → tanta",en:"sed is feminine → tanta"},
-{t:"mc",q:"\"Este es el más alto ______ de la ciudad.\" — Yapıyı tamamlayın:",o:["que", "edificio", "como", "mucho"],a:1,exp:"el + más + sıfat + isim + de = superlativo yapısı.",es:"Este es el más alto edificio de la ciudad.",tr:"el + más + sıfat + isim + de = superlativo",en:"el + más + adj + noun + de = superlative"},
-{t:"mc",q:"\"Ella es ______ inteligente como yo.\" (Benimle aynı zekâda):",o:["tan", "tanto", "tanta", "más"],a:0,exp:"tan + sıfat + como = igualdad.",es:"Ella es tan inteligente como yo.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"},
-{t:"mc",q:"\"menor\" kelimesi ne anlama gelir?",o:["daha iyi", "daha küçük / daha genç", "daha büyük / daha yaşlı", "daha kötü"],a:1,exp:"pequeño → menor (düzensiz). Yaş ve önem bakımından daha küçük/genç.",es:"Mi hermana es menor que yo.",tr:"menor = daha küçük/genç",en:"menor = younger/smaller (irregular)"},
-{t:"mc",q:"\"Hablo ______ como tú.\" (Seninle aynı miktarda konuşurum — fiille):",o:["tanto", "tan", "tantos", "tanta"],a:0,exp:"Fiil + tanto + como = eşitlik (tanto değişmez).",es:"Hablo tanto como tú.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como = equality"},
-{t:"mc",q:"\"igual de\" yapısından sonra ne gelir?",o:["İsim", "Fiil", "Sıfat veya zarf", "Zamir"],a:2,exp:"igual de + sıfat/zarf + que.",es:"Soy igual de alta que tú. / Corro igual de rápido que tú.",tr:"igual de + sıfat/zarf + que",en:"igual de + adjective/adverb + que"},
-{t:"mc",q:"\"Tengo tanto como tú.\" — \"tanto\" hangi görevi üstlenir?",o:["Miktarı temsil eden zamir (isim yerine)", "Sıfat", "Bağlaç", "Zarf"],a:0,exp:"tanto burada isim yerine kullanılır (zamir işlevi).",es:"Tengo tanto como tú.",tr:"tanto = zamir işlevi (isim yerine)",en:"tanto as pronoun (replaces noun)"},
-{t:"mc",q:"\"mucho más\" ve \"mucho menos\" yapılarında \"mucho\" hangi kelimeden önce gelir?",o:["İsim", "más / menos", "Sıfat", "Fiil"],a:1,exp:"mucho direkt más veya menos'tan önce gelir.",es:"Es mucho más caro. / Come mucho menos.",tr:"mucho + más/menos",en:"mucho comes before más/menos"},
-{t:"mc",q:"\"Este restaurante es ______ que aquel.\" (Daha iyi):",o:["más bueno", "mayor", "menor", "mejor"],a:3,exp:"mejor = bueno'nun düzensiz karşılaştırmalı formu.",es:"Este restaurante es mejor que aquel.",tr:"mejor = daha iyi (düzensiz)",en:"mejor = better (irregular)"},
-{t:"mc",q:"\"Corro ______ como tú.\" (Seninle aynı hızda):",o:["tanto", "tan rápido", "más rápido", "mucho rápido"],a:1,exp:"tan + zarf + como = igualdad.",es:"Corro tan rápido como tú.",tr:"tan + zarf + como = eşitlik",en:"tan + adverb + como = equality"},
-{t:"mc",q:"\"Ella habla ______ que yo.\" (Benden daha az konuşur):",o:["menos", "más", "tan", "tanto"],a:0,exp:"Fiil + menos + que = inferioridad.",es:"Ella habla menos que yo.",tr:"Fiil + menos + que = aşağılık",en:"verb + menos + que = inferiority"},
-{t:"mc",q:"\"cada vez más cálido\" ifadesi ne anlatır?",o:["En sıcak", "Çok sıcak", "Hep aynı sıcaklıkta", "Giderek daha sıcak oluyor"],a:3,exp:"cada vez más = giderek artan değişim.",es:"El clima está cada vez más cálido.",tr:"cada vez más = giderek artan",en:"cada vez más = getting increasingly warmer"},
-{t:"mc",q:"\"más pequeño\" yerine yaş karşılaştırmasında hangisi kullanılır?",o:["peor", "menor", "mayor", "mejor"],a:1,exp:"Yaşça küçüklük için menor kullanılır.",es:"Mi hermano es menor que yo.",tr:"Yaşça küçüklük → menor",en:"For age: menor (not más pequeño)"},
-{t:"mc",q:"\"Tengo ______ sed como tú.\" — sed dişil tekil:",o:["tanto sed", "tan sed", "tanta sed", "tantos sed"],a:2,exp:"\"sed\" dişil tekil → tanta.",es:"Tengo tanta sed como tú.",tr:"sed dişil → tanta + isim + como",en:"sed is feminine → tanta"},
-{t:"mc",q:"\"El ______ de todos\" — En iyi anlamında superlativo:",o:["bueno", "mayor", "mucho bueno", "mejor"],a:3,exp:"el/la + mejor = en iyi (superlativo irregular).",es:"Es el mejor de todos.",tr:"el/la mejor = en iyi",en:"el/la mejor = the best"},
-{t:"mc",q:"\"Corres menos rápido que yo.\" cümlesini eşitliğe çevirin:",o:["Corres más rápido que yo.", "Corres mucho rápido.", "Corres tan rápido como yo.", "Corres igual rápido que yo."],a:2,exp:"Eşitlik: tan + zarf + como.",es:"Corres tan rápido como yo.",tr:"tan + zarf + como = eşitlik",en:"tan + adverb + como = equality"},
-{t:"mc",q:"\"mayor\" kelimesi hangi iki sıfatın düzensiz karşılaştırmalı formu olarak kullanılır?",o:["bueno / malo", "grande / viejo", "pequeño / joven", "alto / bajo"],a:1,exp:"grande → mayor (büyüklük/önem) / viejo → mayor (yaşlılık, insanlar için).",es:"Mi hermano es mayor que yo.",tr:"mayor: grande ve viejo için düzensiz form",en:"mayor: irregular form of grande and viejo"},
-{t:"mc",q:"\"Soy más alta que tú.\" — Karşılaştırma türü nedir?",o:["Superioridad", "Inferioridad", "Igualdad", "Superlativo"],a:0,exp:"más + sıfat + que = superioridad.",es:"Soy más alta que tú.",tr:"más ... que = üstünlük (superioridad)",en:"más ... que = superiority"},
-{t:"mc",q:"\"Tengo tantos gatos como tú.\" — \"tantos\" neden bu formda?",o:["Dişil çoğul", "Eril çoğul", "Dişil tekil", "Eril tekil"],a:1,exp:"\"gatos\" eril çoğul → tantos.",es:"Tengo tantos gatos como tú.",tr:"gatos eril çoğul → tantos",en:"gatos masculine plural → tantos"},
-{t:"mc",q:"\"Este edificio es el más alto.\" — Buradaki yapı nedir?",o:["Superioridad (más + que)", "Igualdad (tan + como)", "Inferioridad (menos + que)", "Superlativo (el/la + más + sıfat)"],a:3,exp:"el/la + más + sıfat = superlativo, karşılaştırma değil!",es:"Este es el más alto edificio de la ciudad.",tr:"el + más + sıfat = superlativo",en:"el/la + más + adj = superlative"},
-{t:"mc",q:"\"Ella come mucho ______ que su hermano.\" (Çok daha az):",o:["más", "tan", "menos", "tanto"],a:2,exp:"mucho menos + que = çok daha az.",es:"Ella come mucho menos que su hermano.",tr:"mucho menos = çok daha az",en:"mucho menos = much less"},
-{t:"mc",q:"\"Este coche es mucho más caro que aquel.\" — \"mucho\" burada ne yapar?",o:["Eşitlik kurar", "Aşağılık kurar", "Karşılaştırmayı zayıflatır", "Karşılaştırmayı pekiştirir"],a:3,exp:"mucho más/menos karşılaştırmanın şiddetini artırır.",es:"Este coche es mucho más caro que aquel.",tr:"mucho karşılaştırmayı pekiştirir",en:"mucho intensifies the comparison"},
-{t:"mc",q:"\"Eres ______ alto que yo.\" (Benden daha az uzunsun):",o:["menos", "más", "tan", "tanto"],a:0,exp:"menos + sıfat + que = inferioridad.",es:"Eres menos alto que yo.",tr:"menos + sıfat + que = aşağılık",en:"menos + adjective + que = inferiority"},
-{t:"mc",q:"\"igual de alta que tú\" ile \"tan alta como tú\" karşılaştırması:",o:["Farklı anlam taşır", "Biri üstünlük biri eşitlik", "Biri aşağılık biri eşitlik", "Aynı anlama gelir — her ikisi eşitlik"],a:3,exp:"igual de + sıfat + que = tan + sıfat + como = eşitlik.",es:"Soy igual de alta que tú. = Soy tan alta como tú.",tr:"Her iki yapı da eşitlik anlatır",en:"Both express equality"},
-{t:"mc",q:"\"Tengo ______ libros como ella.\" (Onunla eşit sayıda kitap, eril çoğul):",o:["tanta", "tantos", "tanto", "tan"],a:1,exp:"\"libros\" eril çoğul → tantos.",es:"Tengo tantos libros como ella.",tr:"libros eril çoğul → tantos",en:"libros masculine plural → tantos"},
-{t:"mc",q:"\"Ella es la ______ de la clase.\" (Sınıfın en iyisi):",o:["mejor", "más buena", "mayor", "buenísima"],a:0,exp:"la mejor = en iyi (dişil superlativo).",es:"Ella es la mejor de la clase.",tr:"la mejor = en iyi (dişil)",en:"la mejor = the best (feminine superlative)"},
-{t:"mc",q:"\"Hablas menos que yo.\" cümlesini üstünlüğe çevirin:",o:["Hablas tanto como yo.", "Hablas más que yo.", "Hablas tan como yo.", "Hablas mucho que yo."],a:1,exp:"Fiil + más + que = superioridad.",es:"Hablas más que yo.",tr:"menos → más (aşağılık → üstünlük)",en:"verb + más + que = superiority"},
-{t:"mc",q:"\"Habla cada vez menos.\" — Bu cümle ne anlama gelir?",o:["Her zaman az konuşur", "Çok az konuşur", "Giderek daha çok konuşuyor", "Giderek daha az konuşuyor"],a:3,exp:"cada vez menos = giderek azalan.",es:"Habla cada vez menos.",tr:"cada vez menos = giderek daha az",en:"cada vez menos = less and less"},
-{t:"mc",q:"\"menor\" kelimesini doğru kullanan cümle hangisidir?",o:["Mi hermana es menor que yo.", "Mi hermana es menor buena.", "El libro es menor que el otro.", "Este coche es menor que aquel."],a:0,exp:"menor kişiler için yaş karşılaştırmasında kullanılır.",es:"Mi hermana es menor que yo.",tr:"menor kişiler için yaşça küçüklük",en:"menor for age comparison with people"},
-{t:"mc",q:"\"Soy igual de alta que tú.\" — Neden \"tan...como\" yerine kullanılabilir?",o:["Üstünlük anlatmak için", "Aşağılık anlatmak için", "En üstün derece için", "Her ikisi de eşitlik anlatır"],a:3,exp:"igual de + sıfat + que ve tan + sıfat + como her ikisi de eşitlik anlatır.",es:"Soy igual de alta que tú. = Soy tan alta como tú.",tr:"Her iki yapı eşitlik anlatır",en:"Both express equality"},
-{t:"mc",q:"\"Este es el edificio más alto de la ciudad.\" — Karşılaştırma türü nedir?",o:["Superlativo (en üstün derece)", "Superioridad", "Igualdad", "Inferioridad"],a:0,exp:"el + más + sıfat + de = superlativo.",es:"Este es el edificio más alto de la ciudad.",tr:"el + más + sıfat + de = superlativo",en:"el + más + adj + de = superlative"},
-{t:"mc",q:"\"Tu idea es mejor que la mía.\" — \"mejor\" hangi sıfatın düzensiz formudur?",o:["malo", "grande", "pequeño", "bueno"],a:3,exp:"bueno → mejor.",es:"Tu idea es mejor que la mía.",tr:"bueno → mejor (düzensiz)",en:"bueno = good → mejor = better"},
-{t:"mc",q:"\"Tengo tanta hambre como tú.\" — \"tanta\" neden bu formda?",o:["Eril tekil", "Eril çoğul", "Dişil tekil", "Dişil çoğul"],a:2,exp:"\"hambre\" dişil tekil → tanta.",es:"Tengo tanta hambre como tú.",tr:"hambre dişil tekil → tanta",en:"hambre feminine singular → tanta"},
-{t:"mc",q:"Üstünlük ve aşağılık karşılaştırmalarında ortak olan kelime hangisidir?",o:["que", "como", "de", "tan"],a:0,exp:"más/menos + ... + QUE: her ikisinde de que kullanılır.",es:"Soy más alta QUE tú. / Eres menos alto QUE yo.",tr:"Üstünlük ve aşağılıkta: que",en:"Both superiority and inferiority use: que"},
-{t:"mc",q:"\"Soy tan alta como tú.\" — Karşılaştırma türü nedir?",o:["Superioridad", "Inferioridad", "Igualdad", "Superlativo"],a:2,exp:"tan + sıfat + como = igualdad.",es:"Soy tan alta como tú.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"},
-{t:"mc",q:"\"El peor de todos\" yapısı nedir?",o:["Superioridad", "Inferioridad", "Igualdad", "Superlativo düzensiz"],a:3,exp:"el/la + peor = en kötü (superlativo irregular).",es:"Es el peor de todos.",tr:"el/la peor = en kötü (düzensiz superlativo)",en:"el/la peor = the worst (irregular superlative)"},
-{t:"mc",q:"\"Corro más que tú.\" cümlesini eşitliğe çevirin:",o:["Corro menos que tú.", "Corro mucho más que tú.", "Corro tanto como tú.", "Corro igual rápido que tú."],a:2,exp:"Fiil + tanto + como = eşitlik.",es:"Corro tanto como tú.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como = equality"},
-{t:"mc",q:"\"Habla cada vez más.\" — Bu cümle ne anlatır?",o:["Her zaman çok konuşur", "Giderek daha çok konuşuyor", "Seninle aynı kadar konuşuyor", "Artık hiç konuşmuyor"],a:1,exp:"cada vez más = giderek artan.",es:"Habla cada vez más.",tr:"cada vez más = giderek daha fazla",en:"cada vez más = more and more"},
-{t:"mc",q:"\"mejor, peor, mayor, menor\" — Ortak özellik nedir?",o:["Hepsi eşitlik yapısında kullanılır", "Hepsi superlativo'dur", "Hepsi düzensiz karşılaştırmalı formdur", "Hepsi más ile birlikte kullanılır"],a:2,exp:"Bu 4 form düzensizdir ve \"más\" almazlar.",es:"mejor / peor / mayor / menor",tr:"Hepsi düzensiz karşılaştırmalı form",en:"All four are irregular comparative forms"},
-{t:"mc",q:"\"Este coche es el ______ caro de todos.\" (En pahalı):",o:["muy", "más", "mucho", "tan"],a:1,exp:"el + más + sıfat + de = superlativo.",es:"Este coche es el más caro de todos.",tr:"el + más + sıfat = en üstün derece",en:"el + más + adjective = superlative"}
+{t:"mc",q:"¿Dónde vive Carlos?",o:["En España.", "En México.", "En Argentina.", "En Colombia."],a:0,exp:"Metnin hemen başında Carlos kendini tanıtırken yaşadığı yeri açıkça belirtiyor.",es:"\"Me llamo Carlos y vivo en España.\"",tr:"Adım Carlos ve İspanya'da yaşıyorum.",en:"My name is Carlos and I live in Spain."},
+{t:"mc",q:"¿Dónde está Madrid según el texto?",o:["En la costa.", "En el sur de Europa.", "En una montaña.", "En el centro del país."],a:3,exp:"Metinde Madrid'in konumu tarif edilirken ülkenin merkezinde olduğu belirtiliyor.",es:"\"Madrid es la capital y está en el centro del país.\"",tr:"Madrid başkenttir ve ülkenin merkezindedir.",en:"Madrid is the capital and is in the center of the country."},
+{t:"mc",q:"¿Qué característica geográfica tiene Barcelona que Madrid no tiene?",o:["Una montaña grande.", "Playa y costa.", "Un río muy largo.", "Un desierto."],a:1,exp:"Yazar, Barcelona'nın sahilde olduğunu ve bir plajı olduğunu, Madrid'in ise merkezde olduğunu vurguluyor.",es:"\"Barcelona está en la costa y tiene playa.\"",tr:"Barcelona sahildedir ve bir plajı vardır.",en:"Barcelona is on the coast and has a beach."},
+{t:"mc",q:"¿Cómo es el ambiente nocturno en Madrid?",o:["Muy aburrido.", "Peor que en Barcelona.", "Mejor que muchas otras capitales.", "Inexistente."],a:2,exp:"Madrid'in gece hayatından bahsedilirken diğer birçok başkentten daha iyi bir gece hayatı olduğu söyleniyor.",es:"\"La ciudad tiene un ambiente nocturno mejor que muchas otras capitales.\"",tr:"Şehrin, diğer birçok başkentten daha iyi bir gece hayatı var.",en:"The city has a nightlife better than many other capitals."},
+{t:"mc",q:"¿Por dónde pasea Carlos por las mañanas en Madrid?",o:["Por la Sagrada Familia.", "Por la playa.", "Por el Parque del Retiro.", "Por el centro comercial."],a:2,exp:"Yazar sabah rutinini anlatırken Retiro Parkı'nda yürüyüş yaptığını söylüyor.",es:"\"Por las mañanas, yo siempre paseo por el Parque del Retiro.\"",tr:"Sabahları her zaman Retiro Parkı'nda yürüyüş yaparım.",en:"In the mornings, I always walk through Retiro Park."},
+{t:"mc",q:"¿Qué desayuna Carlos en Madrid?",o:["Paella con mariscos.", "Churros con chocolate caliente.", "Pintxos tradicionales.", "Tostadas con tomate."],a:1,exp:"Carlos sabahları parkta yürüdükten sonra kahvaltıda ne yediğini açıklıyor.",es:"\"Desayuno unos churros deliciosos con chocolate caliente.\"",tr:"Sıcak çikolatalı lezzetli churros yerim (kahvaltı yaparım).",en:"I have delicious churros with hot chocolate for breakfast."},
+{t:"mc",q:"¿Qué ciudad tiene mucha arquitectura modernista según el texto?",o:["Valencia.", "Sevilla.", "Madrid.", "Barcelona."],a:3,exp:"Metinde modern mimarinin nerede olduğundan bahsedilirken cümlenin öznesi açıkça Barcelona'dır.",es:"\"Barcelona... tiene tanta arquitectura modernista como ninguna otra ciudad.\"",tr:"Barcelona, başka hiçbir şehirde olmadığı kadar modernist mimariye sahip.",en:"Barcelona has as much modernist architecture as no other city."},
+{t:"mc",q:"¿Quién es el arquitecto más importante de Barcelona?",o:["Gaudí.", "Iñaki.", "Picasso.", "Dalí."],a:0,exp:"Barcelona'nın mimarisinden hemen sonra Gaudí'nin en önemli mimar olduğu belirtiliyor.",es:"\"Gaudí es el arquitecto más importante de Barcelona.\"",tr:"Gaudí, Barcelona'nın en önemli mimarıdır.",en:"Gaudí is the most important architect of Barcelona."},
+{t:"mc",q:"¿Cuál es el monumento más visitado de Barcelona?",o:["La Sagrada Familia.", "El Parque del Retiro.", "El museo del Prado.", "La Plaza Mayor."],a:0,exp:"Metinde, Gaudí'nin binalarından bahsedilirken en çok ziyaret edilen anıtın Sagrada Familia olduğu belirtiliyor.",es:"\"La Sagrada Familia es el monumento más visitado.\"",tr:"En çok ziyaret edilen anıt Sagrada Familia'dır.",en:"The Sagrada Familia is the most visited monument."},
+{t:"mc",q:"¿Por qué Barcelona es más turística en verano?",o:["Porque los museos son gratis.", "Porque hay más fiestas.", "Porque tiene el mar Mediterráneo.", "Porque es más barata."],a:2,exp:"Metin neden-sonuç ilişkisini kuruyor: Akdeniz'e sahip olduğu için Barcelona daha turistiktir.",es:"\"Barcelona es más turística que Madrid porque tiene el mar Mediterráneo.\"",tr:"Barcelona, Akdeniz'e sahip olduğu için Madrid'den daha turistiktir.",en:"Barcelona is more touristic than Madrid because it has the Mediterranean Sea."},
+{t:"mc",q:"¿Quién es Iñaki?",o:["El padre de Carlos.", "El hermano menor de Carlos.", "El mejor amigo de Carlos.", "Un arquitecto famoso."],a:1,exp:"Carlos, Barcelona'da yaşayan küçük kardeşinden bahsediyor.",es:"\"Mi hermano menor, Iñaki, vive en Barcelona.\"",tr:"Küçük kardeşim Iñaki, Barcelona'da yaşıyor.",en:"My younger brother, Iñaki, lives in Barcelona."},
+{t:"mc",q:"¿Por qué prefiere Iñaki vivir en Barcelona?",o:["Por el metro.", "Por los churros.", "Por los museos.", "Por el mar y el clima."],a:3,exp:"Iñaki'nin tercih sebebi metinde açıkça yazıyor: deniz ve iklim yüzünden.",es:"\"Él prefiere Barcelona por el mar y el clima.\"",tr:"O, deniz ve iklim yüzünden Barcelona'yı tercih ediyor.",en:"He prefers Barcelona because of the sea and the climate."},
+{t:"mc",q:"¿Cómo es el verano en Madrid según el texto?",o:["Lluvioso y frío.", "Templado y húmedo.", "Muy corto.", "Muy caluroso y seco."],a:3,exp:"Metinde kışları kıyasladıktan sonra Madrid yazları için çok sıcak ve kurak tanımı kullanılıyor.",es:"\"En Madrid el verano es muy caluroso y seco.\"",tr:"Madrid'de yaz çok sıcak ve kuraktır.",en:"In Madrid the summer is very hot and dry."},
+{t:"mc",q:"¿Qué comen Carlos e Iñaki en la playa a veces?",o:["Paella.", "Tapas.", "Churros.", "Pintxos."],a:0,exp:"Carlos kardeşini ziyaret ettiğinde plajda paella yediklerini belirtiyor.",es:"\"Nosotros comemos paella en la playa.\"",tr:"Plajda paella yeriz.",en:"We eat paella on the beach."},
+{t:"mc",q:"¿Cómo es el metro de Madrid en comparación con el de Barcelona?",o:["Más nuevo y pequeño.", "Igual de grande.", "Más grande y más antiguo.", "Más sucio y caro."],a:2,exp:"Madrid metrosunu anlatırken kullanılan karşılaştırma kalıbı: daha büyük ve daha eskidir.",es:"\"Es más grande y más antiguo que el metro de Barcelona.\"",tr:"Barcelona metrosundan daha büyük ve daha eskidir.",en:"It is bigger and older than the Barcelona metro."},
+{t:"mc",q:"¿Qué barrio de Barcelona tiene un diseño de calles con bloques perfectos?",o:["El barrio Gótico.", "El barrio del Eixample.", "Gracia.", "El Raval."],a:1,exp:"Barcelona sokaklarından bahseden paragrafta özellikle Eixample mahallesinin düzenli blok yapısı vurgulanıyor.",es:"\"Especialmente en el barrio del Eixample.\"",tr:"Özellikle Eixample mahallesinde.",en:"Especially in the Eixample neighborhood."},
+{t:"mc",q:"En muchos bares de Madrid, ¿qué pasa cuando pides una bebida?",o:["Tienes que pagar la comida doble.", "El camarero te da una tapa gratis.", "Te dan agua gratis.", "No puedes comer tapas."],a:1,exp:"Madrid tapas kültürünün anlatıldığı kısımda bir içecek istendiğinde garsonun bedava tapa verdiği yazmaktadır.",es:"\"Cuando pides una bebida, el camarero te da una tapa gratis.\"",tr:"Bir içecek istediğinde, garson sana bedava bir tapa verir.",en:"When you order a drink, the waiter gives you a free tapa."},
+{t:"mc",q:"¿Cómo es la cultura de las tapas en Barcelona según el texto?",o:["Te dan muchas tapas gratis.", "No comen nunca en los bares.", "Comen 'pintxos' o pagan por las tapas.", "Solo comen dulce."],a:2,exp:"Barcelona'nın yeme-içme kültürü anlatılırken oradaki insanların pintxos yediği veya tapas için ayrıca ödeme yaptığı belirtilir.",es:"\"Allí comen 'pintxos' o pagan por las tapas.\"",tr:"Orada pintxos yerler ya da tapalar için para öderler.",en:"There they eat 'pintxos' or pay for the tapas."},
+{t:"mc",q:"¿Cuál es el nivel de la gastronomía catalana según Carlos?",o:["Altísima.", "Muy mala.", "Normal.", "Peor que la madrileña."],a:0,exp:"Tapas paralı olsa da, Carlos Katalan mutfağının kalitesinin çok yüksek olduğunu belirtiyor.",es:"\"La calidad de la gastronomía catalana es altísima.\"",tr:"Katalan mutfağının kalitesi çok yüksektir.",en:"The quality of Catalan gastronomy is extremely high."},
+{t:"mc",q:"¿Qué idiomas habla la gente en Barcelona?",o:["Solo español.", "Solo catalán.", "Español, inglés y francés.", "Español y catalán."],a:3,exp:"Metnin son paragrafında Barcelona'nın iki dilli bir şehir olduğu, hem İspanyolca hem Katalanca konuşulduğu yazmaktadır.",es:"\"La gente en Barcelona habla español y catalán. Es una ciudad bilingüe.\"",tr:"Barcelona'daki insanlar İspanyolca ve Katalanca konuşur. İki dilli bir şehirdir.",en:"People in Barcelona speak Spanish and Catalan. It's a bilingual city."},
+{t:"mc",q:"¿Qué idioma hablan en Madrid según el texto?",o:["Español y vasco.", "Catalán.", "Español y gallego.", "Solo español."],a:3,exp:"Barcelona'nın iki dilli olmasının hemen ardından Madrid için sadece İspanyolca konuşulduğu karşılaştırması yapılıyor.",es:"\"En Madrid, solo hablan español.\"",tr:"Madrid'de sadece İspanyolca konuşurlar.",en:"In Madrid, they only speak Spanish."},
+{t:"mc",q:"¿Cómo es la calidad de vida en las dos ciudades?",o:["Muy buena.", "Muy mala.", "Imposible.", "Diferente pero aburrida."],a:0,exp:"Carlos metnin sonunda her iki şehir için genel yargısını çok iyi bir yaşam kalitesi sundukları şeklinde belirtiyor.",es:"\"Las dos ciudades ofrecen una calidad de vida muy buena.\"",tr:"Her iki şehir de çok iyi bir yaşam kalitesi sunuyor.",en:"Both cities offer a very good quality of life."},
+{t:"mc",q:"¿Cuál es la ciudad favorita de Carlos?",o:["Valencia.", "Barcelona.", "Madrid.", "Sevilla."],a:2,exp:"Metnin son cümlesinde Carlos, Madrid'in favori şehri olduğunu söyleyerek tercihini belli ediyor.",es:"\"Pero Madrid es mi ciudad favorita.\"",tr:"Ama Madrid benim favori şehrim.",en:"But Madrid is my favorite city."},
+{t:"mc",q:"¿Qué dice Carlos sobre el sabor del chocolate?",o:["No le gusta nada.", "Le encanta.", "Es demasiado dulce.", "Es muy caro."],a:1,exp:"Carlos churros ile yediği çikolata hakkında tadına bayıldığını söylüyor (kurala sadık kalınarak \"mucho\" kullanılmamıştır).",es:"\"Me encanta el sabor del chocolate aquí.\"",tr:"Buradaki çikolatanın tadına bayılıyorum.",en:"I love the taste of the chocolate here."},
+{t:"mc",q:"¿Cómo son los ritmos de vida entre Madrid y Barcelona?",o:["Son exactamente iguales.", "Son distintos.", "Son muy aburridos.", "Son lentos en ambas ciudades."],a:1,exp:"Metnin ilk paragrafında her iki şehrin inanılmaz olduğu ama farklı yaşam ritimleri olduğu söyleniyor.",es:"\"Las dos ciudades son increíbles, pero tienen ritmos de vida distintos.\"",tr:"İki şehir de inanılmaz, ama farklı yaşam ritimlerine sahipler.",en:"Both cities are incredible, but they have different rhythms of life."},
+{t:"mc",q:"\"Madrid tiene ______ museos como París.\" (Eşit sayıda müze, eril çoğul isim)",o:["tan", "tanto", "tanta", "tantos"],a:3,exp:"museos eril çoğul → tantos + isim + como.",es:"Madrid tiene tantos museos como París.",tr:"museos eril çoğul → tantos",en:"museos masculine plural → tantos"},
+{t:"mc",q:"\"Este restaurante es ______ caro que aquel.\" (Daha az pahalı / Aşağılık)",o:["menos", "tan", "tanto", "muy"],a:0,exp:"Inferioridad: menos + sıfat + que.",es:"Este restaurante es menos caro que aquel.",tr:"menos + sıfat + que = aşağılık",en:"menos + adjective + que = inferiority"},
+{t:"mc",q:"\"Ana trabaja ______ como su hermano.\" (Kardeşi kadar çalışır / Fiille eşitlik)",o:["tan", "tanta", "tanto", "tantos"],a:2,exp:"Fiille eşitlik: fiil + tanto + como (tanto değişmez).",es:"Ana trabaja tanto como su hermano.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como = equality"},
+{t:"mc",q:"\"malo\" (kötü) sıfatının düzensiz karşılaştırmalı hali nedir?",o:["más malo", "mayor", "peor", "menor"],a:2,exp:"malo → peor (düzensiz form).",es:"Esta película es peor que la anterior.",tr:"malo → peor (daha kötü)",en:"malo → peor (worse)"},
+{t:"mc",q:"\"Soy ______ rápido como tú.\" (Senin kadar hızlıyım / Sıfatla eşitlik)",o:["tanto", "tan", "tanta", "muy"],a:1,exp:"tan + sıfat/zarf + como = eşitlik.",es:"Soy tan rápido como tú.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"},
+{t:"mc",q:"\"Tengo ______ paciencia como tú.\" (Senin kadar sabrım var / İsimle eşitlik)",o:["tanto", "tan", "tantos", "tanta"],a:3,exp:"paciencia dişil tekil → tanta + isim + como.",es:"Tengo tanta paciencia como tú.",tr:"paciencia dişil tekil → tanta",en:"paciencia feminine singular → tanta"},
+{t:"mc",q:"\"Tu ordenador es ______ rápido que el mío.\" (Benimkinden daha hızlı / Üstünlük)",o:["más", "tan", "menos de", "igual"],a:0,exp:"Superioridad: más + sıfat + que.",es:"Tu ordenador es más rápido que el mío.",tr:"más + sıfat + que = üstünlük",en:"más + adjective + que = superiority"},
+{t:"mc",q:"\"Mi abuelo es ______ que mi padre.\" (Dedem babamdan daha büyük / Yaşça üstünlük)",o:["mayor", "más viejo", "mejor", "menor"],a:0,exp:"viejo → mayor (insanlar için yaşça büyük, düzensiz form).",es:"Mi abuelo es mayor que mi padre.",tr:"viejo → mayor (yaşça büyük)",en:"viejo → mayor (older, irregular)"},
+{t:"mc",q:"\"Yo cocino ______ que tú.\" (Senden daha az yemek yapıyorum / Fiille aşağılık)",o:["tan", "menos", "tanto", "menor"],a:1,exp:"Fiille aşağılık: fiil + menos + que.",es:"Yo cocino menos que tú.",tr:"Fiille aşağılık: fiil + menos + que",en:"verb + menos + que = inferiority"},
+{t:"mc",q:"\"Este examen es ______ fácil que el anterior.\" (Çok daha kolay / Üstünlüğü pekiştirme)",o:["muy", "tan", "mucho más", "tanto más"],a:2,exp:"mucho más = çok daha fazla. \"muy más\" yanlıştır!",es:"Este examen es mucho más fácil que el anterior.",tr:"mucho más = çok daha fazla",en:"mucho más = much more (not muy más)"},
+{t:"mc",q:"\"Eres igual de alta ______ yo.\" (Benimle aynı boydasın / Farklı bir eşitlik kalıbı)",o:["de", "como", "a", "que"],a:3,exp:"igual de + sıfat + que = eşitlik (tan...como'nun alternatifi).",es:"Eres igual de alta que yo.",tr:"igual de + sıfat + que = eşitlik",en:"igual de + adjective + que = equality"},
+{t:"mc",q:"\"bueno\" (iyi) sıfatının düzensiz karşılaştırma formu nedir?",o:["más bueno", "buenísimo", "mayor", "mejor"],a:3,exp:"bueno → mejor (düzensiz form).",es:"Este restaurante es mejor que aquel.",tr:"bueno → mejor (daha iyi)",en:"bueno → mejor (better)"},
+{t:"mc",q:"\"El clima de España es ______ cálido que el de Inglaterra.\" (Daha sıcaktır / Üstünlük)",o:["tan", "mucho", "más", "tanto"],a:2,exp:"Superioridad: más + sıfat + que.",es:"El clima de España es más cálido que el de Inglaterra.",tr:"más + sıfat + que = üstünlük",en:"más + adjective + que = superiority"},
+{t:"mc",q:"\"Tengo ______ problemas que tú.\" (Senden daha az sorunum var / İsimle aşağılık)",o:["menos", "tan", "tanto", "menor"],a:0,exp:"İsimle aşağılık: menos + isim + que.",es:"Tengo menos problemas que tú.",tr:"menos + isim + que = aşağılık",en:"menos + noun + que = inferiority"},
+{t:"mc",q:"\"Hablas ______ alto como yo.\" (Benim kadar yüksek sesle konuşuyorsun / Zarfla eşitlik)",o:["tanto", "tan", "tanta", "más"],a:1,exp:"Zarfla eşitlik: tan + zarf + como.",es:"Hablas tan alto como yo.",tr:"tan + zarf + como = eşitlik",en:"tan + adverb + como = equality"},
+{t:"mc",q:"\"Mi hermana pequeña es ______ que yo.\" (Benden daha küçük, yaşça)",o:["peor", "menor", "mayor", "más pequeña"],a:1,exp:"pequeño → menor (yaşça küçük, düzensiz form).",es:"Mi hermana pequeña es menor que yo.",tr:"pequeño → menor (yaşça küçük)",en:"pequeño → menor (younger)"},
+{t:"mc",q:"\"Estudio ______ como tú.\" (Senin kadar ders çalışıyorum / Fiille eşitlik)",o:["tan", "tanta", "tantos", "tanto"],a:3,exp:"Fiille eşitlik: fiil + tanto + como (değişmez).",es:"Estudio tanto como tú.",tr:"Fiille eşitlik: fiil + tanto + como",en:"verb + tanto + como = equality"},
+{t:"mc",q:"Nesnelerin fiziksel boyutunu (yaşını veya önemini değil) \"küçüklük\" olarak karşılaştırırken (pequeño sıfatı ile) hangisi kullanılır?",o:["menor", "el menor", "más pequeño", "peor"],a:2,exp:"Fiziksel boyut için más pequeño; yaş/hiyerarşi için menor kullanılır.",es:"Este coche es más pequeño que el otro.",tr:"Fiziksel küçüklük → más pequeño",en:"Physical size → más pequeño (not menor)"},
+{t:"mc",q:"\"Esta ciudad tiene ______ tráfico que antes.\" (Eskisinden daha fazla trafik / İsimle üstünlük)",o:["más", "tan", "tanto", "muy"],a:0,exp:"İsimle üstünlük: más + isim + que.",es:"Esta ciudad tiene más tráfico que antes.",tr:"más + isim + que = üstünlük",en:"más + noun + que = superiority"},
+{t:"mc",q:"Nesnelerin fiziksel boyutunu \"büyüklük\" olarak karşılaştırırken hangisi kullanılır?",o:["más grande", "mayor", "el mayor", "mejor"],a:0,exp:"Fiziksel boyut için más grande; yaş/önem için mayor kullanılır.",es:"Esta casa es más grande que la mía.",tr:"Fiziksel büyüklük → más grande",en:"Physical size → más grande (not mayor)"},
+{t:"mc",q:"\"Tengo ______ tiempo como tú.\" (Senin kadar zamanım var / İsimle eşitlik)",o:["tan", "tantos", "tanto", "tanta"],a:2,exp:"tiempo eril tekil → tanto + isim + como.",es:"Tengo tanto tiempo como tú.",tr:"tiempo eril tekil → tanto",en:"tiempo masculine singular → tanto"},
+{t:"mc",q:"\"Ella gana mucho ______ que nosotros.\" (Bizden çok daha az kazanıyor / Aşağılığı pekiştirme)",o:["tan", "tanto", "mayor", "menos"],a:3,exp:"mucho menos = çok daha az (pekiştirme).",es:"Ella gana mucho menos que nosotros.",tr:"mucho menos = çok daha az",en:"mucho menos = much less"},
+{t:"mc",q:"\"La película es ______ de lo que pensaba.\" (Düşündüğümden daha kötü / Düzensiz karşılaştırma)",o:["más mala", "peor", "menor", "mejor"],a:1,exp:"malo → peor (düzensiz form).",es:"La película es peor de lo que pensaba.",tr:"malo → peor (daha kötü)",en:"malo → peor (worse)"},
+{t:"mc",q:"Eşitlik yapılarında isimlerle kullanılan \"tanto/tanta/tantos/tantas\" kelimesi neye göre şekil alır?",o:["Fiile göre", "İsmin cinsiyetine ve sayısına göre", "Sıfata göre", "Zarfa göre"],a:1,exp:"tanto/tanta/tantos/tantas ismin cinsiyeti ve sayısına göre değişir.",es:"Tengo tantos libros y tantas revistas como tú.",tr:"tanto → isimle cinsiyet/sayı uyumu",en:"tanto agrees in gender/number with the noun"},
+{t:"mc",q:"\"Eres ______ simpático como tu hermano.\" (Kardeşin kadar sempatiksin / Sıfatla eşitlik)",o:["tan", "tanto", "tanta", "más"],a:0,exp:"Sıfatla eşitlik: tan + sıfat + como.",es:"Eres tan simpático como tu hermano.",tr:"tan + sıfat + como = eşitlik",en:"tan + adjective + como = equality"}
 ];
 let cur=0,score=0,err=0,state=[],wrongList=[];
 const WARN='';
-
 function startQuiz(){
   const n=document.getElementById('introName').value;
   if(!n){alert('Lütfen adınızı seçin!');return;}
@@ -537,7 +470,6 @@ function startQuiz(){
   document.getElementById('quiz').style.display='block';
   render();
 }
-
 function render(){
   document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
   document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
@@ -547,18 +479,20 @@ function render(){
   document.getElementById('qArea').innerHTML=WARN+buildMC(q,cur);
   if(state[cur]!==null)restoreState(cur);
 }
-
 function buildMC(q,i){
   const letters=['a','b','c','d'];
+  const isReading=i<25;
+  const badge=isReading?'📖 OKUMA · ANLAMA':'✏️ GRAMER TEKRARI';
+  const passage=isReading?('<details class="passage-box"'+(i===0?' open':'')+'><summary>📖 Metni Oku / Gizle — Carlos: Madrid vs Barcelona</summary><div class="passage-body">'+READING_TEXT+'</div></details>'):'';
   return '<div class="q-card">'+
     '<div class="q-num">SORU '+(i+1)+'</div>'+
-    '<span class="q-type-badge">ÇOKTAN SEÇMELİ</span>'+
+    '<span class="q-type-badge">'+badge+'</span>'+
+    passage+
     '<div class="q-text">'+q.q+'</div>'+
     '<div class="choices" id="ch'+i+'">'+
     q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+letters[j]+'</span>'+o+'</button>').join('')+
     '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
 }
-
 function navRow(i){
   return '<div class="nav-row">'+
     '<button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button>'+
@@ -566,7 +500,6 @@ function navRow(i){
     '<button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button>'+
     '</div>';
 }
-
 function answerMC(i,j){
   if(state[i]!==null)return;
   const q=Q[i],ok=j===q.a;
@@ -585,7 +518,6 @@ function answerMC(i,j){
     setTimeout(()=>showResult(),700);
   }
 }
-
 function restoreState(i){
   const s=state[i];if(!s)return;
   const q=Q[i];
@@ -597,7 +529,6 @@ function restoreState(i){
   }
   showExp(i,s.ok);
 }
-
 function showExp(i,ok){
   const q=Q[i],el=document.getElementById('exp'+i);
   if(!el)return;
@@ -607,11 +538,21 @@ function showExp(i,ok){
     '<span class="exp-tr">🇹🇷 '+q.tr+'</span>'+
     '<span class="exp-en">🇬🇧 '+q.en+'</span>';
 }
-
 function next(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);} else showResult();}
 function prev(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
 function skipQ(){if(state[cur]===null){state[cur]={chosen:null,ok:false};} next();}
-
+function finishTest(){
+  const answered=state.filter(s=>s!==null).length;
+  if(answered<Q.length){
+    if(!confirm('Testi şimdi bitirmek istediğinize emin misiniz?\n\nCevaplanmamış '+(Q.length-answered)+' soru boş sayılacak. Bu işlem geri alınamaz.'))return;
+  } else {
+    if(!confirm('Testi bitirmek istediğinize emin misiniz?'))return;
+  }
+  for(let i=0;i<Q.length;i++){
+    if(state[i]===null)state[i]={chosen:null,ok:false};
+  }
+  showResult();
+}
 function showResult(){
   document.getElementById('quiz').style.display='none';
   const pct=Math.round(score/Q.length*100);
@@ -628,7 +569,6 @@ function showResult(){
   document.getElementById('summaryCard').style.display='none';
   window.scrollTo(0,0);
 }
-
 function confirmName(){
   const val=document.getElementById('studentName').value;
   if(!val){alert('Lütfen adınızı seçin!');return;}
@@ -651,7 +591,6 @@ function confirmName(){
   .then(()=>{st.textContent='';})
   .catch(()=>{st.style.color='var(--err)';st.textContent='⚠️ Bağlantı hatası.';});
 }
-
 function toggleReview(){
   const sec=document.getElementById('reviewSection');
   if(sec.style.display==='block'){sec.style.display='none';return;}
@@ -667,7 +606,6 @@ function toggleReview(){
       '</div>';
   }).join('');
 }
-
 function retryQuiz(){
   state=new Array(Q.length).fill(null);
   wrongList=[];cur=0;score=0;err=0;
@@ -681,7 +619,6 @@ function retryQuiz(){
   document.getElementById('summaryCard').style.display='none';
   render();window.scrollTo(0,0);
 }
-
 </script>
 </body>
 </html>
