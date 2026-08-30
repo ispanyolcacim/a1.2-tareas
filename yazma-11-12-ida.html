@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A1.2 H3 11-12. Ders · Yazma</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f0ff;min-height:100vh;color:#222}
+/* INTRO */
+#introScreen{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;gap:.9rem;max-width:540px;margin:0 auto}
+.logo-tag{font-size:.75rem;color:#6b7280;letter-spacing:.08em;text-transform:uppercase}
+.week-pill{background:linear-gradient(135deg,#be185d,#9d174d);color:#fff;border-radius:999px;padding:.35rem 1.1rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-align:center}
+h1.main-title{font-size:1.55rem;font-weight:800;color:#be185d;text-align:center;line-height:1.25}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.chip{background:#ede9fe;color:#6b21a8;border-radius:999px;padding:.25rem .75rem;font-size:.75rem;font-weight:600}
+.chip-writing{background:#fdf2f8;color:#be185d;border-radius:999px;padding:.25rem .75rem;font-size:.75rem;font-weight:600}
+.intro-sub{font-size:.9rem;color:#555;text-align:center}
+.intro-sections{width:100%;max-width:380px;background:#fff;border-radius:.8rem;border:1.5px solid #fdf2f8;padding:.85rem 1rem;display:flex;flex-direction:column;gap:.5rem}
+.intro-section-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:#444;line-height:1.5}
+.intro-section-num{background:#be185d;color:#fff;border-radius:6px;padding:.15rem .55rem;font-size:.72rem;font-weight:800;white-space:nowrap;flex-shrink:0}
+.name-label{font-size:.85rem;font-weight:600;color:#6b21a8;align-self:flex-start;width:100%;max-width:380px}
+.name-select{width:100%;max-width:380px;padding:.6rem .9rem;border:2px solid #7c3aed;border-radius:.6rem;font-size:.95rem;color:#222;background:#fff;outline:none}
+.start-btn{width:100%;max-width:380px;padding:.8rem;background:linear-gradient(135deg,#be185d,#9d174d);color:#fff;border:none;border-radius:.7rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.5rem}
+.start-btn:hover{filter:brightness(1.08)}
+.notice{font-size:.78rem;color:#6b7280;text-align:center;max-width:340px;line-height:1.5}
+/* WRITING SCREEN */
+#writingScreen{display:none;max-width:620px;margin:0 auto;padding:1rem 1rem 3rem}
+.writing-card{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 2px 16px rgba(190,24,93,.12);border-top:5px solid #be185d}
+.writing-badge{display:inline-block;background:linear-gradient(135deg,#be185d,#9d174d);color:#fff;font-size:.75rem;font-weight:800;padding:.3rem .9rem;border-radius:999px;letter-spacing:.5px;margin-bottom:.75rem}
+.writing-title{font-size:1.4rem;font-weight:900;color:#be185d;margin-bottom:.5rem}
+.writing-pts{font-size:.8rem;color:#9d174d;font-weight:700;margin-bottom:1.2rem}
+.writing-student{font-size:.82rem;color:#6b21a8;font-weight:700;margin-bottom:1rem;background:#ede9fe;border-radius:.6rem;padding:.5rem .8rem;display:inline-block}
+.writing-section{margin-bottom:1.2rem}
+.writing-section-title{font-size:.8rem;font-weight:900;color:#be185d;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+.yonerge-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.yonerge-list li{font-size:.85rem;line-height:1.6;display:flex;align-items:flex-start;gap:.5rem}
+.yonerge-list li::before{content:'→';color:#be185d;font-weight:900;flex-shrink:0;margin-top:2px}
+.yapılar-grid{display:flex;flex-wrap:wrap;gap:.4rem}
+.yapi-chip{background:#fdf2f8;color:#be185d;border-radius:6px;padding:.2rem .6rem;font-size:.78rem;font-weight:600;font-style:italic}
+.sifat-grid{display:flex;flex-wrap:wrap;gap:.4rem}
+.sifat-chip{background:#f5f0ff;color:#6b21a8;border-radius:6px;padding:.2rem .6rem;font-size:.78rem;font-weight:600}
+.ornek-box{background:#fdf2f8;border-left:3px solid #be185d;border-radius:0 8px 8px 0;padding:.9rem 1rem;font-size:.84rem;line-height:1.8;font-style:italic;color:#555}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.rubric-table th{background:#be185d;color:#fff;padding:.55rem .8rem;text-align:left;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase}
+.rubric-table td{padding:.55rem .8rem;border-bottom:1px solid #f3e8ef}
+.rubric-table tr:last-child td{border-bottom:none;font-weight:800;background:rgba(190,24,93,.06)}
+.rubric-table td:last-child{text-align:right;color:#be185d;font-weight:700}
+.writing-textarea{width:100%;min-height:280px;padding:.9rem 1rem;border:2px solid #e5e7eb;border-radius:.7rem;font-family:inherit;font-size:.92rem;line-height:1.75;color:#222;background:#fff;resize:vertical;outline:none;transition:border .2s;margin-top:.5rem}
+.writing-textarea:focus{border-color:#be185d}
+.char-count{font-size:.78rem;color:#9b9b9b;text-align:right;margin-top:.25rem}
+.whatsapp-note{background:#f0fdf4;border:1.5px solid #86efac;border-radius:.7rem;padding:.75rem .9rem;font-size:.82rem;color:#166534;margin-top:.75rem;line-height:1.6}
+.copy-confirm-box{background:#fff3cd;border:2px solid #f59e0b;border-radius:.8rem;padding:1rem;margin-top:1.2rem}
+.copy-confirm-title{font-size:.9rem;font-weight:800;color:#92400e;margin-bottom:.6rem}
+.copy-confirm-label{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:#78350f;cursor:pointer;line-height:1.5}
+.copy-confirm-label input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:#be185d;flex-shrink:0;cursor:pointer}
+.writing-submit-btn{width:100%;margin-top:1.2rem;padding:1rem;background:#be185d;color:#fff;border:none;border-radius:.8rem;font-size:1.05rem;font-weight:900;cursor:pointer;transition:all .15s;box-shadow:0 4px 14px rgba(190,24,93,.3)}
+.writing-submit-btn:hover:not(:disabled){background:#9d174d;transform:translateY(-1px)}
+.writing-submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+/* RESULT */
+#resultScreen{display:none;max-width:480px;margin:0 auto;padding:2.5rem 1rem}
+.res-card{background:#fff;border-radius:1rem;padding:1.75rem 1.5rem;box-shadow:0 2px 16px rgba(190,24,93,.12);text-align:center;margin-bottom:1rem;border-top:5px solid #be185d}
+.res-emoji{font-size:3rem;margin-bottom:.5rem}
+.res-pill{display:inline-block;background:linear-gradient(135deg,#be185d,#9d174d);color:#fff;border-radius:999px;padding:.4rem 1.2rem;font-size:.85rem;font-weight:700;margin-bottom:.75rem}
+.res-name{font-size:1.05rem;font-weight:800;color:#222;margin-bottom:.25rem}
+.res-msg{font-size:.88rem;color:#555;line-height:1.6;margin-bottom:1rem}
+.stb{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700}
+.stok{background:rgba(22,163,74,.15);border:1.5px solid rgba(22,163,74,.4);color:#166534}
+.ster{background:rgba(220,38,38,.15);border:1.5px solid rgba(220,38,38,.4);color:#991b1b}
+.stpnd{background:rgba(245,158,11,.2);border:1.5px solid rgba(245,158,11,.5);color:#92400e}
+.restart-btn{width:100%;max-width:480px;padding:.75rem;background:#fff;border:2px solid #e5e7eb;border-radius:.7rem;font-size:.88rem;font-weight:700;color:#555;cursor:pointer;margin-top:.75rem}
+.restart-btn:hover{border-color:#7c3aed;color:#7c3aed}
+@media(max-width:480px){h1.main-title{font-size:1.3rem}}
+</style>
+</head>
+<body>
+<!-- INTRO -->
+<div id="introScreen">
+  <div class="logo-tag">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="week-pill">3. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (11-12. DERS)</div>
+  <h1 class="main-title">Mi foto favorita</h1>
+  <div class="chips">
+    <span class="chip-writing">✍️ Yazma Bölümü</span>
+    <span class="chip">Estar + Gerundio</span>
+    <span class="chip">Sıfatlar</span>
+    <span class="chip">A1.2</span>
+  </div>
+  <div class="intro-sub">100 puan &bull; Tek başına değerlendirilir</div>
+  <div class="intro-sections">
+    <div class="intro-section-item"><span class="intro-section-num">Konu</span>En sevdiğiniz fotoğrafı anlatan bir yazı yazacaksınız (gerçek ya da hayalî olabilir).</div>
+    <div class="intro-section-item"><span class="intro-section-num">Gramer</span>Estar + Gerundio ve sıfatları doğru şekilde kullanmanız beklenmektedir.</div>
+    <div class="intro-section-item"><span class="intro-section-num">Uzunluk</span>En az 40 cümle, giriş-gelişme-sonuç düzeninde.</div>
+  </div>
+  <div class="name-label">Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Arman Kaykac">Arman Kaykac</option>
+    <option value="Arzu Bayram">Arzu Bayram</option>
+    <option value="Aysen Gurkan">Aysen Gurkan</option>
+    <option value="Didem Akbal">Didem Akbal</option>
+    <option value="Rabia Nur Tok">Rabia Nur Tok</option>
+    <option value="Selva Akyuz">Selva Akyuz</option>
+    <option value="Sena Yamak">Sena Yamak</option>
+    <option value="Suleyman Bektas">Suleyman Bektas</option>
+  </select>
+  <button class="start-btn" onclick="startWriting()">Yazma Bölümüne Geç</button>
+  <div class="notice">Yazınızı tamamladıktan sonra teslim etmeden önce bir kopyasını kendi notlarınıza kaydetmeniz istenecektir.</div>
+</div>
+<!-- WRITING SCREEN -->
+<div id="writingScreen">
+  <div class="writing-card">
+    <div class="writing-badge">✍️ YAZMA BÖLÜMÜ – 3. HAFTA ÖDEVİ | A1.2 (11-12. DERS)</div>
+    <div class="writing-title">Mi foto favorita</div>
+    <div class="writing-pts">📊 100 puan – Ayrıca değerlendirilir &nbsp;|&nbsp; Dil Bilgisi Odağı: Estar + Gerundio ve Sıfatlar</div>
+    <div class="writing-student" id="writingStudentTag">Öğrenci: —</div>
+    <div class="writing-section">
+      <div class="writing-section-title">📚 Konu &amp; Amaç</div>
+      <p style="font-size:.85rem;line-height:1.7;color:#444">En sevdiğiniz fotoğrafı anlatan bir yazı yazmanız istenmektedir. Fotoğraf <strong>gerçek</strong> olabilir (aile, arkadaş, tatil, doğum günü...) ya da <strong>hayalî</strong> bir fotoğraf da anlatabilirsiniz. Metninizde özellikle <strong>Estar + Gerundio</strong> yapısını ve <strong>sıfatları</strong> kullanınız.</p>
+      <div class="whatsapp-note" style="margin-top:.75rem">
+        📸 <strong>Bahsettiğiniz fotoğraf gerçek bir fotoğrafsa</strong>, isterseniz WhatsApp sınıf grubundan arkadaşlarınızla da paylaşabilirsiniz!
+      </div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📋 Yazınızın Başına Ekleyiniz</div>
+      <div style="background:#faf5ff;border-radius:.7rem;padding:.85rem 1rem;font-size:.84rem;line-height:2;color:#444">
+        <strong>Número de tarea:</strong> A1.2 – 3. Hafta / 11-12. Ders<br>
+        <strong>Tema de la tarea:</strong> Mi foto favorita<br>
+        <strong>Gramática:</strong> Estar + Gerundio y Adjetivos<br>
+        <strong>Título de tu texto:</strong> <em>(Başlığınızı yazınız)</em>
+      </div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📝 Yönergeler</div>
+      <ul class="yonerge-list">
+        <li>Metniniz en az <strong>40 cümle</strong> olmalıdır.</li>
+        <li><strong>Giriş, gelişme ve sonuç</strong> bölümleri olmalıdır.</li>
+        <li>En az <strong>8 farklı Estar + Gerundio</strong> yapısı kullanınız.</li>
+        <li>En az <strong>10 farklı sıfat</strong> kullanınız.</li>
+        <li>Fotoğraftaki <strong>kişiler, ortam, kıyafetler ve eylemler</strong> açık şekilde anlatılmalıdır.</li>
+        <li>Fotoğraftaki kişilerin <strong>nasıl hissettiği</strong> anlatılmalıdır.</li>
+        <li>Bu fotoğrafın sizin için <strong>neden özel olduğu</strong> açıklanmalıdır.</li>
+        <li>Cümleler açık, anlamlı ve <strong>A1.2 seviyesine uygun</strong> olmalıdır.</li>
+        <li>Cümleler sadece liste şeklinde değil, <strong>doğal bir akışta</strong> olmalıdır.</li>
+        <li>Türkçeden birebir çeviri <strong>yapmayınız</strong>. İspanyolca cümle yapısına dikkat ediniz.</li>
+        <li>Formal ve düzgün bir dil; yazım ve noktalama kurallarına dikkat ediniz.</li>
+      </ul>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📚 Estar + Gerundio Örnekleri</div>
+      <div class="yapılar-grid">
+        <span class="yapi-chip">Estoy sonriendo.</span>
+        <span class="yapi-chip">Mi madre está sonriendo.</span>
+        <span class="yapi-chip">Mi padre está hablando.</span>
+        <span class="yapi-chip">Mi hermano está jugando.</span>
+        <span class="yapi-chip">Mi hermana está bailando.</span>
+        <span class="yapi-chip">Mi amiga está comiendo.</span>
+        <span class="yapi-chip">Mis amigos están riendo.</span>
+        <span class="yapi-chip">Mis padres están sentados.</span>
+        <span class="yapi-chip">Todos estamos sonriendo.</span>
+        <span class="yapi-chip">Estamos celebrando un cumpleaños.</span>
+        <span class="yapi-chip">Estamos caminando por la playa.</span>
+        <span class="yapi-chip">Estoy mirando a la cámara.</span>
+      </div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📚 Kullanabileceğiniz Sıfatlar</div>
+      <div class="sifat-grid">
+        <span class="sifat-chip">feliz</span><span class="sifat-chip">triste</span><span class="sifat-chip">cansado/a</span>
+        <span class="sifat-chip">contento/a</span><span class="sifat-chip">tranquilo/a</span><span class="sifat-chip">nervioso/a</span>
+        <span class="sifat-chip">simpático/a</span><span class="sifat-chip">divertido/a</span><span class="sifat-chip">bonito/a</span>
+        <span class="sifat-chip">grande</span><span class="sifat-chip">pequeño/a</span><span class="sifat-chip">moderno/a</span>
+        <span class="sifat-chip">especial</span><span class="sifat-chip">importante</span><span class="sifat-chip">elegante</span>
+        <span class="sifat-chip">colorido/a</span><span class="sifat-chip">blanco/a</span><span class="sifat-chip">negro/a</span>
+        <span class="sifat-chip">azul</span><span class="sifat-chip">rojo/a</span><span class="sifat-chip">verde</span>
+        <span class="sifat-chip">nuevo/a</span><span class="sifat-chip">viejo/a</span><span class="sifat-chip">alto/a</span>
+        <span class="sifat-chip">bajo/a</span><span class="sifat-chip">guapo/a</span>
+      </div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📝 Örnek Başlangıç</div>
+      <div class="ornek-box">
+        Mi foto favorita es una foto con mi familia.<br>
+        En la foto estamos en casa.<br>
+        Mi madre está sonriendo y mi padre está mirando a la cámara.<br>
+        Mi hermano está llevando una camiseta azul.<br>
+        Todos estamos felices porque es un día especial.<br>
+        La casa es pequeña pero cómoda.<br>
+        La foto es muy importante para mí.
+      </div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">✏️ Yazınızı aşağıya yazınız</div>
+      <textarea id="writingText" class="writing-textarea"
+        placeholder="Metninizi buraya yazın...&#10;&#10;Önce başlığınızı yazın, ardından giriş → gelişme → sonuç bölümlerini oluşturun."
+        oninput="updateCharCount()"></textarea>
+      <div class="char-count" id="charCount">0 karakter</div>
+    </div>
+    <div class="writing-section">
+      <div class="writing-section-title">📊 Puanlama Cetveli</div>
+      <table class="rubric-table">
+        <thead><tr><th>Kriter</th><th>Puan</th></tr></thead>
+        <tbody>
+          <tr><td>Metin "Mi foto favorita" konusuna uygundur</td><td>10</td></tr>
+          <tr><td>Metin en az 40 cümleden oluşmuştur</td><td>10</td></tr>
+          <tr><td>Giriş, gelişme ve sonuç düzeni vardır</td><td>10</td></tr>
+          <tr><td>Estar + Gerundio yapısı doğru ve yeterli şekilde kullanılmıştır</td><td>20</td></tr>
+          <tr><td>En az 8 farklı Estar + Gerundio yapısı kullanılmıştır</td><td>10</td></tr>
+          <tr><td>Sıfatlar doğru ve uygun şekilde kullanılmıştır</td><td>15</td></tr>
+          <tr><td>En az 10 farklı sıfat kullanılmıştır</td><td>10</td></tr>
+          <tr><td>Kişiler, ortam, kıyafetler ve eylemler açık şekilde anlatılmıştır</td><td>5</td></tr>
+          <tr><td>Cümleler açık, anlamlı ve A1.2 seviyesine uygundur</td><td>5</td></tr>
+          <tr><td>Yazım, noktalama ve genel dil doğruluğuna dikkat edilmiştir</td><td>5</td></tr>
+          <tr><td><strong>Toplam</strong></td><td><strong>100</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- COPY CONFIRM -->
+    <div class="copy-confirm-box">
+      <div class="copy-confirm-title">⚠️ Yazma ödevinizi teslim etmeden önce:</div>
+      <label class="copy-confirm-label" for="copyConfirm">
+        <input type="checkbox" id="copyConfirm" onchange="checkCopyConfirm()">
+        <span>Her türlü ihtimale karşı yazma ödevimin bir kopyasını kendi galerime / notlarıma kaydettim ve güvende olduğundan eminim.</span>
+      </label>
+    </div>
+    <button class="writing-submit-btn" id="writingSubmitBtn" onclick="submitWriting()" disabled>
+      📬 Yazma Ödevini Teslim Et
+    </button>
+  </div>
+</div>
+<!-- RESULT -->
+<div id="resultScreen">
+  <div class="res-card">
+    <div class="res-emoji">✍️</div>
+    <div class="res-pill">3. HAFTA ÖDEVİ | A1.2 (11-12. DERS)</div>
+    <div class="res-name" id="resName">—</div>
+    <div class="res-msg">"Mi foto favorita" yazma ödeviniz Profe Hazel'e gönderildi. Ayrıca değerlendirilecektir (100 puan).</div>
+    <div class="stb stpnd" id="resStatus">&#x23f3; Gönderiliyor&#x2026;</div>
+  </div>
+  <button class="restart-btn" onclick="goName()">&#x1F504; Başka bir öğrenci için yeniden başla</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+var EMAILJS_SERVICE = 'service_4ee1wh7';
+var EMAILJS_TEMPLATE = 'template_xjyyxhf';
+var studentName = '';
+
+function show(id){
+  ['introScreen','writingScreen','resultScreen'].forEach(function(s){document.getElementById(s).style.display='none';});
+  document.getElementById(id).style.display = (id==='writingScreen') ? 'block' : (id==='introScreen' ? 'flex' : 'block');
+  window.scrollTo(0,0);
+}
+function startWriting(){
+  var sel = document.getElementById('introName');
+  if(!sel.value){alert('Lütfen adınızı seçin!');return;}
+  studentName = sel.value;
+  document.getElementById('writingStudentTag').textContent = 'Öğrenci: ' + studentName;
+  show('writingScreen');
+}
+function updateCharCount(){
+  var len = document.getElementById('writingText').value.length;
+  document.getElementById('charCount').textContent = len + ' karakter';
+}
+function checkCopyConfirm(){
+  var cb = document.getElementById('copyConfirm');
+  var btn = document.getElementById('writingSubmitBtn');
+  btn.disabled = !cb.checked;
+}
+async function submitWriting(){
+  var text = document.getElementById('writingText').value.trim();
+  if(text.length < 100){
+    alert('Lütfen yazma ödevinizi tamamlayın. Metniniz çok kısa görünüyor.');
+    return;
+  }
+  var cb = document.getElementById('copyConfirm');
+  if(!cb.checked){
+    alert('Lütfen önce kopyalama onayını işaretleyin.');
+    return;
+  }
+  var btn = document.getElementById('writingSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Gönderiliyor...';
+  var now = new Date();
+  var tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
+  document.getElementById('resName').textContent = studentName;
+  show('resultScreen');
+  var statusEl = document.getElementById('resStatus');
+  statusEl.className = 'stb stpnd';
+  statusEl.textContent = '⏳ Gönderiliyor…';
+  try{
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      student_name: studentName,
+      lesson: 'A1.2 H3 – 11-12.Ders – Mi foto favorita (YAZMA)',
+      submit_date: tarih,
+      writing_text: '=== ÖĞRENCİ BİLGİLERİ ===\nAd: '+studentName+'\nÖdev: A1.2 – 3. Hafta / 11-12. Ders\nKonu: Mi foto favorita\nGramática: Estar + Gerundio y Adjetivos\n\n=== YAZMA METNİ ===\n\n'+text
+    });
+    statusEl.className = 'stb stok';
+    statusEl.textContent = '✅ Ödev başarıyla gönderildi!';
+  }catch(e){
+    statusEl.className = 'stb ster';
+    statusEl.textContent = '⚠️ Gönderilemedi — Profeye bildirin';
+    btn.disabled = false;
+    btn.textContent = '📬 Yazma Ödevini Teslim Et';
+  }
+}
+function goName(){
+  studentName = '';
+  document.getElementById('introName').value = '';
+  document.getElementById('writingText').value = '';
+  document.getElementById('charCount').textContent = '0 karakter';
+  document.getElementById('copyConfirm').checked = false;
+  document.getElementById('writingSubmitBtn').disabled = true;
+  document.getElementById('writingSubmitBtn').textContent = '📬 Yazma Ödevini Teslim Et';
+  show('introScreen');
+}
+</script>
+</body>
+</html>
