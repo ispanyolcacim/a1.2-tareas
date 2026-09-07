@@ -52,6 +52,8 @@ select:focus{border-color:#6c4eb8}
 .btn-skip{background:#e8e0f8;color:#6c4eb8}
 .btn-next{background:#6c4eb8;color:#fff}
 .btn-finish{background:#e05c5c;color:#fff}
+.top-actions{display:flex;justify-content:flex-end;margin-bottom:.75rem}
+.btn-finish-top{padding:.5rem 1rem;font-size:.85rem}
 .nav button:disabled{opacity:.4;cursor:not-allowed}
 .res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
 .res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
@@ -116,6 +118,9 @@ select:focus{border-color:#6c4eb8}
   </div>
   <!-- QUIZ -->
   <div id="quizScreen" class="screen">
+    <div class="top-actions">
+      <button class="btn-finish btn-finish-top" onclick="confirmFinish()">Testi Bitir</button>
+    </div>
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="q-meta">
       <span id="qMeta">Soru 1 / 200</span>
@@ -126,7 +131,6 @@ select:focus{border-color:#6c4eb8}
       <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
       <button class="btn-skip" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
       <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
-      <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
     </div>
   </div>
   <!-- RESULT -->
