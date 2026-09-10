@@ -17,6 +17,10 @@ select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;colo
 select:focus{border-color:#6c4eb8}
 .btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-start:hover{background:#5a3ea0}
+.top-finish-bar{display:flex;justify-content:flex-end;margin-bottom:.85rem}
+.btn-finish-top{padding:.55rem 1.3rem;background:linear-gradient(135deg,#ff8a8a,#e05c5c);color:#fff;border:none;border-radius:30px;font-size:.85rem;font-weight:800;cursor:pointer;box-shadow:0 3px 10px rgba(224,92,92,.35);font-family:inherit;letter-spacing:.3px;transition:transform .15s,box-shadow .15s}
+.btn-finish-top:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(224,92,92,.45)}
+.btn-finish-top:active{transform:translateY(0)}
 .prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
 .prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
 .q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
@@ -38,7 +42,6 @@ select:focus{border-color:#6c4eb8}
 .btn-back{background:#e8e0f8;color:#6c4eb8}
 .btn-skip{background:#e8e0f8;color:#6c4eb8}
 .btn-next{background:#6c4eb8;color:#fff}
-.btn-finish{background:#e05c5c;color:#fff}
 .nav button:disabled{opacity:.4;cursor:not-allowed}
 .res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
 .res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
@@ -81,37 +84,23 @@ select:focus{border-color:#6c4eb8}
     <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
     <select id="introName">
       <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-      <option value="Ayse Gurkan">Ayse Gurkan</option>
-      <option value="Birce Suzen">Birce Suzen</option>
-      <option value="Burakhan Kaydi">Burakhan Kaydi</option>
-      <option value="Ceren Erdogan">Ceren Erdogan</option>
-      <option value="Doga Degirmenci">Doga Degirmenci</option>
-      <option value="Ecem Sukas">Ecem Sukas</option>
-      <option value="Elif Atac">Elif Atac</option>
-      <option value="Elif Bozkurt Alvurdu">Elif Bozkurt Alvurdu</option>
-      <option value="Elif Cetin">Elif Cetin</option>
-      <option value="Elif Ozgur Atli">Elif Ozgur Atli</option>
-      <option value="Emel Kanburoglu">Emel Kanburoglu</option>
-      <option value="Gorkem Dursun">Gorkem Dursun</option>
-      <option value="Gulce Eyibilir">Gulce Eyibilir</option>
-      <option value="Harun Ozmen">Harun Ozmen</option>
-      <option value="Mehtap Keklik">Mehtap Keklik</option>
-      <option value="Meltem Ciftci">Meltem Ciftci</option>
-      <option value="Meryem Ozbek">Meryem Ozbek</option>
-      <option value="Murat Sahin">Murat Sahin</option>
-      <option value="Seher Ercin">Seher Ercin</option>
-      <option value="Serra Sancakli">Serra Sancakli</option>
-      <option value="Simal Gurkan">Simal Gurkan</option>
-      <option value="Yasemin Kurtulus Tunc">Yasemin Kurtulus Tunc</option>
-      <option value="Zeynep Geylan">Zeynep Geylan</option>
-      <option value="Zeynep Ozay">Zeynep Ozay</option>
-      <option value="Zeynep Oztaskin">Zeynep Oztaskin</option>
+      <option value="Arman Kaykac">Arman Kaykac</option>
+      <option value="Arzu Bayram">Arzu Bayram</option>
+      <option value="Aysen Gurkan">Aysen Gurkan</option>
+      <option value="Didem Akbal">Didem Akbal</option>
+      <option value="Rabia Nur Tok">Rabia Nur Tok</option>
+      <option value="Selva Akyuz">Selva Akyuz</option>
+      <option value="Sena Yamak">Sena Yamak</option>
+      <option value="Suleyman Bektas">Suleyman Bektas</option>
     </select>
     <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
   </div>
 
   <!-- QUIZ -->
   <div id="quizScreen" class="screen">
+    <div class="top-finish-bar">
+      <button class="btn-finish-top" onclick="confirmFinish()">&#127937; Testi Bitir</button>
+    </div>
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="q-meta">
       <span id="qMeta">Soru 1 / 50</span>
@@ -122,7 +111,6 @@ select:focus{border-color:#6c4eb8}
       <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
       <button class="btn-skip" id="btnSkip" onclick="skipQ()" disabled>Atla</button>
       <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
-      <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
     </div>
   </div>
 
@@ -147,31 +135,14 @@ select:focus{border-color:#6c4eb8}
 
     <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
       <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-      <option value="Ayse Gurkan">Ayse Gurkan</option>
-      <option value="Birce Suzen">Birce Suzen</option>
-      <option value="Burakhan Kaydi">Burakhan Kaydi</option>
-      <option value="Ceren Erdogan">Ceren Erdogan</option>
-      <option value="Doga Degirmenci">Doga Degirmenci</option>
-      <option value="Ecem Sukas">Ecem Sukas</option>
-      <option value="Elif Atac">Elif Atac</option>
-      <option value="Elif Bozkurt Alvurdu">Elif Bozkurt Alvurdu</option>
-      <option value="Elif Cetin">Elif Cetin</option>
-      <option value="Elif Ozgur Atli">Elif Ozgur Atli</option>
-      <option value="Emel Kanburoglu">Emel Kanburoglu</option>
-      <option value="Gorkem Dursun">Gorkem Dursun</option>
-      <option value="Gulce Eyibilir">Gulce Eyibilir</option>
-      <option value="Harun Ozmen">Harun Ozmen</option>
-      <option value="Mehtap Keklik">Mehtap Keklik</option>
-      <option value="Meltem Ciftci">Meltem Ciftci</option>
-      <option value="Meryem Ozbek">Meryem Ozbek</option>
-      <option value="Murat Sahin">Murat Sahin</option>
-      <option value="Seher Ercin">Seher Ercin</option>
-      <option value="Serra Sancakli">Serra Sancakli</option>
-      <option value="Simal Gurkan">Simal Gurkan</option>
-      <option value="Yasemin Kurtulus Tunc">Yasemin Kurtulus Tunc</option>
-      <option value="Zeynep Geylan">Zeynep Geylan</option>
-      <option value="Zeynep Ozay">Zeynep Ozay</option>
-      <option value="Zeynep Oztaskin">Zeynep Oztaskin</option>
+      <option value="Arman Kaykac">Arman Kaykac</option>
+      <option value="Arzu Bayram">Arzu Bayram</option>
+      <option value="Aysen Gurkan">Aysen Gurkan</option>
+      <option value="Didem Akbal">Didem Akbal</option>
+      <option value="Rabia Nur Tok">Rabia Nur Tok</option>
+      <option value="Selva Akyuz">Selva Akyuz</option>
+      <option value="Sena Yamak">Sena Yamak</option>
+      <option value="Suleyman Bektas">Suleyman Bektas</option>
     </select>
 
     <div class="submit-msg" id="submitMsg"></div>
@@ -194,65 +165,65 @@ select:focus{border-color:#6c4eb8}
 
 <script>
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV_ADI='H4 \u2013 15-16.Ders';
-var GROUPS={'Ayse Gurkan':"A1.2",'Birce Suzen':"A1.2",'Burakhan Kaydi':"A1.2",'Ceren Erdogan':"A1.2",'Doga Degirmenci':"A1.2",'Ecem Sukas':"A1.2",'Elif Atac':"A1.2",'Elif Bozkurt Alvurdu':"A1.2",'Elif Cetin':"A1.2",'Elif Ozgur Atli':"A1.2",'Emel Kanburoglu':"A1.2",'Gorkem Dursun':"A1.2",'Gulce Eyibilir':"A1.2",'Harun Ozmen':"A1.2",'Mehtap Keklik':"A1.2",'Meltem Ciftci':"A1.2",'Meryem Ozbek':"A1.2",'Murat Sahin':"A1.2",'Seher Ercin':"A1.2",'Serra Sancakli':"A1.2",'Simal Gurkan':"A1.2",'Yasemin Kurtulus Tunc':"A1.2",'Zeynep Geylan':"A1.2",'Zeynep Ozay':"A1.2",'Zeynep Oztaskin':"A1.2"};
+var ODEV_ADI='H4 – 15-16.Ders';
+var GROUPS={'Arman Kaykac':"A1.2",'Arzu Bayram':"A1.2",'Aysen Gurkan':"A1.2",'Didem Akbal':"A1.2",'Rabia Nur Tok':"A1.2",'Selva Akyuz':"A1.2",'Sena Yamak':"A1.2",'Suleyman Bektas':"A1.2"};
 var Q=[
-{"t":"mc","q":"1. El entrenador del equipo Gaud\u00ed se llama\u2026","o":["G\u00f3mez","Ra\u00fal","Sergio","Mart\u00edn"],"a":0,"exp":"Cevap: A) G\u00f3mez\nA\u00e7\u0131klama: Kitab\u0131n 3. sayfas\u0131nda, Barselona\u2019daki Gaud\u00ed enstit\u00fcs\u00fc tak\u0131m\u0131n\u0131n antren\u00f6r\u00fcn\u00fcn G\u00f3mez oldu\u011fu a\u00e7\u0131k\u00e7a belirtilmektedir."},
-{"t":"mc","q":"\u00bfContra qu\u00e9 equipo juega el Gaud\u00ed en el primer partido?","o":["M\u00e9xico","Chile","Peralta Ramos","Bolivia"],"a":2,"exp":"Cevap: C) Peralta Ramos\nA\u00e7\u0131klama: 3. sayfada, tak\u0131m\u0131n Mar del Plata\u2019daki Peralta Ramos koleji tak\u0131m\u0131na kar\u015f\u0131 oynad\u0131\u011f\u0131 yazmaktad\u0131r."},
-{"t":"mc","q":"\u00bfDe qu\u00e9 color es la camiseta del equipo de Barcelona?","o":["Roja","Amarilla","Azul","Verde"],"a":1,"exp":"Cevap: B) Amarilla\nA\u00e7\u0131klama: 3. sayfada, Barselona tak\u0131m\u0131n\u0131n sar\u0131 (amarilla) forma giydi\u011fi ifade edilir."},
-{"t":"mc","q":"\u00bfQui\u00e9n marca el primer gol del equipo espa\u00f1ol?","o":["Mart\u00edn","Sergio","Guillermo","Ra\u00fal"],"a":3,"exp":"Cevap: D) Ra\u00fal\nA\u00e7\u0131klama: 4. sayfada, M\u00f3nica\u2019n\u0131n Sergio\u2019nun pas\u0131yla Ra\u00fal\u2019\u00fcn gol att\u0131\u011f\u0131n\u0131 a\u00e7\u0131klad\u0131\u011f\u0131 g\u00f6r\u00fcl\u00fcr."},
-{"t":"mc","q":"\u00bfQui\u00e9n grita \"\u00a1\u00c1nimo, Sergio!\" desde la grada?","o":["M\u00f3nica","\u00c1ngela","Carmen","Laura"],"a":3,"exp":"Cevap: D) Laura\nA\u00e7\u0131klama: 4. sayfada, seyirciler aras\u0131ndan Sergio\u2019ya ba\u011f\u0131ran ki\u015finin Laura oldu\u011fu belirtilir."},
-{"t":"mc","q":"\u00bfQui\u00e9n llega tarde porque se ha dormido?","o":["Mart\u00edn","Guillermo","Sergio","Ra\u00fal"],"a":1,"exp":"Cevap: B) Guillermo\n+1\nA\u00e7\u0131klama: 4. sayfada, Guillermo\u2019nun yanlar\u0131na geldi\u011fi ve uyuyakald\u0131\u011f\u0131 i\u00e7in ge\u00e7 kald\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi anlat\u0131l\u0131r.\n+1"},
-{"t":"mc","q":"\u00bfQui\u00e9n es profesora de F\u00edsica?","o":["Carmen","\u00c1ngela","Laura","M\u00f3nica"],"a":1,"exp":"Cevap: B) \u00c1ngela\nA\u00e7\u0131klama: 5. sayfada, tak\u0131ma e\u015flik eden \u00c1ngela\u2019n\u0131n bir fizik \u00f6\u011fretmeni oldu\u011fu belirtilir."},
-{"t":"mc","q":"\u00bfQui\u00e9n es el profesor de Lengua?","o":["Roberto","G\u00f3mez","Sergio","Ra\u00fal"],"a":0,"exp":"Cevap: A) Roberto\nA\u00e7\u0131klama: 5. sayfada, Roberto\u2019nun dil (Lengua) \u00f6\u011fretmeni oldu\u011fu bilgisi yer al\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 resultado hay despu\u00e9s del gol de Ra\u00fal?","o":["3-2","4-2","2-2","3-3"],"a":0,"exp":"Cevap: A) 3-2\nA\u00e7\u0131klama: 5. sayfada, Ra\u00fal\u2019\u00fcn gol\u00fcnden sonra M\u00f3nica skorun 3-2 oldu\u011funu a\u00e7\u0131klar."},
-{"t":"mc","q":"\u00bfQui\u00e9n comete falta a Sergio?","o":["El portero","Ra\u00fal","Mart\u00edn","El n\u00famero 6"],"a":3,"exp":"Cevap: D) El n\u00famero 6\nA\u00e7\u0131klama: 5. sayfada, rakip tak\u0131m\u0131n 6 numaras\u0131n\u0131n Sergio\u2019yu iterek faul yapt\u0131\u011f\u0131 anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfD\u00f3nde se juega el campeonato?","o":["Barcelona","Mar del Plata","Madrid","M\u00e9xico"],"a":1,"exp":"Cevap: B) Mar del Plata\nA\u00e7\u0131klama: 4. sayfada, \u015fampiyonan\u0131n bu y\u0131l Arjantin\u2019in Mar del Plata \u015fehirinde yap\u0131ld\u0131\u011f\u0131 belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 ve Mart\u00edn fuera del campo?","o":["Un perro","Un bal\u00f3n","Una chica extra\u00f1a","Un \u00e1rbitro"],"a":2,"exp":"Cevap: C) Una chica extra\u00f1a\nA\u00e7\u0131klama: 6. sayfada, Mart\u00edn\u2019in saha d\u0131\u015f\u0131na \u00e7\u0131kan topu almaya gitti\u011finde \u00e7ok garip bak\u0131\u015fl\u0131 bir k\u0131z g\u00f6rd\u00fc\u011f\u00fc yazmaktad\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 lleva la chica misteriosa?","o":["Vestido rojo","Camiseta blanca","Vestido negro","Chaqueta azul"],"a":2,"exp":"Cevap: C) Vestido negro\nA\u00e7\u0131klama: 6. sayfada, k\u0131z\u0131n siyah bir elbise giydi\u011fi belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 compra Guillermo en el descanso?","o":["Agua","Caf\u00e9","T\u00e9","Coca-Cola"],"a":3,"exp":"Cevap: D) Coca-Cola\nA\u00e7\u0131klama: 6. sayfada, Guillermo\u2019nun bara gidip bir Coca-Cola istedi\u011fi anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQui\u00e9n marca el tercer gol del equipo espa\u00f1ol?","o":["Sergio","Ra\u00fal","Guillermo","Mart\u00edn"],"a":3,"exp":"Cevap: D) Mart\u00edn\nA\u00e7\u0131klama: 6. sayfada, Mart\u00edn\u2019in tak\u0131m\u0131n \u00fc\u00e7\u00fcnc\u00fc gol\u00fcn\u00fc att\u0131\u011f\u0131 ifade edilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 pasa al final del partido?","o":["Pierden","Empatan","Ganan","Se suspende"],"a":1,"exp":"Cevap: B) Empatan\nA\u00e7\u0131klama: 8. sayfada, ma\u00e7\u0131n sonunda tak\u0131m\u0131n berabere kald\u0131\u011f\u0131 (empatado) belirtilir."},
-{"t":"mc","q":"\u00bfD\u00f3nde pasean los chicos despu\u00e9s del partido?","o":["En el parque","En la playa","En el hotel","En el estadio"],"a":1,"exp":"Cevap: B) En la playa\nA\u00e7\u0131klama: 9. sayfada, ma\u00e7tan sonra gen\u00e7lerin sahilde (playa) y\u00fcr\u00fcye\u015fe \u00e7\u0131kt\u0131\u011f\u0131 anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 hace la chica en la playa?","o":["Corre","Habla","Nada","Entra en el agua vestida"],"a":3,"exp":"Cevap: D) Entra en el agua vestida\nA\u00e7\u0131klama: 9. sayfada, k\u0131z\u0131n k\u0131yafetleriyle denize girmeye ba\u015flad\u0131\u011f\u0131 ve gen\u00e7lerin buna \u015fa\u015f\u0131rd\u0131\u011f\u0131 belirtilir."},
-{"t":"mc","q":"\u00bfQui\u00e9n rescata a la chica?","o":["Sergio","Guillermo","Laura","Mart\u00edn"],"a":3,"exp":"Cevap: D) Mart\u00edn\n+1\nA\u00e7\u0131klama: 10. sayfada, Mart\u00edn\u2019in denize atlayarak k\u0131z\u0131 kurtard\u0131\u011f\u0131 anlat\u0131l\u0131r.\n+1"},
-{"t":"mc","q":"\u00bfC\u00f3mo se siente la chica despu\u00e9s?","o":["Feliz","Enfadada","Temblando","Tranquila"],"a":2,"exp":"Cevap: C) Temblando\n+1\nA\u00e7\u0131klama: 10 ve 12. sayfalarda, sudan \u00e7\u0131kan k\u0131z\u0131n titredi\u011fi (temblando) ifade edilir.\n+1"},
-{"t":"mc","q":"\u00bfC\u00f3mo se llama realmente la chica?","o":["Laura","M\u00f3nica","Eufemia","Carmen"],"a":2,"exp":"Cevap: C) Eufemia\nA\u00e7\u0131klama: 13. sayfada, k\u0131z\u0131n ad\u0131n\u0131n Eufemia oldu\u011fu belirtilir."},
-{"t":"mc","q":"\u00bfC\u00f3mo prefiere que la llamen?","o":["Mita","Ana","Lola","Sara"],"a":0,"exp":"Cevap: A) Mita\n+1\nA\u00e7\u0131klama: 13 ve 14. sayfalarda, k\u0131z\u0131n \u201cMita\u201d olarak \u00e7a\u011fr\u0131lmay\u0131 tercih etti\u011fi yazmaktad\u0131r.\n+1"},
-{"t":"mc","q":"\u00bfCon qui\u00e9n vive la chica?","o":["Su madre","Su padre","Sus amigos","Su abuela"],"a":3,"exp":"Cevap: D) Su abuela\nA\u00e7\u0131klama: 12. sayfada, Mita\u2019n\u0131n babaannesiyle (abuela) ya\u015fad\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi g\u00f6r\u00fcl\u00fcr."},
-{"t":"mc","q":"\u00bfQu\u00e9 le da a Mart\u00edn la chica?","o":["Una chaqueta","Una camisa","Un pantalón","Un abrigo"],"a":1,"exp":"Cevap: B) Una camisa\nA\u00e7\u0131klama: 13. sayfada, Mita\u2019n\u0131n \u0131slanan Mart\u00edn\u2019e kuru bir g\u00f6mlek (camisa) verdi\u011fi anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfD\u00f3nde estuvo internada la chica?","o":["Hospital","Psiqui\u00e1trico","Colegio","Hotel"],"a":1,"exp":"Cevap: B) Psiqui\u00e1trico\nA\u00e7\u0131klama: 21. sayfada, Mita\u2019n\u0131n bir psikiyatri klini\u011finde (psiqui\u00e1trico) yatt\u0131\u011f\u0131n\u0131 itiraf etti\u011fi g\u00f6r\u00fcl\u00fcr."},
-{"t":"mc","q":"\u00bfQu\u00e9 le gusta a Mita?","o":["El f\u00fatbol","Estudiar","Nada relacionado con f\u00fatbol","Viajar"],"a":2,"exp":"Cevap: C) Nada relacionado con f\u00fatbol\n+1\nA\u00e7\u0131klama: 18 ve 19. sayfalarda, Mita\u2019n\u0131n asl\u0131nda futbolu sevmedi\u011fini defalarca s\u00f6yledi\u011fi belirtilir.\n+1"},
-{"t":"mc","q":"\u00bfQu\u00e9 dice Mita en el bar?","o":["Estoy feliz","Me voy a casa","Me persiguen","Tengo hambre"],"a":2,"exp":"Cevap: C) Me persiguen\nA\u00e7\u0131klama: 22. sayfada, Mita\u2019n\u0131n Laura\u2019n\u0131n kula\u011f\u0131na \u201cBeni takip ediyorlar\u201d (me persiguen) dedi\u011fi anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 hace Mita despu\u00e9s del bar?","o":["Se queda","Llora","Sale corriendo","Come"],"a":2,"exp":"Cevap: C) Sale corriendo\n+1\nA\u00e7\u0131klama: 22 ve 23. sayfalarda, Mita\u2019n\u0131n bardan h\u0131zla ka\u00e7arak \u00e7\u0131kt\u0131\u011f\u0131 belirtilir.\n+1"},
-{"t":"mc","q":"\u00bfQu\u00e9 problema ten\u00eda Mita en el colegio?","o":["Malas notas","Falta de dinero","Bullying","Enfermedad"],"a":2,"exp":"Cevap: C) Bullying\nA\u00e7\u0131klama: 32. sayfada, babas\u0131n\u0131n Mita\u2019n\u0131n okulda akran zorbal\u0131\u011f\u0131na (bullying) u\u011frad\u0131\u011f\u0131n\u0131 \u00f6\u011frendi\u011fi anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQui\u00e9n es el padre de Mita?","o":["Profesor","M\u00e9dico","Militar","Polic\u00eda"],"a":2,"exp":"Cevap: C) Militar\n+1\nA\u00e7\u0131klama: 21 ve 32. sayfalarda, Mita\u2019n\u0131n babas\u0131n\u0131n bir asker (militar) oldu\u011fu bilgisi yer al\u0131r.\n+1"},
-{"t":"mc","q":"\u00bfD\u00f3nde vive el padre?","o":["En el centro","En la playa","En La Perla","En el campo"],"a":2,"exp":"Cevap: C) En La Perla\nA\u00e7\u0131klama: 29. sayfada, babas\u0131n\u0131n Mar del Plata\u2019n\u0131n merkezindeki La Perla mahallesinde ya\u015fad\u0131\u011f\u0131 belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 descubre el padre sobre su hija?","o":["Que estudia mucho","Que intent\u00f3 suicidarse","Que viaja","Que trabaja"],"a":1,"exp":"Cevap: B) Que intent\u00f3 suicidarse\nA\u00e7\u0131klama: 30. sayfada, M\u00f3nica\u2019n\u0131n babas\u0131na k\u0131z\u0131n\u0131n denizde intihara te\u015febb\u00fcs etti\u011fini anlatt\u0131\u011f\u0131 g\u00f6r\u00fcl\u00fcr."},
-{"t":"mc","q":"\u00bfQu\u00e9 equipo juega la semifinal contra Gaud\u00ed?","o":["M\u00e9xico","Chile","Argentina","Bolivia"],"a":0,"exp":"Cevap: A) Meksika (Acapulco) \nA\u00e7\u0131klama: 15 ve 17. sayfalarda, yar\u0131 final ma\u00e7\u0131n\u0131n Meksika (Acapulco) tak\u0131m\u0131na kar\u015f\u0131 oldu\u011fu belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 resultado tiene el partido amistoso contra Uruguay?","o":["Ganan","Empatan","Pierden","No juegan"],"a":1,"exp":"Cevap: B) Empatan\nA\u00e7\u0131klama: 17. sayfada, Uruguay ile yap\u0131lan haz\u0131rl\u0131k ma\u00e7\u0131n\u0131n berabere (empatan) bitti\u011fi yazmaktad\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 le pasa a M\u00f3nica en semifinales?","o":["Est\u00e1 feliz","Est\u00e1 en el estadio","Est\u00e1 viajando","Est\u00e1 enferma"],"a":3,"exp":"Cevap: D) Est\u00e1 enferma\nA\u00e7\u0131klama: 17. sayfada, M\u00f3nica\u2019n\u0131n hasta oldu\u011fu i\u00e7in yar\u0131 final ma\u00e7\u0131na gelemedi\u011fi ifade edilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 hace Mita en la semifinal?","o":["Juega","Arbitra","Ve el partido","Marca gol"],"a":2,"exp":"Cevap: C) Ve el partido\nA\u00e7\u0131klama: 18. sayfada, Mita\u2019n\u0131n trib\u00fcnlerde Laura\u2019n\u0131n yan\u0131na oturdu\u011fu anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 le dice Mita a Laura en secreto?","o":["Tengo fr\u00edo","Estoy feliz","Me voy","Me persiguen"],"a":3,"exp":"Cevap: D) Me persiguen\nA\u00e7\u0131klama: 22. sayfada, Mita\u2019n\u0131n gizlice f\u0131s\u0131ldad\u0131\u011f\u0131 s\u00f6z\u00fcn \u201cBeni takip ediyorlar\u201d oldu\u011fu belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 hace Mart\u00edn antes de la final?","o":["Descansa","Come mucho","Est\u00e1 destra\u00eddo","Estudia"],"a":2,"exp":"Cevap: C) Est\u00e1 destra\u00eddo\nA\u00e7\u0131klama: 26. sayfada, Mart\u00edn\u2019in final sabah\u0131 \u00e7ok dalg\u0131n (destra\u00eddo) oldu\u011fu ve konsantre olamad\u0131\u011f\u0131 anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 decide hacer Mart\u00edn?","o":["Irse","Llamar","Ir a casa de Mita","Jugar"],"a":2,"exp":"Cevap: C) Ir a casa de Mita\n+1\nA\u00e7\u0131klama: 26. sayfada, Mart\u00edn\u2019in Mita\u2019n\u0131n durumundan endi\u015felenerek onun evine gitmeye karar verdi\u011fi belirtilir.\n+1"},
-{"t":"mc","q":"\u00bfQu\u00e9 dice la abuela de Mita?","o":["Est\u00e1 en casa","No est\u00e1","Est\u00e1 feliz","Est\u00e1 estudiando"],"a":1,"exp":"Cevap: B) No est\u00e1\nA\u00e7\u0131klama: 27. sayfada, babaannesinin Mita\u2019n\u0131n evde olmad\u0131\u011f\u0131n\u0131 ve d\u0131\u015far\u0131 \u00e7\u0131kt\u0131\u011f\u0131n\u0131 s\u00f6yledi\u011fi g\u00f6r\u00fcl\u00fcr."},
-{"t":"mc","q":"\u00bfCu\u00e1ntos d\u00edas lleva desaparecida Mita?","o":["1","2","3","4"],"a":1,"exp":"Cevap: B) 2\nA\u00e7\u0131klama: 28. sayfada, babaannesinin Mita\u2019y\u0131 iki g\u00fcnd\u00fcr g\u00f6rmedi\u011fini s\u00f6yledi\u011fi anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 hace Mita durante la final?","o":["Grita","Corre","Salta al campo","Aplaude"],"a":2,"exp":"Cevap: C) Salta al campo\nA\u00e7\u0131klama: 34. sayfada, final ma\u00e7\u0131 s\u00fcrerken Mita\u2019n\u0131n aniden sahaya atlad\u0131\u011f\u0131 belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 saca del bolso?","o":["Un libro","Un m\u00f3vil","Una carta","Una pistola"],"a":3,"exp":"Cevap: D) Una pistola\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019n\u0131n \u00e7antas\u0131ndan bir tabanca (pistola) \u00e7\u0131kard\u0131\u011f\u0131 ifade edilir.\n+1"},
-{"t":"mc","q":"\u00bfA qui\u00e9n quiere asustar?","o":["Mart\u00edn","Sergio","Ra\u00fal","Gustavo"],"a":3,"exp":"Cevap: D) Gustavo\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019n\u0131n Gustavo\u2019ya yakla\u015ft\u0131\u011f\u0131 ve onu korkutmak (asustarlo) istedi\u011fi anlat\u0131l\u0131r.\n+1"},
-{"t":"mc","q":"\u00bfQui\u00e9n hac\u00eda bullying a Mita?","o":["Mart\u00edn","Guillermo","Gustavo","Sergio"],"a":2,"exp":"Cevap: C) Gustavo\n+1\nA\u00e7\u0131klama: 36. sayfada, Mita\u2019ya zorbal\u0131k yapan ki\u015finin rakip tak\u0131m\u0131n oyuncusu Gustavo oldu\u011fu ortaya \u00e7\u0131kar.\n+1"},
-{"t":"mc","q":"\u00bfQu\u00e9 hace Mart\u00edn?","o":["Corre","Grita","Se va","Detiene a Mita"],"a":3,"exp":"Cevap: D) Detiene a Mita\nA\u00e7\u0131klama: 36. sayfada, Mart\u00edn\u2019in Mita\u2019n\u0131n elini tutarak onu durdurdu\u011fu anlat\u0131l\u0131r."},
-{"t":"mc","q":"\u00bfQu\u00e9 resultado final tiene el partido?","o":["Empate","Gana Gaud\u00ed","Gana Argentina","Se cancela"],"a":1,"exp":"Cevap: B) Gana Gaud\u00ed\nA\u00e7\u0131klama: 38. sayfada, kupay\u0131 kazanan\u0131n Barselona\u2019daki Gaud\u00ed enstit\u00fcs\u00fc oldu\u011fu ilan edilir."},
-{"t":"mc","q":"\u00bfQui\u00e9n marca el gol final?","o":["Mart\u00edn","Sergio","Ra\u00fal","Gustavo"],"a":0,"exp":"Cevap: A) Mart\u00edn\nA\u00e7\u0131klama: 38. sayfada, galibiyet gol\u00fcn\u00fc Mart\u00edn\u2019in att\u0131\u011f\u0131 belirtilir."},
-{"t":"mc","q":"\u00bfQu\u00e9 le pasa a Mita despu\u00e9s?","o":["Se va a casa","Crisis nerviosa","Gana el partido","Se r\u00ede"],"a":1,"exp":"Cevap: B) Crisis nerviosa\nA\u00e7\u0131klama: 39. sayfada, Mita\u2019n\u0131n sinir krizi (crisis nerviosa) ge\u00e7irdi\u011fi i\u00e7in ambulansla g\u00f6t\u00fcr\u00fcld\u00fc\u011f\u00fc s\u00f6ylenir."},
-{"t":"mc","q":"\u00bfQu\u00e9 le regala Mita a Mart\u00edn al final?","o":["Un libro","Un bal\u00f3n","Una camiseta","Un reloj"],"a":2,"exp":"Cevap: C) Una camiseta\nA\u00e7\u0131klama: 42. sayfada, Mita\u2019n\u0131n Mart\u00edn\u2019e veda ederken Leo Messi\u2019nin Arjantin milli tak\u0131m formas\u0131n\u0131 (camiseta) hediye etti\u011fi anlat\u0131l\u0131r."}
+{"t":"mc","q":"1. El entrenador del equipo Gaudí se llama…","o":["Gómez","Raúl","Sergio","Martín"],"a":0,"exp":"Cevap: A) Gómez\nAçıklama: Kitabın 3. sayfasında, Barselona’daki Gaudí enstitüsü takımının antrenörünün Gómez olduğu açıkça belirtilmektedir."},
+{"t":"mc","q":"¿Contra qué equipo juega el Gaudí en el primer partido?","o":["México","Chile","Peralta Ramos","Bolivia"],"a":2,"exp":"Cevap: C) Peralta Ramos\nAçıklama: 3. sayfada, takımın Mar del Plata’daki Peralta Ramos koleji takımına karşı oynadığı yazmaktadır."},
+{"t":"mc","q":"¿De qué color es la camiseta del equipo de Barcelona?","o":["Roja","Amarilla","Azul","Verde"],"a":1,"exp":"Cevap: B) Amarilla\nAçıklama: 3. sayfada, Barselona takımının sarı (amarilla) forma giydiği ifade edilir."},
+{"t":"mc","q":"¿Quién marca el primer gol del equipo español?","o":["Martín","Sergio","Guillermo","Raúl"],"a":3,"exp":"Cevap: D) Raúl\nAçıklama: 4. sayfada, Mónica’nın Sergio’nun pasıyla Raúl’ün gol attığını açıkladığı görülür."},
+{"t":"mc","q":"¿Quién grita \"¡Ánimo, Sergio!\" desde la grada?","o":["Mónica","Ángela","Carmen","Laura"],"a":3,"exp":"Cevap: D) Laura\nAçıklama: 4. sayfada, seyirciler arasından Sergio’ya bağıran kişinin Laura olduğu belirtilir."},
+{"t":"mc","q":"¿Quién llega tarde porque se ha dormido?","o":["Martín","Guillermo","Sergio","Raúl"],"a":1,"exp":"Cevap: B) Guillermo\n+1\nAçıklama: 4. sayfada, Guillermo’nun yanlarına geldiği ve uyuyakaldığı için geç kaldığını söylediği anlatılır.\n+1"},
+{"t":"mc","q":"¿Quién es profesora de Física?","o":["Carmen","Ángela","Laura","Mónica"],"a":1,"exp":"Cevap: B) Ángela\nAçıklama: 5. sayfada, takıma eşlik eden Ángela’nın bir fizik öğretmeni olduğu belirtilir."},
+{"t":"mc","q":"¿Quién es el profesor de Lengua?","o":["Roberto","Gómez","Sergio","Raúl"],"a":0,"exp":"Cevap: A) Roberto\nAçıklama: 5. sayfada, Roberto’nun dil (Lengua) öğretmeni olduğu bilgisi yer alır."},
+{"t":"mc","q":"¿Qué resultado hay después del gol de Raúl?","o":["3-2","4-2","2-2","3-3"],"a":0,"exp":"Cevap: A) 3-2\nAçıklama: 5. sayfada, Raúl’ün golünden sonra Mónica skorun 3-2 olduğunu açıklar."},
+{"t":"mc","q":"¿Quién comete falta a Sergio?","o":["El portero","Raúl","Martín","El número 6"],"a":3,"exp":"Cevap: D) El número 6\nAçıklama: 5. sayfada, rakip takımın 6 numarasının Sergio’yu iterek faul yaptığı anlatılır."},
+{"t":"mc","q":"¿Dónde se juega el campeonato?","o":["Barcelona","Mar del Plata","Madrid","México"],"a":1,"exp":"Cevap: B) Mar del Plata\nAçıklama: 4. sayfada, şampiyonanın bu yıl Arjantin’in Mar del Plata şehirinde yapıldığı belirtilir."},
+{"t":"mc","q":"¿Qué ve Martín fuera del campo?","o":["Un perro","Un balón","Una chica extraña","Un árbitro"],"a":2,"exp":"Cevap: C) Una chica extraña\nAçıklama: 6. sayfada, Martín’in saha dışına çıkan topu almaya gittiğinde çok garip bakışlı bir kız gördüğü yazmaktadır."},
+{"t":"mc","q":"¿Qué lleva la chica misteriosa?","o":["Vestido rojo","Camiseta blanca","Vestido negro","Chaqueta azul"],"a":2,"exp":"Cevap: C) Vestido negro\nAçıklama: 6. sayfada, kızın siyah bir elbise giydiği belirtilir."},
+{"t":"mc","q":"¿Qué compra Guillermo en el descanso?","o":["Agua","Café","Té","Coca-Cola"],"a":3,"exp":"Cevap: D) Coca-Cola\nAçıklama: 6. sayfada, Guillermo’nun bara gidip bir Coca-Cola istediği anlatılır."},
+{"t":"mc","q":"¿Quién marca el tercer gol del equipo español?","o":["Sergio","Raúl","Guillermo","Martín"],"a":3,"exp":"Cevap: D) Martín\nAçıklama: 6. sayfada, Martín’in takımın üçüncü golünü attığı ifade edilir."},
+{"t":"mc","q":"¿Qué pasa al final del partido?","o":["Pierden","Empatan","Ganan","Se suspende"],"a":1,"exp":"Cevap: B) Empatan\nAçıklama: 8. sayfada, maçın sonunda takımın berabere kaldığı (empatado) belirtilir."},
+{"t":"mc","q":"¿Dónde pasean los chicos después del partido?","o":["En el parque","En la playa","En el hotel","En el estadio"],"a":1,"exp":"Cevap: B) En la playa\nAçıklama: 9. sayfada, maçtan sonra gençlerin sahilde (playa) yürüyeşe çıktığı anlatılır."},
+{"t":"mc","q":"¿Qué hace la chica en la playa?","o":["Corre","Habla","Nada","Entra en el agua vestida"],"a":3,"exp":"Cevap: D) Entra en el agua vestida\nAçıklama: 9. sayfada, kızın kıyafetleriyle denize girmeye başladığı ve gençlerin buna şaşırdığı belirtilir."},
+{"t":"mc","q":"¿Quién rescata a la chica?","o":["Sergio","Guillermo","Laura","Martín"],"a":3,"exp":"Cevap: D) Martín\n+1\nAçıklama: 10. sayfada, Martín’in denize atlayarak kızı kurtardığı anlatılır.\n+1"},
+{"t":"mc","q":"¿Cómo se siente la chica después?","o":["Feliz","Enfadada","Temblando","Tranquila"],"a":2,"exp":"Cevap: C) Temblando\n+1\nAçıklama: 10 ve 12. sayfalarda, sudan çıkan kızın titrediği (temblando) ifade edilir.\n+1"},
+{"t":"mc","q":"¿Cómo se llama realmente la chica?","o":["Laura","Mónica","Eufemia","Carmen"],"a":2,"exp":"Cevap: C) Eufemia\nAçıklama: 13. sayfada, kızın adının Eufemia olduğu belirtilir."},
+{"t":"mc","q":"¿Cómo prefiere que la llamen?","o":["Mita","Ana","Lola","Sara"],"a":0,"exp":"Cevap: A) Mita\n+1\nAçıklama: 13 ve 14. sayfalarda, kızın “Mita” olarak çağrılmayı tercih ettiği yazmaktadır.\n+1"},
+{"t":"mc","q":"¿Con quién vive la chica?","o":["Su madre","Su padre","Sus amigos","Su abuela"],"a":3,"exp":"Cevap: D) Su abuela\nAçıklama: 12. sayfada, Mita’nın babaannesiyle (abuela) yaşadığını söylediği görülür."},
+{"t":"mc","q":"¿Qué le da a Martín la chica?","o":["Una chaqueta","Una camisa","Un pantalón","Un abrigo"],"a":1,"exp":"Cevap: B) Una camisa\nAçıklama: 13. sayfada, Mita’nın ıslanan Martín’e kuru bir gömlek (camisa) verdiği anlatılır."},
+{"t":"mc","q":"¿Dónde estuvo internada la chica?","o":["Hospital","Psiquiátrico","Colegio","Hotel"],"a":1,"exp":"Cevap: B) Psiquiátrico\nAçıklama: 21. sayfada, Mita’nın bir psikiyatri kliniğinde (psiquiátrico) yattığını itiraf ettiği görülür."},
+{"t":"mc","q":"¿Qué le gusta a Mita?","o":["El fútbol","Estudiar","Nada relacionado con fútbol","Viajar"],"a":2,"exp":"Cevap: C) Nada relacionado con fútbol\n+1\nAçıklama: 18 ve 19. sayfalarda, Mita’nın aslında futbolu sevmediğini defalarca söylediği belirtilir.\n+1"},
+{"t":"mc","q":"¿Qué dice Mita en el bar?","o":["Estoy feliz","Me voy a casa","Me persiguen","Tengo hambre"],"a":2,"exp":"Cevap: C) Me persiguen\nAçıklama: 22. sayfada, Mita’nın Laura’nın kulağına “Beni takip ediyorlar” (me persiguen) dediği anlatılır."},
+{"t":"mc","q":"¿Qué hace Mita después del bar?","o":["Se queda","Llora","Sale corriendo","Come"],"a":2,"exp":"Cevap: C) Sale corriendo\n+1\nAçıklama: 22 ve 23. sayfalarda, Mita’nın bardan hızla kaçarak çıktığı belirtilir.\n+1"},
+{"t":"mc","q":"¿Qué problema tenía Mita en el colegio?","o":["Malas notas","Falta de dinero","Bullying","Enfermedad"],"a":2,"exp":"Cevap: C) Bullying\nAçıklama: 32. sayfada, babasının Mita’nın okulda akran zorbalığına (bullying) uğradığını öğrendiği anlatılır."},
+{"t":"mc","q":"¿Quién es el padre de Mita?","o":["Profesor","Médico","Militar","Policía"],"a":2,"exp":"Cevap: C) Militar\n+1\nAçıklama: 21 ve 32. sayfalarda, Mita’nın babasının bir asker (militar) olduğu bilgisi yer alır.\n+1"},
+{"t":"mc","q":"¿Dónde vive el padre?","o":["En el centro","En la playa","En La Perla","En el campo"],"a":2,"exp":"Cevap: C) En La Perla\nAçıklama: 29. sayfada, babasının Mar del Plata’nın merkezindeki La Perla mahallesinde yaşadığı belirtilir."},
+{"t":"mc","q":"¿Qué descubre el padre sobre su hija?","o":["Que estudia mucho","Que intentó suicidarse","Que viaja","Que trabaja"],"a":1,"exp":"Cevap: B) Que intentó suicidarse\nAçıklama: 30. sayfada, Mónica’nın babasına kızının denizde intihara teşebbüs ettiğini anlattığı görülür."},
+{"t":"mc","q":"¿Qué equipo juega la semifinal contra Gaudí?","o":["México","Chile","Argentina","Bolivia"],"a":0,"exp":"Cevap: A) Meksika (Acapulco) \nAçıklama: 15 ve 17. sayfalarda, yarı final maçının Meksika (Acapulco) takımına karşı olduğu belirtilir."},
+{"t":"mc","q":"¿Qué resultado tiene el partido amistoso contra Uruguay?","o":["Ganan","Empatan","Pierden","No juegan"],"a":1,"exp":"Cevap: B) Empatan\nAçıklama: 17. sayfada, Uruguay ile yapılan hazırlık maçının berabere (empatan) bittiği yazmaktadır."},
+{"t":"mc","q":"¿Qué le pasa a Mónica en semifinales?","o":["Está feliz","Está en el estadio","Está viajando","Está enferma"],"a":3,"exp":"Cevap: D) Está enferma\nAçıklama: 17. sayfada, Mónica’nın hasta olduğu için yarı final maçına gelemediği ifade edilir."},
+{"t":"mc","q":"¿Qué hace Mita en la semifinal?","o":["Juega","Arbitra","Ve el partido","Marca gol"],"a":2,"exp":"Cevap: C) Ve el partido\nAçıklama: 18. sayfada, Mita’nın tribünlerde Laura’nın yanına oturduğu anlatılır."},
+{"t":"mc","q":"¿Qué le dice Mita a Laura en secreto?","o":["Tengo frío","Estoy feliz","Me voy","Me persiguen"],"a":3,"exp":"Cevap: D) Me persiguen\nAçıklama: 22. sayfada, Mita’nın gizlice fısıldadığı sözün “Beni takip ediyorlar” olduğu belirtilir."},
+{"t":"mc","q":"¿Qué hace Martín antes de la final?","o":["Descansa","Come mucho","Está destraído","Estudia"],"a":2,"exp":"Cevap: C) Está destraído\nAçıklama: 26. sayfada, Martín’in final sabahı çok dalgın (destraído) olduğu ve konsantre olamadığı anlatılır."},
+{"t":"mc","q":"¿Qué decide hacer Martín?","o":["Irse","Llamar","Ir a casa de Mita","Jugar"],"a":2,"exp":"Cevap: C) Ir a casa de Mita\n+1\nAçıklama: 26. sayfada, Martín’in Mita’nın durumundan endişelenerek onun evine gitmeye karar verdiği belirtilir.\n+1"},
+{"t":"mc","q":"¿Qué dice la abuela de Mita?","o":["Está en casa","No está","Está feliz","Está estudiando"],"a":1,"exp":"Cevap: B) No está\nAçıklama: 27. sayfada, babaannesinin Mita’nın evde olmadığını ve dışarı çıktığını söylediği görülür."},
+{"t":"mc","q":"¿Cuántos días lleva desaparecida Mita?","o":["1","2","3","4"],"a":1,"exp":"Cevap: B) 2\nAçıklama: 28. sayfada, babaannesinin Mita’yı iki gündür görmediğini söylediği anlatılır."},
+{"t":"mc","q":"¿Qué hace Mita durante la final?","o":["Grita","Corre","Salta al campo","Aplaude"],"a":2,"exp":"Cevap: C) Salta al campo\nAçıklama: 34. sayfada, final maçı sürerken Mita’nın aniden sahaya atladığı belirtilir."},
+{"t":"mc","q":"¿Qué saca del bolso?","o":["Un libro","Un móvil","Una carta","Una pistola"],"a":3,"exp":"Cevap: D) Una pistola\n+1\nAçıklama: 36. sayfada, Mita’nın çantasından bir tabanca (pistola) çıkardığı ifade edilir.\n+1"},
+{"t":"mc","q":"¿A quién quiere asustar?","o":["Martín","Sergio","Raúl","Gustavo"],"a":3,"exp":"Cevap: D) Gustavo\n+1\nAçıklama: 36. sayfada, Mita’nın Gustavo’ya yaklaştığı ve onu korkutmak (asustarlo) istediği anlatılır.\n+1"},
+{"t":"mc","q":"¿Quién hacía bullying a Mita?","o":["Martín","Guillermo","Gustavo","Sergio"],"a":2,"exp":"Cevap: C) Gustavo\n+1\nAçıklama: 36. sayfada, Mita’ya zorbalık yapan kişinin rakip takımın oyuncusu Gustavo olduğu ortaya çıkar.\n+1"},
+{"t":"mc","q":"¿Qué hace Martín?","o":["Corre","Grita","Se va","Detiene a Mita"],"a":3,"exp":"Cevap: D) Detiene a Mita\nAçıklama: 36. sayfada, Martín’in Mita’nın elini tutarak onu durdurduğu anlatılır."},
+{"t":"mc","q":"¿Qué resultado final tiene el partido?","o":["Empate","Gana Gaudí","Gana Argentina","Se cancela"],"a":1,"exp":"Cevap: B) Gana Gaudí\nAçıklama: 38. sayfada, kupayı kazananın Barselona’daki Gaudí enstitüsü olduğu ilan edilir."},
+{"t":"mc","q":"¿Quién marca el gol final?","o":["Martín","Sergio","Raúl","Gustavo"],"a":0,"exp":"Cevap: A) Martín\nAçıklama: 38. sayfada, galibiyet golünü Martín’in attığı belirtilir."},
+{"t":"mc","q":"¿Qué le pasa a Mita después?","o":["Se va a casa","Crisis nerviosa","Gana el partido","Se ríe"],"a":1,"exp":"Cevap: B) Crisis nerviosa\nAçıklama: 39. sayfada, Mita’nın sinir krizi (crisis nerviosa) geçirdiği için ambulansla götürüldüğü söylenir."},
+{"t":"mc","q":"¿Qué le regala Mita a Martín al final?","o":["Un libro","Un balón","Una camiseta","Un reloj"],"a":2,"exp":"Cevap: C) Una camiseta\nAçıklama: 42. sayfada, Mita’nın Martín’e veda ederken Leo Messi’nin Arjantin milli takım formasını (camiseta) hediye ettiği anlatılır."}
 ];
 var state={cur:0,answered:[],scores:[],okCount:0,errCount:0};
 
 function startQuiz(){
   var name=document.getElementById('introName').value;
-  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  if(!name){alert('Lütfen adınızı seçin.');return;}
   document.getElementById('resName').value=name;
   document.getElementById('resName2').value=name;
   document.getElementById('introScreen').style.display='none';
@@ -271,7 +242,7 @@ function esc(s){
 
 function renderQ(){
   var i=state.cur;var q=Q[i];var html='';
-  html+='<span class="q-badge">\u00c7OKTAN SE\u00c7MEL\u0130</span>';
+  html+='<span class="q-badge">ÇOKTAN SEÇMELİ</span>';
   html+='<div class="q-text">'+esc(q.q)+'</div>';
   html+='<div class="opts">';
   var L=['A','B','C','D'];
@@ -293,8 +264,8 @@ function renderQ(){
   document.getElementById('btnSkip').disabled=(!done||i>=Q.length-1);
   document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
   document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
-  document.getElementById('cntOk').textContent=state.okCount+' Do\u011fru';
-  document.getElementById('cntErr').textContent=state.errCount+' Yanl\u0131\u015f';
+  document.getElementById('cntOk').textContent=state.okCount+' Doğru';
+  document.getElementById('cntErr').textContent=state.errCount+' Yanlış';
 }
 
 function checkAns(j){
@@ -313,9 +284,9 @@ function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
 function confirmFinish(){
   var answered=0;for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
   var unanswered=Q.length-answered;
-  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
-  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
-  msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
+  var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevapladınız.';
+  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevapsız kalacak (0 puan).';
+  msg+='\n\nTesti bitirmek istediğinize emin misiniz?';
   document.getElementById('confirmMsg').textContent=msg;
   document.getElementById('confirmOverlay').style.display='flex';
 }
@@ -328,9 +299,9 @@ function showResult(){
   var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
   var pct=total*2;if(pct>100)pct=100;
   document.getElementById('resScore').textContent=pct;
-  document.getElementById('resOk').textContent=state.okCount+' Do\u011fru';
-  document.getElementById('resErr').textContent=state.errCount+' Yanl\u0131\u015f';
-  document.getElementById('resNote').textContent='50 sorudan '+state.okCount+' tanesi do\u011fru (her soru 2 puan)';
+  document.getElementById('resOk').textContent=state.okCount+' Doğru';
+  document.getElementById('resErr').textContent=state.errCount+' Yanlış';
+  document.getElementById('resNote').textContent='50 sorudan '+state.okCount+' tanesi doğru (her soru 2 puan)';
   var L=['A','B','C','D'];var html2='';
   for(var i=0;i<Q.length;i++){
     var ans=state.answered[i];
@@ -338,12 +309,12 @@ function showResult(){
     var q=Q[i];
     html2+='<div class="rev-item">';
     html2+='<div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
-    html2+='<div class="rev-chosen">Verdi\u011finiz cevap: '+L[ans]+') '+esc(q.o[ans])+'</div>';
-    html2+='<div class="rev-correct">Do\u011fru cevap: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
+    html2+='<div class="rev-chosen">Verdiğiniz cevap: '+L[ans]+') '+esc(q.o[ans])+'</div>';
+    html2+='<div class="rev-correct">Doğru cevap: '+L[q.a]+') '+esc(q.o[q.a])+'</div>';
     html2+='<div class="rev-exp">'+esc(q.exp)+'</div>';
     html2+='</div>';
   }
-  document.getElementById('reviewList').innerHTML=html2||'<div style="padding:.5rem;color:#666">Yanl\u0131\u015f soru bulunamad\u0131.</div>';
+  document.getElementById('reviewList').innerHTML=html2||'<div style="padding:.5rem;color:#666">Yanlış soru bulunamadı.</div>';
 }
 
 function toggleReview(){
@@ -353,7 +324,7 @@ function toggleReview(){
 
 function submitResult(){
   var name=document.getElementById('resName').value;
-  if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
+  if(!name){alert('Lütfen adınızı seçin.');return;}
   var total=0;for(var i=0;i<Q.length;i++){total+=(state.scores[i]||0);}
   var pct=total*2;if(pct>100)pct=100;
   var grup=GROUPS[name]||'A1.2';
@@ -364,14 +335,14 @@ function submitResult(){
   });
   document.getElementById('submitWarning').style.display='none';
   document.getElementById('submitMsg').style.display='block';
-  document.getElementById('submitMsg').textContent='G\u00f6nderiliyor...';
+  document.getElementById('submitMsg').textContent='Gönderiliyor...';
   document.getElementById('btnSubmit').disabled=true;
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload})
     .then(function(){
-      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+      document.getElementById('submitMsg').textContent=name+' öğrencisinin "'+ODEV_ADI+'" ödevi teslim edildi. Puan: '+pct+'/100.';
     })
     .catch(function(){
-      document.getElementById('submitMsg').textContent=name+' \u00f6\u011frencisinin "'+ODEV_ADI+'" \u00f6devi teslim edildi. Puan: '+pct+'/100.';
+      document.getElementById('submitMsg').textContent=name+' öğrencisinin "'+ODEV_ADI+'" ödevi teslim edildi. Puan: '+pct+'/100.';
     });
 }
 </script>
