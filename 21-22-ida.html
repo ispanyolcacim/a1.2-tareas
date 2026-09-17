@@ -6,8 +6,8 @@
 <title>H6 &#8211; 21-22.Ders | A1.2 Ödevi</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:740px;width:100%;padding:2rem}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.15);max-width:740px;width:100%;padding:2rem;margin:auto 0}
 .screen{display:none}.screen.active{display:block}
 .week-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem}
 .intro-title{font-size:1.2rem;font-weight:800;color:#3d2a7a;margin-bottom:.3rem}
@@ -17,6 +17,11 @@ select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;colo
 select:focus{border-color:#6c4eb8}
 .btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-start:hover{background:#5a3ea0}
+.quiz-topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:#fff;margin:-2rem -2rem 1rem;padding:1rem 2rem .85rem;border-bottom:2px solid #e8e0f8;border-radius:16px 16px 0 0;box-shadow:0 5px 14px rgba(76,54,130,.09)}
+.quiz-student{min-width:0;color:#777;font-size:.72rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.quiz-student strong{display:block;color:#3d2a7a;font-size:.92rem;letter-spacing:0;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.12rem}
+.btn-finish-top{flex:0 0 auto;background:#e05c5c;color:#fff;border:none;border-radius:8px;padding:.62rem .9rem;font-size:.82rem;font-weight:800;cursor:pointer;font-family:inherit}
+.btn-finish-top:hover{background:#c94747}
 .prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
 .prog-fill{height:100%;background:#6c4eb8;transition:width .3s;border-radius:3px}
 .q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#888;margin-bottom:1rem}
@@ -43,14 +48,18 @@ select:focus{border-color:#6c4eb8}
 .btn-check:disabled{opacity:.4;cursor:not-allowed}
 .fill-answer{display:none;background:#f8f5ff;border-left:4px solid #2e9e6b;border-radius:0 8px 8px 0;padding:.6rem 1rem;font-size:.83rem;color:#1a5c3a;font-weight:600;margin-bottom:.5rem}
 .fill-answer.show{display:block}
+.vf-options{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+.vf-btn{padding:.9rem 1rem;border:2px solid #d0c8f0;border-radius:10px;background:#fff;color:#3d2a7a;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s}
+.vf-btn:hover:not(:disabled){border-color:#6c4eb8;background:#f3effb;transform:translateY(-1px)}
+.vf-btn.correct{background:#e6f9f0;border-color:#2e9e6b;color:#1a5c3a}
+.vf-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.vf-btn:disabled{cursor:default}
 .exp-box{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.83rem;color:#444;line-height:1.75;margin-bottom:1rem}
 .exp-box.show{display:block}
 .nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
 .nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
 .btn-back{background:#e8e0f8;color:#6c4eb8}
-.btn-skip{background:#e8e0f8;color:#6c4eb8}
 .btn-next{background:#6c4eb8;color:#fff}
-.btn-finish{background:#e05c5c;color:#fff}
 .nav button:disabled{opacity:.4;cursor:not-allowed}
 .res-pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
 .res-title{font-size:1.1rem;font-weight:800;color:#3d2a7a;margin-bottom:.5rem;text-align:center}
@@ -58,6 +67,8 @@ select:focus{border-color:#6c4eb8}
 .res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
 .res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.9rem}
 .res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.25rem}
+.course-reminder{background:linear-gradient(135deg,#f8f5ff,#fff8e8);border:2px solid #d7c8f5;border-radius:12px;padding:1rem 1.15rem;margin:0 0 1.15rem;color:#4b3d68;line-height:1.7;font-size:.86rem}
+.course-reminder-title{font-size:.95rem;font-weight:800;color:#4a2f9a;margin-bottom:.35rem}
 .submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1.1rem 1.5rem;margin-bottom:1rem;text-align:center}
 .submit-warning-title{font-size:1.05rem;font-weight:800;color:#856404;margin-bottom:.3rem;letter-spacing:.3px}
 .submit-warning-sub{font-size:.83rem;color:#856404}
@@ -79,7 +90,7 @@ select:focus{border-color:#6c4eb8}
 .confirm-btns button{flex:1;padding:.7rem;border-radius:8px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-cancel{background:#e8e0f8;color:#6c4eb8}
 .btn-ok{background:#e05c5c;color:#fff}
-@media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}}
+@media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}.quiz-topbar{margin:-1.25rem -1.25rem .9rem;padding:.85rem 1.25rem .75rem}.btn-finish-top{padding:.58rem .7rem;font-size:.76rem}.vf-options{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -93,37 +104,24 @@ select:focus{border-color:#6c4eb8}
   <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
   <select id="introName">
     <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <button class="btn-start" onclick="startQuiz()">Teste Ba&#351;la</button>
 </div>
 
 <!-- QUIZ -->
 <div id="quizScreen" class="screen">
+  <div class="quiz-topbar">
+    <div class="quiz-student">Öğrenci<strong id="quizStudentName">—</strong></div>
+    <button class="btn-finish-top" onclick="confirmFinish()">Testi Bitir</button>
+  </div>
   <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
   <div class="q-meta">
     <span id="qMeta">Soru 1 / 100</span>
@@ -132,9 +130,7 @@ select:focus{border-color:#6c4eb8}
   <div id="qCard"></div>
   <div class="nav">
     <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
-    <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla</button>
     <button class="btn-next" id="btnNext" onclick="goNext()" disabled>&#304;leri</button>
-    <button class="btn-finish" onclick="confirmFinish()">Testi Bitir</button>
   </div>
 </div>
 
@@ -149,37 +145,24 @@ select:focus{border-color:#6c4eb8}
     <span class="res-stat" style="background:#fde8e8;color:#d94040" id="resErr"></span>
   </div>
   <div class="res-note" id="resNote"></div>
+  <div class="course-reminder">
+    <div class="course-reminder-title">🌟 6. Hafta Hatırlatması</div>
+    Bu kurda 6. haftayı bitirmek üzereyiz ve önümüzde yalnızca son 2 haftalık sürecimiz kaldı. ⏳ Kurumuzu eksiksiz ve güçlü bir şekilde tamamlayabilmek için lütfen varsa eksik ödevlerinizi mümkün olan en kısa sürede bitirip teslim edin. 📚💪 Düzenli tekrar ve zamanında yapılan her ödev, öğrendiklerimizin kalıcı olmasına yardımcı olur. Son iki haftayı hep birlikte en verimli şekilde değerlendirelim! ✨🇪🇸
+  </div>
   <div class="submit-warning" id="submitWarning">
     <div class="submit-warning-title">&#214;DEV&#304;N&#304;Z &#350;U AN TESLIM EDILMEDI</div>
     <div class="submit-warning-sub">L&#252;tfen a&#351;a&#287;&#305;daki listeden ad&#305;n&#305;z&#305; se&#231;ip g&#246;nderin.</div>
   </div>
   <select id="resName2" onchange="syncResName()" style="margin-bottom:1rem">
     <option value="">-- Ad&#305;n&#305;z&#305; Se&#231;in --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
   <button class="btn-submit" id="btnSubmit" onclick="submitResult()">&#214;DEV&#304;N&#304;Z&#304; TESLIM EDIN</button>
@@ -202,31 +185,14 @@ select:focus{border-color:#6c4eb8}
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
 var ODEV_ADI='H6 \u2013 21-22.Ders';
 var GROUPS={
-  'Ayse Gurkan':"A1.2",
-  'Birce Suzen':"A1.2",
-  'Burakhan Kaydi':"A1.2",
-  'Ceren Erdogan':"A1.2",
-  'Doga Degirmenci':"A1.2",
-  'Ecem Sukas':"A1.2",
-  'Elif Atac':"A1.2",
-  'Elif Bozkurt Alvurdu':"A1.2",
-  'Elif Cetin':"A1.2",
-  'Elif Ozgur Atli':"A1.2",
-  'Emel Kanburoglu':"A1.2",
-  'Gorkem Dursun':"A1.2",
-  'Gulce Eyibilir':"A1.2",
-  'Harun Ozmen':"A1.2",
-  'Mehtap Keklik':"A1.2",
-  'Meltem Ciftci':"A1.2",
-  'Meryem Ozbek':"A1.2",
-  'Murat Sahin':"A1.2",
-  'Seher Ercin':"A1.2",
-  'Serra Sancakli':"A1.2",
-  'Simal Gurkan':"A1.2",
-  'Yasemin Kurtulus Tunc':"A1.2",
-  'Zeynep Geylan':"A1.2",
-  'Zeynep Ozay':"A1.2",
-  'Zeynep Oztaskin':"A1.2"
+  'Arman Kaykac':"A1.2",
+  'Arzu Bayram':"A1.2",
+  'Aysen Gurkan':"A1.2",
+  'Didem Akbal':"A1.2",
+  'Rabia Nur Tok':"A1.2",
+  'Selva Akyuz':"A1.2",
+  'Sena Yamak':"A1.2",
+  'Suleyman Bektas':"A1.2"
 };
 
 var TEXT_LOCURA = '<div class="reading-title">Una Semana de Locura</div>Hola a todos, me llamo Clara. Mi mejor amiga se llama Luc\u00eda. Nosotras somos <span class="idiom-num">(1)</span> u\u00f1a y carne porque hacemos todo juntas. Ahora mismo, nosotras estamos planeando una fiesta sorpresa para su hermano, Mateo. Mateo es <span class="idiom-num">(2)</span> un bomb\u00f3n, es muy guapo y tiene muchas fans. Ma\u00f1ana nosotras vamos a decorar el sal\u00f3n para la gran sorpresa.\n\nSin embargo, hoy Luc\u00eda est\u00e1 <span class="idiom-num">(3)</span> de mala leche porque su jefe es muy estricto. Ella est\u00e1 trabajando mucho en la oficina y se siente estresada. Luc\u00eda me dice: \u201cClara, estoy <span class="idiom-num">(4)</span> hasta las narices de los informes, \u00a1necesito bailar!\u201d. Yo le digo que este fin de semana ella va a descansar mucho en la fiesta y va a olvidar el estr\u00e9s.\n\nA veces la gente piensa que Mateo es <span class="idiom-num">(5)</span> un bicho raro porque prefiere leer mitolog\u00eda egipcia que ir al f\u00fatbol. Pero a Luc\u00eda <span class="idiom-num">(6)</span> le importa un pimiento la opini\u00f3n de los dem\u00e1s; ella adora a su hermano. En este momento, ella est\u00e1 buscando un regalo especial en las tiendas del centro. Ella va a comprar algo muy original para \u00e9l.\n\nEl problema es que el regalo ideal es un libro muy antiguo y <span class="idiom-num">(7)</span> cuesta un ojo de la cara. Nosotras no tenemos mucho dinero, as\u00ed que tenemos que <span class="idiom-num">(8)</span> ponernos las pilas. Ahora yo estoy ahorrando todo mi salario y Luc\u00eda est\u00e1 buscando un trabajo extra. Estoy segura de que nosotras vamos a conseguir el dinero antes del s\u00e1bado.\n\nAyer fuimos a un mercado y un vendedor nos quiso <span class="idiom-num">(9)</span> dar gato por liebre con un libro falso. Yo <span class="idiom-num">(10)</span> no tengo pelos en la lengua y le dije la verdad: \u201cSe\u00f1or, esto no es original\u201d. \u00c9l pens\u00f3 que nos pod\u00edamos <span class="idiom-num">(11)</span> tomar el pelo porque somos j\u00f3venes, pero nosotras somos muy inteligentes. Ma\u00f1ana vamos a denunciar a ese vendedor.\n\nAhora nosotras estamos intentando <span class="idiom-num">(12)</span> darle la vuelta a la tortilla. Vamos a organizar un sorteo para ganar m\u00e1s dinero. Luc\u00eda est\u00e1 sonriendo porque ya tenemos muchos participantes. Ella dice: \u201cClara, con tu ayuda, organizar esta fiesta va a ser <span class="idiom-num">(13)</span> pan comido\u201d. Al final, todo va a salir perfectamente bien.\n\nFinalmente, llega el d\u00eda de la fiesta. Mi madre dice que nosotras estamos <span class="idiom-num">(14)</span> como una cabra porque estamos saltando y cantando por toda la casa. Todo est\u00e1 listo y Mateo va a llegar en cinco minutos. \u00a1Es fant\u00e1stico usar estas expresiones con mi mejor amiga mientras estamos celebrando la vida!';
@@ -348,6 +314,7 @@ function startQuiz(){
   if(!name){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in.');return;}
   document.getElementById('resName').value=name;
   document.getElementById('resName2').value=name;
+  document.getElementById('quizStudentName').textContent=name;
   document.getElementById('introScreen').style.display='none';
   document.getElementById('quizScreen').style.display='block';
   renderQ();
@@ -391,19 +358,33 @@ function renderQ(){
   var answered=state.answered[i]!==undefined;
   var correct=state.scores[i]===1;
   var val=state.userInputs[i]||'';
-  var cls='fill-input'+(answered?(correct?' correct':' wrong'):'');
-  var ph=q.t==='vf'?'verdadero \u00f3 falso yazın...':'Cevabınızı yazın...';
-  html+='<div class="fill-area"><input id="fillInp" class="'+cls+'" type="text" placeholder="'+ph+'" value="'+esc(val)+'"'+(answered?' disabled':'')+'></div>';
-  html+='<button class="btn-check" id="btnCheck" onclick="checkFill()" '+(answered?'disabled':'')+'>'+(answered?'\u2713 Kontrol Edildi':'Kontrol Et')+'</button>';
+  if(q.t==='vf'){
+    var vfChoices=['verdadero','falso'];
+    html+='<div class="vf-options">';
+    for(var v=0;v<vfChoices.length;v++){
+      var choice=vfChoices[v];
+      var vfCls='vf-btn';
+      if(answered){
+        if(choice===q.answers[0])vfCls+=' correct';
+        else if(choice===val)vfCls+=' wrong';
+      }
+      html+='<button class="'+vfCls+'" onclick="checkVF(\''+choice+'\')" '+(answered?'disabled':'')+'>'+(choice==='verdadero'?'✓ Verdadero':'✕ Falso')+'</button>';
+    }
+    html+='</div>';
+  } else {
+    var cls='fill-input'+(answered?(correct?' correct':' wrong'):'');
+    html+='<div class="fill-area"><input id="fillInp" class="'+cls+'" type="text" placeholder="Cevabınızı yazın..." value="'+esc(val)+'"'+(answered?' disabled':'')+' oninput="toggleCheckButton()"></div>';
+    html+='<button class="btn-check" id="btnCheck" onclick="checkFill()" '+(answered||!val.trim()?'disabled':'')+'>'+(answered?'\u2713 Kontrol Edildi':'Kontrol Et')+'</button>';
+  }
   if(answered){
-    html+='<div class="fill-answer show">\u2705 Do\u011fru cevap: <strong>'+esc(q.answers[0])+'</strong></div>';
+    var shownAnswer=q.t==='vf'?(q.answers[0]==='verdadero'?'Verdadero':'Falso'):q.answers[0];
+    html+='<div class="fill-answer show">\u2705 Do\u011fru cevap: <strong>'+esc(shownAnswer)+'</strong></div>';
   }
   html+='<div class="exp-box'+(answered?' show':'')+'">'+esc(q.exp)+'</div>';
   document.getElementById('qCard').innerHTML=html;
 
   document.getElementById('btnBack').disabled=(i===0);
   document.getElementById('btnNext').disabled=(!answered||i===Q.length-1);
-  document.getElementById('btnSkip').disabled=(i>=Q.length-1);
   document.getElementById('qMeta').textContent='Soru '+(i+1)+' / '+Q.length;
   document.getElementById('progFill').style.width=((i+1)/Q.length*100)+'%';
   document.getElementById('cntOk').textContent=state.okCount+' Do\u011fru';
@@ -417,12 +398,18 @@ function renderQ(){
     }
   }
 }
+function toggleCheckButton(){
+  var inp=document.getElementById('fillInp');
+  var btn=document.getElementById('btnCheck');
+  if(inp&&btn)btn.disabled=!inp.value.trim();
+}
 function checkFill(){
   var i=state.cur;
   if(state.answered[i]!==undefined)return;
   var q=Q[i];
   var inp=document.getElementById('fillInp');
   var val=inp?inp.value:'';
+  if(!val.trim())return;
   state.userInputs[i]=val;
   state.answered[i]=val;
   var norm=normalize(val);
@@ -431,14 +418,29 @@ function checkFill(){
   else{state.errCount++;state.scores[i]=0;}
   renderQ();
 }
-function goNext(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
+function checkVF(value){
+  var i=state.cur;
+  if(state.answered[i]!==undefined||Q[i].t!=='vf')return;
+  state.userInputs[i]=value;
+  state.answered[i]=value;
+  if(value===Q[i].answers[0]){state.okCount++;state.scores[i]=1;}
+  else{state.errCount++;state.scores[i]=0;}
+  renderQ();
+}
+function goNext(){
+  if(state.answered[state.cur]===undefined)return;
+  if(state.cur<Q.length-1){state.cur++;renderQ();}
+}
 function goBack(){if(state.cur>0){state.cur--;renderQ();}}
-function skipQ(){if(state.cur<Q.length-1){state.cur++;renderQ();}}
 function confirmFinish(){
   var answered=0;for(var i=0;i<Q.length;i++){if(state.answered[i]!==undefined)answered++;}
   var unanswered=Q.length-answered;
   var msg='Toplam '+Q.length+' sorudan '+answered+' tanesini cevaplad\u0131n\u0131z.';
-  if(unanswered>0)msg+='\n\n'+unanswered+' soru cevaps\u0131z kalacak (0 puan).';
+  if(unanswered>0){
+    msg+='\n\n'+unanswered+' sorunuz cevaps\u0131z kald\u0131. Bu sorular 0 puan olarak de\u011ferlendirilecek.';
+  } else {
+    msg+='\n\nT\u00fcm sorular\u0131 cevaplad\u0131n\u0131z.';
+  }
   msg+='\n\nTesti bitirmek istedi\u011finize emin misiniz?';
   document.getElementById('confirmMsg').textContent=msg;
   document.getElementById('confirmOverlay').style.display='flex';
@@ -459,8 +461,11 @@ function showResult(){
     var q=Q[i];
     html2+='<div class="rev-item">';
     html2+='<div class="rev-q">'+esc(q.q.split('\n')[0])+'</div>';
-    html2+='<div class="rev-chosen">Yazd\u0131\u011f\u0131n\u0131z: '+esc(state.userInputs[i]||'(bo\u015f)')+'</div>';
-    html2+='<div class="rev-correct">Do\u011fru cevap: '+esc(q.answers[0])+'</div>';
+    var actionLabel=q.t==='vf'?'Seçtiğiniz':'Yazd\u0131\u011f\u0131n\u0131z';
+    var userShown=q.t==='vf'?(state.userInputs[i]==='verdadero'?'Verdadero':'Falso'):(state.userInputs[i]||'(bo\u015f)');
+    var correctShown=q.t==='vf'?(q.answers[0]==='verdadero'?'Verdadero':'Falso'):q.answers[0];
+    html2+='<div class="rev-chosen">'+actionLabel+': '+esc(userShown)+'</div>';
+    html2+='<div class="rev-correct">Do\u011fru cevap: '+esc(correctShown)+'</div>';
     html2+='<div class="rev-exp">'+esc(q.exp)+'</div>';
     html2+='</div>';
   }
