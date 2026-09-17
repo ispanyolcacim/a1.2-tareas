@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İspanyolca Sayılar – Ekstra Çalışma Ödevi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#3f78c5;--navy:#244e87;--sky:#eaf4ff;--yellow:#ffd86b;--cream:#fff9e8;--ink:#17304f;--muted:#5d718b;--green:#3d9b65;--red:#d45b65;--line:#c9def6;--white:#fff;--r:16px}
+body{min-height:100vh;font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);background:linear-gradient(145deg,#edf7ff,#fffaf0 55%,#eef5ff)}
+button,input{font:inherit}
+.header{padding:20px 16px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--blue),var(--navy));box-shadow:0 4px 18px rgba(36,78,135,.25);position:relative;overflow:hidden}
+.header::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 16px,rgba(255,255,255,.07) 16px 17px)}
+.header>*{position:relative}.tag{display:inline-block;padding:4px 15px;margin-bottom:8px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,255,255,.15);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}
+.header h1{font-size:clamp(20px,5vw,29px)}.header p{margin-top:5px;font-size:13px;color:rgba(255,255,255,.9)}
+.screen{display:none}.screen.active{display:block;animation:show .3s ease}@keyframes show{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.cover{max-width:560px;margin:0 auto;padding:38px 20px;text-align:center}.cover-icon{font-size:58px;margin-bottom:10px}.cover h2{font-size:24px;margin-bottom:8px}.cover>p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:20px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);box-shadow:0 5px 20px rgba(36,78,135,.12)}
+.rules{padding:18px;margin-bottom:17px;text-align:left;font-size:13px;line-height:1.75}.rules-title{font-weight:800;color:var(--navy);margin-bottom:7px}.rules ul{padding-left:20px}.rules li{margin-bottom:4px}.warning{padding:13px 15px;margin-bottom:18px;text-align:left;background:var(--cream);border:1.5px solid var(--yellow);border-radius:12px;font-size:13px;line-height:1.65}
+.btn{border:0;border-radius:13px;padding:12px 22px;font-size:14px;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}.primary{color:#fff;background:linear-gradient(135deg,var(--blue),var(--navy));box-shadow:0 4px 12px rgba(36,78,135,.25)}.yellow{color:var(--ink);background:linear-gradient(135deg,var(--yellow),#efb62f)}.outline{color:var(--navy);background:#fff;border:2px solid var(--line)}.danger{color:#fff;background:linear-gradient(135deg,#e2757d,#bc4650)}.full{width:100%}.button-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.quiz{max-width:700px;margin:0 auto;padding:14px}.topbar{position:sticky;top:0;z-index:20;padding:11px 13px;margin-bottom:15px;display:grid;grid-template-columns:1fr auto;gap:9px;align-items:center;background:rgba(255,255,255,.96);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 4px 16px rgba(36,78,135,.15);backdrop-filter:blur(8px)}
+.progress-text{font-size:12px;font-weight:750;color:var(--muted)}.progress-track{height:7px;margin-top:6px;background:#e5eef8;border-radius:99px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--yellow));transition:width .3s}.save-note{grid-column:1/-1;font-size:10px;color:var(--green);text-align:left}
+.question-card{padding:clamp(20px,5vw,34px);text-align:center}.q-label{font-size:11px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}.number{font-size:clamp(62px,17vw,108px);font-weight:900;line-height:1.15;color:var(--navy);margin:13px 0 7px}.prompt{font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:18px}
+.answer{width:100%;padding:15px 16px;border:2px solid var(--line);border-radius:13px;background:#fbfdff;color:var(--ink);font-size:17px;text-align:center;outline:none}.answer:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(63,120,197,.12)}.answer.correct{border-color:var(--green);background:#effaf3}.answer.wrong{border-color:var(--red);background:#fff2f3}
+.feedback{display:none;margin-top:16px;padding:16px;border-radius:13px;text-align:left;font-size:13px;line-height:1.7}.feedback.show{display:block}.feedback.ok{background:#effaf3;border:1.5px solid #86c99e}.feedback.bad{background:#fff2f3;border:1.5px solid #e7a0a6}.feedback-title{font-size:15px;font-weight:850;margin-bottom:4px}.correct-answer{font-size:17px;font-weight:850;color:var(--navy);margin:5px 0}.explanation{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(36,78,135,.25)}.action-area{margin-top:17px}.stats-mini{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}.pill{padding:6px 12px;border-radius:99px;background:var(--sky);font-size:11px;font-weight:750;color:var(--navy)}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:50;padding:20px;background:rgba(18,37,62,.55);align-items:center;justify-content:center}.modal-backdrop.open{display:flex}.modal{width:min(440px,100%);padding:24px;text-align:center;background:#fff;border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.2)}.modal-icon{font-size:42px}.modal h3{font-size:20px;margin:8px 0}.modal p{font-size:13px;line-height:1.65;color:var(--muted)}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0}.summary-item{padding:11px;border-radius:11px;background:var(--sky);font-size:12px;color:var(--muted)}.summary-item strong{display:block;font-size:21px;color:var(--navy)}
+.result{max-width:540px;margin:0 auto;padding:34px 20px;text-align:center}.result-card{padding:28px 22px}.result-icon{font-size:52px}.result h2{font-size:23px;margin:7px 0}.score{font-size:52px;font-weight:900;color:var(--navy);line-height:1.15}.score-label{font-size:12px;color:var(--muted);margin-bottom:18px}.result-note{padding:14px;margin:16px 0;background:var(--cream);border:1.5px solid var(--yellow);border-radius:12px;font-size:13px;line-height:1.7;text-align:left}
+@media(max-width:520px){.topbar{grid-template-columns:1fr auto}.topbar .btn{padding:9px 11px;font-size:12px}.question-card{padding:22px 15px}.answer{font-size:15px}.summary-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="tag">Ekstra Çalışma Ödevi</div>
+  <h1>🇪🇸 İspanyolca Sayılar</h1>
+  <p>Los números en español • 0–1000</p>
+</header>
+
+<main>
+  <section class="screen active" id="cover-screen">
+    <div class="cover">
+      <div class="cover-icon">🔢</div>
+      <h2>0'dan 1000'e kadar bütün sayılar</h2>
+      <p>Bu çalışmada toplam <strong>1001 sayı</strong> bulunmaktadır. Sayılar sıralı değil, karışık biçimde ve teker teker gösterilecektir.</p>
+      <div class="card rules">
+        <div class="rules-title">📌 Nasıl yapacaksınız?</div>
+        <ul>
+          <li>Ekrandaki rakamın İspanyolca yazılışını cevap alanına yazın.</li>
+          <li><strong>Tilde işaretlerine dikkat edin:</strong> dieciséis, veintidós, veintitrés, veintiséis.</li>
+          <li>Boşlukları doğru kullanın: <strong>treinta y uno</strong>.</li>
+          <li>Cevabı kontrol etmeden sonraki soruya geçemezsiniz.</li>
+          <li>İlerlemeniz bu cihazda otomatik olarak kaydedilir.</li>
+        </ul>
+      </div>
+      <div class="warning">⚠️ Bu çalışma oldukça uzundur. Aynı tarayıcıyı ve cihazı kullandığınız sürece daha sonra kaldığınız yerden devam edebilirsiniz.</div>
+      <div class="button-row">
+        <button class="btn primary" id="start-btn" type="button" onclick="startNew()">▶ Çalışmaya Başla</button>
+        <button class="btn yellow" id="resume-btn" type="button" onclick="resumeWork()" style="display:none">↪ Kaldığım Yerden Devam Et</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="quiz-screen">
+    <div class="quiz">
+      <div class="topbar">
+        <div>
+          <div class="progress-text"><span id="q-position">Soru 1 / 1001</span> · <span id="answered-top">0 cevaplandı</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+        <button class="btn danger" type="button" onclick="openFinishModal()">Çalışmayı Bitir</button>
+        <div class="save-note">✓ İlerlemeniz otomatik kaydediliyor.</div>
+      </div>
+
+      <div class="card question-card">
+        <div class="q-label">Bu sayıyı İspanyolca yazın</div>
+        <div class="number" id="number-display">0</div>
+        <p class="prompt">Yalnızca sayının İspanyolca yazılışını yazınız.</p>
+        <input class="answer" id="answer-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Cevabınızı buraya yazın..." aria-label="İspanyolca sayı cevabı">
+        <div class="feedback" id="feedback">
+          <div class="feedback-title" id="feedback-title"></div>
+          <div id="feedback-text"></div>
+          <div class="correct-answer" id="correct-answer"></div>
+          <div class="explanation" id="explanation"></div>
+        </div>
+        <div class="action-area">
+          <button class="btn primary full" id="check-btn" type="button" onclick="checkAnswer()">✓ Cevabı Kontrol Et</button>
+          <button class="btn yellow full" id="next-btn" type="button" onclick="nextQuestion()" style="display:none">Sonraki Soru →</button>
+        </div>
+        <div class="stats-mini">
+          <span class="pill">✅ Doğru: <span id="correct-mini">0</span></span>
+          <span class="pill">❌ Yanlış: <span id="wrong-mini">0</span></span>
+          <span class="pill">📝 Kalan: <span id="remaining-mini">1001</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="result-screen">
+    <div class="result">
+      <div class="card result-card">
+        <div class="result-icon">🏁</div>
+        <h2>Çalışma Tamamlandı</h2>
+        <div class="score" id="result-percent">0%</div>
+        <div class="score-label">Başarı oranı</div>
+        <div class="summary-grid">
+          <div class="summary-item"><strong id="result-answered">0</strong>Cevaplanan</div>
+          <div class="summary-item"><strong id="result-unanswered">1001</strong>Cevapsız</div>
+          <div class="summary-item"><strong id="result-correct">0</strong>Doğru</div>
+          <div class="summary-item"><strong id="result-wrong">0</strong>Yanlış</div>
+        </div>
+        <div class="result-note">📚 Cevapsız bırakılan sorular yanlış kabul edilerek başarı oranına dâhil edilmiştir. Özellikle <strong>tilde</strong>, birleşik yazılan sayılar ve <strong>y</strong> bağlacının kullanımını tekrar etmeyi unutmayın.</div>
+        <button class="btn primary full" type="button" onclick="restartFromResult()">🔄 Yeni Karışık Sırayla Tekrar Başla</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="finish-modal" role="dialog" aria-modal="true" aria-labelledby="finish-title">
+  <div class="modal">
+    <div class="modal-icon">⚠️</div>
+    <h3 id="finish-title">Çalışmayı bitirmek istiyor musunuz?</h3>
+    <p>Bitirdiğinizde henüz cevaplamadığınız sorular yanlış kabul edilecektir.</p>
+    <div class="summary-grid">
+      <div class="summary-item"><strong id="modal-answered">0</strong>Cevaplanan</div>
+      <div class="summary-item"><strong id="modal-unanswered">1001</strong>Cevapsız</div>
+    </div>
+    <div class="button-row">
+      <button class="btn outline" type="button" onclick="closeFinishModal()">Çalışmaya Dön</button>
+      <button class="btn danger" type="button" onclick="finishWork()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL=1001;
+const STORAGE_KEY='ispanyolca-sayilar-ekstra-v1';
+const units=['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince'];
+const special={16:'dieciséis',17:'diecisiete',18:'dieciocho',19:'diecinueve',20:'veinte',21:'veintiuno',22:'veintidós',23:'veintitrés',24:'veinticuatro',25:'veinticinco',26:'veintiséis',27:'veintisiete',28:'veintiocho',29:'veintinueve'};
+const tens={30:'treinta',40:'cuarenta',50:'cincuenta',60:'sesenta',70:'setenta',80:'ochenta',90:'noventa'};
+const hundreds={200:'doscientos',300:'trescientos',400:'cuatrocientos',500:'quinientos',600:'seiscientos',700:'setecientos',800:'ochocientos',900:'novecientos'};
+let state=null;
+
+function spanishNumber(n){
+  if(n<=15)return units[n];
+  if(n<=29)return special[n];
+  if(n<100){const t=Math.floor(n/10)*10,r=n%10;return tens[t]+(r?' y '+units[r]:'');}
+  if(n===100)return 'cien';
+  if(n<200)return 'ciento '+spanishNumber(n-100);
+  if(n<1000){const h=Math.floor(n/100)*100,r=n%100;return hundreds[h]+(r?' '+spanishNumber(r):'');}
+  return 'mil';
+}
+function shuffledNumbers(){
+  const a=Array.from({length:TOTAL},(_,i)=>i);
+  for(let i=a.length-1;i>0;i--){
+    const random=new Uint32Array(1);crypto.getRandomValues(random);
+    const j=random[0]%(i+1);[a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function freshState(){return{order:shuffledNumbers(),index:0,answers:{},correct:0,wrong:0,finished:false,createdAt:new Date().toISOString()};}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function loadState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(saved&&Array.isArray(saved.order)&&saved.order.length===TOTAL&&saved.answers)return saved;
+  }catch(e){}
+  return null;
+}
+function showScreen(name){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(name+'-screen').classList.add('active');window.scrollTo(0,0);}
+function updateCover(){
+  const saved=loadState();
+  const resume=document.getElementById('resume-btn');
+  if(saved&&!saved.finished&&Object.keys(saved.answers).length>0){resume.style.display='inline-flex';document.getElementById('start-btn').textContent='↻ Yeni Çalışma Başlat';}
+  else{resume.style.display='none';document.getElementById('start-btn').textContent='▶ Çalışmaya Başla';}
+}
+function startNew(){
+  const saved=loadState();
+  if(saved&&!saved.finished&&Object.keys(saved.answers).length>0&&!confirm('Kayıtlı ilerlemeniz silinecek. Yeni bir çalışma başlatmak istediğinize emin misiniz?'))return;
+  state=freshState();saveState();showScreen('quiz');renderQuestion();
+}
+function resumeWork(){state=loadState();if(!state||state.finished){startNew();return;}showScreen('quiz');renderQuestion();}
+function normalizeAnswer(text){return text.normalize('NFC').toLocaleLowerCase('es-ES').trim().replace(/\s+/g,' ');}
+function renderQuestion(){
+  if(state.index>=TOTAL){finishWork();return;}
+  const n=state.order[state.index];
+  document.getElementById('number-display').textContent=n.toLocaleString('tr-TR');
+  const input=document.getElementById('answer-input');
+  input.value='';input.disabled=false;input.className='answer';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('check-btn').style.display='inline-flex';
+  document.getElementById('next-btn').style.display='none';
+  updateProgress();
+  setTimeout(()=>input.focus(),50);
+}
+function updateProgress(){
+  const answered=Object.keys(state.answers).length;
+  document.getElementById('q-position').textContent='Soru '+(Math.min(state.index+1,TOTAL))+' / '+TOTAL;
+  document.getElementById('answered-top').textContent=answered+' cevaplandı';
+  document.getElementById('progress-fill').style.width=(answered/TOTAL*100)+'%';
+  document.getElementById('correct-mini').textContent=state.correct;
+  document.getElementById('wrong-mini').textContent=state.wrong;
+  document.getElementById('remaining-mini').textContent=TOTAL-answered;
+}
+function explanationFor(n,correct){
+  if(n<=15)return 'Bu sayı 0–15 arasındaki temel sayı grubundadır ve yazılışı doğrudan öğrenilir: <strong>'+correct+'</strong>.';
+  if(n<=19)return '16–19 arasındaki sayılar <strong>dieci-</strong> ile birlik sayısının birleşmesiyle tek kelime yazılır. 16 sayısındaki <strong>é</strong> tildesine dikkat edilir.';
+  if(n===20)return '<strong>20 = veinte</strong>. Tek kelime olarak yazılır.';
+  if(n<=29)return '21–29 arasındaki sayılar <strong>veinti-</strong> ile birlik sayısının birleşmesiyle tek kelime yazılır. 22, 23 ve 26 sayılarında tilde bulunur: <strong>veintidós, veintitrés, veintiséis</strong>.';
+  if(n<100){const t=Math.floor(n/10)*10,r=n%10;return r===0?'<strong>'+n+' = '+tens[t]+'</strong>. Tam onluk olduğu için “y” kullanılmaz.':'Onluk ile birlik arasına ayrı yazılan <strong>y</strong> bağlacı gelir: <strong>'+tens[t]+' + y + '+units[r]+' = '+correct+'</strong>.';}
+  if(n===100)return 'Tam 100 sayısı yalnızca <strong>cien</strong> şeklinde yazılır. Ardından başka bir sayı gelmediği için “ciento” kullanılmaz.';
+  if(n<200)return '100’den sonra başka bir sayı geldiği için <strong>cien</strong> değil, <strong>ciento</strong> kullanılır: <strong>ciento + '+spanishNumber(n-100)+'</strong>.';
+  if(n<1000){
+    const h=Math.floor(n/100)*100,r=n%100,base=hundreds[h];
+    const irregular=[500,700,900].includes(h)?' Bu yüzlük düzensizdir; yazılışı özellikle öğrenilmelidir.':'';
+    return r===0?'<strong>'+n+' = '+base+'</strong>.'+irregular:'Önce yüzlük bölümü, ardından kalan sayı yazılır: <strong>'+base+' + '+spanishNumber(r)+' = '+correct+'</strong>.'+irregular;
+  }
+  return '<strong>1000 = mil</strong>. İspanyolcada 1000 sayısı “un mil” değil, yalnızca <strong>mil</strong> şeklinde yazılır.';
+}
+function checkAnswer(){
+  const input=document.getElementById('answer-input');
+  const given=normalizeAnswer(input.value);
+  if(!given){alert('Lütfen cevabınızı yazın.');input.focus();return;}
+  const n=state.order[state.index],correct=spanishNumber(n),isCorrect=given===normalizeAnswer(correct);
+  state.answers[String(n)]={given:input.value.trim(),correct:correct,isCorrect:isCorrect};
+  if(isCorrect)state.correct++;else state.wrong++;
+  saveState();
+  input.disabled=true;input.classList.add(isCorrect?'correct':'wrong');
+  const feedback=document.getElementById('feedback');feedback.className='feedback show '+(isCorrect?'ok':'bad');
+  document.getElementById('feedback-title').textContent=isCorrect?'✅ Doğru!':'❌ Cevabınız doğru değil.';
+  document.getElementById('feedback-text').textContent=isCorrect?'Yazımınız ve tilde kullanımınız doğru.':'Yazdığınız cevap: '+input.value.trim();
+  document.getElementById('correct-answer').textContent='Doğru yazılış: '+correct;
+  document.getElementById('explanation').innerHTML=explanationFor(n,correct);
+  document.getElementById('check-btn').style.display='none';
+  const next=document.getElementById('next-btn');next.style.display='inline-flex';next.textContent=state.index===TOTAL-1?'Sonuçları Gör →':'Sonraki Soru →';
+  updateProgress();next.focus();
+}
+function nextQuestion(){state.index++;saveState();if(state.index>=TOTAL){finishWork();return;}renderQuestion();}
+function openFinishModal(){
+  const answered=Object.keys(state.answers).length;
+  document.getElementById('modal-answered').textContent=answered;
+  document.getElementById('modal-unanswered').textContent=TOTAL-answered;
+  document.getElementById('finish-modal').classList.add('open');
+}
+function closeFinishModal(){document.getElementById('finish-modal').classList.remove('open');}
+function finishWork(){
+  if(!state)return;
+  state.finished=true;state.finishedAt=new Date().toISOString();saveState();closeFinishModal();
+  const answered=Object.keys(state.answers).length,unanswered=TOTAL-answered;
+  const percent=Math.round(state.correct/TOTAL*100);
+  document.getElementById('result-percent').textContent=percent+'%';
+  document.getElementById('result-answered').textContent=answered;
+  document.getElementById('result-unanswered').textContent=unanswered;
+  document.getElementById('result-correct').textContent=state.correct;
+  document.getElementById('result-wrong').textContent=state.wrong+unanswered;
+  showScreen('result');
+}
+function restartFromResult(){localStorage.removeItem(STORAGE_KEY);state=freshState();saveState();showScreen('quiz');renderQuestion();}
+document.getElementById('answer-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const nextVisible=document.getElementById('next-btn').style.display!=='none';nextVisible?nextQuestion():checkAnswer();}});
+document.getElementById('finish-modal').addEventListener('click',e=>{if(e.target.id==='finish-modal')closeFinishModal();});
+updateCover();
+</script>
+</body>
+</html>
