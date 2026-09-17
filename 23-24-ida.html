@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f0eef8;min-height:100vh;padding:1rem;display:flex;justify-content:center;align-items:flex-start}
-.wrap{max-width:740px;width:100%}
+.wrap{max-width:740px;width:100%;margin:auto 0}
 .card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(100,80,160,.13);padding:2rem;margin-bottom:1.5rem}
 .hidden{display:none!important}
 
@@ -20,6 +20,22 @@ select{width:100%;padding:.75rem;border:2px solid #d0c8f0;border-radius:8px;colo
 select:focus{border-color:#6c4eb8}
 .btn-start{width:100%;padding:.85rem;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-start:hover{background:#5a3ea0}
+
+/* ── STICKY QUIZ TOOLBAR ── */
+.quiz-toolbar{position:sticky;top:0;z-index:100;background:#fff;border-radius:14px;box-shadow:0 5px 18px rgba(76,54,130,.16);padding:.85rem 1rem;margin-bottom:1rem;border:1px solid #e8e0f8}
+.toolbar-main{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.7rem}
+.quiz-student{min-width:0;color:#777;font-size:.7rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.quiz-student strong{display:block;color:#3d2a7a;font-size:.92rem;letter-spacing:0;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.1rem}
+.btn-finish-top{flex:0 0 auto;background:#e05c5c;color:#fff;border:none;border-radius:8px;padding:.62rem .9rem;font-size:.82rem;font-weight:800;cursor:pointer;font-family:inherit}
+.btn-finish-top:hover{background:#c94747}
+.section-tabs{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.section-tab{border:2px solid #d0c8f0;background:#f8f5ff;color:#6c4eb8;border-radius:9px;padding:.58rem .65rem;font-size:.78rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s}
+.section-tab:hover{border-color:#9b7de0;background:#ede8fb}
+.section-tab.active{background:#6c4eb8;border-color:#6c4eb8;color:#fff}
+.writing-alert{background:linear-gradient(135deg,#fff3cd,#fff0f0);border:2px solid #f0a33a;border-radius:12px;padding:.9rem 1rem;margin:0 0 1rem;color:#704600;line-height:1.55;font-size:.84rem;box-shadow:0 3px 10px rgba(224,140,30,.1)}
+.writing-alert-title{font-size:.9rem;font-weight:900;color:#b45309;margin-bottom:.25rem;letter-spacing:.2px}
+.writing-alert.toolbar-writing{margin:.7rem 0 0;padding:.65rem .75rem;font-size:.75rem;line-height:1.45;border-radius:9px}
+.writing-alert.toolbar-writing .writing-alert-title{font-size:.78rem;margin-bottom:.15rem}
 
 /* ── QUIZ (1-30 one-by-one) ── */
 .prog-bar{height:6px;background:#e8e0f8;border-radius:3px;margin-bottom:1rem;overflow:hidden}
@@ -47,9 +63,7 @@ select:focus{border-color:#6c4eb8}
 .nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .nav button{padding:.55rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;font-family:inherit}
 .btn-back{background:#e8e0f8;color:#6c4eb8}
-.btn-skip{background:#e8e0f8;color:#6c4eb8}
 .btn-next{background:#6c4eb8;color:#fff}
-.btn-finish-q{background:#e05c5c;color:#fff}
 .nav button:disabled{opacity:.4;cursor:not-allowed}
 
 /* ── DRAG-DROP sections ── */
@@ -88,6 +102,8 @@ select:focus{border-color:#6c4eb8}
 .res-stats{display:flex;gap:1rem;justify-content:center;margin-bottom:.75rem}
 .res-stat{padding:.4rem 1rem;border-radius:8px;font-weight:600;font-size:.88rem}
 .res-note{text-align:center;color:#888;font-size:.82rem;margin-bottom:1.2rem}
+.course-reminder{background:linear-gradient(135deg,#f8f5ff,#fff8e8);border:2px solid #d7c8f5;border-radius:12px;padding:1rem 1.15rem;margin:0 0 1.15rem;color:#4b3d68;line-height:1.7;font-size:.86rem}
+.course-reminder-title{font-size:.95rem;font-weight:800;color:#4a2f9a;margin-bottom:.35rem}
 .submit-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:1rem 1.4rem;margin-bottom:1rem;text-align:center}
 .submit-warning-title{font-size:1rem;font-weight:800;color:#856404;margin-bottom:.25rem;letter-spacing:.3px}
 .submit-warning-sub{font-size:.82rem;color:#856404}
@@ -115,6 +131,8 @@ select:focus{border-color:#6c4eb8}
 @media(max-width:520px){
   .dd-item{flex-wrap:wrap}
   .dd-drop{min-width:100%;margin-top:.3rem}
+  .section-tabs{grid-template-columns:1fr}
+  .quiz-toolbar{padding:.75rem}
 }
 </style>
 </head>
@@ -123,39 +141,42 @@ select:focus{border-color:#6c4eb8}
 
 <!-- ═══ INTRO ═══ -->
 <div id="introCard" class="card">
-  <div class="week-pill">7. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div>
+  <div class="week-pill">6. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div>
   <div class="intro-title">ESCUCHA, IR A + INFINITIVO<br>Y EXPRESIONES COTIDIANAS</div>
   <div class="intro-sub">50 soru &middot; Dinleme (1–30) + Sürükle-Bırak (31–50) &middot; Her soru 2 puan</div>
   <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="writing-alert">
+    <div class="writing-alert-title">📝 YAZMA ÖDEVİNİZİ UNUTMAYIN!</div>
+    Bu dersin ayrıca bir <strong>yazma ödevi</strong> de vardır. Yazma ödevi size <strong>ayrı bir bağlantı</strong> olarak iletildi. Lütfen onu da tamamlamayı unutmayın.
+  </div>
   <select id="introName">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <button class="btn-start" onclick="startQuiz()">Teste Başla</button>
+</div>
+
+<!-- ═══ STICKY QUIZ TOOLBAR ═══ -->
+<div id="quizToolbar" class="quiz-toolbar hidden">
+  <div class="toolbar-main">
+    <div class="quiz-student">Öğrenci<strong id="quizStudentName">—</strong></div>
+    <button class="btn-finish-top" onclick="confirmFinishAll()">Testi Bitir</button>
+  </div>
+  <div class="section-tabs">
+    <button id="tabListening" class="section-tab active" onclick="goToSection('listening')">1. Bölüm: Dinleme</button>
+    <button id="tabDrag" class="section-tab" onclick="goToSection('drag')">2. Bölüm: Sürükle-Bırak</button>
+  </div>
+  <div class="writing-alert toolbar-writing">
+    <div class="writing-alert-title">📝 Yazma ödevinizi de yapmayı unutmayın!</div>
+    Ayrı bir bağlantı olarak iletildi.
+  </div>
 </div>
 
 <!-- ═══ QUIZ 1-30 (one by one) ═══ -->
@@ -168,9 +189,7 @@ select:focus{border-color:#6c4eb8}
   <div id="qCard"></div>
   <div class="nav">
     <button class="btn-back" id="btnBack" onclick="goBack()" disabled>Geri</button>
-    <button class="btn-skip" id="btnSkip" onclick="skipQ()">Atla</button>
     <button class="btn-next" id="btnNext" onclick="goNext()" disabled>İleri</button>
-    <button class="btn-finish-q" onclick="confirmFinishMC()">Testi Bitir</button>
   </div>
 </div>
 
@@ -178,7 +197,7 @@ select:focus{border-color:#6c4eb8}
 <div id="sec2Card" class="card hidden">
   <div class="sec-header">
     <span class="sec-arrow">▼</span>
-    <span class="sec-title">BÖLÜM 2 (31–40) – Ir a + Infinitivo</span>
+    <span class="sec-title">2. BÖLÜM A (31–40) – Ir a + Infinitivo</span>
     <span class="sec-badge-label">Sürükle &amp; Bırak</span>
   </div>
   <div id="dd1-items"></div>
@@ -191,7 +210,7 @@ select:focus{border-color:#6c4eb8}
 <div id="sec3Card" class="card hidden">
   <div class="sec-header">
     <span class="sec-arrow">▼</span>
-    <span class="sec-title">BÖLÜM 3 (41–50) – Ir a + Infinitivo</span>
+    <span class="sec-title">2. BÖLÜM B (41–50) – Ir a + Infinitivo</span>
     <span class="sec-badge-label">Sürükle &amp; Bırak</span>
   </div>
   <div id="dd2-items"></div>
@@ -202,7 +221,7 @@ select:focus{border-color:#6c4eb8}
 
 <!-- ═══ RESULT ═══ -->
 <div id="resultCard" class="card hidden">
-  <div style="text-align:center"><div class="res-pill">7. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div></div>
+  <div style="text-align:center"><div class="res-pill">6. HAFTA ÖDEVİ &nbsp;|&nbsp; A1.2 (23-24. DERS)</div></div>
   <div class="res-title">ESCUCHA, IR A + INFINITIVO Y EXPRESIONES</div>
   <div class="res-score"><span id="rScore">0</span>/100</div>
   <div class="res-stats">
@@ -210,37 +229,28 @@ select:focus{border-color:#6c4eb8}
     <span class="res-stat" style="background:#fde8e8;color:#d94040" id="rErr"></span>
   </div>
   <div class="res-note" id="rNote"></div>
+  <div class="course-reminder">
+    <div class="course-reminder-title">🌟 6. Hafta Sonu</div>
+    Bu kurda 6. haftayı tamamladık ve şimdi 7. haftaya geçiyoruz. ⏳ Önümüzde yalnızca son 2 haftalık sürecimiz kaldı. Kurumuzu eksiksiz ve güçlü bir şekilde tamamlayabilmek için lütfen varsa eksik ödevlerinizi mümkün olan en kısa sürede bitirip teslim edin. 📚💪 Düzenli tekrar ve zamanında yapılan her ödev, öğrendiklerimizin kalıcı olmasına yardımcı olur. Son iki haftayı hep birlikte en verimli şekilde değerlendirelim! ✨🇪🇸
+  </div>
+  <div class="writing-alert">
+    <div class="writing-alert-title">📝 YAZMA ÖDEVİNİZİ DE TAMAMLADINIZ MI?</div>
+    Bu dersin yazma ödevi size <strong>ayrı bir bağlantı</strong> olarak iletildi. Testi tamamlamış olsanız bile yazma ödevini de yapıp teslim etmeyi unutmayın.
+  </div>
   <div class="submit-warning" id="submitWarning">
     <div class="submit-warning-title">ÖDEVİNİZ ŞU AN TESLİM EDİLMEDİ</div>
     <div class="submit-warning-sub">Lütfen aşağıdaki listeden adınızı seçip gönderin.</div>
   </div>
   <select id="resName2" onchange="syncName()" style="margin-bottom:1rem">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
   <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
@@ -256,7 +266,7 @@ select:focus{border-color:#6c4eb8}
     <div class="confirm-msg" id="confirmMsg"></div>
     <div class="confirm-btns">
       <button class="btn-cancel" onclick="closeConfirm()">İptal</button>
-      <button class="btn-ok" id="confirmOkBtn" onclick="">Evet, Devam Et</button>
+      <button class="btn-ok" id="confirmOkBtn" onclick="">Evet, Bitir</button>
     </div>
   </div>
 </div>
@@ -265,7 +275,7 @@ select:focus{border-color:#6c4eb8}
 /* ═══════════════════════ DATA ═══════════════════════ */
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
 var ODEV='H6 \u2013 23-24.Ders';
-var GRP={'Ayse Gurkan':"A1.2",'Birce Suzen':"A1.2",'Burakhan Kaydi':"A1.2",'Ceren Erdogan':"A1.2",'Doga Degirmenci':"A1.2",'Ecem Sukas':"A1.2",'Elif Atac':"A1.2",'Elif Bozkurt Alvurdu':"A1.2",'Elif Cetin':"A1.2",'Elif Ozgur Atli':"A1.2",'Emel Kanburoglu':"A1.2",'Gorkem Dursun':"A1.2",'Gulce Eyibilir':"A1.2",'Harun Ozmen':"A1.2",'Mehtap Keklik':"A1.2",'Meltem Ciftci':"A1.2",'Meryem Ozbek':"A1.2",'Murat Sahin':"A1.2",'Seher Ercin':"A1.2",'Serra Sancakli':"A1.2",'Simal Gurkan':"A1.2",'Yasemin Kurtulus Tunc':"A1.2",'Zeynep Geylan':"A1.2",'Zeynep Ozay':"A1.2",'Zeynep Oztaskin':"A1.2"};
+var GRP={'Arman Kaykac':"A1.2",'Arzu Bayram':"A1.2",'Aysen Gurkan':"A1.2",'Didem Akbal':"A1.2",'Rabia Nur Tok':"A1.2",'Selva Akyuz':"A1.2",'Sena Yamak':"A1.2",'Suleyman Bektas':"A1.2"};
 var YT='https://youtu.be/ICBf1yG4YVg?si=bBrkmE0OJRZUB1cL';
 
 var MC=[
@@ -343,6 +353,7 @@ var dd1Done=false, dd2Done=false;
 
 var studentName='';
 var dragWord=null, dragFromPool=null, dragFromDropId=null;
+var dragSectionsBuilt=false;
 
 /* ═══════════════════════ HELPERS ═══════════════════════ */
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -356,10 +367,41 @@ function startQuiz(){
   if(!n){alert('Lütfen adınızı seçin.');return;}
   studentName=n;
   hide('introCard');
+  $('quizStudentName').textContent=n;
+  show('quizToolbar');
   show('quizCard');
+  buildDragSectionsOnce();
+  setActiveTab('listening');
   renderQ();
 }
 function syncName(){studentName=$('resName2').value;}
+
+function buildDragSectionsOnce(){
+  if(dragSectionsBuilt)return;
+  buildDD(DD1,POOL1,'dd1-items','pool1',1);
+  buildDD(DD2,POOL2,'dd2-items','pool2',2);
+  dragSectionsBuilt=true;
+}
+
+function setActiveTab(section){
+  $('tabListening').classList.toggle('active',section==='listening');
+  $('tabDrag').classList.toggle('active',section==='drag');
+}
+
+function goToSection(section){
+  if(section==='listening'){
+    show('quizCard');
+    hide('sec2Card');
+    hide('sec3Card');
+  } else {
+    buildDragSectionsOnce();
+    hide('quizCard');
+    show('sec2Card');
+    show('sec3Card');
+  }
+  setActiveTab(section);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
 /* ═══════════════════════ MC RENDER ═══════════════════════ */
 function renderQ(){
@@ -394,7 +436,6 @@ function renderQ(){
   $('cntErr').textContent=mcErr+' Yanlış';
   $('btnBack').disabled=(i===0);
   $('btnNext').disabled=(!done||i===29);
-  $('btnSkip').disabled=(i===29);
 }
 
 function pickMC(j){
@@ -406,24 +447,32 @@ function pickMC(j){
   renderQ();
 }
 
-function goNext(){if(cur<29){cur++;renderQ();}}
+function goNext(){if(mcAns[cur]!==-1&&cur<29){cur++;renderQ();}}
 function goBack(){if(cur>0){cur--;renderQ();}}
-function skipQ(){if(cur<29){cur++;renderQ();}}
 
-function confirmFinishMC(){
-  var unanswered=mcAns.filter(function(x){return x===-1;}).length;
-  var msg='Bölüm 1\'den '+mcOk+' doğru, '+mcErr+' yanlış yaptınız.';
-  if(unanswered>0) msg+='\n\n'+unanswered+' soru cevapsız. Bitmemiş soruları tamamlamak ister misiniz?';
-  msg+='\n\nDevam etmek istediğinizden emin misiniz?\n(Sürükle-Bırak bölümlerine geçeceksiniz.)';
-  openConfirm(msg, finishMCAndContinue);
+function confirmFinishAll(){
+  var mcAnswered=mcAns.filter(function(x){return x!==-1;}).length;
+  var dd1Answered=dd1Ans.filter(function(x){return x!==null;}).length;
+  var dd2Answered=dd2Ans.filter(function(x){return x!==null;}).length;
+  var answered=mcAnswered+dd1Answered+dd2Answered;
+  var unanswered=50-answered;
+  var msg='Toplam 50 sorudan '+answered+' tanesini cevapladınız.';
+  if(unanswered>0){
+    msg+='\n\n'+unanswered+' sorunuz cevapsız kaldı. Bu sorular 0 puan olarak değerlendirilecek.';
+  } else {
+    msg+='\n\nTüm soruları cevapladınız.';
+  }
+  msg+='\n\nTesti bitirmek istediğinize emin misiniz?';
+  openConfirm(msg,finishAllNow);
 }
 
-function finishMCAndContinue(){
-  mcDone=true;
-  hide('quizCard');
-  show('sec2Card');
-  buildDD(DD1, POOL1, 'dd1-items', 'pool1', 1);
-  $('sec2Card').scrollIntoView({behavior:'smooth'});
+function finishAllNow(){
+  dd1Ok=DD1.reduce(function(sum,item,i){return sum+(dd1Ans[i]===item.a?1:0);},0);
+  dd2Ok=DD2.reduce(function(sum,item,i){return sum+(dd2Ans[i]===item.a?1:0);},0);
+  dd1Err=10-dd1Ok;
+  dd2Err=10-dd2Ok;
+  mcDone=true;dd1Done=true;dd2Done=true;
+  showFinalResult();
 }
 
 /* ═══════════════════════ DRAG-DROP BUILD ═══════════════════════ */
@@ -575,15 +624,15 @@ function checkSec(secNum){
   $('s'+(secNum+1)+'btn').disabled=true;
   $('s'+(secNum+1)+'btn').textContent='✓ Tamamlandı';
 
-  if(secNum===1){dd1Ok=ok;dd1Err=err;dd1Done=true; show('sec3Card'); buildDD(DD2,POOL2,'dd2-items','pool2',2); $('sec3Card').scrollIntoView({behavior:'smooth'});}
+  if(secNum===1){dd1Ok=ok;dd1Err=err;dd1Done=true; show('sec3Card'); $('sec3Card').scrollIntoView({behavior:'smooth'});}
   else{dd2Ok=ok;dd2Err=err;dd2Done=true; showFinalResult();}
 }
 
 /* ═══════════════════════ RESULT ═══════════════════════ */
 function showFinalResult(){
-  hide('sec2Card'); hide('sec3Card');
+  hide('quizToolbar');hide('quizCard');hide('sec2Card');hide('sec3Card');
   var totalOk=mcOk+dd1Ok+dd2Ok;
-  var totalErr=mcErr+dd1Err+dd2Err;
+  var totalErr=50-totalOk;
   var score=totalOk*2;
   $('rScore').textContent=score;
   $('rOk').textContent=totalOk+' Doğru';
