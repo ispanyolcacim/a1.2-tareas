@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1.2 – H6 23-24. Ders – Yazma Bölümü</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--c1:#fff7dd;--c2:#f7ce6d;--c3:#cfe6ff;--c4:#5c9be8;--c5:#3268b5;--dark:#18304f;--mid:#58708e;--white:#fff;--green:#4e9a67;--red:#cc5e65;--r:15px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(155deg,#f4f9ff,#fffaf0 55%,#eef7ff);min-height:100vh;color:var(--dark)}
+.hdr{background:linear-gradient(135deg,var(--c4),var(--c5));padding:18px 20px 15px;text-align:center;box-shadow:0 4px 18px rgba(50,104,181,.28);position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,.08) 14px,rgba(255,255,255,.08) 15px)}
+.htag{display:inline-block;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.55);border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:4px 14px;margin-bottom:8px;color:#fff;position:relative}
+.hdr h1{font-size:clamp(17px,4vw,23px);font-weight:800;color:#fff;position:relative}
+.hsub{font-size:12px;color:rgba(255,255,255,.9);margin-top:5px;position:relative}
+.screen{display:none;animation:fi .3s ease}.screen.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.nb{max-width:470px;margin:0 auto;padding:32px 20px;text-align:center}
+.nb h2{font-size:21px;margin-bottom:6px}.nb>p{font-size:13px;color:var(--mid);margin-bottom:20px}
+.sel{width:100%;padding:13px 16px;font-size:15px;background:#fff;border:2px solid var(--c3);border-radius:var(--r);color:var(--dark);appearance:none;cursor:pointer;margin-bottom:14px;font-family:inherit}
+.sel:focus{outline:none;border-color:var(--c4)}
+.notice{background:linear-gradient(135deg,#fff9e7,#edf6ff);border:2px dashed var(--c4);border-radius:var(--r);padding:16px 18px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.75}
+.info{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:14px 16px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.65}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 24px;border:none;border-radius:var(--r);font-size:14px;font-weight:750;cursor:pointer;transition:all .2s;font-family:inherit}
+.bm{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;box-shadow:0 4px 12px rgba(50,104,181,.3)}
+.bm:hover,.bg:hover{transform:translateY(-2px)}
+.bg{background:linear-gradient(135deg,var(--c2),#e9ae30);color:var(--dark);box-shadow:0 4px 12px rgba(247,206,109,.35)}
+.bo{background:#fff;border:2px solid var(--c3);color:var(--dark)}.bo:hover{background:#eef6ff}
+.bf{width:100%}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
+.ww{max-width:920px;margin:0 auto;padding:16px}
+.studentbar{position:sticky;top:0;z-index:20;margin-bottom:12px;background:rgba(255,255,255,.96);border:1.5px solid var(--c3);border-radius:13px;padding:10px 14px;box-shadow:0 3px 12px rgba(50,104,181,.13);display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--mid);backdrop-filter:blur(6px)}
+.studentbar strong{color:var(--c5)}
+.wcard{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);overflow:hidden;box-shadow:0 3px 15px rgba(50,104,181,.12);margin-bottom:14px}
+.whead{background:linear-gradient(135deg,var(--c4),var(--c5));padding:14px 18px;color:#fff;font-weight:750;font-size:15px}
+.wbody{padding:20px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.fw label,.section-label{display:block;font-size:10px;font-weight:850;letter-spacing:1.35px;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
+.fw input{width:100%;padding:10px 13px;border:2px solid var(--c3);border-radius:10px;font-family:inherit;font-size:13.5px;font-weight:650;color:var(--dark);background:#fafcff;outline:none}
+.fw input:focus{border-color:var(--c4);background:#fff}.fw input[readonly]{opacity:.72;cursor:default}
+.schedule-title{text-align:center;margin:8px 0 12px}.schedule-title h2{font-size:21px;margin-bottom:6px}.schedule-title p{font-size:12.5px;color:var(--mid);line-height:1.65}
+.table-wrap{overflow-x:auto;margin-bottom:17px;border:1.5px solid var(--c3);border-radius:12px}
+.schedule{width:100%;min-width:860px;border-collapse:collapse;font-size:12px;text-align:center}
+.schedule th{background:#dcebff;color:var(--dark);padding:9px 7px;border:1px solid #bed8f7;line-height:1.25}
+.schedule th:first-child{min-width:130px}.schedule td{padding:9px 7px;border:1px solid #dce9f7;white-space:nowrap}.schedule tbody tr:nth-child(even){background:#f7fbff}.schedule td:first-child{font-weight:750;text-align:left;background:#f1f7ff}
+.ybox,.important{border-radius:11px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.75}
+.ybox{background:var(--c1);border:1.5px solid var(--c2)}.important{background:#fff0f1;border:1.5px solid #efadb2}
+.yl{font-size:10px;font-weight:850;letter-spacing:1.4px;text-transform:uppercase;color:#936000;margin-bottom:8px}.important .yl{color:#a83e48}
+.yli{margin-left:18px}.yli li{margin-bottom:5px}.examples{margin-top:9px;padding:10px 12px;background:rgba(255,255,255,.72);border-radius:8px;font-weight:650}
+.cklist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.cki{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:650;color:var(--mid);background:#fafcff;padding:9px 12px;border-radius:10px;border:2px solid var(--c3);cursor:pointer;line-height:1.4}
+.cki:has(input:checked){background:#edf8f0;border-color:#8fc59e;color:#356b45}.cki input{accent-color:var(--green);margin-top:2px;flex-shrink:0}
+.wta{width:100%;min-height:420px;padding:14px 16px;font-size:14px;line-height:1.85;font-family:inherit;color:var(--dark);background:#fffaf0;border:2px solid rgba(247,206,109,.7);border-radius:10px;resize:vertical;margin-bottom:8px}
+.wta:focus{outline:none;border-color:#e9ae30;box-shadow:0 0 0 3px rgba(247,206,109,.18)}
+.wc{font-size:11px;color:var(--mid);text-align:right;margin-bottom:16px}
+.rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}.rubric th{background:linear-gradient(90deg,var(--c4),var(--c5));padding:9px 14px;text-align:left;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#fff}.rubric td{padding:9px 14px;border-bottom:1px solid var(--c3);vertical-align:top;line-height:1.45}.rubric tr:last-child td{border-bottom:none;font-weight:800;background:#fff8e5}.rubric tr:nth-child(even) td{background:#f5f9ff}.rubric .pts{text-align:right;color:var(--c5);font-weight:800;white-space:nowrap}
+.cfw{max-width:440px;margin:0 auto;padding:40px 20px;text-align:center}.cfw h2{font-size:22px;margin-bottom:8px}.cfw>p{font-size:14px;color:var(--mid);margin-bottom:20px;line-height:1.6}
+.ns{background:rgba(204,94,101,.1);border:2px solid #e59aa0;border-radius:var(--r);padding:14px 18px;margin-bottom:20px;font-size:14px;font-weight:800;color:#a33b43}
+.photo-warn{background:#fff4df;border:2px solid var(--c2);border-radius:var(--r);padding:18px;margin-bottom:20px}.photo-warn .pw-icon{font-size:34px;margin-bottom:8px}.photo-warn p{font-size:14px;line-height:1.7;font-weight:650}
+.rw{max-width:500px;margin:0 auto;padding:28px 20px;text-align:center}.rc{background:#fff;border:1.5px solid var(--c3);border-radius:20px;padding:28px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(50,104,181,.16)}.re{font-size:50px;margin-bottom:10px}.rn{font-size:14px;color:var(--mid);margin-bottom:3px}.rt{font-size:16px;font-weight:750;margin-bottom:16px}.stb{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:750;margin-bottom:14px}.stok{background:rgba(78,154,103,.14);border:1.5px solid rgba(78,154,103,.4);color:#347247}.ster{background:rgba(204,94,101,.14);border:1.5px solid rgba(204,94,101,.4);color:#a33b43}.stpnd{background:rgba(247,206,109,.2);border:1.5px solid rgba(247,206,109,.6);color:#8c6200}.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:7px}.byemsg{background:linear-gradient(135deg,#edf6ff,#fff8e7);border:1.5px solid var(--c4);border-radius:var(--r);padding:16px 18px;margin-top:14px;text-align:left;font-size:13px;line-height:1.8}
+@media(max-width:620px){.fg,.cklist{grid-template-columns:1fr}.wbody{padding:15px}.fw.full{grid-column:auto!important}.ww{padding:10px}.htag{letter-spacing:.8px}.studentbar{justify-content:flex-start}.wta{min-height:360px}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="htag">6. Hafta Ödevi &nbsp;|&nbsp; A1.2 (23-24. Ders) &nbsp;|&nbsp; Yazma Bölümü</div>
+  <h1>🇪🇸 A1.2 – H6 23-24. Ders – Yazma Bölümü</h1>
+  <div class="hsub">Planes para mañana &nbsp;•&nbsp; Ir a + infinitivo &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</header>
+
+<main>
+<section class="screen active" id="sc-name">
+  <div class="nb">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Yazma bölümüne başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="sel student-select" id="name-sel">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Arman Kaykac</option><option>Arzu Bayram</option><option>Aysen Gurkan</option><option>Didem Akbal</option>
+      <option>Rabia Nur Tok</option><option>Selva Akyuz</option><option>Sena Yamak</option><option>Suleyman Bektas</option>
+    </select>
+    <div class="notice">📝 Bu ödev, <strong>A1.2 – 6. Hafta 23-24. Ders'in Yazma Bölümü</strong>'dür.<br><br>
+      Ana test ödevi size <strong>ayrı bir bağlantı</strong> olarak iletildi. İki ödev de ayrı ayrı değerlendirileceği için test bölümünü de tamamlamayı unutmayın. 📚✅
+    </div>
+    <div class="info"><strong>✍️ Konu:</strong> Planes para mañana<br><strong>🎯 Dil bilgisi:</strong> Ir a + infinitivo<br><strong>🏆 Değer:</strong> 100 puan</div>
+    <button class="btn bm bf" type="button" onclick="startWriting()">▶ Yazmaya Başla</button>
+  </div>
+</section>
+
+<section class="screen" id="sc-writing">
+  <div class="ww">
+    <div class="studentbar">👤 Ödevi yapan öğrenci: <strong id="active-student">—</strong></div>
+    <div class="wcard">
+      <div class="whead">✍️ Yazma Bölümü — Planes para mañana <span style="opacity:.78;font-weight:400;font-size:13px">(100 puan)</span></div>
+      <div class="wbody">
+        <div class="fg">
+          <div class="fw"><label>Nombre y Apellido</label><input type="text" id="w-name" readonly></div>
+          <div class="fw"><label>Número de tarea</label><input type="text" value="A1.2 – H6 23-24. Ders – Yazma" readonly></div>
+          <div class="fw"><label>Tema de la tarea</label><input type="text" value="Planes para mañana" readonly></div>
+          <div class="fw"><label>Gramática</label><input type="text" value="Ir a + infinitivo" readonly></div>
+          <div class="fw full" style="grid-column:1/-1"><label>Título de tu texto</label><input type="text" id="w-title" placeholder="Yazınızın başlığını yazınız..."></div>
+        </div>
+
+        <div class="schedule-title">
+          <h2>📅 Planes para mañana</h2>
+          <p>Aşağıdaki tabloda kişilerin yarın yapacakları ve yapmayacakları eylemler gösterilmektedir.<br><strong>🕐 Saat varsa:</strong> kişi bu eylemi yapacak. &nbsp; <strong>❌ X varsa:</strong> kişi bu eylemi yapmayacak.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="schedule">
+            <thead><tr><th>Kişi / Özne</th><th>levantarse</th><th>desayunar</th><th>ir al trabajo / a clase</th><th>hacer deporte</th><th>ducharse</th><th>estudiar español</th><th>preparar la cena</th><th>acostarse</th></tr></thead>
+            <tbody>
+              <tr><td>Yo – Laura</td><td>07:00</td><td>07:30</td><td>08:30</td><td>❌</td><td>19:00</td><td>20:00</td><td>21:00</td><td>23:30</td></tr>
+              <tr><td>Carlos y Sofía</td><td>07:30</td><td>08:00</td><td>09:00</td><td>18:00</td><td>19:30</td><td>❌</td><td>21:00</td><td>23:00</td></tr>
+              <tr><td>Ana y yo</td><td>08:30</td><td>09:00</td><td>❌</td><td>11:00</td><td>12:30</td><td>17:00</td><td>20:30</td><td>23:00</td></tr>
+              <tr><td>Pablo y Marcos</td><td>06:45</td><td>07:15</td><td>08:00</td><td>❌</td><td>19:30</td><td>20:00</td><td>21:00</td><td>23:30</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ybox">
+          <div class="yl">📌 Yönerge — Dikkat Edilmesi Gerekenler</div>
+          <p>Tabloyu dikkatlice inceleyiniz ve kişilerin <strong>yarın ne yapacaklarını ve ne yapmayacaklarını</strong> anlatan bağlantılı bir metin yazınız.</p>
+          <ul class="yli">
+            <li>Metninizde özellikle <strong>ir a + infinitivo</strong> yapısını kullanınız.</li>
+            <li>Tablodaki <strong>dört kişi/özne grubunun tamamından</strong> bahsediniz.</li>
+            <li><strong>Yo – Laura</strong> için <strong>voy a + infinitivo</strong> kullanınız.</li>
+            <li><strong>Carlos y Sofía</strong> ve <strong>Pablo y Marcos</strong> için <strong>van a + infinitivo</strong> kullanınız.</li>
+            <li><strong>Ana y yo</strong> için <strong>vamos a + infinitivo</strong> kullanınız.</li>
+            <li>Saat verilen <strong>bütün eylemleri</strong> cümle hâlinde yazınız; ❌ bulunanları olumsuz cümleyle ifade ediniz.</li>
+            <li>Saatleri İspanyolca doğru şekilde yazınız.</li>
+            <li>Hem normal hem dönüşlü fiilleri kullanınız. Dönüşlü fiillerde zamiri mastara ekleyiniz: <strong>voy a levantarme, vamos a ducharnos, van a acostarse</strong>.</li>
+            <li>Cümleleri yalnızca sıralamayınız; <strong>primero, después, luego, también, pero, por la mañana, por la tarde, por la noche</strong> gibi ifadelerle bağlantılı bir metin oluşturunuz.</li>
+            <li>Yazım ve noktalama kurallarına dikkat ediniz.</li>
+          </ul>
+        </div>
+
+        <div class="important">
+          <div class="yl">⚠️ Önemli</div>
+          <p>❌ bulunan bir eylem için olumlu cümle yazmayınız. Saat bulunan eylemlerde saati mutlaka belirtiniz. Dönüşlü fiillerde zamirin özneye uygun olduğundan emin olunuz.</p>
+          <div class="examples">Laura <strong>no va a hacer deporte</strong>.<br>Laura va a desayunar <strong>a las siete y media</strong>.<br><strong>Voy a levantarme</strong> a las siete.<br>Ana y yo <strong>vamos a ducharnos</strong> a las doce y media.<br>Pablo y Marcos <strong>van a acostarse</strong> a las once y media.</div>
+        </div>
+
+        <span class="section-label">✅ Kontrol Listesi</span>
+        <div class="cklist">
+          <label class="cki"><input type="checkbox"> Dört kişi/özne grubunun tamamından bahsettim.</label>
+          <label class="cki"><input type="checkbox"> “Yo” için “voy a + infinitivo” kullandım.</label>
+          <label class="cki"><input type="checkbox"> “Ana y yo” için “vamos a + infinitivo” kullandım.</label>
+          <label class="cki"><input type="checkbox"> İki çoğul grup için “van a + infinitivo” kullandım.</label>
+          <label class="cki"><input type="checkbox"> Saat verilen bütün eylemleri yazdım.</label>
+          <label class="cki"><input type="checkbox"> ❌ bulunan bütün eylemleri olumsuz yaptım.</label>
+          <label class="cki"><input type="checkbox"> Normal fiilleri doğru kullandım.</label>
+          <label class="cki"><input type="checkbox"> Dönüşlü fiilleri doğru kullandım.</label>
+          <label class="cki"><input type="checkbox"> Saatleri İspanyolca doğru yazdım.</label>
+          <label class="cki"><input type="checkbox"> Bağlaç ve zaman ifadeleri kullandım.</label>
+          <label class="cki"><input type="checkbox"> Yazım ve noktalama kurallarına dikkat ettim.</label>
+        </div>
+
+        <span class="section-label">✏️ Yazınızı aşağıya yazın</span>
+        <textarea class="wta" id="w-text" placeholder="Mañana voy a levantarme a las siete. Después, voy a desayunar a las siete y media..." oninput="updateWC()"></textarea>
+        <div class="wc">Cümle: <span id="sent-c">0</span> &nbsp;|&nbsp; Kelime: <span id="word-c">0</span></div>
+
+        <p style="font-weight:750;margin-bottom:10px;font-size:13px">📊 Puanlama Cetveli</p>
+        <div class="table-wrap" style="margin-bottom:0">
+          <table class="rubric">
+            <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
+            <tbody>
+              <tr><td>Tablodaki dört kişi/özne grubunun tamamından bahsedilmiştir.</td><td class="pts">10</td></tr>
+              <tr><td><strong>Ir a + infinitivo</strong> yapısı doğru ve yeterli şekilde kullanılmıştır.</td><td class="pts">20</td></tr>
+              <tr><td><strong>voy a / vamos a / van a</strong> çekimleri öznelere uygun kullanılmıştır.</td><td class="pts">15</td></tr>
+              <tr><td>Tablodaki saat verilen eylemler doğru şekilde aktarılmıştır.</td><td class="pts">10</td></tr>
+              <tr><td>❌ işaretli eylemler doğru biçimde olumsuz yapılmıştır.</td><td class="pts">10</td></tr>
+              <tr><td>Dönüşlü fiiller (<strong>levantarse, ducharse, acostarse</strong>) doğru kullanılmıştır.</td><td class="pts">15</td></tr>
+              <tr><td>Saatler İspanyolca doğru şekilde ifade edilmiştir.</td><td class="pts">5</td></tr>
+              <tr><td>Bağlaçlar ve zaman ifadeleri kullanılarak bağlantılı bir metin oluşturulmuştur.</td><td class="pts">5</td></tr>
+              <tr><td>Cümleler açık, anlamlı ve A1.2 seviyesine uygundur.</td><td class="pts">5</td></tr>
+              <tr><td>Yazım, noktalama ve genel dil doğruluğuna dikkat edilmiştir.</td><td class="pts">5</td></tr>
+              <tr><td><strong>TOPLAM</strong></td><td class="pts"><strong>100</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <label class="cki" style="max-width:580px;margin:0 auto 14px;background:#fff;border-color:var(--c4)"><input type="checkbox" id="w-photo-ck" onchange="togglePhotoCk()"> Ödevimin bir kopyasını aldım / fotoğrafını çektim.</label>
+    <div style="text-align:center;margin-bottom:20px"><button class="btn bg" id="w-done-btn" type="button" onclick="goPhotoWarn()" disabled>✔ Yazıyı Tamamladım</button></div>
+  </div>
+</section>
+
+<section class="screen" id="sc-photo">
+  <div class="cfw">
+    <div class="photo-warn"><div class="pw-icon">📸</div><p>Yazma ödevinizi teslim etmeden önce lütfen ekranın <strong>fotoğrafını çekiniz</strong> veya metninizin bir kopyasını alınız.<br><br>Böylece yazınızı her ihtimale karşı kayıt altında tutabilirsiniz.</p></div>
+    <button class="btn bg bf" type="button" onclick="goWritingConfirm()">✔ Fotoğrafı Çektim, Teslim Et</button>
+  </div>
+</section>
+
+<section class="screen" id="sc-wconfirm">
+  <div class="cfw">
+    <div style="font-size:48px;margin-bottom:12px">📋</div>
+    <h2>Yazmayı Teslim Et</h2>
+    <div class="ns">⚠️ YAZINIZ HENÜZ TESLİM EDİLMEDİ</div>
+    <p>Göndermeden önce adınızı kontrol edip tekrar seçin. “Evet, Gönder” düğmesine bastıktan sonra başarı mesajını bekleyin.</p>
+    <select class="sel student-select" id="wc-sel">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Arman Kaykac</option><option>Arzu Bayram</option><option>Aysen Gurkan</option><option>Didem Akbal</option>
+      <option>Rabia Nur Tok</option><option>Selva Akyuz</option><option>Sena Yamak</option><option>Suleyman Bektas</option>
+    </select>
+    <button class="btn bg bf" id="wc-btn" type="button" onclick="submitWriting()">✔ Evet, Gönder</button>
+  </div>
+</section>
+
+<section class="screen" id="sc-wresult">
+  <div class="rw">
+    <div class="rc">
+      <div class="re">✍️</div>
+      <div class="rn" id="wrs-name">—</div>
+      <div class="rt">A1.2 · H6 23-24. Ders · Yazma Bölümü</div>
+      <div style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:16px">Yazınız Profe Hazel'e iletiliyor. Puanınız değerlendirme sonrasında bildirilecektir.</div>
+      <div class="stb stpnd" id="wrs-status">⏳ Gönderiliyor…</div>
+      <div class="byemsg"><strong>🌟 6. Hafta Sonu</strong><br><br>6. haftayı bitirdik ve 7. haftaya geçiyoruz. Bu kurda önümüzde yalnızca son 2 haftalık sürecimiz kaldı. ⏳ Varsa eksik test ve ödevlerinizi mümkün olan en kısa sürede tamamlayıp teslim etmeyi unutmayın. 📚💪 Son iki haftayı hep birlikte en verimli şekilde değerlendirelim! ✨🇪🇸</div>
+    </div>
+    <div class="ra">
+      <button class="btn bo" type="button" onclick="goName()">🔄 Yeniden Başla</button>
+      <button class="btn bg" id="retry-btn" type="button" onclick="submitWriting()" style="display:none">↻ Göndermeyi Tekrar Dene</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SVC='service_4ee1wh7';
+const EMAILJS_TPL='template_xjyyxhf';
+let student='';
+let isSending=false;
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sc-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function startWriting(){
+  const s=document.getElementById('name-sel');
+  if(!s.value){alert('Lütfen adınızı seçin!');return;}
+  student=s.value;
+  document.getElementById('w-name').value=student;
+  document.getElementById('active-student').textContent=student;
+  show('writing');
+}
+function updateWC(){
+  const t=document.getElementById('w-text').value.trim();
+  document.getElementById('word-c').textContent=t?t.split(/\s+/).length:0;
+  document.getElementById('sent-c').textContent=t?(t.match(/[.!?]+(?=\s|$)/g)||[]).length:0;
+}
+function togglePhotoCk(){
+  document.getElementById('w-done-btn').disabled=!document.getElementById('w-photo-ck').checked;
+}
+function goPhotoWarn(){
+  if(!document.getElementById('w-photo-ck').checked){alert('Lütfen önce ödevinizin bir kopyasını aldığınızı / fotoğrafını çektiğinizi onaylayın.');return;}
+  const title=document.getElementById('w-title').value.trim();
+  const text=document.getElementById('w-text').value.trim();
+  if(!title){alert('Lütfen yazınıza bir başlık yazın.');return;}
+  if(text.length<50){alert('Lütfen yazınızı tamamlayın (en az 50 karakter).');return;}
+  show('photo');
+}
+function goWritingConfirm(){
+  document.getElementById('wc-sel').value=student;
+  show('wconfirm');
+}
+async function submitWriting(){
+  if(isSending)return;
+  const s=document.getElementById('wc-sel');
+  if(!s||!s.value){alert('Lütfen adınızı seçin!');return;}
+  const text=document.getElementById('w-text').value.trim();
+  if(!text){alert('Yazı alanı boş olamaz.');return;}
+  student=s.value;
+  document.getElementById('w-name').value=student;
+  document.getElementById('active-student').textContent=student;
+  document.getElementById('wrs-name').textContent=student;
+  const button=document.getElementById('wc-btn');
+  const status=document.getElementById('wrs-status');
+  const retry=document.getElementById('retry-btn');
+  isSending=true;
+  button.disabled=true;
+  button.textContent='⏳ Gönderiliyor...';
+  retry.style.display='none';
+  status.className='stb stpnd';
+  status.textContent='⏳ Gönderiliyor…';
+  show('wresult');
+  const now=new Date();
+  const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
+  const title=document.getElementById('w-title').value.trim();
+  try{
+    await emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
+      student_name:student,
+      lesson:'A1.2 – H6 23-24. Ders – Yazma Bölümü'+(title?' — '+title:''),
+      submit_date:tarih,
+      writing_text:text
+    });
+    status.className='stb stok';
+    status.textContent='✅ Yazınız başarıyla gönderildi!';
+  }catch(error){
+    console.error(error);
+    status.className='stb ster';
+    status.textContent='⚠️ Gönderilemedi — Lütfen tekrar deneyin';
+    retry.style.display='inline-flex';
+  }finally{
+    isSending=false;
+    button.disabled=false;
+    button.textContent='✔ Evet, Gönder';
+  }
+}
+function goName(){
+  student='';
+  document.getElementById('name-sel').value='';
+  document.getElementById('wc-sel').value='';
+  document.getElementById('w-name').value='';
+  document.getElementById('active-student').textContent='—';
+  document.getElementById('w-title').value='';
+  document.getElementById('w-text').value='';
+  document.getElementById('w-photo-ck').checked=false;
+  document.getElementById('w-done-btn').disabled=true;
+  document.querySelectorAll('.cklist input').forEach(c=>c.checked=false);
+  document.getElementById('retry-btn').style.display='none';
+  updateWC();
+  show('name');
+}
+</script>
+</body>
+</html>
