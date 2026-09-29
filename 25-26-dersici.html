@@ -136,24 +136,22 @@ const progressBar=document.getElementById("progressBar");
 function renderQuestion(){
   answered=false;
   const q=questions[current];
+
   sentenceEl.textContent=q.tr;
   questionCounter.textContent=`Cümle ${current+1} / ${questions.length}`;
   scoreCounter.textContent="A1.2";
-  progressBar.style.width=`${(current/questions.length)*100}%`;
+  progressBar.style.width=`${((current+1)/questions.length)*100}%`;
+
   feedbackEl.className="feedback";
   feedbackEl.innerHTML="";
-  nextBtn.className="next";
-  nextBtn.textContent=current===questions.length-1?"Sonucu Gör →":"Sonraki Soru →";
-  choicesEl.innerHTML="";
 
-  q.choices.forEach(choice=>{
-    const btn=document.createElement("button");
-    btn.className="choice";
-    btn.dataset.value=choice;
-    btn.textContent=choice;
-    btn.addEventListener("click",()=>selectAnswer(choice,btn));
-    choicesEl.appendChild(btn);
-  });
+  revealBtn.disabled=false;
+  revealBtn.textContent="🇪🇸 Doğru Cevabı Göster";
+
+  nextBtn.className="next";
+  nextBtn.textContent=current===questions.length-1
+    ? "Etkinliği Bitir →"
+    : "Sonraki Cümle →";
 }
 
 function revealAnswer(){
