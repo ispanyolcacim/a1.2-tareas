@@ -8,14 +8,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:14px}
 .wrap{max-width:720px;margin:0 auto}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px;border:1px solid rgba(108,78,184,.06)}
 .hidden{display:none!important}
 
 /* INTRO */
 .pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:10px}
-.intro-title{font-size:1.05rem;font-weight:800;color:#3d2a7a;margin-bottom:4px}
-.intro-sub{color:#888;font-size:.82rem;margin-bottom:5px}
-.intro-teacher{color:#9b7de0;font-weight:700;font-size:.8rem;margin-bottom:16px}
+.intro-title{font-size:1.18rem;font-weight:800;color:#3d2a7a;margin-bottom:7px;line-height:1.35}
+.intro-sub{color:#777;font-size:.84rem;margin-bottom:6px;line-height:1.5}
+.intro-teacher{color:#9b7de0;font-weight:700;font-size:.82rem;margin-bottom:16px}
 select{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.93rem;font-family:inherit;color:#333;background:#fff;outline:none;margin-bottom:12px;cursor:pointer}
 select:focus{border-color:#6c4eb8}
 .btn-start{width:100%;padding:13px;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.2px}
@@ -103,6 +103,28 @@ select:focus{border-color:#6c4eb8}
 .btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
 .btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
 
+
+/* aesthetic additions */
+.hero-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.hero-icon{width:48px;height:48px;border-radius:14px;background:#f0ebff;display:flex;align-items:center;justify-content:center;font-size:1.55rem;box-shadow:inset 0 0 0 1px #e0d6fa}
+.hero-copy{flex:1;min-width:220px}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 16px}
+.info-chip{background:#faf8ff;border:1px solid #e8e0f8;border-radius:10px;padding:9px 10px;text-align:center;color:#5e4a93;font-size:.76rem;font-weight:700;line-height:1.4}
+.notice-box{background:#faf8ff;border:1px solid #ded3f6;border-left:5px solid #6c4eb8;border-radius:12px;padding:14px 15px;margin:14px 0 16px;color:#4b3a73;line-height:1.7;font-size:.84rem}
+.notice-title{font-weight:900;color:#3d2a7a;font-size:.96rem;margin-bottom:5px}
+.notice-strong{font-weight:800;color:#5a3ea0}
+.name-label{display:block;font-size:.78rem;font-weight:800;color:#5b4b84;margin:2px 0 7px}
+.top-actions{display:flex;justify-content:flex-end;margin-bottom:12px}
+.btn-finish-top{width:100%;padding:11px 14px;background:#c94040;color:#fff;border:none;border-radius:10px;font-size:.88rem;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(201,64,64,.14)}
+.btn-finish-top:hover{background:#a83030}
+.quiz-head{background:#faf8ff;border:1px solid #e8e0f8;border-radius:12px;padding:12px 12px 10px;margin-bottom:14px}
+.quiz-headline{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap}
+.quiz-student{font-size:.82rem;font-weight:800;color:#3d2a7a}
+.quiz-mini{font-size:.75rem;color:#8a7aac;font-weight:700}
+.btn-check,.btn-next,.btn-start,.btn-submit,.btn-review,.btn-finish-top{transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.btn-check:hover:not(:disabled),.btn-next:hover,.btn-start:hover,.btn-submit:hover:not(:disabled),.btn-review:hover,.btn-finish-top:hover{transform:translateY(-1px)}
+@media(max-width:560px){.info-grid{grid-template-columns:1fr}.hero-icon{width:42px;height:42px}.card{padding:18px}}
+
 @media(max-width:480px){.btn-row{flex-direction:column}}
 </style>
 </head>
@@ -111,56 +133,67 @@ select:focus{border-color:#6c4eb8}
 
 <!-- INTRO -->
 <div id="introCard" class="card">
-  <div class="pill">7. HAFTA ÖDEVİ &bull; A1.2</div>
-  <div class="intro-title">H7 – 25-26. DERS</div>
-  <div class="intro-sub">Presente de Indicativo / Estar + Gerundio / Ir a + Infinitivo</div>
-  <div class="intro-sub">50 Soru &bull; Her Soru 2 Puan &bull; Toplam 100 Puan</div>
-  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="hero-head">
+    <div class="hero-icon">🇪🇸</div>
+    <div class="hero-copy">
+      <div class="pill">✨ 7. HAFTA ÖDEVİ &bull; A1.2</div>
+      <div class="intro-title">📘 H7 – 25-26. DERS</div>
+      <div class="intro-sub">Presente de Indicativo • Estar + Gerundio • Ir a + Infinitivo</div>
+      <div class="intro-teacher">💜 @ispanyolcacim &bull; Profe Hazel</div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-chip">📝 50 Soru</div>
+    <div class="info-chip">⭐ Her Soru 2 Puan</div>
+    <div class="info-chip">🏆 Toplam 100 Puan</div>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-title">📢 7. HAFTADAYIZ!</div>
+    Önümüzdeki hafta bu dönemin <span class="notice-strong">son haftası</span>. 🌟 Lütfen önceki haftalardan kalan eksik ödevlerinizi tamamlayın, genel konu tekrarlarınızı yapın ve anlamadığınız noktaları yeniden gözden geçirin. 📚✨<br>
+    <span class="notice-strong">Unutmayın:</span> Düzenli tekrar + eksiksiz ödev = daha güçlü bir İspanyolca temeli. 💪🇪🇸
+  </div>
+
+  <label class="name-label" for="nameSelect">👤 Öğrenci Adı</label>
   <select id="nameSelect">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
-  <button class="btn-start" onclick="startQuiz()">Teste Başla →</button>
+  <button class="btn-start" onclick="startQuiz()">🚀 Teste Başla</button>
 </div>
 
 <!-- QUIZ CARD -->
 <div id="quizCard" class="card hidden">
-  <div class="prog-wrap">
-    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="top-actions">
+    <button class="btn-finish-top" onclick="askFinish()">🏁 Testi Bitir</button>
   </div>
-  <div class="q-meta">
-    <span id="qLabel">Soru 1 / 50</span>
-    <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr"> &nbsp;✗ 0</span></span>
+
+  <div class="quiz-head">
+    <div class="quiz-headline">
+      <span class="quiz-student" id="quizStudent">👤 Öğrenci</span>
+      <span class="quiz-mini">📚 H7 • 25-26. Ders • A1.2</span>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="q-meta">
+      <span id="qLabel">🧩 Soru 1 / 50</span>
+      <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr"> &nbsp;✗ 0</span></span>
+    </div>
   </div>
+
   <div id="qContent"></div>
   <div class="btn-row">
-    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✓ Kontrol Et</button>
+    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✅ Kontrol Et</button>
     <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
-    <button class="btn-finish" onclick="askFinish()">Testi Bitir</button>
   </div>
 </div>
 
@@ -175,40 +208,23 @@ select:focus{border-color:#6c4eb8}
   </div>
   <p class="res-note" id="rNote"></p>
   <div class="warning-box" id="warningBox">
-    <div class="warning-title">⚠ ÖDEVİNİZ TESLİM EDİLMEDİ</div>
+    <div class="warning-title">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
     <div class="warning-sub">Lütfen adınızı seçip aşağıdaki butona tıklayın.</div>
   </div>
   <select id="nameSelect2" onchange="syncName()">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
-  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
-  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör ▼</button>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">📨 ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">🔎 Yanlışları Gör ▼</button>
   <div class="review-list" id="reviewList"></div>
 </div>
 
@@ -452,6 +468,7 @@ function startQuiz(){
   var n=$('nameSelect').value;
   if(!n){alert('Lütfen adınızı seçin.');return;}
   studentName=n;
+  if($('quizStudent'))$('quizStudent').textContent='👤 '+studentName;
   initState();
   $('introCard').classList.add('hidden');
   $('quizCard').classList.remove('hidden');
@@ -464,7 +481,7 @@ function syncName(){studentName=$('nameSelect2').value;}
 function renderQ(){
   var i=cur;
   $('progFill').style.width=(i/50*100)+'%';
-  $('qLabel').textContent='Soru '+(i+1)+' / 50';
+  $('qLabel').textContent='🧩 Soru '+(i+1)+' / 50';
   $('cntOk').textContent='\u2713 '+okCount;
   $('cntErr').textContent=' \u00a0\u2717 '+errCount;
   $('btnCheck').style.display='flex';
