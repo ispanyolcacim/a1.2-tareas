@@ -6,9 +6,10 @@
 <title>H7 – 27-28.Ders | A1.2</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:14px}
-.wrap{max-width:720px;margin:0 auto}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:28px 14px;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:760px;width:100%;margin:0 auto}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(108,78,184,.14);padding:26px;margin-bottom:14px}
+#quizCard,#resultCard{align-self:flex-start;width:100%}
 .hidden{display:none!important}
 
 /* INTRO */
@@ -111,6 +112,22 @@ select:focus{border-color:#6c4eb8}
 .confirm-btns{display:flex;gap:10px}
 .btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* ENHANCED UI */
+.intro-head{text-align:center;margin-bottom:16px}
+.intro-title{font-size:1.18rem}
+.intro-sub{line-height:1.55}
+.notice-box{background:#fbf8ff;border:2px solid #ded4f5;border-radius:14px;padding:15px 16px;margin:14px 0 16px;text-align:left;line-height:1.7;color:#4d3d73}
+.notice-title{font-weight:900;color:#3d2a7a;font-size:1rem;margin-bottom:4px}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 14px}
+.info-chip{background:#faf8ff;border:1px solid #e5def7;border-radius:11px;padding:10px 12px;font-size:.8rem;color:#555;line-height:1.5}
+.student-top{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.student-top-name{font-weight:800;color:#3d2a7a;font-size:.86rem}
+.finish-top-wrap{display:flex;justify-content:center;margin:10px 0 16px}
+.btn-finish.top{flex:none;min-width:170px;padding:11px 18px;border-radius:10px;box-shadow:0 4px 12px rgba(201,64,64,.16)}
+.btn-submit{box-shadow:0 4px 12px rgba(46,158,107,.12)}
+.btn-review{border:1px solid #d8cef3}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}body{align-items:flex-start;padding-top:18px}.card{padding:20px}.student-top{align-items:flex-start;flex-direction:column}.btn-finish.top{width:100%}}
 @media(max-width:480px){.btn-row{flex-direction:column}}
 </style>
 </head>
@@ -119,63 +136,62 @@ select:focus{border-color:#6c4eb8}
 
 <!-- INTRO -->
 <div id="introCard" class="card">
-  <div class="pill">7. HAFTA ÖDEVİ &bull; A1.2</div>
-  <div class="intro-title">H7 – 27-28. DERS</div>
-  <div class="intro-sub">Pretérito Perfecto (Haber + Participio)</div>
-  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
+  <div class="intro-head">
+    <div class="pill">✨ 7. HAFTA ÖDEVİ &bull; A1.2</div>
+    <div class="intro-title">🇪🇸 H7 – 27-28. DERS</div>
+    <div class="intro-sub">📚 Pretérito Perfecto (Haber + Participio)</div>
+    <div class="intro-teacher">💜 @ispanyolcacim &bull; Profe Hazel</div>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-title">📢 7. HAFTA BİTTİ!</div>
+    <div>Önümüzdeki hafta bu dönemin <strong>son haftası</strong>. 🌟 Lütfen önceki haftalardan kalan eksik ödevlerinizi tamamlayın, genel konu tekrarlarınızı yapın ve anlamadığınız noktaları yeniden gözden geçirin. 📚✨<br><strong>Unutmayın:</strong> Düzenli tekrar + eksiksiz ödev = daha güçlü bir İspanyolca temeli. 💪🇪🇸</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-chip">🧩 <strong>1-50. Sorular</strong><br>Her soru 1 puan</div>
+    <div class="info-chip">🎬 <strong>51-70. Sorular</strong><br>Her soru 2.5 puan</div>
+  </div>
+
   <a class="yt-cover-btn" href="https://www.youtube.com/watch?v=VHTXDkdS0YU&t=12s" target="_blank" rel="noopener">
     <svg width="22" height="16" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.6A3 3 0 0 0 21.4.5C19.5 0 12 0 12 0S4.5 0 2.6.5A3 3 0 0 0 .5 2.6C0 4.5 0 8.5 0 8.5s0 4 .5 5.9A3 3 0 0 0 2.6 16.5C4.5 17 12 17 12 17s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 12.5 24 8.5 24 8.5s0-4-.5-5.9zM9.5 12.1V4.9l6.3 3.6-6.3 3.6z"/></svg>
-    51-70. Sorular İçin Videoyu İzle
+    🎥 51-70. Sorular İçin Videoyu İzle
   </a>
+
   <div class="score-info">
-    <strong>Puanlama:</strong><br>
-    📝 1-50. Sorular &rarr; Her soru <strong>1 puan</strong> (Toplam 50 puan)<br>
-    🎬 51-70. Sorular &rarr; Her soru <strong>2.5 puan</strong> (Toplam 50 puan)<br>
-    🏆 <strong>Toplam: 100 Puan</strong>
+    <strong>🏆 Toplam: 100 Puan</strong><br>📝 İlk bölüm 50 puan + 🎬 video bölümü 50 puan
   </div>
+
   <select id="nameSelect">
-    <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option value="">👤 -- Adınızı Seçin --</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
-  <button class="btn-start" onclick="startQuiz()">Teste Başla →</button>
+  <button class="btn-start" onclick="startQuiz()">🚀 Teste Başla</button>
 </div>
 
 <!-- QUIZ CARD -->
 <div id="quizCard" class="card hidden">
+  <div class="student-top">
+    <div>👤 <span class="student-top-name" id="studentTopName">Öğrenci</span></div>
+    <div style="font-size:.78rem;color:#8c7ab8;font-weight:700">📚 A1.2 &bull; H7 &bull; 27-28. Ders</div>
+  </div>
   <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
   <div class="q-meta">
-    <span id="qLabel">Soru 1 / 70</span>
+    <span id="qLabel">📝 Soru 1 / 70</span>
     <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr">&nbsp;✗ 0</span></span>
   </div>
+  <div class="finish-top-wrap"><button class="btn-finish top" onclick="askFinish()">🏁 Testi Bitir</button></div>
   <div id="qContent"></div>
   <div class="btn-row">
-    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✓ Kontrol Et</button>
+    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✅ Kontrol Et</button>
     <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
-    <button class="btn-finish" onclick="askFinish()">Testi Bitir</button>
   </div>
 </div>
 
@@ -192,35 +208,18 @@ select:focus{border-color:#6c4eb8}
   </div>
   <select id="nameSelect2" onchange="syncName()" style="margin-bottom:12px">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
-  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
-  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör ▼</button>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">📤 ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">🔎 Yanlışları Gör ▼</button>
   <div class="review-list" id="reviewList"></div>
 </div>
 
@@ -286,6 +285,7 @@ function startQuiz(){
   var n=$('nameSelect').value;
   if(!n){alert('Lütfen adınızı seçin.');return;}
   studentName=n;
+  if($('studentTopName')) $('studentTopName').textContent=studentName;
   $('introCard').classList.add('hidden');
   $('quizCard').classList.remove('hidden');
   cur=0;okCount=0;errCount=0;
