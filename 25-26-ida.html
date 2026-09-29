@@ -114,8 +114,8 @@ select:focus{border-color:#6c4eb8}
 .notice-title{font-weight:900;color:#3d2a7a;font-size:.96rem;margin-bottom:5px}
 .notice-strong{font-weight:800;color:#5a3ea0}
 .name-label{display:block;font-size:.78rem;font-weight:800;color:#5b4b84;margin:2px 0 7px}
-.top-actions{display:flex;justify-content:flex-end;margin-bottom:12px}
-.btn-finish-top{width:100%;padding:11px 14px;background:#c94040;color:#fff;border:none;border-radius:10px;font-size:.88rem;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(201,64,64,.14)}
+.top-actions{display:flex;justify-content:center;margin:14px 0 16px}
+.btn-finish-top{width:min(58%,320px);padding:11px 14px;background:#c94040;color:#fff;border:none;border-radius:10px;font-size:.88rem;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(201,64,64,.14)}
 .btn-finish-top:hover{background:#a83030}
 .quiz-head{background:#faf8ff;border:1px solid #e8e0f8;border-radius:12px;padding:12px 12px 10px;margin-bottom:14px}
 .quiz-headline{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap}
@@ -125,7 +125,7 @@ select:focus{border-color:#6c4eb8}
 .btn-check:hover:not(:disabled),.btn-next:hover,.btn-start:hover,.btn-submit:hover:not(:disabled),.btn-review:hover,.btn-finish-top:hover{transform:translateY(-1px)}
 @media(max-width:560px){.info-grid{grid-template-columns:1fr}.hero-icon{width:42px;height:42px}.card{padding:18px}}
 
-@media(max-width:480px){.btn-row{flex-direction:column}}
+@media(max-width:480px){.btn-row{flex-direction:column}.btn-finish-top{width:78%}}
 </style>
 </head>
 <body>
@@ -172,10 +172,6 @@ select:focus{border-color:#6c4eb8}
 
 <!-- QUIZ CARD -->
 <div id="quizCard" class="card hidden">
-  <div class="top-actions">
-    <button class="btn-finish-top" onclick="askFinish()">🏁 Testi Bitir</button>
-  </div>
-
   <div class="quiz-head">
     <div class="quiz-headline">
       <span class="quiz-student" id="quizStudent">👤 Öğrenci</span>
@@ -188,6 +184,10 @@ select:focus{border-color:#6c4eb8}
       <span id="qLabel">🧩 Soru 1 / 50</span>
       <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr"> &nbsp;✗ 0</span></span>
     </div>
+  </div>
+
+  <div class="top-actions">
+    <button class="btn-finish-top" onclick="askFinish()">🏁 Testi Bitir</button>
   </div>
 
   <div id="qContent"></div>
