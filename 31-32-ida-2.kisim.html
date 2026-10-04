@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>H8 – 29-30.Ders | A1.2</title>
+<title>H8 – 31-32.Ders (2. KISIM) | A1.2</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:14px}
-.wrap{max-width:720px;margin:0 auto}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(108,78,184,.12);padding:22px;margin-bottom:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:28px 14px;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:760px;width:100%;margin:0 auto}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(108,78,184,.14);padding:26px;margin-bottom:14px}
 .hidden{display:none!important}
 .pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:10px}
 .intro-title{font-size:1.05rem;font-weight:800;color:#3d2a7a;margin-bottom:4px}
@@ -92,6 +92,24 @@ select:focus{border-color:#6c4eb8}
 .btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit}
 .btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit}
 @media(max-width:480px){.btn-row{flex-direction:column}}
+
+/* ENHANCED H8 UI */
+#quizCard,#resultCard{align-self:flex-start;width:100%}
+.intro-head{text-align:center;margin-bottom:16px}
+.intro-title{font-size:1.18rem}
+.intro-sub{line-height:1.55}
+.notice-box{background:#fbf8ff;border:2px solid #ded4f5;border-radius:14px;padding:15px 16px;margin:14px 0 16px;text-align:left;line-height:1.7;color:#4d3d73}
+.notice-title{font-weight:900;color:#3d2a7a;font-size:1rem;margin-bottom:4px}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 14px}
+.info-chip{background:#faf8ff;border:1px solid #e5def7;border-radius:11px;padding:10px 12px;font-size:.8rem;color:#555;line-height:1.5}
+.student-top{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.student-top-name{font-weight:800;color:#3d2a7a;font-size:.86rem}
+.finish-top-wrap{display:flex;justify-content:center;margin:10px 0 16px}
+.btn-finish.top{flex:none;min-width:170px;padding:11px 18px;border-radius:10px;box-shadow:0 4px 12px rgba(201,64,64,.16)}
+.btn-submit{box-shadow:0 4px 12px rgba(46,158,107,.12)}
+.btn-review{border:1px solid #d8cef3}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}body{align-items:flex-start;padding-top:18px}.card{padding:20px}.student-top{align-items:flex-start;flex-direction:column}.btn-finish.top{width:100%}}
+
 </style>
 </head>
 <body>
@@ -99,67 +117,62 @@ select:focus{border-color:#6c4eb8}
 
 <!-- INTRO -->
 <div id="introCard" class="card">
-  <div class="pill">8. HAFTA ÖDEVİ &bull; A1.2</div>
-  <div class="intro-title">H8 – 29-30. DERS</div>
-  <div class="intro-sub">Gerundio &bull; Participio &bull; Estar+Gerundio / Haber+Participio &bull; Okuma Anlama</div>
-  <div class="intro-teacher">@ispanyolcacim &bull; Profe Hazel</div>
-  <div style="background:#f0edf8;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:#555;line-height:1.8">
-    <strong style="color:#6c4eb8">📋 Bölümler:</strong><br>
-    1-20 → Gerundio / Participio formu (1 puan)<br>
-    21-60 → Estar+Gerundio / Haber+Participio çeviri (1 puan)<br>
-    61-100 → Okuma Anlama çoktan seçmeli (1 puan)<br>
-    <strong style="color:#6c4eb8">Toplam: 100 Puan</strong>
+  <div class="intro-head">
+    <div class="pill">✨ 8. HAFTA ÖDEVİ &bull; A1.2</div>
+    <div class="intro-title">🇪🇸 H8 – 31-32. DERS (2. KISIM)</div>
+    <div class="intro-sub">📚 Gerundio &bull; Participio &bull; Estar + Gerundio / Haber + Participio &bull; Okuma Anlama</div>
+    <div class="intro-teacher">💜 @ispanyolcacim &bull; Profe Hazel</div>
   </div>
+
+  <div class="notice-box">
+    <div class="notice-title">📢 8. HAFTADAYIZ — SON HAFTA! 🎓✨</div>
+    <div>Bu dönemimizin <strong>son haftasındayız</strong>. 🌟 Lütfen önceki haftalardan kalan eksik ödevlerinizi tamamlayın, genel konu tekrarlarınızı yapın ve anlamadığınız noktaları yeniden gözden geçirin. 📚✨<br><strong>Unutmayın:</strong> Düzenli tekrar + eksiksiz ödev = daha güçlü bir İspanyolca temeli. 💪🇪🇸 Bu son haftayı, öğrendiklerimizi sağlamlaştırarak tamamlayalım. 💜</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-chip">🧩 <strong>1-20. Sorular</strong><br>Gerundio / Participio formu</div>
+    <div class="info-chip">✍️ <strong>21-60. Sorular</strong><br>Estar + Gerundio / Haber + Participio</div>
+    <div class="info-chip">📖 <strong>61-100. Sorular</strong><br>Okuma Anlama</div>
+    <div class="info-chip">🏆 <strong>Toplam</strong><br>100 Soru • 100 Puan</div>
+  </div>
+
   <select id="nameSelect">
-    <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option value="">👤 -- Adınızı Seçin --</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
-  <button class="btn-start" onclick="startQuiz()">Teste Başla →</button>
+  <button class="btn-start" onclick="startQuiz()">🚀 Teste Başla</button>
 </div>
 
 <!-- QUIZ -->
 <div id="quizCard" class="card hidden">
+  <div class="student-top">
+    <div>👤 <span class="student-top-name" id="studentTopName">Öğrenci</span></div>
+    <div style="font-size:.78rem;color:#8c7ab8;font-weight:700">📚 A1.2 &bull; H8 &bull; 31-32. Ders (2. KISIM)</div>
+  </div>
   <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
   <div class="q-meta">
     <span id="qLabel">Soru 1 / 100</span>
     <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr"> ✗ 0</span></span>
   </div>
+  <div class="finish-top-wrap"><button class="btn-finish top" onclick="askFinish()">🏁 Testi Bitir</button></div>
   <div id="qContent"></div>
   <div class="btn-row">
-    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✓ Kontrol Et</button>
-    <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki →</button>
-    <button class="btn-finish" onclick="askFinish()">Testi Bitir</button>
+    <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✅ Kontrol Et</button>
+    <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
   </div>
 </div>
 
 <!-- RESULT -->
 <div id="resultCard" class="card hidden">
-  <div style="text-align:center"><div class="pill">8. HAFTA &bull; 29-30. DERS &bull; A1.2</div></div>
-  <div style="text-align:center;font-weight:800;color:#3d2a7a;font-size:.95rem;margin:6px 0">H8 – Gerundio / Participio / Okuma Anlama</div>
+  <div style="text-align:center"><div class="pill">8. HAFTA &bull; 31-32. DERS (2. KISIM) &bull; A1.2</div></div>
+  <div style="text-align:center;font-weight:800;color:#3d2a7a;font-size:.95rem;margin:6px 0">H8 – 31-32. Ders (2. KISIM) • Gerundio / Participio / Okuma Anlama</div>
   <div class="res-score" id="rScore">0/100</div>
   <div class="res-stats" id="rStats"></div>
   <p style="text-align:center;color:#888;font-size:.82rem;margin-bottom:14px" id="rNote"></p>
@@ -169,35 +182,18 @@ select:focus{border-color:#6c4eb8}
   </div>
   <select id="nameSelect2" onchange="syncName()" style="margin-bottom:12px">
     <option value="">-- Adınızı Seçin --</option>
-    <option>Ayse Gurkan</option>
-    <option>Birce Suzen</option>
-    <option>Burakhan Kaydi</option>
-    <option>Ceren Erdogan</option>
-    <option>Doga Degirmenci</option>
-    <option>Ecem Sukas</option>
-    <option>Elif Atac</option>
-    <option>Elif Bozkurt Alvurdu</option>
-    <option>Elif Cetin</option>
-    <option>Elif Ozgur Atli</option>
-    <option>Emel Kanburoglu</option>
-    <option>Gorkem Dursun</option>
-    <option>Gulce Eyibilir</option>
-    <option>Harun Ozmen</option>
-    <option>Mehtap Keklik</option>
-    <option>Meltem Ciftci</option>
-    <option>Meryem Ozbek</option>
-    <option>Murat Sahin</option>
-    <option>Seher Ercin</option>
-    <option>Serra Sancakli</option>
-    <option>Simal Gurkan</option>
-    <option>Yasemin Kurtulus Tunc</option>
-    <option>Zeynep Geylan</option>
-    <option>Zeynep Ozay</option>
-    <option>Zeynep Oztaskin</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
   </select>
   <div class="submit-msg" id="submitMsg"></div>
-  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">ÖDEVİNİZİ TESLİM EDİN</button>
-  <button class="btn-review" onclick="toggleReview()">Yanlışları Gör ▼</button>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">📤 ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">🔎 Yanlışları Gör ▼</button>
   <div class="review-list" id="reviewList"></div>
 </div>
 
@@ -219,7 +215,7 @@ var TEXTS={"61": "Mi primera experiencia en Madrid\nHe viajado a Madrid por prim
 var MC=[{"n": 61, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha visitado el Museo del Prado.", "La persona ha entrado en el Palacio Real.", "La persona no ha probado churros.", "La persona ha viajado a Barcelona."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde açıkça \"He visitado el Museo del Prado con una amiga.\" deniyor. Yani kişi Prado Müzesi'ni ziyaret etmiştir.\nB yanlıştır çünkü metinde Palacio Real'e girmediği söyleniyor.\nC yanlıştır çünkü kişi churros con chocolate denemiştir.\nD yanlıştır çünkü metinde Barcelona değil, Madrid geçmektedir."}, {"n": 62, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has preparado una paella con carne.", "Tú no has escuchado a la profesora.", "Tú has comprado comida en un restaurante.", "Tú has participado en una clase de cocina española."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Has participado en una clase de cocina española.\" deniyor.\nA yanlıştır çünkü kişi paella değil, tortilla de patatas hazırlamıştır. Ayrıca tarifte et kullanmadığı belirtilmiştir.\nB yanlıştır çünkü metinde öğretmenin talimatlarını dinlediği söyleniyor.\nC yanlıştır çünkü kişi restorandan yemek satın almamış, yemek yapma dersine katılmıştır."}, {"n": 63, "t": "Según el texto, ¿cuál es correcta?", "o": ["Clara ha llegado tarde a la entrevista.", "Clara ha hablado mucho de salario.", "Clara ha llevado una carpeta con su currículum.", "Clara ha salido de la oficina muy enfadada."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Ha llevado una carpeta con su currículum.\" ifadesi geçiyor.\nA yanlıştır çünkü Clara geç kalmamış, on dakika erken gelmiştir.\nB yanlıştır çünkü maaş hakkında konuşmadığı belirtilmiştir.\nD yanlıştır çünkü metinde ofisten oldukça sakin çıktığı söyleniyor."}, {"n": 64, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos subido en coche hasta la cima.", "Nosotros hemos sacado fotos desde la cima.", "Nosotros no hemos llevado agua.", "Nosotros hemos salido del hotel por la noche."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Hemos sacado fotos desde la cima.\" deniyor.\nA yanlıştır çünkü arabayı kullanmadıkları belirtilmiştir.\nC yanlıştır çünkü su götürdükleri açıkça söyleniyor.\nD yanlıştır çünkü çok erken çıktıkları belirtilmiştir, gece çıktıkları söylenmemiştir."}, {"n": 65, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis adoptado un perro pequeño.", "Vosotros habéis limpiado las jaulas por la mañana.", "Vosotros no habéis visto gatos.", "Vosotros habéis trabajado en una biblioteca."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Habéis limpiado las jaulas por la mañana.\" deniyor.\nA yanlıştır çünkü hiçbir hayvan sahiplenmedikleri belirtilmiştir.\nC yanlıştır çünkü bazı kedilerle oynadıkları söyleniyor.\nD yanlıştır çünkü çalıştıkları yer kütüphane değil, hayvan barınağıdır."}, {"n": 66, "t": "Según el texto, ¿cuál es correcta?", "o": ["Ellos han comprado las entradas por internet.", "Ellos han estado sentados todo el tiempo.", "Ellos han vuelto a casa antes de las ocho.", "Ellos no han cantado durante el concierto."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Han comprado las entradas por internet.\" deniyor.\nB yanlıştır çünkü bütün zaman oturmadıkları belirtilmiştir.\nC yanlıştır çünkü gece yarısından sonra eve dönmüşlerdir.\nD yanlıştır çünkü konser boyunca halkla birlikte şarkı söyledikleri söyleniyor."}, {"n": 67, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha aprendido a esquiar este invierno.", "La persona ha nadado en el mar muchas veces.", "La persona no ha practicado la respiración.", "La persona ha conseguido cruzar la piscina sin parar."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"He conseguido cruzar la piscina sin parar.\" deniyor.\nA yanlıştır çünkü konu kayak değil, yüzme öğrenme deneyimidir.\nB yanlıştır çünkü henüz denizde yüzmediği belirtilmiştir.\nC yanlıştır çünkü nefes çalışmasını birçok kez yaptığı söyleniyor."}, {"n": 68, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has perdido tu cartera durante el viaje.", "Tú no has usado transporte público.", "Tú has conocido a una estudiante italiana.", "Tú has vivido un año entero en esa ciudad."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Has conocido a una estudiante italiana.\" deniyor.\nA yanlıştır çünkü cüzdanını kaybetmediği açıkça belirtilmiştir.\nB yanlıştır çünkü her gün metro kullanmıştır.\nD yanlıştır çünkü şehirde bir yıl değil, bir hafta yaşamıştır."}, {"n": 69, "t": "Según el texto, ¿cuál es correcta?", "o": ["Daniel ha llevado chocolates y café.", "Daniel ha hecho mucho ruido en la habitación.", "Daniel ha contado una historia divertida.", "Daniel no ha podido entrar en la habitación."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Ha contado una historia divertida.\" deniyor.\nA yanlıştır çünkü çikolata ve kahve değil, çiçek ve dergi götürmüştür.\nB yanlıştır çünkü ziyaret sırasında gürültü yapmadığı belirtilmiştir.\nD yanlıştır çünkü odaya dikkatlice girdiği söyleniyor."}, {"n": 70, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos hecho el proyecto sobre deportes.", "Nosotros hemos practicado la exposición varias veces.", "Nosotros hemos terminado todo en un solo día.", "Nosotros no hemos recibido comentarios."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Hemos practicado la exposición varias veces.\" deniyor.\nA yanlıştır çünkü proje spor değil, çevre hakkındadır.\nC yanlıştır çünkü projeyi tek günde bitirmedikleri belirtilmiştir.\nD yanlıştır çünkü öğretmenden yorum aldıkları söylenmiştir."}, {"n": 71, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis aplaudido al final con entusiasmo.", "Vosotros habéis usado el móvil durante la función.", "Vosotros no habéis entendido nada del diálogo.", "Vosotros habéis llegado tarde al teatro."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Habéis aplaudido al final con entusiasmo.\" deniyor.\nB yanlıştır çünkü gösteri sırasında telefon kullanmadıkları belirtilmiştir.\nC yanlıştır çünkü diyalogların birçok bölümünü anladıkları söyleniyor.\nD yanlıştır çünkü tiyatroya sekizden önce gelmişlerdir."}, {"n": 72, "t": "Según el texto, ¿cuál es correcta?", "o": ["Las chicas han copiado cuadros de otras personas.", "Las chicas han pintado retratos de animales.", "Las chicas no han mostrado sus obras.", "Las chicas han recibido opiniones positivas."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Han recibido opiniones positivas.\" deniyor.\nA yanlıştır çünkü başkalarının resimlerini kopyalamadıkları belirtilmiştir.\nB yanlıştır çünkü hayvan portresi değil, dağ ve nehirli manzaralar yapmışlardır.\nC yanlıştır çünkü eserlerini gruba gösterdikleri söyleniyor."}, {"n": 73, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha leído todas sus respuestas de un papel.", "La persona no ha cometido ningún error.", "La persona ha hablado solamente de comida.", "La persona ha recibido una nota bastante buena."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"He recibido una nota bastante buena.\" deniyor.\nA yanlıştır çünkü cevaplarını kâğıttan okumadığı belirtilmiştir.\nB yanlıştır çünkü küçük hatalar yaptığı söylenmiştir.\nC yanlıştır çünkü yemek hakkında değil, günlük rutini ve geçmiş tatilleri hakkında konuşmuştur."}, {"n": 74, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has tomado notas en tu cuaderno.", "Tú has hablado por teléfono dentro de la sala.", "Tú has buscado un libro de cocina.", "Tú no has pedido ayuda a nadie."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Has tomado notas en tu cuaderno.\" deniyor.\nB yanlıştır çünkü salonda telefonla konuşmadığı belirtilmiştir.\nC yanlıştır çünkü yemek kitabı değil, tarih kitabı aramıştır.\nD yanlıştır çünkü bir kütüphaneciden yardım istemiştir."}, {"n": 75, "t": "Según el texto, ¿cuál es correcta?", "o": ["Laura ha vivido sola en un hotel.", "Laura ha ayudado a poner la mesa.", "Laura ha hablado turco todos los días en la casa.", "Laura no ha probado comida casera."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Ha ayudado a poner la mesa.\" deniyor.\nA yanlıştır çünkü Laura otelde yalnız kalmamış, İspanyol bir aileyle yaşamıştır.\nC yanlıştır çünkü evde Türkçe konuşmadığı belirtilmiştir.\nD yanlıştır çünkü ev yemekleri denediği söyleniyor."}, {"n": 76, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos contado la sorpresa a Ana antes de la fiesta.", "Nosotros hemos comprado una tarta de vainilla.", "Nosotros hemos gritado \"¡sorpresa!\" todos juntos.", "Nosotros no hemos preparado música."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Hemos gritado '¡sorpresa!' todos juntos.\" deniyor.\nA yanlıştır çünkü sürprizi Ana'ya söylemedikleri belirtilmiştir.\nB yanlıştır çünkü pasta çikolatalıdır.\nD yanlıştır çünkü şarkı listesi hazırladıkları söyleniyor."}, {"n": 77, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis usado filtros exagerados.", "Vosotros no habéis recibido consejos.", "Vosotros habéis preparado una pequeña exposición.", "Vosotros habéis estudiado música clásica."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Habéis preparado una pequeña exposición.\" deniyor.\nA yanlıştır çünkü abartılı filtreler kullanmadıkları belirtilmiştir.\nB yanlıştır çünkü öğretmenden tavsiye aldıkları söylenmiştir.\nD yanlıştır çünkü konu müzik değil, fotoğrafçılıktır."}, {"n": 78, "t": "Según el texto, ¿cuál es correcta?", "o": ["Los estudiantes han respetado los turnos de palabra.", "Los estudiantes han gritado durante la discusión.", "Los estudiantes han debatido sobre deportes.", "Los estudiantes no han preparado argumentos."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Han respetado los turnos de palabra.\" deniyor.\nB yanlıştır çünkü tartışma sırasında bağırmadıkları belirtilmiştir.\nC yanlıştır çünkü tartışma konusu teknoloji olmuştur.\nD yanlıştır çünkü lehte ve aleyhte argümanlar hazırlamışlardır."}, {"n": 79, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha visto la televisión todo el tiempo.", "La persona no ha jugado con el niño.", "La persona ha cuidado a su abuelo.", "La persona ha preparado una merienda con fruta y leche."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"He preparado su merienda con fruta y leche.\" deniyor.\nA yanlıştır çünkü bütün zaman televizyon izlemediği belirtilmiştir.\nB yanlıştır çünkü renkli bloklarla oynadığı söyleniyor.\nC yanlıştır çünkü büyükbabasına değil, küçük kuzenine bakmıştır."}, {"n": 80, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has vendido zapatos.", "Tú has aprendido a usar la caja.", "Tú has terminado el turno a las diez.", "Tú no has ayudado a ningún cliente."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Has aprendido a usar la caja.\" deniyor.\nA yanlıştır çünkü ayakkabı satmadığı belirtilmiştir.\nC yanlıştır çünkü vardiyayı altıda bitirmiştir.\nD yanlıştır çünkü birkaç müşteriye yardım ettiği söyleniyor."}, {"n": 81, "t": "Según el texto, ¿cuál es correcta?", "o": ["Marcos ha bajado en la parada equivocada.", "Marcos ha llegado al centro sin problemas.", "Marcos no ha mirado ninguna ruta.", "Marcos ha usado un taxi por primera vez."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Ha llegado al centro sin problemas.\" deniyor.\nA yanlıştır çünkü yanlış durakta inmediği belirtilmiştir.\nC yanlıştır çünkü rotaya uygulamadan bakmıştır.\nD yanlıştır çünkü taksi değil, otobüs kullanmıştır."}, {"n": 82, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros no hemos escrito ningún guion.", "Nosotros hemos usado un fondo muy desordenado.", "Nosotros hemos añadido subtítulos al final.", "Nosotros hemos grabado un video de cocina."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Hemos añadido subtítulos al final.\" deniyor.\nA yanlıştır çünkü kısa bir senaryo yazdıkları belirtilmiştir.\nB yanlıştır çünkü sade bir arka plan seçmişlerdir.\nD yanlıştır çünkü video İspanyolca dersi içindir, yemek videosu olduğu söylenmemiştir."}, {"n": 83, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis visitado un castillo por la mañana.", "Vosotros habéis entrado en el museo arqueológico.", "Vosotros no habéis escuchado a ninguna guía.", "Vosotros habéis vuelto al colegio por la noche."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Habéis visitado un castillo por la mañana.\" deniyor.\nB yanlıştır çünkü arkeoloji müzesine girmedikleri belirtilmiştir.\nC yanlıştır çünkü yerel bir rehberi dinlemişlerdir.\nD yanlıştır çünkü okula öğleden sonra dönmüşlerdir."}, {"n": 84, "t": "Según el texto, ¿cuál es correcta?", "o": ["Los niños han pisado las plantas nuevas.", "Los niños no han regado los árboles.", "Los niños han plantado flores dentro del aula.", "Los niños han puesto nombres a algunos árboles."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Han puesto nombres a algunos árboles.\" deniyor.\nA yanlıştır çünkü yeni bitkilere basmadıkları belirtilmiştir.\nB yanlıştır çünkü her ağacı sulamışlardır.\nC yanlıştır çünkü sınıfın içinde çiçek değil, okul bahçesinde ağaç dikmişlerdir."}, {"n": 85, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha usado una aplicación para aprender alemán.", "La persona ha saltado las actividades de pronunciación.", "La persona no ha revisado sus errores.", "La persona ha mantenido una racha de veinte días."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"He mantenido una racha de veinte días.\" deniyor.\nA yanlıştır çünkü uygulamayı Almanca değil, İspanyolca öğrenmek için kullanmıştır.\nB yanlıştır çünkü telaffuz aktivitelerini atlamadığı belirtilmiştir.\nC yanlıştır çünkü hatalarını gün sonunda gözden geçirmiştir."}, {"n": 86, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has olvidado el pasaporte.", "Tú has revisado la lista dos veces.", "Tú has preparado ropa para un mes.", "Tú no has cerrado la maleta."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Has revisado la lista dos veces.\" deniyor.\nA yanlıştır çünkü pasaportunu unutmadığı belirtilmiştir.\nC yanlıştır çünkü bir aylık değil, üç günlük kıyafet seçmiştir.\nD yanlıştır çünkü zor da olsa valizi kapatmıştır."}, {"n": 87, "t": "Según el texto, ¿cuál es correcta?", "o": ["Elena ha salido antes de terminar la charla.", "Elena no ha tomado notas.", "Elena ha hecho una pregunta al final.", "Elena ha asistido a una conferencia sobre medicina."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Ha hecho una pregunta al final.\" deniyor.\nA yanlıştır çünkü konuşma bitmeden çıkmadığı belirtilmiştir.\nB yanlıştır çünkü tabletine not almıştır.\nD yanlıştır çünkü konferansın konusu tıp değil, eğitimdir."}, {"n": 88, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos comprado pan y leche para el vecino.", "Nosotros hemos aceptado dinero por la ayuda.", "Nosotros no hemos hablado con el vecino.", "Nosotros hemos roto una lámpara."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Hemos comprado pan y leche para él.\" deniyor.\nB yanlıştır çünkü yardım karşılığında para kabul etmedikleri belirtilmiştir.\nC yanlıştır çünkü komşuyla bir süre konuştukları söyleniyor.\nD yanlıştır çünkü lamba kırmamışlar, küçük bir lambayı tamir etmişlerdir."}, {"n": 89, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis recibido una medalla de participación.", "Vosotros habéis ganado el primer premio.", "Vosotros no habéis entrenado antes.", "Vosotros habéis participado en una competición de ajedrez."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Habéis recibido una medalla de participación.\" deniyor.\nB yanlıştır çünkü birincilik ödülünü kazanmadıkları belirtilmiştir.\nC yanlıştır çünkü birkaç hafta antrenman yapmışlardır.\nD yanlıştır çünkü yarışma satranç değil, atletizmdir."}, {"n": 90, "t": "Según el texto, ¿cuál es correcta?", "o": ["Las amigas han usado internet durante todo el viaje.", "Las amigas han dormido en un hotel moderno.", "Las amigas han visto muchas estrellas por la noche.", "Las amigas han vuelto a la ciudad el lunes."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Han visto muchas estrellas por la noche.\" deniyor.\nA yanlıştır çünkü iki gün boyunca internet kullanmadıkları belirtilmiştir.\nB yanlıştır çünkü modern otelde değil, taş bir evde kalmışlardır.\nD yanlıştır çünkü pazar günü şehre dönmüşlerdir."}, {"n": 91, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona ha comprado muchos recuerdos en la tienda.", "La persona no ha hecho preguntas al guía.", "La persona ha visitado un museo de arte moderno.", "La persona ha visto un experimento con electricidad."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"He visto un experimento con electricidad.\" deniyor.\nA yanlıştır çünkü müze mağazasından hiçbir şey almadığı belirtilmiştir.\nB yanlıştır çünkü rehbere sorular sormuştur.\nC yanlıştır çünkü müze modern sanat müzesi değil, bilim müzesidir."}, {"n": 92, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has quemado la comida.", "Tú has servido el plato a tu familia.", "Tú no has seguido ningún paso.", "Tú has comprado comida preparada."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Has servido el plato a tu familia.\" deniyor.\nA yanlıştır çünkü yemeği yakmadığı belirtilmiştir.\nC yanlıştır çünkü bir videodaki adımları takip etmiştir.\nD yanlıştır çünkü hazır yemek almamış, taze sebzelerle tarif hazırlamıştır."}, {"n": 93, "t": "Según el texto, ¿cuál es correcta?", "o": ["Pablo ha dejado al perro solo en la calle.", "Pablo ha llamado a la dueña inmediatamente.", "Pablo no ha visto ningún collar.", "Pablo ha llevado el perro a su casa para siempre."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Ha llamado a la dueña inmediatamente.\" deniyor.\nA yanlıştır çünkü köpeği yalnız bırakmadığı belirtilmiştir.\nC yanlıştır çünkü köpeğin tasma taktığını görmüştür.\nD yanlıştır çünkü köpeği ailesine teslim etmiştir, sonsuza kadar evine almamıştır."}, {"n": 94, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos dejado basura en la arena.", "Nosotros no hemos hablado con nadie.", "Nosotros hemos limpiado una montaña.", "Nosotros hemos recogido botellas de plástico."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Hemos recogido botellas de plástico.\" deniyor.\nA yanlıştır çünkü kumda çöp bırakmadıkları belirtilmiştir.\nB yanlıştır çünkü diğer gönüllülerle konuştukları söyleniyor.\nC yanlıştır çünkü dağ değil, plaj temizliği yapmışlardır."}, {"n": 95, "t": "Según el texto, ¿cuál es correcta?", "o": ["Vosotros habéis bailado solos todo el tiempo.", "Vosotros no habéis recibido ayuda.", "Vosotros habéis decidido volver la semana siguiente.", "Vosotros habéis asistido a una clase de pintura."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Habéis decidido volver la semana siguiente.\" deniyor.\nA yanlıştır çünkü bütün zaman yalnız dans etmedikleri belirtilmiştir.\nB yanlıştır çünkü eğitmenden yardım almışlardır.\nD yanlıştır çünkü ders resim değil, salsa dansıdır."}, {"n": 96, "t": "Según el texto, ¿cuál es correcta?", "o": ["Los turistas han tomado un barco desde el puerto.", "Los turistas han alquilado un coche.", "Los turistas no han probado pescado.", "Los turistas han dormido en un camping de montaña."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"Han tomado un barco desde el puerto.\" deniyor.\nB yanlıştır çünkü araba kiralamadıkları belirtilmiştir.\nC yanlıştır çünkü taze balık denemişlerdir.\nD yanlıştır çünkü dağ kampında değil, küçük bir adadaki pansiyonda kalmışlardır."}, {"n": 97, "t": "Según el texto, ¿cuál es correcta?", "o": ["La persona no ha cambiado al turco durante la conversación.", "La persona ha hablado solamente en turco.", "La persona no ha cometido ningún error.", "La persona ha terminado la conversación llorando."], "a": 0, "exp": "Doğru cevap A seçeneğidir çünkü metinde \"No he cambiado al turco durante la conversación.\" deniyor.\nB yanlıştır çünkü kişi yalnızca Türkçe konuşmamış, İspanyolca konuşmuştur.\nC yanlıştır çünkü hatalar yaptığı ama konuşmaya devam ettiği belirtilmiştir.\nD yanlıştır çünkü sonunda gurur hissettiği söyleniyor."}, {"n": 98, "t": "Según el texto, ¿cuál es correcta?", "o": ["Tú has tenido fiebre alta.", "Tú has comprado la medicina en la farmacia.", "Tú no has explicado tus síntomas.", "Tú has ido al médico por un dolor de espalda."], "a": 1, "exp": "Doğru cevap B seçeneğidir çünkü metinde \"Has comprado la medicina en la farmacia.\" deniyor.\nA yanlıştır çünkü yüksek ateşi olmadığı belirtilmiştir.\nC yanlıştır çünkü belirtilerini sakin şekilde açıklamıştır.\nD yanlıştır çünkü doktora sırt ağrısı için değil, boğaz ağrısı için gitmiştir."}, {"n": 99, "t": "Según el texto, ¿cuál es correcta?", "o": ["Sofía ha olvidado una parte del cuento.", "Sofía ha ganado el primer lugar.", "Sofía no ha recibido aplausos.", "Sofía ha felicitado a la ganadora."], "a": 3, "exp": "Doğru cevap D seçeneğidir çünkü metinde \"Ha felicitado a la ganadora.\" deniyor.\nA yanlıştır çünkü hikâyenin hiçbir bölümünü unutmadığı belirtilmiştir.\nB yanlıştır çünkü birinci değil, ikinci olmuştur.\nC yanlıştır çünkü bitirdiğinde alkış aldığı söylenmiştir."}, {"n": 100, "t": "Según el texto, ¿cuál es correcta?", "o": ["Nosotros hemos obligado a todos a participar.", "Nosotros hemos terminado el primer libro en una semana.", "Nosotros hemos diseñado un cartel para anunciar el club.", "Nosotros no hemos compartido opiniones en grupo."], "a": 2, "exp": "Doğru cevap C seçeneğidir çünkü metinde \"Hemos diseñado un cartel para anunciar el club.\" deniyor.\nA yanlıştır çünkü kimseyi katılmaya zorlamadıkları belirtilmiştir.\nB yanlıştır çünkü ilk kitabı bir haftada değil, bir ayda bitirmişlerdir.\nD yanlıştır çünkü grup içinde fikir paylaştıkları açıkça söylenmiştir."}];
 
 var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
-var ODEV='H8 \u2013 29-30.Ders';
+var ODEV='H8 – 31-32.Ders (2. KISIM)';
 var studentName='';
 
 function norm(s){
