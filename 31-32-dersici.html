@@ -67,23 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 <div id="intro" class="card">
   <div class="head">
     <div class="pill">🎓 8. HAFTA • A1.2 • DERS İÇİ ETKİNLİK</div>
-    <div class="title">🇪🇸 31-32. Ders • 80 Dakikalık Dönem Sonu Tekrarı</div>
-    <div class="sub">80 soru • A1.2 konuları sondan başa • A1.1 temelleriyle karışık tekrar</div>
-    <div class="teacher">💜 @ispanyolcacim • Profe Hazel</div>
-  </div>
-
-  <div class="notice">
-    <strong>📢 8. HAFTA — SON DERSLERİMİZ! ✨</strong><br>
-    Bu etkinlikte konuları <strong>sondan başa doğru</strong> tekrar edeceğiz:
-    önce Pretérito Perfecto ve participio, sonra Ir a + infinitivo, Estar + Gerundio ve en sonunda Presente ile A1.1 temellerine döneceğiz.
-    Her soruda <strong>💡 Pista</strong> butonuna basarak minicik bir İspanyolca hatırlatma açabilirsiniz.
-  </div>
-
-  <div class="grid">
-    <div class="chip">⏱️ <strong>80 dakika</strong><br>Yaklaşık 1 soru = 1 dakika</div>
-    <div class="chip">🧩 <strong>80 soru</strong><br>Tek tek ilerleyen sınıf etkinliği</div>
-    <div class="chip">⚖️ <strong>A-B-C-D dengeli</strong><br>Her harf tam 20 kez doğru cevap</div>
-    <div class="chip">💡 <strong>Pista</strong><br>Cevabı vermeyen mini İspanyolca ipucu</div>
+            <div class="teacher">💜 @ispanyolcacim • Profe Hazel</div>
   </div>
 
   <button class="btn-main" onclick="start()">🚀 Etkinliği Başlat</button>
@@ -94,6 +78,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     <div><strong>🇪🇸 A1.2 • 31-32. Ders</strong><br><span style="font-size:.76rem;color:#888">Dönem Sonu • 80 Dakika</span></div>
     <div class="score" id="scoreTop">✓ 0 · ✗ 0</div>
   </div>
+  
+  <div style="display:flex;justify-content:center;margin:8px 0 14px">
+    <button class="finish" onclick="askFinish()" style="min-width:180px">🏁 Bitir</button>
+  </div>
   <div class="progress"><div id="bar" class="progress-fill" style="width:0%"></div></div>
   <div class="meta">
     <span id="qnum">Soru 1 / 80</span>
@@ -101,8 +89,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   </div>
   <div id="content"></div>
   <div class="nav">
-    <button id="nextBtn" class="next" onclick="nextQ()">Sonraki Soru →</button>
-    <button class="finish" onclick="askFinish()">🏁 Bitir</button>
+    <button id="prevBtn" class="next" onclick="prevQ()" style="display:none">← Önceki Soru</button>
+    <button id="nextBtn" class="next" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
   </div>
 </div>
 
@@ -160,6 +148,8 @@ function render(){
   });
   h+='</div><div class="exp '+(done?'show':'')+'">'+escapeHtml(q.exp)+'</div>';
   document.getElementById('content').innerHTML=h;
+  const pb=document.getElementById('prevBtn');
+  pb.style.display=cur>0?'block':'none';
   const nb=document.getElementById('nextBtn');
   nb.style.display=done?'block':'none';
   nb.textContent=cur===79?'🏁 Sonucu Gör':'Sonraki Soru →';
@@ -172,6 +162,13 @@ function choose(i){
   answers[cur]=i;
   if(i===Q[cur].a)ok++;else bad++;
   render();
+}
+function prevQ(){
+  if(cur>0){
+    cur--;
+    render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
 }
 function nextQ(){
   if(cur<79){cur++;render();window.scrollTo({top:0,behavior:'smooth'});}
