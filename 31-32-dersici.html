@@ -43,6 +43,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .exp.show{display:block}
 .nav{display:flex;gap:8px;margin-top:14px}
 .next{flex:1;border:none;border-radius:10px;padding:12px;background:#e8e0f8;color:#6c4eb8;font-weight:800;cursor:pointer;display:none}
+.next:disabled{opacity:.45;cursor:not-allowed}
 .finish{border:none;border-radius:10px;padding:12px 15px;background:#c94040;color:#fff;font-weight:800;cursor:pointer}
 .result-score{text-align:center;font-size:3rem;font-weight:900;color:#6c4eb8;margin:10px 0}
 .stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
@@ -151,7 +152,8 @@ function render(){
   const pb=document.getElementById('prevBtn');
   pb.style.display=cur>0?'block':'none';
   const nb=document.getElementById('nextBtn');
-  nb.style.display=done?'block':'none';
+  nb.style.display='block';
+  nb.disabled=(cur===79);
   nb.textContent=cur===79?'🏁 Sonucu Gör':'Sonraki Soru →';
 }
 function toggleHint(){
