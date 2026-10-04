@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A1.2 • 31-32. Ders • 80 Dakikalık Dönem Sonu Etkinliği</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:24px 14px;color:#333}
+.wrap{max-width:820px;margin:0 auto}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(108,78,184,.14);padding:26px;margin-bottom:14px}
+.hidden{display:none!important}
+.head{text-align:center;margin-bottom:15px}
+.pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.72rem;font-weight:800;padding:5px 13px;border-radius:20px;margin-bottom:10px}
+.title{font-size:1.28rem;font-weight:900;color:#3d2a7a;margin-bottom:5px}
+.sub{font-size:.86rem;color:#777;line-height:1.55}
+.teacher{font-size:.8rem;color:#9b7de0;font-weight:800;margin-top:5px}
+.notice{background:#fbf8ff;border:2px solid #ded4f5;border-radius:14px;padding:14px 16px;line-height:1.7;color:#4d3d73;margin:14px 0}
+.notice strong{color:#3d2a7a}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.chip{background:#faf8ff;border:1px solid #e5def7;border-radius:11px;padding:10px 12px;font-size:.8rem;line-height:1.5;color:#555}
+.btn-main{width:100%;border:none;border-radius:11px;padding:14px;background:#6c4eb8;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;margin-top:8px}
+.btn-main:hover{background:#5a3ea0}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.topbar strong{color:#3d2a7a}
+.progress{height:8px;background:#e8e0f8;border-radius:10px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#6c4eb8,#9b7de0);transition:width .25s}
+.meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.8rem;color:#777;margin-bottom:13px}
+.score{font-weight:800;color:#3d2a7a}
+.sec{display:inline-block;background:#eee9fb;color:#5b3fa4;border-radius:7px;padding:5px 10px;font-size:.72rem;font-weight:900;margin-bottom:11px}
+.q{font-size:1rem;font-weight:800;line-height:1.65;color:#303030;margin-bottom:14px;white-space:pre-wrap}
+.hint-btn{border:1px solid #d8cef3;background:#f8f5ff;color:#6c4eb8;border-radius:9px;padding:8px 12px;font-size:.79rem;font-weight:800;cursor:pointer;margin-bottom:10px}
+.hint{display:none;background:#fffaf0;border-left:4px solid #e0a72b;border-radius:0 9px 9px 0;padding:9px 12px;font-size:.79rem;color:#735719;line-height:1.55;margin-bottom:12px}
+.hint.show{display:block}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{width:100%;display:flex;align-items:flex-start;gap:9px;text-align:left;padding:12px 13px;border:2px solid #e0d8f8;border-radius:10px;background:#fff;cursor:pointer;font-family:inherit;font-size:.9rem;line-height:1.5;color:#444}
+.opt:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.letter{font-weight:900;color:#6c4eb8;min-width:22px}
+.opt.correct{background:#eafaf2;border-color:#2e9e6b;color:#1a5c3a}
+.opt.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt:disabled{cursor:default}
+.exp{display:none;background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 10px 10px 0;padding:13px 15px;margin-top:12px;font-size:.83rem;line-height:1.75;white-space:pre-wrap}
+.exp.show{display:block}
+.nav{display:flex;gap:8px;margin-top:14px}
+.next{flex:1;border:none;border-radius:10px;padding:12px;background:#e8e0f8;color:#6c4eb8;font-weight:800;cursor:pointer;display:none}
+.finish{border:none;border-radius:10px;padding:12px 15px;background:#c94040;color:#fff;font-weight:800;cursor:pointer}
+.result-score{text-align:center;font-size:3rem;font-weight:900;color:#6c4eb8;margin:10px 0}
+.stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.stat{padding:6px 12px;border-radius:8px;font-size:.82rem;font-weight:800}
+.review{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.rev{border:1px solid #e5def7;border-radius:10px;padding:11px;font-size:.8rem;line-height:1.55}
+.rev strong{color:#3d2a7a}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:99}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:14px;padding:20px;max-width:390px;width:100%}
+.modal p{font-size:.88rem;line-height:1.6;margin-bottom:15px}
+.modal-row{display:flex;gap:8px}
+.modal-row button{flex:1;padding:10px;border:none;border-radius:9px;font-weight:800;cursor:pointer}
+.cancel{background:#e8e0f8;color:#6c4eb8}
+.ok{background:#c94040;color:#fff}
+@media(max-width:600px){.card{padding:20px}.grid{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="intro" class="card">
+  <div class="head">
+    <div class="pill">🎓 8. HAFTA • A1.2 • DERS İÇİ ETKİNLİK</div>
+    <div class="title">🇪🇸 31-32. Ders • 80 Dakikalık Dönem Sonu Tekrarı</div>
+    <div class="sub">80 soru • A1.2 konuları sondan başa • A1.1 temelleriyle karışık tekrar</div>
+    <div class="teacher">💜 @ispanyolcacim • Profe Hazel</div>
+  </div>
+
+  <div class="notice">
+    <strong>📢 8. HAFTA — SON DERSLERİMİZ! ✨</strong><br>
+    Bu etkinlikte konuları <strong>sondan başa doğru</strong> tekrar edeceğiz:
+    önce Pretérito Perfecto ve participio, sonra Ir a + infinitivo, Estar + Gerundio ve en sonunda Presente ile A1.1 temellerine döneceğiz.
+    Her soruda <strong>💡 Pista</strong> butonuna basarak minicik bir İspanyolca hatırlatma açabilirsiniz.
+  </div>
+
+  <div class="grid">
+    <div class="chip">⏱️ <strong>80 dakika</strong><br>Yaklaşık 1 soru = 1 dakika</div>
+    <div class="chip">🧩 <strong>80 soru</strong><br>Tek tek ilerleyen sınıf etkinliği</div>
+    <div class="chip">⚖️ <strong>A-B-C-D dengeli</strong><br>Her harf tam 20 kez doğru cevap</div>
+    <div class="chip">💡 <strong>Pista</strong><br>Cevabı vermeyen mini İspanyolca ipucu</div>
+  </div>
+
+  <button class="btn-main" onclick="start()">🚀 Etkinliği Başlat</button>
+</div>
+
+<div id="quiz" class="card hidden">
+  <div class="topbar">
+    <div><strong>🇪🇸 A1.2 • 31-32. Ders</strong><br><span style="font-size:.76rem;color:#888">Dönem Sonu • 80 Dakika</span></div>
+    <div class="score" id="scoreTop">✓ 0 · ✗ 0</div>
+  </div>
+  <div class="progress"><div id="bar" class="progress-fill" style="width:0%"></div></div>
+  <div class="meta">
+    <span id="qnum">Soru 1 / 80</span>
+    <span id="direction">Sondan başa tekrar</span>
+  </div>
+  <div id="content"></div>
+  <div class="nav">
+    <button id="nextBtn" class="next" onclick="nextQ()">Sonraki Soru →</button>
+    <button class="finish" onclick="askFinish()">🏁 Bitir</button>
+  </div>
+</div>
+
+<div id="result" class="card hidden">
+  <div class="head">
+    <div class="pill">✅ ETKİNLİK TAMAMLANDI</div>
+    <div class="title">A1.2 • 31-32. Ders Sonucu</div>
+  </div>
+  <div id="finalScore" class="result-score">0/80</div>
+  <div id="finalStats" class="stats"></div>
+  <div id="review" class="review"></div>
+</div>
+
+</div>
+
+<div id="overlay" class="overlay">
+  <div class="modal">
+    <p id="modalText"></p>
+    <div class="modal-row">
+      <button class="cancel" onclick="closeModal()">Devam Et</button>
+      <button class="ok" onclick="finish()">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const Q=[{"n": 1, "sec": "🚪 Participio como adjetivo", "q": "La puerta está _____.", "o": ["abriendo", "abierta", "abrida", "abierto"], "a": 1, "hint": "Pista: «puerta» es femenino singular; el participio usado como adjetivo concuerda.", "exp": "✅ La puerta está abierta. Burada abierto bir sıfat gibi kullanılır ve puerta dişil tekil olduğu için abierta olur."}, {"n": 2, "sec": "🚪 Participio como adjetivo", "q": "Los vasos están _____.", "o": ["rompiendo", "rompidos", "rota", "rotos"], "a": 3, "hint": "Pista: «vasos» es masculino plural.", "exp": "✅ Los vasos están rotos. Participio sıfat olduğunda isimle cinsiyet ve sayı uyumu yapar: roto → rotos."}, {"n": 3, "sec": "🧱 Participio irregular", "q": "¿Cuál es el participio correcto de «hacer»?", "o": ["hacho", "hacido", "haciendo", "hecho"], "a": 3, "hint": "Pista: Es un participio irregular muy frecuente.", "exp": "✅ hacer → hecho. «Hacido» kullanılmaz."}, {"n": 4, "sec": "🧱 Participio irregular", "q": "¿Cuál es el participio correcto de «volver»?", "o": ["vuelto", "vuelvido", "volvido", "volviendo"], "a": 0, "hint": "Pista: No sigue la regla regular -ido.", "exp": "✅ volver → vuelto. Pretérito Perfecto: he vuelto, has vuelto, ha vuelto..."}, {"n": 5, "sec": "🧱 Participio regular", "q": "El participio de «aprender» es...", "o": ["aprendido/a", "aprendiendo", "aprendido", "aprendido"], "a": 2, "hint": "Pista: -ER → -IDO.", "exp": "✅ aprender → aprendido."}, {"n": 6, "sec": "🚪 Participio como adjetivo", "q": "Las ventanas están _____.", "o": ["abiertos", "abiertas", "abierto", "abridas"], "a": 1, "hint": "Pista: «ventanas» = femenino plural.", "exp": "✅ Las ventanas están abiertas. abierto → abierta → abiertas."}, {"n": 7, "sec": "🧱 Participio irregular", "q": "«Escribir» → ...", "o": ["escribto", "escribiendo", "escrito", "escribido"], "a": 2, "hint": "Pista: Participio irregular.", "exp": "✅ escribir → escrito."}, {"n": 8, "sec": "🚪 Participio como adjetivo", "q": "La carta está _____.", "o": ["escribida", "escrito", "escrita", "escribiendo"], "a": 2, "hint": "Pista: «carta» es femenino singular.", "exp": "✅ La carta está escrita. Participio sıfat olarak carta ile uyum yapar."}, {"n": 9, "sec": "🧱 Participio irregular", "q": "«Decir» → ...", "o": ["decido", "dicido", "diciendo", "dicho"], "a": 3, "hint": "Pista: Es irregular y muy corto.", "exp": "✅ decir → dicho."}, {"n": 10, "sec": "🧱 Participio irregular", "q": "«Poner» → ...", "o": ["poniendo", "puesto", "ponido", "ponado"], "a": 1, "hint": "Pista: No es «ponido».", "exp": "✅ poner → puesto."}, {"n": 11, "sec": "🚿 Pretérito Perfecto + reflexivos", "q": "Yo _____ esta mañana. (levantarse)", "o": ["he me levantado", "me he levantado", "me estoy levantando", "me ha levantado"], "a": 1, "hint": "Pista: pronombre reflexivo + haber + participio.", "exp": "✅ Me he levantado. Sıra: me + he + levantado."}, {"n": 12, "sec": "⏳ Pretérito Perfecto", "q": "Nosotros _____ mucho esta semana. (trabajar)", "o": ["hemos trabajado", "han trabajado", "vamos a trabajar", "estamos trabajando"], "a": 0, "hint": "Pista: nosotros → hemos.", "exp": "✅ Hemos trabajado mucho esta semana."}, {"n": 13, "sec": "⏳ Pretérito Perfecto", "q": "Marta _____ una película hoy. (ver)", "o": ["está viendo", "ha visto", "ha veído", "va a ver"], "a": 1, "hint": "Pista: ver → visto.", "exp": "✅ Marta ha visto una película hoy."}, {"n": 14, "sec": "🚿 Pretérito Perfecto + reflexivos", "q": "Vosotros _____ muy tarde hoy. (despertarse)", "o": ["habéis os despertado", "os estáis despertando", "os vais a despertar", "os habéis despertado"], "a": 3, "hint": "Pista: vosotros → os + habéis + participio.", "exp": "✅ Os habéis despertado muy tarde hoy."}, {"n": 15, "sec": "⏳ Pretérito Perfecto", "q": "¿_____ alguna vez paella?", "o": ["Has comiendo", "Vas a comer", "Estás comiendo", "Has comido"], "a": 3, "hint": "Pista: experiencia hasta ahora → haber + participio.", "exp": "✅ ¿Has comido alguna vez paella?"}, {"n": 16, "sec": "⏳ Pretérito Perfecto", "q": "Todavía no _____ mis deberes.", "o": ["voy terminar", "estoy terminado", "he terminado", "he terminando"], "a": 2, "hint": "Pista: todavía no + haber + participio.", "exp": "✅ Todavía no he terminado mis deberes."}, {"n": 17, "sec": "⏳ Pretérito Perfecto", "q": "Mis padres _____ a casa.", "o": ["han volvido", "están vuelto", "han vuelto", "van vuelto"], "a": 2, "hint": "Pista: volver → vuelto.", "exp": "✅ Mis padres han vuelto a casa."}, {"n": 18, "sec": "🚿 Pretérito Perfecto + reflexivos", "q": "Ana _____ antes de salir. (ducharse)", "o": ["se ha duchado", "se está duchado", "ha se duchado", "se ha duchando"], "a": 0, "hint": "Pista: se + ha + participio.", "exp": "✅ Ana se ha duchado antes de salir."}, {"n": 19, "sec": "⏳ Pretérito Perfecto", "q": "Esta semana _____ tres correos. (escribir, yo)", "o": ["he escrito", "he escribido", "estoy escribiendo", "voy a escribir"], "a": 0, "hint": "Pista: escribir → escrito.", "exp": "✅ Esta semana he escrito tres correos."}, {"n": 20, "sec": "⏳ Pretérito Perfecto", "q": "Ellos ya _____ la mesa. (poner)", "o": ["han ponido", "van a puesto", "han puesto", "están poniendo"], "a": 2, "hint": "Pista: poner → puesto.", "exp": "✅ Ellos ya han puesto la mesa."}, {"n": 21, "sec": "📏 Muy vs Mucho", "q": "Estoy _____ cansada hoy.", "o": ["muchos", "mucho", "mucha", "muy"], "a": 3, "hint": "Pista: muy + adjetivo/adverbio.", "exp": "✅ muy cansada. «Cansada» sıfattır; muy kullanılır."}, {"n": 22, "sec": "📏 Muy vs Mucho", "q": "Trabajo _____ durante la semana.", "o": ["mucho", "muy", "muchas", "mucha"], "a": 0, "hint": "Pista: mucho puede modificar un verbo.", "exp": "✅ Trabajo mucho. Burada mucho, trabajar fiilini miktar bakımından niteler."}, {"n": 23, "sec": "🔮 Ir a + infinitivo", "q": "Mañana _____ estudiar español.", "o": ["estoy", "voy", "voy a", "he"], "a": 2, "hint": "Pista: futuro cercano = ir conjugado + a + infinitivo.", "exp": "✅ Mañana voy a estudiar español."}, {"n": 24, "sec": "🚿 Ir a + infinitivo + reflexivos", "q": "Esta noche yo _____ temprano. (acostarse)", "o": ["me voy a acostar", "me voy acostar", "voy a me acostar", "me he acostado"], "a": 0, "hint": "Pista: me voy a acostar = voy a acostarme.", "exp": "✅ Me voy a acostar temprano."}, {"n": 25, "sec": "🔮 Ir a + infinitivo", "q": "Nosotros _____ una película esta noche.", "o": ["vamos a ver", "vamos ver", "hemos visto", "estamos ver"], "a": 0, "hint": "Pista: vamos + a + infinitivo.", "exp": "✅ Vamos a ver una película esta noche."}, {"n": 26, "sec": "🚿 Ir a + infinitivo + reflexivos", "q": "¿Tú _____ mañana temprano? (levantarse)", "o": ["vas te a levantar", "te vas a levantar", "te has levantado", "estás levantarte"], "a": 1, "hint": "Pista: te vas a levantar = vas a levantarte.", "exp": "✅ ¿Te vas a levantar mañana temprano?"}, {"n": 27, "sec": "🔮 Ir a + infinitivo", "q": "Ellos _____ viajar a Madrid el fin de semana.", "o": ["van a", "han", "van", "están"], "a": 0, "hint": "Pista: ellos → van a + infinitivo.", "exp": "✅ Ellos van a viajar a Madrid."}, {"n": 28, "sec": "📏 Muy vs Mucho", "q": "Hay _____ estudiantes en la clase.", "o": ["muy", "mucho", "mucha", "muchos"], "a": 3, "hint": "Pista: mucho/a/os/as + sustantivo.", "exp": "✅ muchos estudiantes. «Estudiantes» çoğul isimdir."}, {"n": 29, "sec": "📏 Muy vs Mucho", "q": "La película es _____ interesante.", "o": ["mucho", "mucha", "muy", "muchos"], "a": 2, "hint": "Pista: muy + adjetivo.", "exp": "✅ muy interesante."}, {"n": 30, "sec": "🔮 Ir a + infinitivo", "q": "¿Qué _____ hacer este fin de semana? (vosotros)", "o": ["habéis", "estáis", "vais", "vais a"], "a": 3, "hint": "Pista: vosotros → vais a + infinitivo.", "exp": "✅ ¿Qué vais a hacer este fin de semana?"}, {"n": 31, "sec": "🎨 Los Adjetivos", "q": "Es mi _____ día de trabajo.", "o": ["primero", "primer", "primero de", "primera"], "a": 1, "hint": "Pista: primero pierde -o delante de un sustantivo masculino singular.", "exp": "✅ mi primer día. «Primero» → «primer» isimden önce."}, {"n": 32, "sec": "🎨 Los Adjetivos", "q": "Es un _____ restaurante.", "o": ["gran", "grando", "grande", "grande de"], "a": 0, "hint": "Pista: grande → gran delante de un sustantivo singular.", "exp": "✅ un gran restaurante."}, {"n": 33, "sec": "🎨 Los Adjetivos", "q": "Tengo un _____ problema.", "o": ["malo", "malo de", "mal", "mala"], "a": 2, "hint": "Pista: malo → mal delante de un sustantivo masculino singular.", "exp": "✅ un mal problema."}, {"n": 34, "sec": "🎨 Los Adjetivos", "q": "Es un _____ libro.", "o": ["bueno", "buen", "bien", "buena"], "a": 1, "hint": "Pista: bueno → buen delante de un sustantivo masculino singular.", "exp": "✅ un buen libro."}, {"n": 35, "sec": "🚿 Estar + Gerundio + reflexivos", "q": "Ahora yo _____. (vestirse)", "o": ["me he vestido", "estoy me vistiendo", "me estoy vistiendo", "me voy a vestir"], "a": 2, "hint": "Pista: me estoy + gerundio. vestir → vistiendo.", "exp": "✅ Me estoy vistiendo. También: Estoy vistiéndome."}, {"n": 36, "sec": "🚿 Estar + Gerundio + reflexivos", "q": "Ana _____. (maquillarse)", "o": ["se está maquillando", "se ha maquillado", "está se maquillando", "va maquillándose"], "a": 0, "hint": "Pista: se + está + gerundio.", "exp": "✅ Ana se está maquillando."}, {"n": 37, "sec": "🚿 Estar + Gerundio + reflexivos", "q": "Nosotros _____. (prepararse)", "o": ["estamos prepararnos", "nos hemos preparado", "vamos preparando", "nos estamos preparando"], "a": 3, "hint": "Pista: nos + estamos + gerundio.", "exp": "✅ Nos estamos preparando."}, {"n": 38, "sec": "🚿 Estar + Gerundio + reflexivos", "q": "Vosotros _____ ahora. (ducharse)", "o": ["vais a duchando", "os estáis duchando", "estáis os duchando", "os habéis duchado"], "a": 1, "hint": "Pista: os + estáis + gerundio.", "exp": "✅ Os estáis duchando."}, {"n": 39, "sec": "🎨 Los Adjetivos", "q": "Vivo en el _____ piso.", "o": ["tres", "tercero", "tercer", "tercera"], "a": 2, "hint": "Pista: tercero → tercer delante de un sustantivo masculino singular.", "exp": "✅ en el tercer piso."}, {"n": 40, "sec": "🚿 Estar + Gerundio + reflexivos", "q": "Ellos _____ para la fiesta. (prepararse)", "o": ["se han preparado", "se están preparando", "se van a preparar", "están se preparando"], "a": 1, "hint": "Pista: se + están + gerundio.", "exp": "✅ Se están preparando para la fiesta."}, {"n": 41, "sec": "⚡ Gerundio irregular", "q": "decir → ...", "o": ["diciendo", "deciendo", "dicendo", "dicho"], "a": 0, "hint": "Pista: e → i.", "exp": "✅ decir → diciendo."}, {"n": 42, "sec": "⚡ Gerundio irregular", "q": "dormir → ...", "o": ["durmiendo", "dormido", "dormiendo", "dormando"], "a": 0, "hint": "Pista: o → u.", "exp": "✅ dormir → durmiendo."}, {"n": 43, "sec": "⚡ Gerundio irregular", "q": "ir → ...", "o": ["iendo", "iendo", "yendo", "ido"], "a": 2, "hint": "Pista: Es totalmente irregular.", "exp": "✅ ir → yendo."}, {"n": 44, "sec": "⚡ Gerundio irregular", "q": "leer → ...", "o": ["leído", "leendo", "leyendo", "leiendo"], "a": 2, "hint": "Pista: vocal + vocal; i cambia a y.", "exp": "✅ leer → leyendo."}, {"n": 45, "sec": "🏃 Estar + Gerundio", "q": "Ahora Marta _____ un libro.", "o": ["va a leer", "lee siempre", "ha leído", "está leyendo"], "a": 3, "hint": "Pista: «ahora» + acción en progreso.", "exp": "✅ Marta está leyendo un libro."}, {"n": 46, "sec": "🏃 Estar + Gerundio", "q": "Nosotros _____ la cena en este momento.", "o": ["hemos preparado", "estamos preparando", "vamos a preparar", "preparamos siempre"], "a": 1, "hint": "Pista: en este momento → estar + gerundio.", "exp": "✅ Estamos preparando la cena."}, {"n": 47, "sec": "⚡ Gerundio irregular", "q": "pedir → ...", "o": ["pidiendo", "pediendo", "pedido", "pedando"], "a": 0, "hint": "Pista: e → i.", "exp": "✅ pedir → pidiendo."}, {"n": 48, "sec": "🏃 Estar + Gerundio", "q": "¿Qué _____ tú ahora?", "o": ["has hecho", "estás haciendo", "vas hacer", "haces ayer"], "a": 1, "hint": "Pista: ahora → estar + gerundio.", "exp": "✅ ¿Qué estás haciendo tú ahora?"}, {"n": 49, "sec": "⚡ Gerundio irregular", "q": "caer → ...", "o": ["caendo", "caído", "cayendo", "caiendo"], "a": 2, "hint": "Pista: i → y.", "exp": "✅ caer → cayendo."}, {"n": 50, "sec": "🏃 Estar + Gerundio", "q": "Los niños _____ en el jardín.", "o": ["juegan mañana", "están jugando", "han jugado", "van a jugar"], "a": 1, "hint": "Pista: acción que está ocurriendo ahora.", "exp": "✅ Los niños están jugando en el jardín."}, {"n": 51, "sec": "⚖️ Comparativas", "q": "Madrid es _____ grande que Toledo.", "o": ["como", "más", "tan", "mucho"], "a": 1, "hint": "Pista: superioridad = más + adjetivo + que.", "exp": "✅ más grande que."}, {"n": 52, "sec": "⚖️ Comparativas", "q": "Este hotel es _____ caro que el otro.", "o": ["como", "muy", "tan", "menos"], "a": 3, "hint": "Pista: inferioridad = menos + adjetivo + que.", "exp": "✅ menos caro que."}, {"n": 53, "sec": "⚖️ Comparativas", "q": "Ana es _____ alta como Laura.", "o": ["menos", "tan", "más", "mucho"], "a": 1, "hint": "Pista: igualdad = tan + adjetivo + como.", "exp": "✅ tan alta como."}, {"n": 54, "sec": "⚖️ Comparativas", "q": "Mi hermano es _____ que yo. (bueno)", "o": ["más bueno", "mejor", "bien", "tan bueno"], "a": 1, "hint": "Pista: bueno tiene comparativo irregular.", "exp": "✅ mejor que. bueno → mejor."}, {"n": 55, "sec": "❤️ Gustar y familia", "q": "A mí _____ las películas españolas.", "o": ["me gustan", "me gusta", "le gusta", "te gustan"], "a": 0, "hint": "Pista: el verbo concuerda con «las películas» (plural).", "exp": "✅ A mí me gustan las películas españolas."}, {"n": 56, "sec": "❓ Interrogativos", "q": "_____ estudias español? — Porque me gusta.", "o": ["Cuál", "Qué", "Por qué", "Dónde"], "a": 2, "hint": "Pista: La respuesta empieza con «porque».", "exp": "✅ ¿Por qué estudias español?"}, {"n": 57, "sec": "❤️ Gustar y familia", "q": "A vosotros _____ viajar.", "o": ["nos gusta", "les gusta", "os gustan", "os gusta"], "a": 3, "hint": "Pista: vosotros → os; infinitivo singular → gusta.", "exp": "✅ A vosotros os gusta viajar."}, {"n": 58, "sec": "❓ Interrogativos", "q": "_____ es tu cumpleaños? — En mayo.", "o": ["Quién", "Dónde", "Cómo", "Cuándo"], "a": 3, "hint": "Pista: Preguntamos por tiempo/fecha.", "exp": "✅ ¿Cuándo es tu cumpleaños?"}, {"n": 59, "sec": "⚖️ Comparativas", "q": "Este ejercicio es _____ difícil como el anterior.", "o": ["tan", "muy", "más", "menos"], "a": 0, "hint": "Pista: igualdad = tan... como.", "exp": "✅ tan difícil como."}, {"n": 60, "sec": "❤️ Gustar y familia", "q": "A Marta _____ mucho los perros.", "o": ["le gusta", "les gustan", "le gustan", "me gustan"], "a": 2, "hint": "Pista: Marta → le; «los perros» plural → gustan.", "exp": "✅ A Marta le gustan mucho los perros."}, {"n": 61, "sec": "🔄 Presente de Indicativo", "q": "Yo _____ español todos los días. (estudiar)", "o": ["estudio", "estudias", "estoy estudiando", "estudia"], "a": 0, "hint": "Pista: rutina + yo → presente.", "exp": "✅ Yo estudio español todos los días."}, {"n": 62, "sec": "🔄 Presente de Indicativo", "q": "Ellos _____ en una oficina. (trabajar)", "o": ["trabajan", "trabaja", "están trabajando ahora", "trabajo"], "a": 0, "hint": "Pista: ellos → -an en verbos -AR.", "exp": "✅ Ellos trabajan en una oficina."}, {"n": 63, "sec": "🧩 SER · ESTAR · TENER · HAY", "q": "En mi ciudad _____ muchos parques.", "o": ["tiene", "está", "hay", "es"], "a": 2, "hint": "Pista: existencia = hay.", "exp": "✅ En mi ciudad hay muchos parques."}, {"n": 64, "sec": "🧩 SER · ESTAR · TENER · HAY", "q": "Mi hermana _____ médica.", "o": ["tiene", "es", "está", "hay"], "a": 1, "hint": "Pista: profesión/identidad = ser.", "exp": "✅ Mi hermana es médica."}, {"n": 65, "sec": "🧩 SER · ESTAR · TENER · HAY", "q": "Nosotros _____ cansados hoy.", "o": ["tenemos", "hay", "somos", "estamos"], "a": 3, "hint": "Pista: estado temporal = estar.", "exp": "✅ Estamos cansados hoy."}, {"n": 66, "sec": "🚿 Verbos Reflexivos", "q": "Yo _____ a las siete todos los días. (levantarse)", "o": ["levanto me", "me estoy levantando siempre", "me levanto", "he levantado"], "a": 2, "hint": "Pista: presente reflexivo = me + verbo conjugado.", "exp": "✅ Me levanto a las siete todos los días."}, {"n": 67, "sec": "🔄 Presente de Indicativo", "q": "Tú _____ café por la mañana. (beber)", "o": ["bebéis", "bebo", "bebe", "bebes"], "a": 3, "hint": "Pista: tú + -ER → -es.", "exp": "✅ Tú bebes café por la mañana."}, {"n": 68, "sec": "🧩 SER · ESTAR · TENER · HAY", "q": "Yo _____ 30 años.", "o": ["tengo", "estoy", "soy", "hay"], "a": 0, "hint": "Pista: la edad se expresa con tener.", "exp": "✅ Tengo 30 años."}, {"n": 69, "sec": "🚿 Verbos Reflexivos", "q": "María _____ a las once. (acostarse)", "o": ["se acuesta", "acuestase", "está acostada siempre", "se acostar"], "a": 0, "hint": "Pista: ella → se; acostarse cambia o → ue en presente.", "exp": "✅ María se acuesta a las once."}, {"n": 70, "sec": "🔄 Presente de Indicativo", "q": "Vosotros _____ en España. (vivir)", "o": ["vivimos", "viven", "vivís", "vive"], "a": 2, "hint": "Pista: vosotros + -IR → -ís.", "exp": "✅ Vosotros vivís en España."}, {"n": 71, "sec": "🧠 Perífrasis Verbales", "q": "Tengo que _____ mañana.", "o": ["estudio", "estudiando", "he estudiado", "estudiar"], "a": 3, "hint": "Pista: tener que + infinitivo.", "exp": "✅ Tengo que estudiar mañana."}, {"n": 72, "sec": "📍 Demostrativos", "q": "_____ libro de aquí es mío.", "o": ["Estos", "Ese", "Aquel", "Este"], "a": 3, "hint": "Pista: cerca de mí + masculino singular.", "exp": "✅ Este libro de aquí es mío."}, {"n": 73, "sec": "🏷️ Posesivos", "q": "Nosotros vivimos con _____ padres.", "o": ["su", "nuestros", "mi", "vuestros"], "a": 1, "hint": "Pista: posesión de nosotros + masculino plural.", "exp": "✅ nuestros padres."}, {"n": 74, "sec": "🎨 Artículos + género/número", "q": "Necesito _____ mesa pequeña.", "o": ["un", "las", "unos", "una"], "a": 3, "hint": "Pista: «mesa» es femenino singular e indefinido.", "exp": "✅ una mesa pequeña."}, {"n": 75, "sec": "🕐 La Hora", "q": "13:00 = ...", "o": ["Son la una", "Es la una", "Es las una", "Son las una"], "a": 1, "hint": "Pista: Para la una usamos singular.", "exp": "✅ Es la una."}, {"n": 76, "sec": "🧠 Perífrasis Verbales", "q": "Normalmente _____ ir al gimnasio los lunes. (soler, yo)", "o": ["suelo", "soler", "estoy", "suelo a"], "a": 0, "hint": "Pista: soler conjugado + infinitivo, sin «a».", "exp": "✅ Suelo ir al gimnasio los lunes."}, {"n": 77, "sec": "🔄 Presente irregular", "q": "Yo _____ al trabajo en coche. (ir)", "o": ["va", "vengo", "voy", "vas"], "a": 2, "hint": "Pista: ir es irregular en presente.", "exp": "✅ Yo voy al trabajo en coche."}, {"n": 78, "sec": "🔄 Presente irregular", "q": "Ella _____ una hermana. (tener)", "o": ["tenemos", "tienes", "tengo", "tiene"], "a": 3, "hint": "Pista: ella → tiene.", "exp": "✅ Ella tiene una hermana."}, {"n": 79, "sec": "🧠 Perífrasis Verbales", "q": "Acabo de _____ a casa.", "o": ["llego", "he llegado", "llegando", "llegar"], "a": 3, "hint": "Pista: acabar de + infinitivo.", "exp": "✅ Acabo de llegar a casa. = Eve az önce geldim."}, {"n": 80, "sec": "🕐 La Hora", "q": "08:30 = ...", "o": ["Son las ocho menos media", "Son las ocho y media", "Son ocho y treinta de", "Es la ocho y media"], "a": 1, "hint": "Pista: :30 = y media.", "exp": "✅ Son las ocho y media."}];
+let cur=0, ok=0, bad=0;
+let answers=new Array(Q.length).fill(null);
+
+function start(){
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){
+  const q=Q[cur], letters=['A','B','C','D'];
+  document.getElementById('qnum').textContent='Soru '+(cur+1)+' / 80';
+  document.getElementById('bar').style.width=(cur/80*100)+'%';
+  document.getElementById('scoreTop').textContent='✓ '+ok+' · ✗ '+bad;
+  const done=answers[cur]!==null;
+  let h='<div class="sec">'+escapeHtml(q.sec)+'</div>';
+  h+='<div class="q">'+escapeHtml(q.q)+'</div>';
+  h+='<button class="hint-btn" onclick="toggleHint()">💡 Pista</button>';
+  h+='<div id="hint" class="hint">'+escapeHtml(q.hint)+'</div>';
+  h+='<div class="opts">';
+  q.o.forEach((o,i)=>{
+    let cls='opt';
+    if(done){
+      if(i===q.a) cls+=' correct';
+      else if(i===answers[cur]) cls+=' wrong';
+    }
+    h+='<button class="'+cls+'" '+(done?'disabled':'')+' onclick="choose('+i+')"><span class="letter">'+letters[i]+')</span><span>'+escapeHtml(o)+'</span></button>';
+  });
+  h+='</div><div class="exp '+(done?'show':'')+'">'+escapeHtml(q.exp)+'</div>';
+  document.getElementById('content').innerHTML=h;
+  const nb=document.getElementById('nextBtn');
+  nb.style.display=done?'block':'none';
+  nb.textContent=cur===79?'🏁 Sonucu Gör':'Sonraki Soru →';
+}
+function toggleHint(){
+  document.getElementById('hint').classList.toggle('show');
+}
+function choose(i){
+  if(answers[cur]!==null)return;
+  answers[cur]=i;
+  if(i===Q[cur].a)ok++;else bad++;
+  render();
+}
+function nextQ(){
+  if(cur<79){cur++;render();window.scrollTo({top:0,behavior:'smooth'});}
+  else finish();
+}
+function askFinish(){
+  const answered=answers.filter(x=>x!==null).length;
+  document.getElementById('modalText').textContent='Şu ana kadar '+answered+' / 80 soru cevaplandı. Etkinliği bitirmek istediğinizden emin misiniz?';
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open')}
+function finish(){
+  closeModal();
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  document.getElementById('finalScore').textContent=ok+'/80';
+  const blank=80-ok-bad;
+  document.getElementById('finalStats').innerHTML=
+    '<span class="stat" style="background:#eafaf2;color:#1a5c3a">✓ Doğru: '+ok+'</span>'+
+    '<span class="stat" style="background:#fde8e8;color:#8b1a1a">✗ Yanlış: '+bad+'</span>'+
+    '<span class="stat" style="background:#f3effb;color:#6c4eb8">○ Boş: '+blank+'</span>';
+  let r='';
+  Q.forEach((q,i)=>{
+    if(answers[i]!==null && answers[i]!==q.a){
+      r+='<div class="rev"><strong>Soru '+q.n+' • '+escapeHtml(q.sec)+'</strong><br>'+
+         'Doğru cevap: '+['A','B','C','D'][q.a]+') '+escapeHtml(q.o[q.a])+'<br>'+
+         '<span style="color:#666">'+escapeHtml(q.exp)+'</span></div>';
+    }
+  });
+  document.getElementById('review').innerHTML=r||'<div class="rev" style="color:#1a5c3a;font-weight:800">🎉 Cevaplanan tüm sorular doğru!</div>';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function escapeHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
