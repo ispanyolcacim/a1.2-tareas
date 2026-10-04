@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H8 – 31-32.Ders - YAZMA | A1.2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:28px 14px;color:#333}
+.wrap{max-width:760px;width:100%;margin:0 auto}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(108,78,184,.14);padding:26px;margin-bottom:14px}
+.hidden{display:none!important}
+.intro-head{text-align:center;margin-bottom:16px}
+.pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.intro-title{font-size:1.18rem;font-weight:800;color:#3d2a7a;margin-bottom:5px}
+.intro-sub{color:#777;font-size:.84rem;line-height:1.55;margin-bottom:5px}
+.intro-teacher{color:#9b7de0;font-weight:700;font-size:.8rem}
+.notice-box{background:#fbf8ff;border:2px solid #ded4f5;border-radius:14px;padding:15px 16px;margin:14px 0 12px;line-height:1.72;color:#4d3d73}
+.notice-title{font-weight:900;color:#3d2a7a;font-size:1rem;margin-bottom:5px}
+.part2-box{background:#fff7e8;border:2px solid #f1d9a6;border-radius:14px;padding:13px 16px;margin:0 0 16px;color:#78591d;line-height:1.65}
+.part2-box strong{color:#9a6800}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 16px}
+.info-chip{background:#faf8ff;border:1px solid #e5def7;border-radius:11px;padding:10px 12px;font-size:.8rem;color:#555;line-height:1.5}
+select{width:100%;padding:11px 12px;border:2px solid #d0c8f0;border-radius:9px;font-size:.93rem;font-family:inherit;color:#333;background:#fff;outline:none;margin-bottom:12px;cursor:pointer}
+select:focus{border-color:#6c4eb8}
+.btn-start,.btn-submit{width:100%;padding:14px;border:none;border-radius:11px;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
+.btn-start{background:#6c4eb8}
+.btn-start:hover{background:#5a3ea0}
+.btn-submit{background:#2e9e6b;margin-top:14px}
+.btn-submit:disabled{opacity:.45;cursor:not-allowed}
+.student-top{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:10px 12px;margin-bottom:14px}
+.student-top-name{font-weight:800;color:#3d2a7a;font-size:.87rem}
+.section{margin:16px 0;border:1px solid #e5def7;border-radius:14px;overflow:hidden}
+.section-head{background:#f7f3ff;color:#3d2a7a;font-weight:900;padding:11px 14px;font-size:.9rem}
+.section-body{padding:14px 16px;font-size:.84rem;line-height:1.8}
+.section-body ul{padding-left:20px}
+.section-body li{margin:5px 0}
+.example{background:#f8fbff;border-left:4px solid #6c4eb8;padding:10px 12px;border-radius:0 9px 9px 0;margin:10px 0;font-size:.82rem;line-height:1.75}
+.grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.grammar-card{background:#faf8ff;border:1px solid #e5def7;border-radius:10px;padding:10px;font-size:.78rem;line-height:1.6}
+.rubric{width:100%;border-collapse:collapse;font-size:.79rem}
+.rubric th{background:#6c4eb8;color:white;padding:9px;text-align:left}
+.rubric td{padding:8px 9px;border-bottom:1px solid #eee}
+.rubric td:last-child{text-align:right;font-weight:800;color:#6c4eb8}
+.field-label{font-size:.8rem;font-weight:800;color:#3d2a7a;margin:10px 0 5px}
+.readonly-field{width:100%;padding:10px 12px;border:1px solid #ded4f5;border-radius:9px;background:#faf8ff;color:#555;font-size:.86rem}
+textarea{width:100%;min-height:330px;padding:14px;border:2px solid #d0c8f0;border-radius:12px;font-family:inherit;font-size:.92rem;line-height:1.7;resize:vertical;outline:none}
+textarea:focus{border-color:#6c4eb8}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.stat{border-radius:10px;padding:9px 10px;background:#f8f5ff;border:1px solid #e5def7;font-size:.78rem;color:#555}
+.stat strong{color:#3d2a7a}
+.stat.ok{background:#eafaf2;border-color:#bfe8d3}
+.stat.bad{background:#fff5f5;border-color:#f0c8c8}
+.check-box{background:#eefaf7;border:1px solid #cbeadf;border-radius:12px;padding:13px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:.82rem;line-height:1.5}
+.check-box input{width:19px;height:19px;accent-color:#2e9e6b;flex-shrink:0}
+.status{margin-top:10px;border-radius:10px;padding:10px 12px;font-size:.84rem;display:none}
+.status.show{display:block}
+.status.ok{background:#eafaf2;color:#1a5c3a;border:1px solid #b0e8d0}
+.status.err{background:#fde8e8;color:#8b1a1a;border:1px solid #efbbbb}
+.result{text-align:center}
+.result-emoji{font-size:48px}
+.result-title{font-weight:900;color:#3d2a7a;font-size:1.18rem;margin:6px 0 12px}
+.summary{text-align:left;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:14px;line-height:1.7;font-size:.84rem}
+@media(max-width:600px){
+ body{padding:18px 12px}
+ .card{padding:20px}
+ .info-grid,.grammar-grid,.stats{grid-template-columns:1fr}
+ .student-top{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="introCard" class="card">
+  <div class="intro-head">
+    <div class="pill">✨ 8. HAFTA ÖDEVİ • A1.2</div>
+    <div class="intro-title">🇪🇸 H8 – 31-32. DERS (1. KISIM) • YAZMA</div>
+    <div class="intro-sub">✍️ Mi vida esta semana • Repaso general + Pretérito Perfecto • 100 puan</div>
+    <div class="intro-teacher">💜 @ispanyolcacim • Profe Hazel</div>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-title">📢 8. HAFTADAYIZ — SON HAFTA! 🎓✨</div>
+    <div>Bu dönemimizin <strong>son haftasındayız</strong>. 🌟 Lütfen önceki haftalardan kalan eksik ödevlerinizi tamamlayın, genel konu tekrarlarınızı yapın ve anlamadığınız noktaları yeniden gözden geçirin. 📚✨<br><strong>Unutmayın:</strong> Düzenli tekrar + eksiksiz ödev = daha güçlü bir İspanyolca temeli. 💪🇪🇸 Bu son haftayı, öğrendiklerimizi sağlamlaştırarak tamamlayalım. 💜</div>
+  </div>
+
+  <div class="part2-box">🧩 <strong>31-32. Ders ödevinin 2. KISMINI da unutmayın!</strong><br>Bu sayfa yalnızca <strong>1. Kısım – Yazma Ödevi</strong> içindir. 2. Kısım ayrıca tamamlanmalıdır.</div>
+
+  <div class="info-grid">
+    <div class="info-chip">✍️ <strong>Minimum 180 kelime</strong><br>En az 5 paragraf</div>
+    <div class="info-chip">🟣 <strong>Ana konu</strong><br>Pretérito Perfecto</div>
+    <div class="info-chip">🔄 <strong>Genel tekrar</strong><br>Presente • Gerundio • Ir a + Inf.</div>
+    <div class="info-chip">🏆 <strong>Değerlendirme</strong><br>100 puan • öğretmen değerlendirecek</div>
+  </div>
+
+  <select id="introName">
+    <option value="">👤 -- Adınızı Seçin --</option>
+          <option>Arman Kaykac</option>
+          <option>Arzu Bayram</option>
+          <option>Aysen Gurkan</option>
+          <option>Didem Akbal</option>
+          <option>Rabia Nur Tok</option>
+          <option>Selva Akyuz</option>
+          <option>Sena Yamak</option>
+          <option>Suleyman Bektas</option>
+  </select>
+  <button class="btn-start" onclick="startWriting()">✍️ Yazmaya Başla</button>
+</div>
+
+<div id="writingCard" class="card hidden">
+  <div class="student-top">
+    <div>👤 <span class="student-top-name" id="studentTopName">Öğrenci</span></div>
+    <div style="font-size:.78rem;color:#8c7ab8;font-weight:700">📚 A1.2 • H8 • 31-32. Ders • 1. Kısım</div>
+  </div>
+
+  <div class="part2-box">🔔 <strong>Hatırlatma:</strong> Bu yazma ödevini tamamladıktan sonra <strong>31-32. Ders (2. KISIM)</strong> ödevini de yapmayı unutmayın.</div>
+
+  <div class="section">
+    <div class="section-head">✍️ Konu — Mi vida esta semana</div>
+    <div class="section-body">
+      Bu yazma ödevinde yalnızca geçmişte yaptığınız şeylerden bahsetmeyeceksiniz.
+      A1.2 boyunca öğrendiğiniz yapıları <strong>aynı metin içinde birlikte kullanarak</strong> günlük hayatınızı,
+      şu anda neler yaptığınızı, son günlerde neler yaptığınızı ve yakın gelecekte neler yapacağınızı anlatacaksınız.
+      <br><br>
+      Yazınızın ana gramer konusu <strong>Pretérito Perfecto</strong> olacaktır; ancak bu ödev aynı zamanda
+      şimdiye kadar öğrendiğiniz yapıların <strong>genel yazma tekrarıdır.</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">📋 Yazınızın Başına Ekleyin</div>
+    <div class="section-body">
+      <div class="field-label">Nombre y Apellido</div>
+      <div class="readonly-field" id="readonlyName">—</div>
+      <div class="field-label">Número de tarea</div>
+      <div class="readonly-field">A1.2 (31+32)</div>
+      <div class="field-label">Tema de la tarea</div>
+      <div class="readonly-field">Repaso general + Pretérito Perfecto</div>
+      <div class="field-label">Título de tu texto</div>
+      <div class="example">Metninize İspanyolca bir başlık verin. Örn: <em>Mi semana</em>, <em>Una semana en mi vida</em>, <em>Lo que he hecho esta semana</em>.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">📝 YÖNERGE</div>
+    <div class="section-body">
+      <ul>
+        <li>En az <strong>180 kelime</strong> yazınız.</li>
+        <li>En az <strong>5 paragraf</strong> oluşturunuz.</li>
+        <li>En az <strong>16 cümle</strong> yazınız.</li>
+        <li>En az <strong>8 farklı Pretérito Perfecto fiili</strong> kullanınız.</li>
+        <li>En az <strong>2 düzensiz participio</strong> kullanınız.</li>
+        <li>En az <strong>4 Presente de Indicativo</strong> cümlesi kullanınız.</li>
+        <li>En az <strong>2 Estar + Gerundio</strong> cümlesi kullanınız.</li>
+        <li>En az <strong>3 Ir a + Infinitivo</strong> cümlesi kullanınız.</li>
+        <li>En az <strong>3 farklı Pretérito Perfecto zaman ifadesi</strong> kullanınız.</li>
+        <li>Olumlu ve olumsuz cümleler kullanınız.</li>
+        <li>En az bir yerde <strong>porque</strong> ile neden belirtiniz.</li>
+        <li>En az bir karşılaştırma veya zıtlık ifadesi kullanınız.</li>
+        <li>Aynı fiili sürekli tekrar etmeyiniz.</li>
+        <li>Cümlelerinizi soru-cevap biçiminde değil, <strong>birbirine bağlı paragraflar</strong> hâlinde yazınız.</li>
+        <li>Artikel, kişi uyumu, fiil çekimleri, participio, yazım, noktalama ve <strong>tilde</strong> kullanımına dikkat ediniz.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">⭐ Bu ödevde zamanları nasıl dağıtmalısınız?</div>
+    <div class="section-body">
+      <div class="grammar-grid">
+        <div class="grammar-card"><strong>🟢 Presente</strong><br>Normalde / genellikle ne yapıyorsunuz?<br><em>Normalmente trabajo en casa.</em></div>
+        <div class="grammar-card"><strong>🔵 Estar + Gerundio</strong><br>Şu anda ne yapıyorsunuz?<br><em>Ahora estoy estudiando.</em></div>
+        <div class="grammar-card"><strong>🟣 Pretérito Perfecto</strong><br>Bugün / bu hafta ne yaptınız?<br><em>Esta semana he trabajado mucho.</em></div>
+        <div class="grammar-card"><strong>🟠 Ir a + Infinitivo</strong><br>Yakın gelecekte ne yapacaksınız?<br><em>Mañana voy a descansar.</em></div>
+      </div>
+      <div class="example"><strong>Önemli:</strong> Bu bir “¿Qué has hecho esta semana?” soru-cevap ödevi değildir. Farklı zamanları aynı doğal metnin içinde ayırarak kullanmanız gerekir.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">💭 Yazınızı geliştirmek için fikirler</div>
+    <div class="section-body">
+      <strong>Günlük hayat:</strong> ¿Cómo es normalmente tu día? ¿Qué haces por las mañanas? ¿Qué haces en tu tiempo libre?<br><br>
+      <strong>Bu hafta:</strong> ¿Qué has hecho hoy? ¿Has trabajado mucho? ¿Has estudiado español? ¿Has visto alguna película? ¿Has comprado algo? ¿Has aprendido algo nuevo?<br><br>
+      <strong>Henüz yapmadıklarınız:</strong> ¿Qué no has hecho todavía? ¿Por qué no lo has hecho?<br><br>
+      <strong>Şu anda:</strong> ¿Qué estás haciendo ahora? ¿Qué está haciendo tu familia?<br><br>
+      <strong>Yakın gelecek:</strong> ¿Qué vas a hacer esta noche? ¿Qué vas a hacer mañana? ¿Qué vas a hacer este fin de semana?
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">🧩 Önerilen 5 Paragraf Yapısı</div>
+    <div class="section-body">
+      <strong>1. Mi vida normalmente</strong> — günlük rutin, Presente.<br>
+      <strong>2. Lo que he hecho esta semana</strong> — bu hafta yaptıklarınız, Pretérito Perfecto.<br>
+      <strong>3. Más experiencias recientes</strong> — ek deneyimler, neden-sonuç, ya / todavía no vb.<br>
+      <strong>4. Ahora mismo</strong> — şu anda olanlar, Estar + Gerundio.<br>
+      <strong>5. Mis próximos planes</strong> — bu akşam / yarın / hafta sonu, Ir a + Infinitivo.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">🧠 Hızlı Hatırlatma — Pretérito Perfecto</div>
+    <div class="section-body">
+      <strong>haber + participio</strong><br>
+      yo <strong>he</strong> • tú <strong>has</strong> • él/ella <strong>ha</strong> • nosotros <strong>hemos</strong> • vosotros <strong>habéis</strong> • ellos <strong>han</strong>
+      <div class="example">
+        <strong>Regular:</strong> trabajar → trabajado • aprender → aprendido • vivir → vivido<br>
+        <strong>Irregular:</strong> hacer → hecho • ver → visto • escribir → escrito • poner → puesto • volver → vuelto • romper → roto • decir → dicho • abrir → abierto
+      </div>
+      <div class="example">
+        <strong>Zaman ifadeleri:</strong> hoy • esta mañana • esta tarde • esta semana • este mes • este año • últimamente • ya • todavía no • alguna vez • nunca
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">🎯 Teslim Etmeden Önce Kontrol</div>
+    <div class="section-body">
+      ☐ 180+ kelime &nbsp; ☐ 5+ paragraf &nbsp; ☐ 8 farklı Pretérito Perfecto fiili<br>
+      ☐ 2 düzensiz participio &nbsp; ☐ Presente &nbsp; ☐ Estar + Gerundio<br>
+      ☐ Ir a + Infinitivo &nbsp; ☐ 3 farklı zaman ifadesi &nbsp; ☐ olumsuz cümle<br>
+      ☐ porque &nbsp; ☐ fiil çeşitliliği &nbsp; ☐ yazım ve tildeler kontrol edildi
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">📊 Puanlama Cetveli</div>
+    <div class="section-body" style="padding:0">
+      <table class="rubric">
+        <thead><tr><th>Kriter</th><th>Puan</th></tr></thead>
+        <tbody>
+          <tr><td>İçerik ve konuyu geliştirme</td><td>15</td></tr>
+          <tr><td>Pretérito Perfecto kullanımı</td><td>25</td></tr>
+          <tr><td>Presente de Indicativo kullanımı</td><td>10</td></tr>
+          <tr><td>Estar + Gerundio kullanımı</td><td>10</td></tr>
+          <tr><td>Ir a + Infinitivo kullanımı</td><td>10</td></tr>
+          <tr><td>Zaman ifadelerinin doğru kullanımı</td><td>5</td></tr>
+          <tr><td>Organizasyon ve paragraf yapısı</td><td>10</td></tr>
+          <tr><td>Kelime bilgisi ve çeşitlilik</td><td>5</td></tr>
+          <tr><td>Genel gramer doğruluğu</td><td>5</td></tr>
+          <tr><td>Yazım / tilde / noktalama</td><td>5</td></tr>
+          <tr><td><strong>TOPLAM</strong></td><td><strong>100</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="field-label">✏️ Yazınızı aşağıya yazın:</div>
+  <textarea id="writingText" placeholder="Başlığınızı yazın ve ardından en az 5 paragraftan oluşan metninize başlayın..." oninput="updateStats()"></textarea>
+
+  <div class="stats">
+    <div class="stat bad" id="wordStat">📝 Kelime: <strong>0 / 180</strong></div>
+    <div class="stat bad" id="paraStat">¶ Paragraf: <strong>0 / 5</strong></div>
+    <div class="stat" id="sentenceStat">🔹 Tahmini cümle: <strong>0 / 16</strong></div>
+    <div class="stat" id="charStat">⌨️ Karakter: <strong>0</strong></div>
+  </div>
+
+  <div class="check-box">
+    <input type="checkbox" id="copyConfirm" onchange="toggleSubmit()">
+    <label for="copyConfirm"><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><br>Bu kutucuğu işaretlemeden teslim butonu aktif olmayacaktır.</label>
+  </div>
+
+  <button class="btn-submit" id="submitBtn" onclick="submitWriting()" disabled>📩 Yazıyı Tamamladım, Teslim Et</button>
+  <div id="sendStatus" class="status"></div>
+</div>
+
+<div id="resultCard" class="card hidden result">
+  <div class="result-emoji">✅</div>
+  <div class="pill">YAZMA ÖDEVİ • A1.2</div>
+  <div class="result-title">Yazınız Gönderildi!</div>
+  <div class="summary">
+    <div>👤 <strong id="summaryName"></strong></div>
+    <div>📚 <strong>H8 – 31-32.Ders - YAZMA</strong></div>
+    <div>✉️ Yazınız Profe Hazel'e e-posta olarak gönderildi.</div>
+    <div>📊 Google Sheets'e <strong>H8 – 31-32.Ders - YAZMA</strong> sütununa işlenmek üzere gönderildi.</div>
+    <div style="margin-top:7px;color:#9a6800">🧩 <strong>31-32. Ders (2. KISIM) ödevini de unutmayın!</strong></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE='service_4ee1wh7';
+const EMAILJS_TEMPLATE='template_xjyyxhf';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+const ODEV_ADI='H8 – 31-32.Ders - YAZMA';
+const GROUPS={'Arman Kaykac':'A1.2','Arzu Bayram':'A1.2','Aysen Gurkan':'A1.2','Didem Akbal':'A1.2','Rabia Nur Tok':'A1.2','Selva Akyuz':'A1.2','Sena Yamak':'A1.2','Suleyman Bektas':'A1.2'};
+let selectedName='';
+
+function startWriting(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  selectedName=n;
+  document.getElementById('studentTopName').textContent=n;
+  document.getElementById('readonlyName').textContent=n;
+  document.getElementById('introCard').classList.add('hidden');
+  document.getElementById('writingCard').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function getWords(t){
+  return t.trim()?t.trim().split(/\s+/).filter(Boolean).length:0;
+}
+function getParagraphs(t){
+  return t.trim()?t.trim().split(/\n\s*\n+/).filter(p=>p.trim().length>0).length:0;
+}
+function getSentences(t){
+  if(!t.trim()) return 0;
+  const m=t.match(/[.!?]+(?=\s|$)/g);
+  return m?m.length:0;
+}
+function updateStats(){
+  const t=document.getElementById('writingText').value;
+  const w=getWords(t), p=getParagraphs(t), s=getSentences(t);
+  const ws=document.getElementById('wordStat'), ps=document.getElementById('paraStat');
+  ws.innerHTML='📝 Kelime: <strong>'+w+' / 180</strong>';
+  ps.innerHTML='¶ Paragraf: <strong>'+p+' / 5</strong>';
+  document.getElementById('sentenceStat').innerHTML='🔹 Tahmini cümle: <strong>'+s+' / 16</strong>';
+  document.getElementById('charStat').innerHTML='⌨️ Karakter: <strong>'+t.length+'</strong>';
+  ws.className='stat '+(w>=180?'ok':'bad');
+  ps.className='stat '+(p>=5?'ok':'bad');
+}
+
+function toggleSubmit(){
+  document.getElementById('submitBtn').disabled=!document.getElementById('copyConfirm').checked;
+}
+
+function setStatus(msg,type){
+  const el=document.getElementById('sendStatus');
+  el.className='status show '+type;
+  el.textContent=msg;
+}
+
+async function submitWriting(){
+  const text=document.getElementById('writingText').value.trim();
+  const words=getWords(text), paras=getParagraphs(text);
+  if(!selectedName){alert('Lütfen adınızı seçin.');return;}
+  if(!document.getElementById('copyConfirm').checked){alert('Lütfen önce yazınızın bir kopyasını aldığınızı onaylayın.');return;}
+  if(words<180){alert('Yazınız en az 180 kelime olmalıdır. Şu an '+words+' kelime var.');return;}
+  if(paras<5){alert('Yazınız en az 5 paragraftan oluşmalıdır. Paragrafları boş satır bırakarak ayırın.');return;}
+
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='⏳ Gönderiliyor...';
+  setStatus('Yazınız e-posta olarak gönderiliyor...','ok');
+
+  const now=new Date();
+  const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
+
+  const emailText=
+    '=== BAŞLIK BİLGİLERİ ===\n'+
+    'Ad Soyad: '+selectedName+'\n'+
+    'Ödev No: A1.2 (31+32)\n'+
+    'Konu: Mi vida esta semana — Repaso general + Pretérito Perfecto\n'+
+    'Kelime sayısı: '+words+'\n'+
+    'Paragraf sayısı: '+paras+'\n\n'+
+    '=== YAZMA METNİ ===\n'+text;
+
+  try{
+    await emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{
+      student_name:selectedName,
+      lesson:'A1.2 H8 – 31-32.Ders – 1. Kısım Yazma Ödevi (Mi vida esta semana)',
+      submit_date:tarih,
+      writing_text:emailText
+    });
+
+    fetch(SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        ogrenci:selectedName,
+        grup:GROUPS[selectedName]||'A1.2',
+        odev:ODEV_ADI,
+        puan:'Yazma (öğretmen değerlendirecek)',
+        dogru:'',
+        yanlis:''
+      })
+    }).catch(()=>{});
+
+    document.getElementById('summaryName').textContent=selectedName;
+    document.getElementById('writingCard').classList.add('hidden');
+    document.getElementById('resultCard').classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    btn.disabled=false;
+    btn.textContent='📩 Yazıyı Tamamladım, Teslim Et';
+    setStatus('Gönderilemedi. İnternet bağlantınızı kontrol edip tekrar deneyin. Yazınızın kopyasını saklayın.','err');
+  }
+}
+</script>
+</body>
+</html>
