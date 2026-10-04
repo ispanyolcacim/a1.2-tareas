@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H8 – 29-30.Ders | A1.2</title>
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0edf8;min-height:100vh;padding:28px 14px;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:760px;width:100%;margin:0 auto}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 28px rgba(108,78,184,.14);padding:26px;margin-bottom:14px}
+#quizCard,#resultCard{align-self:flex-start;width:100%}
+.hidden{display:none!important}
+
+/* INTRO */
+.pill{display:inline-block;background:#6c4eb8;color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.intro-title{font-size:1.05rem;font-weight:800;color:#3d2a7a;margin-bottom:4px}
+.intro-sub{color:#888;font-size:.82rem;margin-bottom:5px}
+.intro-teacher{color:#9b7de0;font-weight:700;font-size:.8rem;margin-bottom:6px}
+.yt-cover-btn{display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:.88rem;font-weight:700;margin:10px 0 16px;font-family:inherit}
+.yt-cover-btn svg{flex-shrink:0}
+select{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.93rem;font-family:inherit;color:#333;background:#fff;outline:none;margin-bottom:12px;cursor:pointer}
+select:focus{border-color:#6c4eb8}
+.btn-start{width:100%;padding:13px;background:#6c4eb8;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-start:hover{background:#5a3ea0}
+.score-info{background:#f0edf8;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:#555;line-height:1.7}
+.score-info strong{color:#6c4eb8}
+
+/* PROGRESS */
+.prog-bar{height:7px;background:#e8e0f8;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.prog-fill{height:100%;background:linear-gradient(90deg,#6c4eb8,#9b7de0);border-radius:4px;transition:width .3s}
+.q-meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#888;margin-bottom:14px}
+.cnt-ok{color:#2e9e6b;font-weight:700}
+.cnt-err{color:#d94040;font-weight:700;margin-left:8px}
+
+/* SECTION BADGE */
+.sec-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.sec-fill{background:#e8f4fd;color:#1a6fb5}
+.sec-read{background:#fef3e2;color:#b06000}
+.sec-yt{background:#ffe8e8;color:#c00000}
+
+/* FILL question */
+.q-text{font-size:.92rem;color:#333;font-weight:600;line-height:1.7;margin-bottom:12px;white-space:pre-wrap}
+.q-instruction{font-size:.79rem;color:#777;margin-bottom:12px;font-style:italic;background:#faf8ff;padding:8px 12px;border-radius:8px;border-left:3px solid #c0b0e8}
+.sub-inp{width:100%;padding:10px 12px;border:2px solid #d0c8f0;border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;color:#333;transition:border-color .15s;margin-bottom:6px}
+.sub-inp:focus{border-color:#6c4eb8}
+.sub-inp.correct{border-color:#2e9e6b!important;background:#eafaf2;color:#1a5c3a;font-weight:600}
+.sub-inp.wrong{border-color:#d94040!important;background:#fde8e8;color:#8b1a1a}
+.sub-inp:disabled{cursor:default}
+.ans-label{font-size:.82rem;padding:6px 12px;border-radius:6px;margin-bottom:8px;display:none;line-height:1.5}
+.ans-label.ok{background:#eafaf2;color:#1a5c3a;display:block}
+.ans-label.err{background:#fde8e8;color:#8b1a1a;display:block}
+
+/* READING text */
+.reading-text{background:#fafbff;border:1px solid #e0d8f8;border-radius:10px;padding:14px 16px;font-size:.84rem;color:#333;line-height:1.85;margin-bottom:14px;white-space:pre-wrap}
+.reading-title{font-size:.9rem;font-weight:800;color:#3d2a7a;margin-bottom:6px}
+
+/* YT banner */
+.yt-banner{display:flex;align-items:center;gap:10px;background:#fff5f5;border:2px solid #ffcccc;border-radius:10px;padding:10px 14px;margin-bottom:14px;text-decoration:none}
+.yt-banner-text{font-size:.82rem;font-weight:700;color:#c00000;line-height:1.4}
+.yt-banner-sub{font-size:.75rem;color:#888;font-weight:400}
+
+/* MC opts */
+.mc-q{font-size:.9rem;color:#333;font-weight:600;line-height:1.68;margin-bottom:14px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt-btn{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:2px solid #e0d8f8;border-radius:9px;cursor:pointer;font-size:.88rem;color:#444;font-family:inherit;background:#fff;text-align:left;line-height:1.5;transition:all .12s;width:100%}
+.opt-btn:hover:not(:disabled){background:#f3effb;border-color:#9b7de0}
+.opt-letter{font-weight:700;color:#6c4eb8;min-width:22px;flex-shrink:0;padding-top:1px}
+.opt-btn.correct{background:#eafaf2;border-color:#2e9e6b;color:#1a5c3a}
+.opt-btn.correct .opt-letter{color:#2e9e6b}
+.opt-btn.wrong{background:#fde8e8;border-color:#d94040;color:#8b1a1a}
+.opt-btn.wrong .opt-letter{color:#d94040}
+.opt-btn:disabled{cursor:default}
+
+/* explanation */
+.exp-box{background:#f8f5ff;border-left:4px solid #6c4eb8;border-radius:0 10px 10px 0;padding:14px 16px;font-size:.83rem;color:#333;line-height:1.85;margin-top:12px;white-space:pre-wrap;display:none}
+.exp-box.show{display:block}
+
+/* nav buttons */
+.btn-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-check{flex:2;padding:12px;background:#6c4eb8;color:#fff;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center}
+.btn-check:hover:not(:disabled){background:#5a3ea0}
+.btn-check:disabled{opacity:.35;cursor:not-allowed}
+.btn-next{flex:2;padding:12px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;display:none;align-items:center;justify-content:center}
+.btn-next:hover{background:#d5c9f0}
+.btn-finish{flex:1;padding:12px 10px;background:#c94040;color:#fff;border:none;border-radius:9px;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;min-width:90px}
+
+/* RESULT */
+.res-score{text-align:center;font-size:3.2rem;font-weight:800;color:#6c4eb8;margin:8px 0 10px}
+.res-stats{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+.stat-box{padding:5px 14px;border-radius:8px;font-weight:700;font-size:.82rem}
+.warning-box{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:14px 18px;text-align:center;margin-bottom:14px}
+.warning-title{font-size:1.1rem;font-weight:800;color:#856404;letter-spacing:.3px}
+.warning-sub{font-size:.8rem;color:#856404;margin-top:3px}
+.btn-submit{width:100%;padding:14px;background:#2e9e6b;color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:10px}
+.btn-submit:hover:not(:disabled){background:#237a55}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.submit-msg{background:#eafaf2;border:1px solid #b0e8d0;border-radius:8px;padding:12px;font-size:.88rem;color:#1a5c3a;text-align:center;font-weight:600;line-height:1.65;display:none;margin-bottom:10px}
+.btn-review{width:100%;padding:11px;background:#e8e0f8;color:#6c4eb8;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px}
+.review-list{display:none;flex-direction:column;gap:10px;margin-top:12px}
+.rev-item{background:#fafafa;border:1px solid #e0d8f8;border-radius:8px;padding:12px;font-size:.8rem}
+.rev-q{font-weight:700;color:#3d2a7a;margin-bottom:4px}
+.rev-my{color:#d94040;margin-bottom:3px}
+.rev-ok{color:#2e9e6b;font-weight:700;margin-bottom:4px}
+.rev-exp{color:#555;line-height:1.7;white-space:pre-wrap;margin-top:5px;font-size:.78rem}
+
+/* overlay */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.confirm-card{background:#fff;border-radius:14px;padding:22px;max-width:380px;width:100%}
+.confirm-msg{font-size:.9rem;color:#333;line-height:1.65;margin-bottom:18px}
+.confirm-btns{display:flex;gap:10px}
+.btn-cancel{flex:1;padding:10px;border-radius:8px;border:none;background:#e8e0f8;color:#6c4eb8;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-ok-red{flex:1;padding:10px;border-radius:8px;border:none;background:#d94040;color:#fff;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* ENHANCED UI */
+.intro-head{text-align:center;margin-bottom:16px}
+.intro-title{font-size:1.18rem}
+.intro-sub{line-height:1.55}
+.notice-box{background:#fbf8ff;border:2px solid #ded4f5;border-radius:14px;padding:15px 16px;margin:14px 0 16px;text-align:left;line-height:1.7;color:#4d3d73}
+.notice-title{font-weight:900;color:#3d2a7a;font-size:1rem;margin-bottom:4px}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 14px}
+.info-chip{background:#faf8ff;border:1px solid #e5def7;border-radius:11px;padding:10px 12px;font-size:.8rem;color:#555;line-height:1.5}
+.student-top{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#faf8ff;border:1px solid #e5def7;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.student-top-name{font-weight:800;color:#3d2a7a;font-size:.86rem}
+.finish-top-wrap{display:flex;justify-content:center;margin:10px 0 16px}
+.btn-finish.top{flex:none;min-width:170px;padding:11px 18px;border-radius:10px;box-shadow:0 4px 12px rgba(201,64,64,.16)}
+.btn-submit{box-shadow:0 4px 12px rgba(46,158,107,.12)}
+.btn-review{border:1px solid #d8cef3}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}body{align-items:flex-start;padding-top:18px}.card{padding:20px}.student-top{align-items:flex-start;flex-direction:column}.btn-finish.top{width:100%}}
+@media(max-width:480px){.btn-row{flex-direction:column}}
+
+/* H8 SECTION COLORS */
+.sec-haber{background:#eee9fb;color:#5b3fa4}
+.sec-part{background:#e8f4fd;color:#1a6fb5}
+.sec-error{background:#ffe9ed;color:#b8324f}
+.sec-time{background:#eaf8ee;color:#237a55}
+.sec-order{background:#fff3df;color:#ad6700}
+.sec-context{background:#f4ebff;color:#7b3db8}
+.section-help{font-size:.78rem;color:#777;background:#faf8ff;border-left:3px solid #c0b0e8;border-radius:8px;padding:8px 11px;margin-bottom:12px;line-height:1.55}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="introCard" class="card">
+  <div class="intro-head">
+    <div class="pill">✨ 8. HAFTA ÖDEVİ &bull; A1.2</div>
+    <div class="intro-title">🇪🇸 H8 – 29-30. DERS</div>
+    <div class="intro-sub">📚 Pretérito Perfecto &bull; Genel Pekiştirme</div>
+    <div class="intro-teacher">💜 @ispanyolcacim &bull; Profe Hazel</div>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-title">📢 8. HAFTADAYIZ — SON HAFTA! 🎓✨</div>
+    <div>
+      Bu dönemimizin <strong>son haftasındayız</strong>. 🌟
+      Lütfen önceki haftalardan kalan eksik ödevlerinizi tamamlayın,
+      genel konu tekrarlarınızı yapın ve anlamadığınız noktaları yeniden gözden geçirin. 📚✨
+      <br><strong>Unutmayın:</strong> Düzenli tekrar + eksiksiz ödev = daha güçlü bir İspanyolca temeli. 💪🇪🇸
+      Bu son haftayı, öğrendiklerimizi sağlamlaştırarak tamamlayalım. 💜
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-chip">🧩 <strong>50 Soru</strong><br>Her soru 2 puan</div>
+    <div class="info-chip">🏆 <strong>Toplam 100 Puan</strong><br>6 farklı pekiştirme bölümü</div>
+    <div class="info-chip">📚 <strong>Detaylı Açıklama</strong><br>Her sorudan sonra açıklamayı okuyun</div>
+    <div class="info-chip">🎯 <strong>Hedef</strong><br>Pretérito Perfecto'yu sağlamlaştırmak</div>
+  </div>
+
+  <div class="score-info">
+    <strong>📌 Bölümler:</strong><br>
+    1–10 Haber çekimleri &bull; 11–20 Participio &bull; 21–30 Hata bulma<br>
+    31–38 Zaman ifadeleri &bull; 39–44 Kelime sıralaması &bull; 45–50 Bağlam
+  </div>
+
+  <select id="nameSelect">
+    <option value="">👤 -- Adınızı Seçin --</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
+  </select>
+  <button class="btn-start" onclick="startQuiz()">🚀 Teste Başla</button>
+</div>
+
+<div id="quizCard" class="card hidden">
+  <div class="student-top">
+    <div>👤 <span class="student-top-name" id="studentTopName">Öğrenci</span></div>
+    <div style="font-size:.78rem;color:#8c7ab8;font-weight:700">📚 A1.2 &bull; H8 &bull; 29-30. Ders</div>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="q-meta">
+    <span id="qLabel">📝 Soru 1 / 50</span>
+    <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr">&nbsp;✗ 0</span></span>
+  </div>
+  <div class="finish-top-wrap"><button class="btn-finish top" onclick="askFinish()">🏁 Testi Bitir</button></div>
+  <div id="qContent"></div>
+  <div class="btn-row">
+    <button class="btn-next" id="btnNext" onclick="nextQ()" style="display:none">Sonraki Soru →</button>
+  </div>
+</div>
+
+<div id="resultCard" class="card hidden">
+  <div style="text-align:center"><div class="pill">8. HAFTA &bull; 29-30. DERS &bull; A1.2</div></div>
+  <div style="text-align:center;font-weight:800;color:#3d2a7a;font-size:.95rem;margin:6px 0">H8 – Pretérito Perfecto Genel Pekiştirme</div>
+  <div class="res-score" id="rScore">0/100</div>
+  <div class="res-stats" id="rStats"></div>
+  <p style="text-align:center;color:#888;font-size:.82rem;margin-bottom:14px" id="rNote"></p>
+
+  <div class="warning-box" id="warningBox">
+    <div class="warning-title">⚠ ÖDEVİNİZ TESLİM EDİLMEDİ</div>
+    <div class="warning-sub">Lütfen adınızı kontrol edip aşağıdaki butona tıklayın.</div>
+  </div>
+
+  <select id="nameSelect2" onchange="syncName()" style="margin-bottom:12px">
+    <option value="">-- Adınızı Seçin --</option>
+    <option>Arman Kaykac</option>
+    <option>Arzu Bayram</option>
+    <option>Aysen Gurkan</option>
+    <option>Didem Akbal</option>
+    <option>Rabia Nur Tok</option>
+    <option>Selva Akyuz</option>
+    <option>Sena Yamak</option>
+    <option>Suleyman Bektas</option>
+  </select>
+
+  <div class="submit-msg" id="submitMsg"></div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitResult()">📤 ÖDEVİNİZİ TESLİM EDİN</button>
+  <button class="btn-review" onclick="toggleReview()">🔎 Yanlışları Gör ▼</button>
+  <div class="review-list" id="reviewList"></div>
+</div>
+
+</div>
+
+<div class="overlay" id="confirmOverlay">
+  <div class="confirm-card">
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">İptal</button>
+      <button class="btn-ok-red" id="confirmOk">Evet, Bitir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var QUESTIONS=[{"n": 1, "q": "Mi madre y yo ______ comprado un regalo para mi padre.", "o": ["han", "hemos", "ha", "habéis"], "a": 1, "exp": "Cümlenin öznesi:\n\nMi madre y yo\n\nyani:\n\nannem ve ben = nosotros\n\nPretérito Perfecto yapısı:\n\nhaber + participio\n\nNosotros için haber çekimi:\n\nnosotros → hemos\n\nBu nedenle:\n\n✅ Mi madre y yo hemos comprado un regalo para mi padre.\n\nTürkçesi:\nAnnemle ben babam için bir hediye aldık.\n\nBuradaki comprado, comprar fiilinin participio hâlidir:\n\ncomprar → comprado\n\n❌ han comprado olsaydı öznenin ellos/ellas olması gerekirdi.\n❌ ha comprado üçüncü tekil kişi içindir.\n❌ habéis comprado vosotros/vosotras içindir."}, {"n": 2, "q": "Tú ______ preparado todo para la reunión.", "o": ["hemos", "ha", "han", "has"], "a": 3, "exp": "Özne:\n\ntú = sen\n\nTú için Pretérito Perfecto'da kullanılan haber çekimi:\n\ntú → has\n\nBu nedenle:\n\n✅ Tú has preparado todo para la reunión.\n\nTürkçesi:\nToplantı için her şeyi hazırladın.\n\nFiil:\n\npreparar → preparado\n\nYapı:\n\nhas + preparado\n\n❌ hemos = nosotros\n❌ ha = él / ella / usted\n❌ han = ellos / ellas / ustedes\n\nBurada fiilin participio kısmı özneye göre değişmez. Özne değiştiğinde değişen kısım haber fiilidir."}, {"n": 3, "q": "Yo ______ recibido una noticia muy buena.", "o": ["he", "ha", "has", "han"], "a": 0, "exp": "Özne:\n\nyo = ben\n\nYo için haber çekimi:\n\nyo → he\n\nBu yüzden:\n\n✅ Yo he recibido una noticia muy buena.\n\nTürkçesi:\nÇok güzel bir haber aldım.\n\nFiil:\n\nrecibir → recibido\n\nBurada:\n\nhe recibido = aldım / almış bulunuyorum\n\n❌ ha recibido = o aldı\n❌ has recibido = sen aldın\n❌ han recibido = onlar aldılar\n\nPretérito Perfecto'da kişi bilgisini esas olarak haber çekimi verir."}, {"n": 4, "q": "Laura ______ organizado su escritorio esta tarde.", "o": ["has", "hemos", "ha", "han"], "a": 2, "exp": "Laura tek bir kişidir ve:\n\nLaura = ella\n\nElla için haber çekimi:\n\nella → ha\n\nDoğru cümle:\n\n✅ Laura ha organizado su escritorio esta tarde.\n\nTürkçesi:\nLaura bu öğleden sonra çalışma masasını düzenledi.\n\norganizar → organizado\n\n❌ has = tú\n❌ hemos = nosotros\n❌ han = ellos / ellas\n\nÖzel isim gördüğümüzde de hangi kişi zamirine karşılık geldiğini düşünmeliyiz:\n\nLaura → ella → ha"}, {"n": 5, "q": "Vosotros ______ aprendido muchas palabras nuevas.", "o": ["han", "habéis", "hemos", "ha"], "a": 1, "exp": "Özne açıkça:\n\nvosotros = siz\n\nİspanya kullanımında vosotros için haber çekimi:\n\nvosotros → habéis\n\nBu nedenle:\n\n✅ Vosotros habéis aprendido muchas palabras nuevas.\n\nTürkçesi:\nSiz birçok yeni kelime öğrendiniz.\n\nFiil:\n\naprender → aprendido\n\nÖnemli:\n\nhabéis kelimesindeki é aksanlıdır.\n\n❌ han = ellos / ellas / ustedes\n❌ hemos = nosotros\n❌ ha = él / ella / usted"}, {"n": 6, "q": "Yo ______ hablado con la directora del curso.", "o": ["he", "han", "ha", "hemos"], "a": 0, "exp": "Özne:\n\nyo\n\nDolayısıyla:\n\nyo → he\n\n✅ Yo he hablado con la directora del curso.\n\nTürkçesi:\nKursun yöneticisiyle konuştum.\n\nhablar → hablado\n\nPretérito Perfecto:\n\nhe + hablado\n\nBuradaki he, İngilizcedeki have gibi yardımcı görev üstlenir; tek başına “sahip olmak” anlamıyla çevrilmez.\n\n❌ han = onlar\n❌ ha = o\n❌ hemos = biz"}, {"n": 7, "q": "Mis vecinos ______ cambiado las ventanas de su casa.", "o": ["ha", "habéis", "hemos", "han"], "a": 3, "exp": "Özne:\n\nMis vecinos = komşularım\n\nÇoğul oldukları için:\n\nmis vecinos → ellos\n\nEllos için haber:\n\nellos → han\n\n✅ Mis vecinos han cambiado las ventanas de su casa.\n\nTürkçesi:\nKomşularım evlerinin pencerelerini değiştirdiler.\n\nFiil:\n\ncambiar → cambiado\n\n❌ ha tekil kişi içindir.\n❌ habéis vosotros içindir.\n❌ hemos nosotros içindir.\n\nÖzne çoğul bir isim olduğunda çoğu zaman onu ellos / ellas olarak düşünmek işimizi kolaylaştırır."}, {"n": 8, "q": "Carlos y tú ______ preparado una presentación excelente.", "o": ["han", "has", "habéis", "ha"], "a": 2, "exp": "İspanya İspanyolcasında:\n\nCarlos y tú = vosotros\n\nYani “Carlos ve sen” dediğimizde konuştuğumuz kişiyi de içeren çoğul bir grup vardır.\n\nBu nedenle:\n\nvosotros → habéis\n\n✅ Carlos y tú habéis preparado una presentación excelente.\n\nTürkçesi:\nCarlos ve sen harika bir sunum hazırladınız.\n\n❌ has yalnızca tú içindir.\n❌ ha tek bir üçüncü kişi içindir.\n❌ han ellos/ellas/ustedes içindir."}, {"n": 9, "q": "Mi profesora ______ explicado esta regla otra vez.", "o": ["ha", "han", "has", "hemos"], "a": 0, "exp": "Mi profesora = ella\n\nElla için:\n\nha\n\n✅ Mi profesora ha explicado esta regla otra vez.\n\nTürkçesi:\nÖğretmenim bu kuralı tekrar açıkladı.\n\nFiil:\n\nexplicar → explicado\n\nBuradaki ha ile a karıştırılmamalıdır.\n\n✅ ha explicado = açıklamıştır / açıkladı\n❌ a explicado yanlış olur.\n\nÇünkü Pretérito Perfecto için yardımcı fiil haber gereklidir."}, {"n": 10, "q": "Elena y Marcos ______ reservado una mesa para esta noche.", "o": ["habéis", "ha", "hemos", "han"], "a": 3, "exp": "Özne:\n\nElena y Marcos\n\nİki kişiden söz ediyoruz:\n\nellos\n\nDolayısıyla:\n\nellos → han\n\n✅ Elena y Marcos han reservado una mesa para esta noche.\n\nTürkçesi:\nElena ve Marcos bu akşam için bir masa ayırttılar.\n\nFiil:\n\nreservar → reservado\n\n❌ habéis = vosotros\n❌ ha = él/ella\n❌ hemos = nosotros"}, {"n": 11, "q": "Esta tarde he ______ todas mis notas.\n\n(revisar)", "o": ["revisto", "revisiendo", "revisado", "revisar"], "a": 2, "exp": "Revisar düzenli bir -AR fiilidir.\n\nDüzenli -AR fiillerinde participio oluştururken:\n\n-ar → -ado\n\nBu yüzden:\n\nrevisar → revisado\n\n✅ Esta tarde he revisado todas mis notas.\n\nTürkçesi:\nBu öğleden sonra bütün notlarımı gözden geçirdim.\n\n❌ revisiendo participio değildir.\n❌ revisar mastardır.\n❌ revisto bu fiilin doğru participio biçimi değildir.\n\nFormül:\n\nhaber + participio\n\nhe + revisado"}, {"n": 12, "q": "Mis padres han ______ un apartamento cerca del mar.\n\n(alquilar)", "o": ["alquilado", "alquilido", "alquilando", "alquiló"], "a": 0, "exp": "Alquilar = kiralamak\n\nBu fiil düzenli bir -AR fiilidir.\n\nalquilar → alquilado\n\n✅ Mis padres han alquilado un apartamento cerca del mar.\n\nTürkçesi:\nAnne babam denize yakın bir daire kiraladılar.\n\n❌ alquilido: -AR fiillerinde -ido kullanılmaz.\n❌ alquilando: gerundio biçimidir.\n❌ alquiló: Pretérito Indefinido çekimidir.\n\nBurada bize gereken şey:\n\nhan + participio"}, {"n": 13, "q": "¿Has ______ alguna vez este tipo de queso?\n\n(probar)", "o": ["probido", "probado", "probando", "probar"], "a": 1, "exp": "Probar = denemek / tadına bakmak\n\n-AR ile bittiği için:\n\nprobar → probado\n\n✅ ¿Has probado alguna vez este tipo de queso?\n\nTürkçesi:\nBu peynir türünü hiç denedin mi?\n\nBurada ayrıca:\n\nalguna vez = hayatında hiç / herhangi bir zamanda\n\nPretérito Perfecto ile deneyim sorarken çok sık kullanılır.\n\n❌ probido yanlış participio'dur.\n❌ probando gerundio'dur.\n❌ probar mastardır."}, {"n": 14, "q": "El niño ha ______ el vaso sin querer.\n\n(romper)", "o": ["rompido", "rompando", "rompió", "roto"], "a": 3, "exp": "Romper düzensiz participio alan fiillerden biridir.\n\n❌ romper → rompido değil\n✅ romper → roto\n\nDoğru cümle:\n\n✅ El niño ha roto el vaso sin querer.\n\nTürkçesi:\nÇocuk istemeden bardağı kırdı.\n\nsin querer = istemeden\n\nBurada:\n\nha + roto\n\nkullanılır.\n\nRoto ezberlenmesi gereken düzensiz participio'lardan biridir."}, {"n": 15, "q": "Ya hemos ______ las sillas en el jardín.\n\n(poner)", "o": ["ponido", "poniendo", "puesto", "ponado"], "a": 2, "exp": "Poner = koymak\n\nPoner fiilinin participio'su düzensizdir:\n\n✅ poner → puesto\n\nBu nedenle:\n\n✅ Ya hemos puesto las sillas en el jardín.\n\nTürkçesi:\nSandalyeleri bahçeye çoktan koyduk.\n\nya burada “artık / çoktan” anlamı verir.\n\n❌ ponido yanlış\n❌ poniendo gerundio\n❌ ponado yanlış\n\nÖzellikle şu aileyi hatırlayın:\n\nponer → puesto\ncomponer → compuesto"}, {"n": 16, "q": "Marta ha ______ una carta a su abuela.\n\n(escribir)", "o": ["escribido", "escrito", "escribiendo", "escribado"], "a": 1, "exp": "Escribir düzensiz participio alan önemli fiillerden biridir:\n\n✅ escribir → escrito\n\nDoğru cümle:\n\n✅ Marta ha escrito una carta a su abuela.\n\nTürkçesi:\nMarta büyükannesine bir mektup yazdı.\n\n❌ escribido kulağa düzenliymiş gibi gelse de yanlıştır.\n❌ escribiendo gerundio'dur: “yazıyor”.\n❌ escribado diye bir participio yoktur.\n\nEzber:\n\nescribir → escrito"}, {"n": 17, "q": "Este año hemos ______ varios lugares interesantes.\n\n(conocer)", "o": ["conocido", "conocado", "conociendo", "conozco"], "a": 0, "exp": "Conocer düzenli bir -ER fiilidir.\n\n-ER ve -IR fiillerinde participio çoğunlukla:\n\n-er / -ir → -ido\n\nBu yüzden:\n\nconocer → conocido\n\n✅ Este año hemos conocido varios lugares interesantes.\n\nTürkçesi:\nBu yıl birkaç ilginç yer tanıdık / gördük.\n\n❌ conocado yanlış\n❌ conociendo gerundio\n❌ conozco Presente çekimidir."}, {"n": 18, "q": "El profesor ha ______ que mañana no hay clase.\n\n(decir)", "o": ["decido", "diciendo", "dicido", "dicho"], "a": 3, "exp": "Decir = söylemek\n\nParticipio biçimi tamamen düzensizdir:\n\n✅ decir → dicho\n\nDoğru cümle:\n\n✅ El profesor ha dicho que mañana no hay clase.\n\nTürkçesi:\nÖğretmen yarın ders olmadığını söyledi.\n\n❌ decido → decidir fiiliyle karıştırılabilir.\n❌ diciendo → gerundio biçimidir.\n❌ dicido → yanlış biçimdir.\n\nEzber:\n\ndecir → dicho"}, {"n": 19, "q": "¿Habéis ______ las fotos de la fiesta?\n\n(ver)", "o": ["veído", "visto", "viendo", "vedo"], "a": 1, "exp": "Ver = görmek\n\nParticipio biçimi düzensizdir:\n\n✅ ver → visto\n\nDoğru cümle:\n\n✅ ¿Habéis visto las fotos de la fiesta?\n\nTürkçesi:\nPartinin fotoğraflarını gördünüz mü?\n\n❌ veído kullanılmaz.\n❌ viendo = gerundio, “görüyor”\n❌ vedo diye bir çekim yoktur.\n\nvisto, en sık kullanılan düzensiz participio'lardan biridir."}, {"n": 20, "q": "Esta mañana Ana ha ______ la cama antes de salir.\n\n(hacer)", "o": ["hacido", "haciendo", "hecho", "hacado"], "a": 2, "exp": "Hacer = yapmak\n\nParticipio biçimi:\n\n✅ hacer → hecho\n\nBu nedenle:\n\n✅ Esta mañana Ana ha hecho la cama antes de salir.\n\nTürkçesi:\nAna bu sabah dışarı çıkmadan önce yatağını topladı.\n\nhacer la cama kelimesi kelimesine “yatağı yapmak” olsa da Türkçede:\n\nyatağı toplamak\n\nanlamındadır.\n\n❌ hacido yanlış\n❌ haciendo gerundio\n❌ hacado yanlış"}, {"n": 21, "q": "❌ Mis hermanas ha preparado la cena.", "o": ["Mis hermanas has preparado la cena.", "Mis hermanas hemos preparado la cena.", "Mis hermanas habéis preparado la cena.", "Mis hermanas han preparado la cena."], "a": 3, "exp": "Mis hermanas = kız kardeşlerim\n\nÇoğul üçüncü kişi:\n\nellas\n\nEllas için haber:\n\nhan\n\nBu nedenle:\n\n✅ Mis hermanas han preparado la cena.\n\nTürkçesi:\nKız kardeşlerim akşam yemeğini hazırladılar.\n\nOrijinal cümlede:\n\n❌ Mis hermanas ha...\n\nkullanılmıştı.\n\nHa, yalnızca:\n\nél / ella / usted\n\niçindir.\n\nÇoğul olunca:\n\nellos / ellas → han"}, {"n": 22, "q": "❌ Hoy he escribido tres mensajes.", "o": ["Hoy he escribiendo tres mensajes.", "Hoy he escrito tres mensajes.", "Hoy he escribir tres mensajes.", "Hoy ha escrito tres mensajes."], "a": 1, "exp": "Sorundaki hata haber çekiminde değil, participio'dadır.\n\nEscribir düzensizdir:\n\n❌ escribido\n✅ escrito\n\nBu nedenle:\n\n✅ Hoy he escrito tres mensajes.\n\nTürkçesi:\nBugün üç mesaj yazdım.\n\nA seçeneğindeki escribiendo, gerundio biçimidir.\nC seçeneğindeki escribir, mastardır.\nD seçeneğinde ise ha, üçüncü tekil kişiye geçmiştir; ama orijinal anlamda konuşan kişi “ben”dir."}, {"n": 23, "q": "❌ Nosotros hemos comiendo en ese restaurante.", "o": ["Nosotros hemos comido en ese restaurante.", "Nosotros han comido en ese restaurante.", "Nosotros hemos comer en ese restaurante.", "Nosotros estamos comido en ese restaurante."], "a": 0, "exp": "Pretérito Perfecto formülü:\n\nhaber + participio\n\nBurada:\n\nnosotros → hemos\n\nComer fiilinin participio'su:\n\ncomer → comido\n\nDolayısıyla:\n\n✅ Nosotros hemos comido en ese restaurante.\n\nTürkçesi:\nBiz o restoranda yemek yedik.\n\n❌ hemos comiendo olmaz.\n\nÇünkü comiendo gerundio'dur ve estar + gerundio yapısında kullanılır:\n\nEstamos comiendo.\n→ Yemek yiyoruz.\n\nPretérito Perfecto:\n\nhemos comido"}, {"n": 24, "q": "❌ Elena se ha levantando muy temprano.", "o": ["Elena ha se levantado muy temprano.", "Elena se ha levantar muy temprano.", "Elena se ha levantado muy temprano.", "Elena se levantado ha muy temprano."], "a": 2, "exp": "Fiil:\n\nlevantarse = kalkmak\n\nPretérito Perfecto'da dönüşlü zamir:\n\nözne + reflexivo + haber + participio\n\nElena = ella\n\nBu yüzden:\n\nElena + se + ha + levantado\n\n✅ Elena se ha levantado muy temprano.\n\nTürkçesi:\nElena çok erken kalktı.\n\n❌ levantando gerundio'dur.\n❌ ha se sıralaması yanlıştır.\n❌ se levantar mastarlı yapıdır.\n\nDoğru şablon:\n\nme he levantado\nte has levantado\nse ha levantado"}, {"n": 25, "q": "❌ Mi padre han vendido su coche.", "o": ["Mi padre hemos vendido su coche.", "Mi padre habéis vendido su coche.", "Mi padre has vendido su coche.", "Mi padre ha vendido su coche."], "a": 3, "exp": "Mi padre = él\n\nTekil üçüncü kişi olduğu için:\n\nél → ha\n\n✅ Mi padre ha vendido su coche.\n\nTürkçesi:\nBabam arabasını sattı.\n\nOrijinal cümlede:\n\n❌ han vendido\n\nkullanılmış.\n\nHan, çoğul özneler içindir:\n\nMis padres han vendido...\n\nAma:\n\nMi padre ha vendido..."}, {"n": 26, "q": "❌ Todavía no he terminar el libro.", "o": ["Todavía no he terminado el libro.", "Todavía no ha terminado el libro.", "Todavía he no terminado el libro.", "Todavía no he terminando el libro."], "a": 0, "exp": "Pretérito Perfecto:\n\nhaber + participio\n\nFiil:\n\nterminar → terminado\n\nBu nedenle:\n\n✅ Todavía no he terminado el libro.\n\nTürkçesi:\nKitabı henüz bitirmedim.\n\nTodavía no = henüz ... değil / henüz ... yapmadım\n\nOlumsuzluk sırası:\n\ntodavía + no + haber + participio\n\n✅ todavía no he terminado\n\n❌ he terminar olmaz; terminar mastardır.\n❌ he terminando olmaz; terminando gerundio'dur."}, {"n": 27, "q": "❌ Ana y Pedro hemos llegado juntos.", "o": ["Ana y Pedro ha llegado juntos.", "Ana y Pedro habéis llegado juntos.", "Ana y Pedro han llegado juntos.", "Ana y Pedro has llegado juntos."], "a": 2, "exp": "Ana y Pedro\n\nkonuşan kişiyi içermeyen iki üçüncü kişidir.\n\nDolayısıyla:\n\nellos → han\n\n✅ Ana y Pedro han llegado juntos.\n\nTürkçesi:\nAna ve Pedro birlikte geldiler.\n\nHemos ise:\n\nnosotros = biz\n\niçindir.\n\nEğer cümle:\n\nAna y yo...\n\nolsaydı:\n\n✅ Ana y yo hemos llegado juntos.\n\nolabilirdi."}, {"n": 28, "q": "❌ Nunca no he visitado Portugal.", "o": ["No nunca he visitado Portugal.", "Nunca he visitado Portugal.", "Nunca he visitando Portugal.", "Nunca ha visitado Portugal."], "a": 1, "exp": "Nunca cümlenin başında kullanıldığında zaten olumsuz anlam taşır:\n\nnunca = hiçbir zaman / hiç\n\nBu nedenle ayrıca no kullanmayız.\n\n✅ Nunca he visitado Portugal.\n\nTürkçesi:\nPortekiz'i hiç ziyaret etmedim.\n\n❌ Nunca no he... yanlış olur.\n\nAncak nunca fiilden sonra gelirse:\n\n✅ No he visitado nunca Portugal.\n\nşeklinde no kullanılabilir.\n\nA1.2 seviyesinde en güvenli yapı:\n\nNunca + haber + participio"}, {"n": 29, "q": "❌ Vosotros habéis abrido las ventanas.", "o": ["Vosotros habéis abriendo las ventanas.", "Vosotros han abierto las ventanas.", "Vosotros habéis abrir las ventanas.", "Vosotros habéis abierto las ventanas."], "a": 3, "exp": "Abrir düzensiz participio alan bir fiildir:\n\n❌ abrir → abrido\n✅ abrir → abierto\n\nVosotros için:\n\nhabéis\n\nBu yüzden:\n\n✅ Vosotros habéis abierto las ventanas.\n\nTürkçesi:\nSiz pencereleri açtınız.\n\nB seçeneğinde participio doğrudur ama han, vosotros ile uyuşmaz.\n\nTam yapı:\n\nvosotros + habéis + abierto"}, {"n": 30, "q": "❌ Me he ducharse antes del desayuno.", "o": ["Me he duchado antes del desayuno.", "He me duchado antes del desayuno.", "Me ha duchado antes del desayuno.", "Me he duchando antes del desayuno."], "a": 0, "exp": "Fiil:\n\nducharse = duş almak\n\nYo için dönüşlü zamir:\n\nme\n\nHaber:\n\nhe\n\nParticipio:\n\nduchar → duchado\n\nDolayısıyla:\n\n✅ Me he duchado antes del desayuno.\n\nTürkçesi:\nKahvaltıdan önce duş aldım.\n\nDoğru sıralama:\n\nme + he + duchado\n\n❌ ducharse = mastar\n❌ duchando = gerundio\n❌ he me = zamir sıralaması yanlış"}, {"n": 31, "q": "— ¿Quieres comer algo?\n— No, gracias. ______ he cenado.", "o": ["Nunca", "Ya", "Alguna vez", "Todavía no"], "a": 1, "exp": "Kişiye yemek isteyip istemediği soruluyor ve kişi:\n\n“Hayır, teşekkürler.”\n\ndiyor.\n\nBunun nedeni akşam yemeğini çoktan yemiş olmasıdır.\n\nya = artık / çoktan\n\n✅ Ya he cenado.\n\nTürkçesi:\nAkşam yemeğimi çoktan yedim.\n\n❌ Todavía no he cenado = Henüz yemek yemedim. Bu durumda yemek teklifini reddetmesi daha az mantıklı olur.\n\n❌ Nunca he cenado = Hayatımda hiç akşam yemeği yemedim anlamına yaklaşır ve bağlama uymaz."}, {"n": 32, "q": "— ¿Has terminado el informe?\n— No, ______ lo he terminado.", "o": ["ya", "alguna vez", "nunca", "todavía no"], "a": 3, "exp": "Cevap:\n\nNo\n\nile başladığına göre eylem henüz tamamlanmamıştır.\n\ntodavía no = henüz ... değil\n\n✅ Todavía no lo he terminado.\n\nTürkçesi:\nOnu henüz bitirmedim.\n\nBuradaki lo, “el informe” yerine kullanılan nesne zamiridir.\n\n❌ ya = çoktan\n❌ alguna vez = hiç / herhangi bir zamanda\n❌ nunca = hiçbir zaman\n\nBu bağlamda beklenen anlam “henüz değil” olduğu için todavía no gerekir."}, {"n": 33, "q": "— ¿______ has dormido en una tienda de campaña?\n— Sí, dos veces.", "o": ["Ya", "Todavía no", "Alguna vez", "Nunca"], "a": 2, "exp": "Sorulan şey kişinin hayatındaki bir deneyimdir:\n\n“Hiç çadırda uyudun mu?”\n\nBu tür sorularda:\n\n✅ alguna vez = hiç / herhangi bir zamanda\n\nkullanılır.\n\nTam cümle:\n\n✅ ¿Alguna vez has dormido en una tienda de campaña?\n\nTürkçesi:\nHiç çadırda uyudun mu?\n\nCevabın:\n\nSí, dos veces.\n\nolması da bunun bir deneyim sorusu olduğunu gösterir."}, {"n": 34, "q": "— ¿Conoces Japón?\n— No. ______ he estado allí.", "o": ["Nunca", "Ya", "Hoy", "Esta semana"], "a": 0, "exp": "Konuşan kişi Japonya'da bulunmadığını söylüyor.\n\nnunca = hiçbir zaman / hiç\n\n✅ Nunca he estado allí.\n\nTürkçesi:\nOrada hiç bulunmadım.\n\nBurada kişinin geçmişten bugüne kadar olan yaşam deneyiminden söz ediyoruz.\n\nPretérito Perfecto bu tür deneyim anlatımlarında sık kullanılır.\n\n❌ ya = çoktan\n❌ hoy = bugün\n❌ esta semana = bu hafta"}, {"n": 35, "q": "— ¿Podemos empezar la película?\n— Sí. Todos ______ han llegado.", "o": ["alguna vez", "ya", "nunca", "todavía no"], "a": 1, "exp": "Filmin başlayabileceği söyleniyor çünkü herkes gelmiş durumda.\n\nya han llegado = artık / çoktan geldiler\n\n✅ Todos ya han llegado.\n\nTürkçesi:\nHerkes artık geldi / herkes geldi bile.\n\nBurada ya, beklenen eylemin gerçekleştiğini belirtir.\n\n❌ todavía no han llegado = henüz gelmediler\n\nBu durumda filmi başlatmak mantıklı olmazdı."}, {"n": 36, "q": "— María, ¿has llamado al dentista?\n— No, ______ he llamado.", "o": ["nunca", "ya", "todavía no", "alguna vez"], "a": 2, "exp": "Burada belirli bir görevden söz ediliyor:\n\ndişçiyi aramak\n\nMaría henüz bunu yapmamış.\n\n✅ Todavía no he llamado.\n\nTürkçesi:\nHenüz aramadım.\n\nNunca he llamado ise:\n\n“Hiçbir zaman aramadım.”\n\ngibi daha genel bir yaşam deneyimi ifade eder.\n\nAma burada beklenen ve yapılması gereken bir iş henüz tamamlanmadığı için:\n\ntodavía no\n\ndaha uygundur."}, {"n": 37, "q": "— ¿Has comido comida peruana ______?\n— Sí, muchas veces.", "o": ["alguna vez", "todavía no", "nunca", "ya no"], "a": 0, "exp": "Sorulan şey:\n\n“Hayatında hiç Peru yemeği yedin mi?”\n\nBu nedenle:\n\n✅ alguna vez\n\nkullanılır.\n\nTam cümle:\n\n✅ ¿Has comido comida peruana alguna vez?\n\nTürkçesi:\nHiç Peru yemeği yedin mi?\n\nCevap:\n\nSí, muchas veces.\n→ Evet, birçok kez.\n\nBu da sorunun deneyim sorusu olduğunu doğrular."}, {"n": 38, "q": "— ¿Dónde está Pablo?\n— No sé. ______ ha llegado.", "o": ["ya", "alguna vez", "nunca", "todavía no"], "a": 3, "exp": "Pablo'nun nerede olduğu bilinmiyor ve bağlamdan henüz gelmediğini anlıyoruz.\n\n✅ Todavía no ha llegado.\n\nTürkçesi:\nHenüz gelmedi.\n\nBurada:\n\ntodavía no + ha + llegado\n\nyapısını kullanıyoruz.\n\n❌ ya ha llegado deseydik “çoktan geldi” anlamı çıkardı ve “nerede?” sorusunun bağlamı değişirdi."}, {"n": 39, "q": "este mes / mi hermana / ha / empezado / un curso de francés", "o": ["Ha mi hermana empezado este mes un curso de francés.", "Este mes empezado mi hermana ha un curso de francés.", "Este mes mi hermana ha empezado un curso de francés.", "Mi hermana empezado ha este mes un curso de francés."], "a": 2, "exp": "En doğal sıra:\n\nZaman + özne + haber + participio + tamamlayıcı\n\nBu nedenle:\n\n✅ Este mes mi hermana ha empezado un curso de francés.\n\nTürkçesi:\nKız kardeşim bu ay bir Fransızca kursuna başladı.\n\nBurada Pretérito Perfecto'nun ayrılmaz çekirdek yapısı:\n\nha empezado\n\nolmalıdır.\n\nHaber ile participio arasını gereksiz yere ayırmıyoruz."}, {"n": 40, "q": "hoy / me / he / despertado / a las siete", "o": ["Hoy me he despertado a las siete.", "Hoy he me despertado a las siete.", "Me despertado he hoy a las siete.", "Hoy me despertado he a las siete."], "a": 0, "exp": "Dönüşlü fiil:\n\ndespertarse\n\nYo için doğru yapı:\n\nme + he + despertado\n\nDolayısıyla:\n\n✅ Hoy me he despertado a las siete.\n\nTürkçesi:\nBugün saat yedide uyandım.\n\nÖzellikle dikkat:\n\n❌ he me despertado olmaz.\n\nReflexivo zamir Pretérito Perfecto'da haber fiilinden önce gelir:\n\nme he\nte has\nse ha\nnos hemos\nos habéis\nse han"}, {"n": 41, "q": "mis amigos / todavía no / han / decidido / el destino", "o": ["Mis amigos han todavía no decidido el destino.", "Todavía mis amigos decidido no han el destino.", "Mis amigos decidido han todavía no el destino.", "Mis amigos todavía no han decidido el destino."], "a": 3, "exp": "Doğru yapı:\n\nözne + todavía no + haber + participio\n\n✅ Mis amigos todavía no han decidido el destino.\n\nTürkçesi:\nArkadaşlarım gidecekleri yeri henüz seçmediler.\n\nBuradaki önemli grup:\n\ntodavía no han decidido\n\nolmalıdır.\n\nNo, haber yardımcı fiilinin önünde bulunur.\n\nParticipio:\n\ndecidir → decidido"}, {"n": 42, "q": "alguna vez / habéis / probado / chocolate con chile", "o": ["Habéis alguna vez chocolate probado con chile.", "¿Alguna vez habéis probado chocolate con chile?", "¿Probado alguna vez habéis chocolate con chile?", "Alguna vez chocolate habéis con chile probado."], "a": 1, "exp": "Deneyim sorularında çok doğal yapı:\n\n¿Alguna vez + haber + participio...?\n\nBu nedenle:\n\n✅ ¿Alguna vez habéis probado chocolate con chile?\n\nTürkçesi:\nHiç acı biberli çikolata denediniz mi?\n\nVosotros:\n\nhabéis\n\nProbar:\n\nprobado\n\nTam çekirdek:\n\nhabéis probado"}, {"n": 43, "q": "esta semana / nosotros / hemos / tenido / mucho trabajo", "o": ["Esta semana nosotros hemos tenido mucho trabajo.", "Nosotros tenido hemos esta semana mucho trabajo.", "Esta semana hemos nosotros tener mucho trabajo.", "Hemos tenido nosotros trabajo mucho esta semana."], "a": 0, "exp": "Doğal ve doğru sıra:\n\n✅ Esta semana nosotros hemos tenido mucho trabajo.\n\nDaha doğal günlük kullanımda nosotros düşürülebilir:\n\nEsta semana hemos tenido mucho trabajo.\n\nTürkçesi:\nBu hafta çok işimiz oldu.\n\nFiil:\n\ntener → tenido\n\nParticipio açısından tener düzenlidir.\n\nDikkat:\n\nPresente'de düzensiz olması:\n\ntengo, tienes...\n\nparticipio'sunun da düzensiz olacağı anlamına gelmez."}, {"n": 44, "q": "ya / los niños / han / vuelto / del colegio", "o": ["Han los niños ya del colegio vuelto.", "Los niños vuelto ya han del colegio.", "Los niños ya han vuelto del colegio.", "Ya los niños vuelto han del colegio."], "a": 2, "exp": "Doğru yapı:\n\n✅ Los niños ya han vuelto del colegio.\n\nTürkçesi:\nÇocuklar okuldan çoktan döndüler.\n\nVolver fiilinin participio'su düzensizdir:\n\nvolver → vuelto\n\nBu nedenle:\n\n✅ han vuelto\n❌ han volvido\n\nYa özne ile yardımcı fiil arasında kullanılabilir:\n\nLos niños ya han vuelto."}, {"n": 45, "q": "Claudia abre la nevera. No hay leche, huevos ni queso. Tiene que ir al supermercado.\n\n¿Qué ha pasado?", "o": ["Ha limpiado la cocina.", "Se ha terminado casi toda la comida.", "Ha preparado una fiesta.", "Ha cerrado el supermercado."], "a": 1, "exp": "Buzdolabında neredeyse hiçbir şey kalmamış:\n\n- süt yok,\n- yumurta yok,\n- peynir yok.\n\nBu nedenle en mantıklı sonuç:\n\n✅ Se ha terminado casi toda la comida.\n\nTürkçesi:\nYiyeceklerin neredeyse hepsi bitmiş.\n\nBurada öğrenciden yalnızca çekimi tanıması değil, bağlam ile sonucu ilişkilendirmesi bekleniyor.\n\nA seçeneğinde mutfağın temizlenmesi yiyeceklerin yokluğunu açıklamaz.\n\nC ve D seçeneklerinin de verilen bilgilerle bağlantısı yoktur."}, {"n": 46, "q": "Javier tiene una camiseta completamente mojada y acaba de entrar en casa. Fuera hay nubes negras y mucha agua en la calle.\n\n¿Qué ha pasado?", "o": ["Ha lavado la camiseta.", "Ha preparado la cena.", "Ha ido a la piscina.", "Ha llovido mucho."], "a": 3, "exp": "Bağlam bize birkaç ipucu veriyor:\n\n- Javier'in tişörtü tamamen ıslak.\n- Dışarıda kara bulutlar var.\n- Sokakta çok su var.\n\nBunların en mantıklı açıklaması:\n\n✅ Ha llovido mucho.\n\nTürkçesi:\nÇok yağmur yağdı.\n\nLlover → llovido\n\nBurada şimdiki sonucu görüyoruz: sokaklar ıslak ve Javier'in kıyafeti ıslak.\n\nBu nedenle tamamlanmış ama sonucu şu anda görülen bir olay Pretérito Perfecto ile ifade edilebilir."}, {"n": 47, "q": "Sofía busca su móvil por toda la casa. Mira en el bolso, debajo de la cama y encima de la mesa, pero no lo encuentra.\n\n¿Qué ha pasado?", "o": ["Ha perdido su móvil.", "Ha comprado un móvil nuevo.", "Ha llamado a su amiga.", "Ha apagado el móvil."], "a": 0, "exp": "Sofía telefonunu her yerde arıyor fakat bulamıyor.\n\nBu durumun en mantıklı açıklaması:\n\n✅ Ha perdido su móvil.\n\nTürkçesi:\nTelefonunu kaybetti.\n\nBurada eylem geçmişte gerçekleşmiş ancak sonucu şu anda devam ediyor:\n\nTelefon hâlâ onda değil.\n\nBu, Pretérito Perfecto'nun çok tipik kullanımlarından biridir:\n\nGeçmişte gerçekleşen eylem + şu an devam eden sonuç"}, {"n": 48, "q": "Marcos entra en la cocina. Hay harina en la mesa, chocolate, azúcar y un pastel caliente.\n\n¿Qué ha hecho alguien?", "o": ["Ha pedido una pizza.", "Ha lavado toda la ropa.", "Ha preparado un pastel.", "Ha comprado un ordenador."], "a": 2, "exp": "Bağlamdaki ipuçları:\n\n- harina = un\n- chocolate\n- azúcar = şeker\n- un pastel caliente = sıcak bir kek/pasta\n\nBu nedenle:\n\n✅ Ha preparado un pastel.\n\nTürkçesi:\nBir kek/pasta hazırlamış.\n\nDiğer seçeneklerin mutfaktaki malzemelerle mantıksal bağlantısı yoktur.\n\nBu tür sorularda önce cümlenin gramerine değil, bağlama bakmalısınız.\n\nArdından en mantıklı Pretérito Perfecto cümlesini seçmelisiniz."}, {"n": 49, "q": "Lucía entra en su habitación y ve que todo está en cajas. Los libros, la ropa y los objetos personales están preparados para salir de la casa.\n\n¿Qué ha hecho Lucía?", "o": ["Ha decorado su habitación para Navidad.", "Ha preparado sus cosas para una mudanza.", "Ha roto todos sus libros.", "Ha invitado a veinte amigos."], "a": 1, "exp": "Her şey kutuların içinde:\n\n- kitaplar,\n- kıyafetler,\n- kişisel eşyalar.\n\nBu görüntü bize taşınma hazırlığını düşündürür.\n\n✅ Ha preparado sus cosas para una mudanza.\n\nTürkçesi:\nTaşınmak için eşyalarını hazırlamış.\n\nmudanza = taşınma\n\nBurada:\n\nha preparado\n\nPretérito Perfecto yapısıdır.\n\nEylem tamamlanmış ve sonucu şu anda gözümüzün önündedir: eşyalar kutulardadır."}, {"n": 50, "q": "Daniel abre su correo electrónico y ve un mensaje que dice:\n“¡Enhorabuena! Tu solicitud ha sido aceptada.”\nDaniel sonríe y llama inmediatamente a su familia.\n\n¿Qué ha pasado?", "o": ["Daniel ha olvidado enviar la solicitud.", "Han aceptado la solicitud de Daniel.", "Daniel ha perdido su contraseña.", "Daniel todavía no ha recibido ninguna respuesta."], "a": 1, "exp": "Mesajda açıkça:\n\n“Tu solicitud ha sido aceptada.”\n\nyani:\n\n“Başvurun kabul edildi.”\n\ndeniyor.\n\nDolayısıyla:\n\n✅ Han aceptado la solicitud de Daniel.\n\nTürkçesi:\nDaniel'in başvurusunu kabul etmişler.\n\nBuradaki han aceptado, öznesi belirtilmeyen bir “onlar” anlamı taşır:\n\nBir kurum / yetkililer başvuruyu kabul etmişler.\n\nA seçeneği yanlış çünkü başvuru gönderilmiş olmalı ki kabul edilebilsin.\n\nC seçeneğiyle ilgili hiçbir bilgi yok.\n\nD seçeneği de yanlıştır çünkü Daniel açıkça cevap almıştır."}];
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec";
+var ODEV='H8 – 29-30.Ders';
+var studentName='';
+
+function esc(s){
+  return String(s||'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+function $(id){return document.getElementById(id);}
+
+var cur=0;
+var okCount=0;
+var errCount=0;
+var answered=new Array(50).fill(false);
+var scores=new Array(50).fill(0);
+var myAnswers=new Array(50).fill(null);
+
+function sectionInfo(n){
+  if(n<=10) return {cls:'sec-haber', title:'🟣 Bölüm 1 – Haber Çekimleri (1-10)', help:'Doğru haber çekimini seçiniz: he, has, ha, hemos, habéis veya han.'};
+  if(n<=20) return {cls:'sec-part', title:'🔵 Bölüm 2 – Participio Correcto (11-20)', help:'Parantezde verilen fiilin doğru participio biçimini seçiniz.'};
+  if(n<=30) return {cls:'sec-error', title:'🔴 Bölüm 3 – Encuentra el Error (21-30)', help:'Verilen yanlış cümlenin doğru biçimini seçiniz.'};
+  if(n<=38) return {cls:'sec-time', title:'🟢 Bölüm 4 – Zaman İfadeleri (31-38)', help:'Diyaloğun anlamına en uygun zaman ifadesini seçiniz.'};
+  if(n<=44) return {cls:'sec-order', title:'🟠 Bölüm 5 – Ordena la Frase (39-44)', help:'Verilen kelimelerle oluşturulabilecek doğru cümleyi seçiniz.'};
+  return {cls:'sec-context', title:'🟡 Bölüm 6 – ¿Qué ha pasado? (45-50)', help:'Durumu okuyup en mantıklı Pretérito Perfecto cümlesini seçiniz.'};
+}
+
+function startQuiz(){
+  var n=$('nameSelect').value;
+  if(!n){alert('Lütfen adınızı seçin.');return;}
+  studentName=n;
+  $('studentTopName').textContent=studentName;
+  $('introCard').classList.add('hidden');
+  $('quizCard').classList.remove('hidden');
+  cur=0; okCount=0; errCount=0;
+  answered=new Array(50).fill(false);
+  scores=new Array(50).fill(0);
+  myAnswers=new Array(50).fill(null);
+  renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function syncName(){studentName=$('nameSelect2').value;}
+
+function renderQ(){
+  var q=QUESTIONS[cur];
+  var sec=sectionInfo(q.n);
+  var done=answered[cur];
+  var saved=myAnswers[cur];
+  var letters=['A','B','C','D'];
+
+  $('progFill').style.width=((cur)/50*100)+'%';
+  $('qLabel').textContent='📝 Soru '+q.n+' / 50';
+  $('cntOk').textContent='✓ '+okCount;
+  $('cntErr').textContent='  ✗ '+errCount;
+
+  var h='';
+  h+='<div class="sec-badge '+sec.cls+'">'+sec.title+' &bull; 2 Puan</div>';
+  h+='<div class="section-help">'+esc(sec.help)+'</div>';
+  h+='<div class="mc-q" style="white-space:pre-wrap">Soru '+q.n+': '+esc(q.q)+'</div>';
+  h+='<div class="opts">';
+
+  q.o.forEach(function(opt,k){
+    var cls='opt-btn';
+    if(done){
+      if(k===q.a) cls+=' correct';
+      else if(k===saved && saved!==q.a) cls+=' wrong';
+    }
+    h+='<button class="'+cls+'" '+(done?'disabled':'')+' onclick="pickAnswer('+k+')">';
+    h+='<span class="opt-letter">'+letters[k]+')</span><span>'+esc(opt)+'</span></button>';
+  });
+
+  h+='</div>';
+  h+='<div class="exp-box'+(done?' show':'')+'" style="white-space:pre-wrap">'+esc(q.exp)+'</div>';
+  $('qContent').innerHTML=h;
+
+  $('btnNext').style.display=done && cur<49 ? 'flex' : 'none';
+  if(done && cur===49){
+    $('btnNext').style.display='flex';
+    $('btnNext').textContent='🏁 Sonucu Gör';
+  } else {
+    $('btnNext').textContent='Sonraki Soru →';
+  }
+}
+
+function pickAnswer(k){
+  if(answered[cur]) return;
+  var q=QUESTIONS[cur];
+  myAnswers[cur]=k;
+  answered[cur]=true;
+  if(k===q.a){okCount++;scores[cur]=2;}
+  else{errCount++;scores[cur]=0;}
+  renderQ();
+}
+
+function nextQ(){
+  if(cur<49){cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+  else{showResult();}
+}
+
+function askFinish(){
+  var unanswered=0;
+  for(var i=0;i<50;i++) if(!answered[i]) unanswered++;
+  var msg='Şu ana kadar '+okCount+' doğru, '+errCount+' yanlış yaptınız.';
+  if(unanswered>0) msg+='\n\n'+unanswered+' soru henüz cevaplanmadı.';
+  msg+='\n\nTesti bitirmek istediğinizden emin misiniz?';
+  openConfirm(msg,showResult);
+}
+
+function calcScore(){
+  var total=0;
+  for(var i=0;i<50;i++) total+=scores[i];
+  return total;
+}
+
+function showResult(){
+  $('quizCard').classList.add('hidden');
+  var pts=calcScore();
+  $('rScore').textContent=pts+'/100';
+
+  var answeredCount=0;
+  for(var i=0;i<50;i++) if(answered[i]) answeredCount++;
+  var blank=50-answeredCount;
+
+  $('rStats').innerHTML=
+    '<span class="stat-box" style="background:#eafaf2;color:#1a5c3a">✓ Doğru: '+okCount+'</span>'+
+    '<span class="stat-box" style="background:#fde8e8;color:#8b1a1a">✗ Yanlış: '+errCount+'</span>'+
+    '<span class="stat-box" style="background:#f3effb;color:#6c4eb8">○ Boş: '+blank+'</span>';
+
+  $('rNote').textContent='50 soruluk Pretérito Perfecto pekiştirme çalışması tamamlandı.';
+  $('nameSelect2').value=studentName;
+  $('resultCard').classList.remove('hidden');
+  buildReview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildReview(){
+  var letters=['A','B','C','D'];
+  var h='';
+  for(var i=0;i<50;i++){
+    if(!answered[i] || scores[i]===2) continue;
+    var q=QUESTIONS[i];
+    h+='<div class="rev-item">';
+    h+='<div class="rev-q">Soru '+q.n+': '+esc(q.q)+'</div>';
+    h+='<div class="rev-my">✗ Seçiminiz: '+letters[myAnswers[i]]+') '+esc(q.o[myAnswers[i]])+'</div>';
+    h+='<div class="rev-ok">✓ Doğru: '+letters[q.a]+') '+esc(q.o[q.a])+'</div>';
+    h+='<div class="rev-exp">'+esc(q.exp)+'</div>';
+    h+='</div>';
+  }
+  $('reviewList').innerHTML=h||'<div style="padding:10px;color:#2e9e6b;text-align:center;font-weight:700">Tüm cevapladığınız sorular doğru! 🎉</div>';
+}
+
+function toggleReview(){
+  var rv=$('reviewList');
+  rv.style.display=(rv.style.display==='flex'?'none':'flex');
+}
+
+function submitResult(){
+  var name=$('nameSelect2').value;
+  if(!name){alert('Lütfen adınızı seçin.');return;}
+  var pts=calcScore();
+
+  var payload=JSON.stringify({
+    ogrenci:name,
+    odev:ODEV,
+    grup:'A1.2',
+    puan:pts,
+    dogru:okCount,
+    yanlis:errCount,
+    tarih:new Date().toLocaleDateString('tr-TR')
+  });
+
+  $('warningBox').style.display='none';
+  $('submitMsg').style.display='block';
+  $('submitMsg').textContent='Gönderiliyor...';
+  $('btnSubmit').disabled=true;
+
+  fetch(SCRIPT_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:payload
+  })
+  .then(function(){
+    $('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';
+  })
+  .catch(function(){
+    $('submitMsg').textContent=name+' öğrencisinin "'+ODEV+'" ödevi teslim edildi. Puan: '+pts+'/100.';
+  });
+}
+
+var confirmCb=null;
+function openConfirm(msg,cb){
+  $('confirmMsg').textContent=msg;
+  confirmCb=cb;
+  $('confirmOk').onclick=function(){closeConfirm();if(confirmCb)confirmCb();};
+  $('confirmOverlay').classList.add('open');
+}
+function closeConfirm(){$('confirmOverlay').classList.remove('open');}
+</script>
+</body>
+</html>
