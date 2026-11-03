@@ -252,8 +252,9 @@ select#studentName:focus{border-color:var(--primary);}
 .finish-btn-sm{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="wrap">
 <!-- INTRO -->
 <div id="intro">
@@ -286,12 +287,13 @@ select#studentName:focus{border-color:var(--primary);}
 </div>
 <!-- QUIZ -->
 <div id="quiz">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>El Presente Continuo</h2><p>A1.2 · 5–6. Ders</p></div></header>
   <div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 100</div>
     <div class="score-bar">
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
-      <button class="finish-btn-sm" onclick="showResult()">Testi Bitir →</button>
+      <button class="finish-btn-sm a12-finish" onclick="showResult()">🏁 Bitir</button>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
     </div>
   </div>

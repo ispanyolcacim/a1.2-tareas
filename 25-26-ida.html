@@ -128,8 +128,9 @@ select:focus{border-color:#6c4eb8}
 @media(max-width:480px){.btn-row{flex-direction:column}.btn-finish-top{width:78%}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="wrap">
 
 <!-- INTRO -->
@@ -173,6 +174,7 @@ select:focus{border-color:#6c4eb8}
 
 <!-- QUIZ CARD -->
 <div id="quizCard" class="card hidden">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Presente · Estar + Gerundio · Ir a + Infinitivo</h2><p>A1.2 · 25–26. Ders</p></div></header>
   <div class="quiz-head">
     <div class="quiz-headline">
       <span class="quiz-student" id="quizStudent">👤 Öğrenci</span>
@@ -188,7 +190,7 @@ select:focus{border-color:#6c4eb8}
   </div>
 
   <div class="top-actions">
-    <button class="btn-finish-top" onclick="askFinish()">🏁 Testi Bitir</button>
+    <button class="btn-finish-top a12-finish" onclick="askFinish()">🏁 Bitir</button>
   </div>
 
   <div id="qContent"></div>

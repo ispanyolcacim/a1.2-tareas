@@ -136,8 +136,9 @@ select:focus{border-color:#6c4eb8}
 }
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="wrap">
 
 <!-- ═══ INTRO ═══ -->
@@ -166,9 +167,10 @@ select:focus{border-color:#6c4eb8}
 
 <!-- ═══ STICKY QUIZ TOOLBAR ═══ -->
 <div id="quizToolbar" class="quiz-toolbar hidden">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Escucha · Ir a + Infinitivo</h2><p>A1.2 · 23–24. Ders</p></div></header>
   <div class="toolbar-main">
     <div class="quiz-student">Öğrenci<strong id="quizStudentName">—</strong></div>
-    <button class="btn-finish-top" onclick="confirmFinishAll()">Testi Bitir</button>
+    <button class="btn-finish-top a12-finish" onclick="confirmFinishAll()">🏁 Bitir</button>
   </div>
   <div class="section-tabs">
     <button id="tabListening" class="section-tab active" onclick="goToSection('listening')">1. Bölüm: Dinleme</button>

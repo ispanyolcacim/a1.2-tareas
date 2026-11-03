@@ -295,8 +295,9 @@ select#studentName:focus{border-color:var(--primary);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="wrap">
 <!-- INTRO -->
 <div id="intro">
@@ -348,7 +349,7 @@ select#studentName:focus{border-color:var(--primary);}
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
     </div>
-    <button class="finish-btn" onclick="finishTest()">🏁 Bitir</button>
+    <button class="finish-btn a12-finish" onclick="finishTest()">🏁 Bitir</button>
   </div>
   <div id="qArea"></div>
 </div>

@@ -78,8 +78,9 @@ select:focus{border-color:#6c4eb8}
 @media(max-width:480px){.card{padding:1.25rem}.res-score{font-size:2.8rem}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="card">
   <!-- INTRO -->
   <div id="introScreen" class="screen active">
@@ -111,13 +112,16 @@ select:focus{border-color:#6c4eb8}
   </div>
   <!-- QUIZ -->
   <div id="quizScreen" class="screen">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Ir a + Infinitivo</h2><p>A1.2 · 17–18. Ders</p></div></header>
+    <div class="a12-status">
     <div class="top-finish-wrap">
-      <button class="btn-finish-top" onclick="confirmFinish()">Testi Bitir</button>
+      <button class="btn-finish-top a12-finish" onclick="confirmFinish()">🏁 Bitir</button>
     </div>
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="q-meta">
       <span id="qMeta">Soru 1 / 50</span>
       <span><span class="cnt cnt-ok" id="cntOk">0 Doğru</span>&nbsp;<span class="cnt cnt-err" id="cntErr">0 Yanlış</span></span>
+    </div>
     </div>
     <div id="qCard"></div>
     <div class="nav">
