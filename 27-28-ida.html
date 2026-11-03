@@ -131,8 +131,9 @@ select:focus{border-color:#6c4eb8}
 @media(max-width:480px){.btn-row{flex-direction:column}}
 </style>
 <script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <div class="wrap">
 
 <!-- INTRO -->
@@ -179,6 +180,7 @@ select:focus{border-color:#6c4eb8}
 
 <!-- QUIZ CARD -->
 <div id="quizCard" class="card hidden">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Pretérito Perfecto</h2><p>A1.2 · 27–28. Ders</p></div></header>
   <div class="student-top">
     <div>👤 <span class="student-top-name" id="studentTopName">Öğrenci</span></div>
     <div style="font-size:.78rem;color:#8c7ab8;font-weight:700">📚 A1.2 &bull; H7 &bull; 27-28. Ders</div>
@@ -188,7 +190,7 @@ select:focus{border-color:#6c4eb8}
     <span id="qLabel">📝 Soru 1 / 70</span>
     <span><span class="cnt-ok" id="cntOk">✓ 0</span><span class="cnt-err" id="cntErr">&nbsp;✗ 0</span></span>
   </div>
-  <div class="finish-top-wrap"><button class="btn-finish top" onclick="askFinish()">🏁 Testi Bitir</button></div>
+  <div class="finish-top-wrap"><button class="btn-finish top a12-finish" onclick="askFinish()">🏁 Bitir</button></div>
   <div id="qContent"></div>
   <div class="btn-row">
     <button class="btn-check" id="btnCheck" onclick="checkAnswer()" style="display:flex;flex:2">✅ Kontrol Et</button>

@@ -124,8 +124,9 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:480px){.score-big{font-size:3rem}}
 </style>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 
 <div class="header">
   <div class="header-tag">A1.2 · 15-16. Ders İçi Etkinlik</div>
@@ -156,13 +157,14 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)
 
 <!-- QUIZ -->
 <div id="quizScreen">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Una tarde especial en la clase de español</h2><p>A1.2 · 15–16. Ders</p></div></header>
   <div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-label" id="progLabel">1 / 20</div>
     <div class="score-row">
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
-      <button class="finish-btn" onclick="finishQuiz()">Bitir →</button>
+      <button class="finish-btn a12-finish" onclick="finishQuiz()">🏁 Bitir</button>
     </div>
   </div>
 

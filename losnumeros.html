@@ -27,8 +27,9 @@ button,input{font:inherit}
 .result{max-width:540px;margin:0 auto;padding:34px 20px;text-align:center}.result-card{padding:28px 22px}.result-icon{font-size:52px}.result h2{font-size:23px;margin:7px 0}.score{font-size:52px;font-weight:900;color:var(--navy);line-height:1.15}.score-label{font-size:12px;color:var(--muted);margin-bottom:18px}.result-note{padding:14px;margin:16px 0;background:var(--cream);border:1.5px solid var(--yellow);border-radius:12px;font-size:13px;line-height:1.7;text-align:left}
 @media(max-width:520px){.topbar{grid-template-columns:1fr auto}.topbar .btn{padding:9px 11px;font-size:12px}.question-card{padding:22px 15px}.answer{font-size:15px}.summary-grid{grid-template-columns:1fr 1fr}}
 </style>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
 </head>
-<body>
+<body data-a12-theme>
 <header class="header">
   <div class="tag">Ekstra Çalışma Ödevi</div>
   <h1>🇪🇸 İspanyolca Sayılar</h1>
@@ -60,13 +61,14 @@ button,input{font:inherit}
   </section>
 
   <section class="screen" id="quiz-screen">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>İspanyolca Sayılar</h2><p>A1.2 · Ek Çalışma</p></div></header>
     <div class="quiz">
       <div class="topbar">
         <div>
           <div class="progress-text"><span id="q-position">Soru 1 / 1001</span> · <span id="answered-top">0 cevaplandı</span></div>
           <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
-        <button class="btn danger" type="button" onclick="openFinishModal()">Çalışmayı Bitir</button>
+        <button class="btn danger a12-finish" type="button" onclick="openFinishModal()">🏁 Bitir</button>
         <div class="save-note">✓ İlerlemeniz otomatik kaydediliyor.</div>
       </div>
 
