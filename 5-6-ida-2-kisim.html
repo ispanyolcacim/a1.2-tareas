@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A1.2 (5+6) 2. Kısım</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0fa;
+  --surface:#ffffff;
+  --primary:#6c5ce7;
+  --primary-dark:#5a4bd1;
+  --primary-light:#a29bfe;
+  --accent:#fd79a8;
+  --accent2:#00cec9;
+  --accent3:#fdcb6e;
+  --text:#2d3436;
+  --muted:#636e72;
+  --border:#dfe6e9;
+  --ok:#00b894;
+  --err:#e17055;
+  --radius:16px;
+  --shadow:0 4px 24px rgba(108,92,231,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+/* Dekoratif arka plan */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(162,155,254,0.18) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(253,121,168,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(108,92,231,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1;}
+/* INTRO */
+#intro{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:36px 28px 32px;
+  border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.brand-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);}
+.brand-dot:nth-child(2){background:var(--accent);}
+.brand-dot:nth-child(3){background:var(--accent3);}
+.brand-name{font-family:'Nunito',sans-serif;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+.intro-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;
+}
+#intro h1{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.intro-sub{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.intro-desc{font-size:13px;color:var(--primary-light);font-weight:700;margin-bottom:24px;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.chip{
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  background:rgba(108,92,231,0.09);color:var(--primary);
+}
+.chip.c2{background:rgba(253,121,168,0.1);color:var(--accent);}
+.chip.c3{background:rgba(0,206,201,0.1);color:var(--accent2);}
+.name-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+select.name-select{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--text);
+  background:#fff;cursor:pointer;outline:none;transition:border .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+select.name-select:focus{border-color:var(--primary);}
+.start-btn{
+  width:100%;margin-top:20px;padding:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;border:none;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(108,92,231,0.35);
+  letter-spacing:.3px;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,0.45);}
+.start-btn:active{transform:translateY(0);}
+/* QUIZ */
+#quiz{display:none;}
+.top-bar{
+  background:var(--surface);border-radius:var(--radius);padding:14px 18px;
+  margin-bottom:14px;box-shadow:0 2px 12px rgba(108,92,231,0.08);
+  display:flex;align-items:center;gap:12px;
+}
+.prog-wrap{flex:1;height:8px;background:rgba(108,92,231,0.12);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:4px;transition:width .4s ease;}
+.prog-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--primary);white-space:nowrap;}
+.score-bar{display:flex;gap:16px;padding:0 2px;}
+.sc{font-size:13px;font-weight:700;}
+.sc.ok{color:var(--ok);}
+.sc.err{color:var(--err);}
+.q-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:26px 24px 22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--primary);
+  animation:fadeUp .3s ease;
+}
+.q-num{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;
+  color:var(--primary-light);letter-spacing:1.5px;margin-bottom:6px;
+}
+.q-type-badge{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  background:rgba(108,92,231,0.1);color:var(--primary);
+}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--text);}
+.choices{display:flex;flex-direction:column;gap:9px;}
+.choice-btn{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:12px;background:#fff;
+  cursor:pointer;text-align:left;font-family:'Nunito Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--primary-light);background:rgba(108,92,231,0.04);transform:translateX(3px);}
+.cletter{
+  width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  background:rgba(108,92,231,0.1);color:var(--primary);flex-shrink:0;
+}
+.choice-btn.ok{border-color:var(--ok);background:rgba(0,184,148,0.06);}
+.choice-btn.ok .cletter{background:var(--ok);color:#fff;}
+.choice-btn.err{border-color:var(--err);background:rgba(225,112,85,0.06);}
+.choice-btn.err .cletter{background:var(--err);color:#fff;}
+.explanation{
+  margin-top:14px;padding:14px 16px;border-radius:12px;
+  font-size:13px;line-height:1.6;display:none;
+}
+.explanation.show{display:block;}
+.exp-ok{background:rgba(0,184,148,0.08);border-left:3px solid var(--ok);}
+.exp-err{background:rgba(225,112,85,0.08);border-left:3px solid var(--err);}
+.exp-es{display:block;margin-top:6px;color:var(--primary);font-weight:700;}
+.exp-tr{display:block;margin-top:2px;color:var(--muted);}
+.exp-en{display:block;margin-top:2px;color:var(--accent2);font-style:italic;}
+.nav-row{display:flex;gap:8px;margin-top:18px;}
+.nav-btn{
+  padding:9px 18px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed;}
+.nav-btn.primary{
+  margin-left:auto;background:var(--primary);border-color:var(--primary);color:#fff;
+}
+.nav-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+/* RESULT */
+#result{display:none;}
+.result-card{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 28px;box-shadow:var(--shadow);
+  text-align:center;border-top:5px solid var(--primary);
+  animation:fadeUp .5s ease;
+}
+.result-emoji{font-size:52px;margin-bottom:8px;}
+.result-badge{
+  display:inline-block;background:rgba(108,92,231,0.1);color:var(--primary);
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:12px;
+}
+.score-big{
+  font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;
+  color:var(--primary);line-height:1;margin-bottom:4px;
+}
+.score-big span{font-size:28px;color:var(--primary-light);}
+.score-row{display:flex;justify-content:center;gap:24px;margin:16px 0 20px;}
+.score-item{text-align:center;}
+.score-item .val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;}
+.score-item .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+.val.ok{color:var(--ok);}
+.val.err{color:var(--err);}
+.name-confirm-box{margin:20px 0 16px;}
+.name-confirm-box label{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;
+}
+.confirm-row{display:flex;gap:8px;}
+select#studentName{
+  flex:1;padding:11px 14px;border:2px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:'Nunito Sans',sans-serif;color:var(--text);
+  background:#fff;outline:none;cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+select#studentName:focus{border-color:var(--primary);}
+.confirm-btn{
+  padding:11px 20px;background:var(--primary);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+}
+.confirm-btn:hover{background:var(--primary-dark);}
+.confirm-btn:disabled{opacity:.5;cursor:not-allowed;}
+#sendStatus{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px;}
+.summary-card{
+  background:linear-gradient(135deg,rgba(108,92,231,0.07),rgba(162,155,254,0.05));
+  border:1px solid rgba(108,92,231,0.15);border-radius:12px;
+  padding:16px;margin-top:14px;text-align:left;display:none;
+}
+.summary-card p{font-size:13px;margin-bottom:4px;}
+.summary-card strong{color:var(--primary);}
+.submit-cta{
+  background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(253,203,110,0.1));
+  border:2px dashed rgba(253,121,168,0.4);border-radius:14px;
+  padding:16px;margin-bottom:16px;text-align:center;
+}
+.submit-hint{
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  color:var(--accent);margin-bottom:4px;
+}
+.submit-hint2{font-size:12px;color:var(--muted);}
+.submit-big{
+  width:100%;padding:16px;font-size:17px!important;
+  background:linear-gradient(135deg,var(--accent),#e84393)!important;
+  border-color:transparent!important;
+  box-shadow:0 4px 20px rgba(253,121,168,0.4)!important;
+  letter-spacing:.3px;
+}
+.submit-big:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(253,121,168,0.5)!important;}
+.submit-big:disabled{background:var(--ok)!important;box-shadow:none!important;transform:none!important;}
+.result-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.btn-review,.btn-retry{
+  flex:1;padding:12px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  transition:all .15s;
+}
+.btn-review{background:rgba(108,92,231,0.1);color:var(--primary);}
+.btn-review:hover{background:rgba(108,92,231,0.18);}
+.btn-retry{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(108,92,231,0.3);}
+.btn-retry:hover{background:var(--primary-dark);}
+/* REVIEW */
+#reviewSection{display:none;margin-top:16px;}
+.review-item{
+  background:var(--surface);border-radius:12px;padding:16px 18px;
+  margin-bottom:10px;border-left:4px solid var(--err);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.review-item .ri-num{font-size:11px;color:var(--err);font-weight:800;letter-spacing:1px;margin-bottom:4px;}
+.review-item .ri-q{font-size:14px;font-weight:700;margin-bottom:8px;}
+.review-item .ri-wrong{font-size:13px;color:var(--err);}
+.review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.finish-btn-sm{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
+</style>
+<script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
+<style>body > #introScreen{box-sizing:border-box;width:min(608px,calc(100% - 28px));margin:14px auto 32px;padding:clamp(18px,4vw,30px);background:white;border:1px solid #ddd4ff;border-top:5px solid #8057e9;border-radius:16px;box-shadow:0 10px 30px #4b31851a} :is(#intro,#introScreen,#cover) select{max-width:100%;min-width:0} .a12-parts{margin:12px 0;padding:12px;border:1px solid #e8a537;border-left:4px solid #e8a537;border-radius:10px;background:#fff3cd;color:#633500;overflow-wrap:anywhere}.a12-parts a{color:#803500;font-weight:700;text-decoration:underline}</style><style>#introScreen.active,#introCard,#cover{max-width:min(608px,100%);box-sizing:border-box;margin-inline:auto} :is(#introScreen,#introCard,#cover) :is(h1,.intro-title){overflow-wrap:anywhere} :is(#introScreen,#introCard,#cover) select{max-width:100%} :is(#introScreen,#introCard,#cover):not(:has(.brand-bar))::before{content:'● ● ●';display:block;color:#8057e9;letter-spacing:.28em;margin-bottom:.85rem;font-size:.8rem}</style></head>
+<body data-a12-theme>
+<div class="wrap">
+<!-- INTRO -->
+<div id="intro">
+  <div class="brand-bar">
+    <div class="brand-dot"></div><div class="brand-dot"></div><div class="brand-dot"></div>
+    <span class="brand-name">@ispanyolcacim · Profe Hazel</span>
+  </div>
+  <div class="intro-badge">ÖDEV · A1.2</div>
+  <h1>El Presente Continuo</h1>
+  <div class="intro-sub">estar + gerundio</div>
+  <div class="intro-desc">2. Kısım · 50 soru</div>
+  <div class="chip-row">
+    <span class="chip">estar + gerundio</span>
+    <span class="chip c2">Dönüşlü fiiller</span>
+    <span class="chip c3">Şimdiki zaman</span>
+  </div>
+  <div class="name-label">👤 Adınızı seçin</div>
+  <select id="introName" class="name-select">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Arman Kaykac">Arman Kaykac</option>
+    <option value="Arzu Bayram">Arzu Bayram</option>
+    <option value="Aysen Gurkan">Aysen Gurkan</option>
+    <option value="Didem Akbal">Didem Akbal</option>
+    <option value="Rabia Nur Tok">Rabia Nur Tok</option>
+    <option value="Selva Akyuz">Selva Akyuz</option>
+    <option value="Sena Yamak">Sena Yamak</option>
+    <option value="Suleyman Bektas">Suleyman Bektas</option>
+  </select>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button><aside class="a12-parts">⚠️ Bu ödevin diğer kısımları da var. <a href="5-6-ida-1-kisim.html">1. Kısım</a></aside>
+</div>
+<!-- QUIZ -->
+<div id="quiz">
+  <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>El Presente Continuo</h2><p>A1.2 · 5–6. Ders</p></div></header>
+  <div class="top-bar">
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">1 / 100</div>
+    <div class="score-bar">
+      <span class="sc ok">✓ <span id="sCorrect">0</span></span>
+      <button class="finish-btn-sm a12-finish" onclick="showResult()">🏁 Bitir</button>
+      <span class="sc err">✗ <span id="sWrong">0</span></span>
+    </div>
+  </div>
+  <div id="qArea"></div>
+</div>
+<!-- RESULT -->
+<div id="result">
+  <div class="result-card">
+    <div class="result-emoji">🎉</div>
+    <div class="result-badge">ÖDEV · A1.2</div>
+    <div class="score-big" id="scoreBig">0<span>/100</span></div>
+    <div class="score-row">
+      <div class="score-item"><div class="val ok" id="rCorrect">0</div><div class="lbl">✓ Doğru</div></div>
+      <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
+      <div class="score-item"><div class="val" id="rPuan" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
+    </div>
+    <div class="submit-cta" id="submitCta">
+      <p class="submit-hint">⚠️ Ödeviniz henüz teslim edilmedi!</p>
+      <p class="submit-hint2">Adınızı seçip butona tıklayana kadar ödev sisteme işlenmez.</p>
+    </div>
+    <div class="name-confirm-box">
+      <label>👤 Adınızı seçin</label>
+      <div class="confirm-row">
+        <select id="studentName">
+    <option value="">— Adınızı seçin —</option>
+    <option value="Arman Kaykac">Arman Kaykac</option>
+    <option value="Arzu Bayram">Arzu Bayram</option>
+    <option value="Aysen Gurkan">Aysen Gurkan</option>
+    <option value="Didem Akbal">Didem Akbal</option>
+    <option value="Rabia Nur Tok">Rabia Nur Tok</option>
+    <option value="Selva Akyuz">Selva Akyuz</option>
+    <option value="Sena Yamak">Sena Yamak</option>
+    <option value="Suleyman Bektas">Suleyman Bektas</option>
+  </select>
+        <button class="confirm-btn submit-big" id="confirmBtn" onclick="confirmName()">📬 ÖDEVİ TESLİM ET</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+    <div class="summary-card" id="summaryCard">
+      <p>👤 <strong id="summaryName"></strong></p>
+      <p>📚 <strong id="summaryOdev"></strong></p>
+      <p>🏆 Puan: <strong id="sumPuan"></strong>/100 &nbsp;·&nbsp; ✓ <strong id="sumDogru"></strong> &nbsp;·&nbsp; ✗ <strong id="sumYanlis"></strong></p>
+      <p style="color:var(--ok);font-weight:700;margin-top:6px;">✅ Ödeviniz teslim edildi!</p>
+    </div>
+    <div class="result-actions">
+      <button class="btn-review" onclick="toggleReview()">🔍 Hatalarımı gözden geçir</button>
+      <button class="btn-retry" onclick="retryQuiz()">🔄 Testi Tekrar Çöz</button>
+    </div>
+  </div>
+  <div id="reviewSection"></div>
+</div>
+</div><!-- /wrap -->
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
+const ODEV_ADI="H2 – 5-6.Ders (2. KISIM)";
+const GROUPS={
+  'Arman Kaykac':'A1.2',
+  'Arzu Bayram':'A1.2',
+  'Aysen Gurkan':'A1.2',
+  'Didem Akbal':'A1.2',
+  'Rabia Nur Tok':'A1.2',
+  'Selva Akyuz':'A1.2',
+  'Sena Yamak':'A1.2',
+  'Suleyman Bektas':'A1.2'
+};
+const Q=[
+{t:"mc",q:"Ahora mismo yo ______ la televisión.",o:["viendo estoy", "veo", "estoy ver", "estoy viendo"],a:3,exp:"Estar + gerundio yapısı şu anda yapılan eylemi anlatır. | 🇪🇸 Ahora mismo yo estoy viendo la televisión. | 🇹🇷 Şu anda televizyon izliyorum. | 🇬🇧 I am watching television right now.",es:"Ahora mismo yo estoy viendo la televisión.",tr:"Şu anda televizyon izliyorum.",en:"I am watching television right now."},
+{t:"mc",q:"Nosotros ______ la tarea en este momento.",o:["hacemos", "estamos hacer", "estamos haciendo", "haciendo estamos"],a:2,exp:"Hacer fiili gerundio halinde haciendo olur. | 🇪🇸 Nosotros estamos haciendo la tarea en este momento. | 🇹🇷 Biz şu an ödevi yapıyoruz. | 🇬🇧 We are doing the homework at this moment.",es:"Nosotros estamos haciendo la tarea en este momento.",tr:"Biz şu an ödevi yapıyoruz.",en:"We are doing the homework at this moment."},
+{t:"mc",q:"Ellos ______ en el parque ahora.",o:["corren", "corriendo están", "están correr", "están corriendo"],a:3,exp:"Koşma eylemi şu an devam etmektedir. | 🇪🇸 Ellos están corriendo en el parque ahora. | 🇹🇷 Onlar şu anda parkta koşuyorlar. | 🇬🇧 They are running in the park now.",es:"Ellos están corriendo en el parque ahora.",tr:"Onlar şu anda parkta koşuyorlar.",en:"They are running in the park now."},
+{t:"mc",q:"María ______ música ahora mismo.",o:["escucha", "está escuchar", "está escuchando", "escuchando está"],a:2,exp:"3. tekil şahıs için está kullanılır. | 🇪🇸 María está escuchando música ahora mismo. | 🇹🇷 María şu anda müzik dinliyor. | 🇬🇧 María is listening to music right now.",es:"María está escuchando música ahora mismo.",tr:"María şu anda müzik dinliyor.",en:"María is listening to music right now."},
+{t:"mc",q:"Yo ______ un libro muy interesante en este momento.",o:["estoy leyendo", "estoy leer", "leo", "leyendo estoy"],a:0,exp:"Leer fiili gerundio çekiminde 'y' türemesi alır. | 🇪🇸 Yo estoy leyendo un libro muy interesante en este momento. | 🇹🇷 Ben şu an çok ilginç bir kitap okuyorum. | 🇬🇧 I am reading a very interesting book at this moment.",es:"Yo estoy leyendo un libro muy interesante en este momento.",tr:"Ben şu an çok ilginç bir kitap okuyorum.",en:"I am reading a very interesting book at this moment."},
+{t:"mc",q:"Los estudiantes ______ español ahora.",o:["aprenden", "están aprendiendo", "están aprender", "aprendiendo están"],a:1,exp:"Öğrenme süreci şu an aktiftir. | 🇪🇸 Los estudiantes están aprendiendo español ahora. | 🇹🇷 Öğrenciler şimdi İspanyolca öğreniyorlar. | 🇬🇧 The students are learning Spanish now.",es:"Los estudiantes están aprendiendo español ahora.",tr:"Öğrenciler şimdi İspanyolca öğreniyorlar.",en:"The students are learning Spanish now."},
+{t:"mc",q:"Vosotros ______ la cena ahora mismo.",o:["estáis comiendo", "estáis comer", "comiendo estáis", "coméis"],a:0,exp:"Vosotros şahsı için estáis yardımcı fiili kullanılır. | 🇪🇸 Vosotros estáis comiendo la cena ahora mismo. | 🇹🇷 Siz şu an akşam yemeği yiyorsunuz. | 🇬🇧 You are eating dinner right now.",es:"Vosotros estáis comiendo la cena ahora mismo.",tr:"Siz şu an akşam yemeği yiyorsunuz.",en:"You are eating dinner right now."},
+{t:"mc",q:"El gato ______ sobre el sofá en este momento.",o:["duerme", "está durmiendo", "está dormir", "durmiendo está"],a:1,exp:"Dormir düzensiz bir gerundio'dur (o→u). | 🇪🇸 El gato está durmiendo sobre el sofá en este momento. | 🇹🇷 Kedi şu an koltuğun üzerinde uyuyor. | 🇬🇧 The cat is sleeping on the sofa at this moment.",es:"El gato está durmiendo sobre el sofá en este momento.",tr:"Kedi şu an koltuğun üzerinde uyuyor.",en:"The cat is sleeping on the sofa at this moment."},
+{t:"mc",q:"Yo ______ a mis padres ahora.",o:["llamo", "estoy llamar", "llamando estoy", "estoy llamando"],a:3,exp:"Birini arama eylemi şu an sürmektedir. | 🇪🇸 Yo estoy llamando a mis padres ahora. | 🇹🇷 Şimdi ailemi arıyorum. | 🇬🇧 I am calling my parents now.",es:"Yo estoy llamando a mis padres ahora.",tr:"Şimdi ailemi arıyorum.",en:"I am calling my parents now."},
+{t:"mc",q:"Tú ______ la ventana ahora mismo.",o:["abres", "estás abriendo", "estás abrir", "abriendo estás"],a:1,exp:"Abrir fiili abriendo olur. | 🇪🇸 Tú estás abriendo la ventana ahora mismo. | 🇹🇷 Sen şu an pencereyi açıyorsun. | 🇬🇧 You are opening the window right now.",es:"Tú estás abriendo la ventana ahora mismo.",tr:"Sen şu an pencereyi açıyorsun.",en:"You are opening the window right now."},
+{t:"mc",q:"Nosotros ______ el coche en este momento.",o:["estamos lavando", "lavamos", "estamos lavar", "lavando estamos"],a:0,exp:"Araba yıkama eylemi şu an gerçekleşmektedir. | 🇪🇸 Nosotros estamos lavando el coche en este momento. | 🇹🇷 Biz şu an arabayı yıkıyoruz. | 🇬🇧 We are washing the car at this moment.",es:"Nosotros estamos lavando el coche en este momento.",tr:"Biz şu an arabayı yıkıyoruz.",en:"We are washing the car at this moment."},
+{t:"mc",q:"Ellas ______ una canción ahora.",o:["están cantando", "están cantar", "cantando están", "cantan"],a:0,exp:"Şarkı söyleme eylemi şu an yapılmaktadır. | 🇪🇸 Ellas están cantando una canción ahora. | 🇹🇷 Onlar şimdi bir şarkı söylüyorlar. | 🇬🇧 They are singing a song now.",es:"Ellas están cantando una canción ahora.",tr:"Onlar şimdi bir şarkı söylüyorlar.",en:"They are singing a song now."},
+{t:"mc",q:"Yo ______ la maleta ahora mismo.",o:["preparo", "estoy preparando", "estoy preparar", "preparando estoy"],a:1,exp:"Hazırlık eylemi devam etmektedir. | 🇪🇸 Yo estoy preparando la maleta ahora mismo. | 🇹🇷 Şu an valizi hazırlıyorum. | 🇬🇧 I am preparing the suitcase right now.",es:"Yo estoy preparando la maleta ahora mismo.",tr:"Şu an valizi hazırlıyorum.",en:"I am preparing the suitcase right now."},
+{t:"mc",q:"Tú ______ un café en este momento.",o:["bebes", "estás bebiendo", "estás beber", "bebiendo estás"],a:1,exp:"-er fiilleri -iendo eki alır. | 🇪🇸 Tú estás bebiendo un café en este momento. | 🇹🇷 Sen şu an bir kahve içiyorsun. | 🇬🇧 You are drinking a coffee at this moment.",es:"Tú estás bebiendo un café en este momento.",tr:"Sen şu an bir kahve içiyorsun.",en:"You are drinking a coffee at this moment."},
+{t:"mc",q:"El profesor ______ la lección ahora.",o:["está explicando", "está explicar", "explicando está", "explica"],a:0,exp:"Açıklama eylemi şu an aktiftir. | 🇪🇸 El profesor está explicando la lección ahora. | 🇹🇷 Öğretmen şimdi dersi açıklıyor. | 🇬🇧 The teacher is explaining the lesson now.",es:"El profesor está explicando la lección ahora.",tr:"Öğretmen şimdi dersi açıklıyor.",en:"The teacher is explaining the lesson now."},
+{t:"mc",q:"Nosotros ______ por el parque ahora mismo.",o:["caminamos", "estamos caminando", "estáis caminando", "caminando estamos"],a:1,exp:"Yürüme eylemi şu an devam etmektedir. | 🇪🇸 Nosotros estamos caminando por el parque ahora mismo. | 🇹🇷 Biz şu an parkta yürüyoruz. | 🇬🇧 We are walking through the park right now.",es:"Nosotros estamos caminando por el parque ahora mismo.",tr:"Biz şu an parkta yürüyoruz.",en:"We are walking through the park right now."},
+{t:"mc",q:"Yo ______ música clásica en este momento.",o:["escucho", "estoy escuchando", "estoy escuchar", "escuchando estoy"],a:1,exp:"Müzik dinleme eylemi şu an yapılmaktadır. | 🇪🇸 Yo estoy escuchando música clásica en este momento. | 🇹🇷 Ben şu an klasik müzik dinliyorum. | 🇬🇧 I am listening to classical music at this moment.",es:"Yo estoy escuchando música clásica en este momento.",tr:"Ben şu an klasik müzik dinliyorum.",en:"I am listening to classical music at this moment."},
+{t:"mc",q:"Mis amigos ______ fotos ahora.",o:["sacan", "están sacando", "están sacar", "sacando están"],a:1,exp:"Fotoğraf çekme eylemi şu an sürmektedir. | 🇪🇸 Mis amigos están sacando fotos ahora. | 🇹🇷 Arkadaşlarım şimdi fotoğraf çekiyorlar. | 🇬🇧 My friends are taking photos now.",es:"Mis amigos están sacando fotos ahora.",tr:"Arkadaşlarım şimdi fotoğraf çekiyorlar.",en:"My friends are taking photos now."},
+{t:"mc",q:"Nosotros ______ un cuadro ahora mismo.",o:["estamos pintando", "pintamos", "estamos pintar", "pintando estamos"],a:0,exp:"Resim yapma eylemi şu an sürmektedir. | 🇪🇸 Nosotros estamos pintando un cuadro ahora mismo. | 🇹🇷 Biz şu an bir tablo boyuyoruz. | 🇬🇧 We are painting a picture right now.",es:"Nosotros estamos pintando un cuadro ahora mismo.",tr:"Biz şu an bir tablo boyuyoruz.",en:"We are painting a picture right now."},
+{t:"mc",q:"Vosotros ______ una película en este momento.",o:["veis", "estáis ver", "viendo estáis", "estáis viendo"],a:3,exp:"Film izleme eylemi şu an aktiftir. | 🇪🇸 Vosotros estáis viendo una película en este momento. | 🇹🇷 Siz şu an bir film izliyorsunuz. | 🇬🇧 You are watching a movie at this moment.",es:"Vosotros estáis viendo una película en este momento.",tr:"Siz şu an bir film izliyorsunuz.",en:"You are watching a movie at this moment."},
+{t:"mc",q:"Yo ______ la puerta ahora.",o:["abro", "estoy abrir", "estoy abriendo", "abriendo estoy"],a:2,exp:"Kapı şu an açılmaktadır. | 🇪🇸 Yo estoy abriendo la puerta ahora. | 🇹🇷 Ben şimdi kapıyı açıyorum. | 🇬🇧 I am opening the door now.",es:"Yo estoy abriendo la puerta ahora.",tr:"Ben şimdi kapıyı açıyorum.",en:"I am opening the door now."},
+{t:"mc",q:"Tú ______ una manzana ahora mismo.",o:["estás comiendo", "comes", "estás comer", "comiendo estás"],a:0,exp:"Yemek yeme eylemi şu an gerçekleşmektedir. | 🇪🇸 Tú estás comiendo una manzana ahora mismo. | 🇹🇷 Sen şu an bir elma yiyorsun. | 🇬🇧 You are eating an apple right now.",es:"Tú estás comiendo una manzana ahora mismo.",tr:"Sen şu an bir elma yiyorsun.",en:"You are eating an apple right now."},
+{t:"mc",q:"Nosotros ______ en el mar en este momento.",o:["nadamos", "estamos nadando", "nadando estamos", "estamos nadar"],a:1,exp:"Yüzme eylemi devam ediyor. | 🇪🇸 Nosotros estamos nadando en el mar en este momento. | 🇹🇷 Biz şu an denizde yüzüyoruz. | 🇬🇧 We are swimming in the sea at this moment.",es:"Nosotros estamos nadando en el mar en este momento.",tr:"Biz şu an denizde yüzüyoruz.",en:"We are swimming in the sea at this moment."},
+{t:"mc",q:"Ella ______ por teléfono ahora.",o:["habla", "está hablar", "está hablando", "hablando está"],a:2,exp:"Telefonla konuşma eylemi şu an aktiftir. | 🇪🇸 Ella está hablando por teléfono ahora. | 🇹🇷 O şimdi telefonla konuşuyor. | 🇬🇧 She is talking on the phone now.",es:"Ella está hablando por teléfono ahora.",tr:"O şimdi telefonla konuşuyor.",en:"She is talking on the phone now."},
+{t:"mc",q:"Yo ______ a la biblioteca ahora mismo.",o:["estoy yendo", "voy", "estoy ir", "yendo estoy"],a:0,exp:"Ir fiili gerundio halinde yendo olur. | 🇪🇸 Yo estoy yendo a la biblioteca ahora mismo. | 🇹🇷 Ben şu an kütüphaneye gidiyorum. | 🇬🇧 I am going to the library right now.",es:"Yo estoy yendo a la biblioteca ahora mismo.",tr:"Ben şu an kütüphaneye gidiyorum.",en:"I am going to the library right now."},
+{t:"mc",q:"Tú ______ la ropa en este momento.",o:["lavas", "estás lavar", "estás lavando", "lavando estás"],a:2,exp:"Çamaşır yıkama eylemi şu an yapılmaktadır. | 🇪🇸 Tú estás lavando la ropa en este momento. | 🇹🇷 Sen şu an kıyafetleri yıkıyorsun. | 🇬🇧 You are washing the clothes at this moment.",es:"Tú estás lavando la ropa en este momento.",tr:"Sen şu an kıyafetleri yıkıyorsun.",en:"You are washing the clothes at this moment."},
+{t:"mc",q:"El perro ______ en el jardín ahora.",o:["corre", "está correr", "corriendo está", "está corriendo"],a:3,exp:"Köpek şu an bahçede koşmaktadır. | 🇪🇸 El perro está corriendo en el jardín ahora. | 🇹🇷 Köpek şimdi bahçede koşuyor. | 🇬🇧 The dog is running in the garden now.",es:"El perro está corriendo en el jardín ahora.",tr:"Köpek şimdi bahçede koşuyor.",en:"The dog is running in the garden now."},
+{t:"mc",q:"Nosotros ______ una pizza ahora mismo.",o:["estamos comiendo", "estamos comer", "comiendo estamos", "comemos"],a:0,exp:"Pizza yeme eylemi aktiftir. | 🇪🇸 Nosotros estamos comiendo una pizza ahora mismo. | 🇹🇷 Biz şu an bir pizza yiyoruz. | 🇬🇧 We are eating a pizza right now.",es:"Nosotros estamos comiendo una pizza ahora mismo.",tr:"Biz şu an bir pizza yiyoruz.",en:"We are eating a pizza right now."},
+{t:"mc",q:"Yo ______ un correo en este momento.",o:["escribiendo estoy", "escribo", "estoy escribir", "estoy escribiendo"],a:3,exp:"E-posta yazma eylemi devam etmektedir. | 🇪🇸 Yo estoy escribiendo un correo en este momento. | 🇹🇷 Ben şu an bir e-posta yazıyorum. | 🇬🇧 I am writing an email at this moment.",es:"Yo estoy escribiendo un correo en este momento.",tr:"Ben şu an bir e-posta yazıyorum.",en:"I am writing an email at this moment."},
+{t:"mc",q:"Ella ______ la cena ahora.",o:["cocina", "está cocinar", "está cocinando", "cocinando está"],a:2,exp:"Yemek pişirme eylemi şu an sürmektedir. | 🇪🇸 Ella está cocinando la cena ahora. | 🇹🇷 O şimdi akşam yemeğini pişiriyor. | 🇬🇧 She is cooking dinner now.",es:"Ella está cocinando la cena ahora.",tr:"O şimdi akşam yemeğini pişiriyor.",en:"She is cooking dinner now."},
+{t:"mc",q:"Mis padres ______ por el mundo ahora mismo.",o:["viajan", "están viajando", "están viajar", "viajando están"],a:1,exp:"Seyahat eylemi devam ediyor. | 🇪🇸 Mis padres están viajando por el mundo ahora mismo. | 🇹🇷 Ailem şu an dünyayı geziyorlar. | 🇬🇧 My parents are traveling the world right now.",es:"Mis padres están viajando por el mundo ahora mismo.",tr:"Ailem şu an dünyayı geziyorlar.",en:"My parents are traveling the world right now."},
+{t:"mc",q:"Nosotros ______ en la oficina en este momento.",o:["trabajamos", "estamos trabajar", "trabajando estamos", "estamos trabajando"],a:3,exp:"Ofiste çalışma eylemi şu an aktiftir. | 🇪🇸 Nosotros estamos trabajando en la oficina en este momento. | 🇹🇷 Biz şu an ofiste çalışıyoruz. | 🇬🇧 We are working in the office at this moment.",es:"Nosotros estamos trabajando en la oficina en este momento.",tr:"Biz şu an ofiste çalışıyoruz.",en:"We are working in the office at this moment."},
+{t:"mc",q:"Yo ______ la basura ahora.",o:["sacando estoy", "saco", "estoy sacar", "estoy sacando"],a:3,exp:"Çöp çıkarma eylemi şu an yapılmaktadır. | 🇪🇸 Yo estoy sacando la basura ahora. | 🇹🇷 Ben şimdi çöpü çıkarıyorum. | 🇬🇧 I am taking out the trash now.",es:"Yo estoy sacando la basura ahora.",tr:"Ben şimdi çöpü çıkarıyorum.",en:"I am taking out the trash now."},
+{t:"mc",q:"Vosotros ______ un refresco ahora mismo.",o:["bebéis", "estáis bebiendo", "estáis beber", "bebiendo estáis"],a:1,exp:"İçecek içme eylemi aktiftir. | 🇪🇸 Vosotros estáis bebiendo un refresco ahora mismo. | 🇹🇷 Siz şu an bir meşrubat içiyorsunuz. | 🇬🇧 You are drinking a soft drink right now.",es:"Vosotros estáis bebiendo un refresco ahora mismo.",tr:"Siz şu an bir meşrubat içiyorsunuz.",en:"You are drinking a soft drink right now."},
+{t:"mc",q:"Ella ______ las flores en este momento.",o:["riega", "está regar", "está regando", "regando está"],a:2,exp:"Çiçek sulama eylemi şu an sürmektedir. | 🇪🇸 Ella está regando las flores en este momento. | 🇹🇷 O şu an çiçekleri suluyor. | 🇬🇧 She is watering the flowers at this moment.",es:"Ella está regando las flores en este momento.",tr:"O şu an çiçekleri suluyor.",en:"She is watering the flowers at this moment."},
+{t:"mc",q:"Nosotros ______ la radio ahora.",o:["estamos escuchando", "estamos escuchar", "escuchando estamos", "escuchamos"],a:0,exp:"Radyo dinleme eylemi şu an yapılmaktadır. | 🇪🇸 Nosotros estamos escuchando la radio ahora. | 🇹🇷 Biz şimdi radyoyu dinliyoruz. | 🇬🇧 We are listening to the radio now.",es:"Nosotros estamos escuchando la radio ahora.",tr:"Biz şimdi radyoyu dinliyoruz.",en:"We are listening to the radio now."},
+{t:"mc",q:"Yo ______ la ropa ahora mismo.",o:["doblo", "estoy doblando", "estoy doblar", "doblando estoy"],a:1,exp:"Kıyafet katlama eylemi şu an yapılmaktadır. | 🇪🇸 Yo estoy doblando la ropa ahora mismo. | 🇹🇷 Ben şu an kıyafetleri katlıyorum. | 🇬🇧 I am folding the clothes right now.",es:"Yo estoy doblando la ropa ahora mismo.",tr:"Ben şu an kıyafetleri katlıyorum.",en:"I am folding the clothes right now."},
+{t:"mc",q:"Tú ______ los platos en este momento.",o:["lavas", "estás lavar", "estás lavando", "lavando estás"],a:2,exp:"Bulaşık yıkama eylemi devam ediyor. | 🇪🇸 Tú estás lavando los platos en este momento. | 🇹🇷 Sen şu an bulaşıkları yıkıyorsun. | 🇬🇧 You are washing the dishes at this moment.",es:"Tú estás lavando los platos en este momento.",tr:"Sen şu an bulaşıkları yıkıyorsun.",en:"You are washing the dishes at this moment."},
+{t:"mc",q:"Nosotros ______ un regalo ahora.",o:["compramos", "estamos comprar", "estamos comprando", "comprando estamos"],a:2,exp:"Hediye alma eylemi aktiftir. | 🇪🇸 Nosotros estamos comprando un regalo ahora. | 🇹🇷 Biz şimdi bir hediye alıyoruz. | 🇬🇧 We are buying a gift now.",es:"Nosotros estamos comprando un regalo ahora.",tr:"Biz şimdi bir hediye alıyoruz.",en:"We are buying a gift now."},
+{t:"mc",q:"Ellos ______ la verdad en este momento.",o:["dicen", "están diciendo", "diciendo están", "están decir"],a:1,exp:"Gerçeği söyleme eylemi şu an gerçekleşiyor. | 🇪🇸 Ellos están diciendo la verdad en este momento. | 🇹🇷 Onlar şu an gerçeği söylüyorlar. | 🇬🇧 They are telling the truth at this moment.",es:"Ellos están diciendo la verdad en este momento.",tr:"Onlar şu an gerçeği söylüyorlar.",en:"They are telling the truth at this moment."},
+{t:"mc",q:"Yo ______ las llaves ahora mismo.",o:["busco", "estoy buscando", "estoy buscar", "buscando estoy"],a:1,exp:"Anahtarları arama eylemi şu an sürmektedir. | 🇪🇸 Yo estoy buscando las llaves ahora mismo. | 🇹🇷 Ben şu an anahtarları arıyorum. | 🇬🇧 I am looking for the keys right now.",es:"Yo estoy buscando las llaves ahora mismo.",tr:"Ben şu an anahtarları arıyorum.",en:"I am looking for the keys right now."},
+{t:"mc",q:"Ella ______ la calle en este momento.",o:["cruza", "cruzando está", "está cruzar", "está cruzando"],a:3,exp:"Caddeden karşıya geçme eylemi aktiftir. | 🇪🇸 Ella está cruzando la calle en este momento. | 🇹🇷 O şu an caddeyi geçiyor. | 🇬🇧 She is crossing the street at this moment.",es:"Ella está cruzando la calle en este momento.",tr:"O şu an caddeyi geçiyor.",en:"She is crossing the street at this moment."},
+{t:"mc",q:"Nosotros ______ un árbol ahora.",o:["estamos plantando", "estamos plantar", "plantamos", "plantando estamos"],a:0,exp:"Ağaç dikme eylemi şu an yapılmaktadır. | 🇪🇸 Nosotros estamos plantando un árbol ahora. | 🇹🇷 Biz şimdi bir ağaç dikiyoruz. | 🇬🇧 We are planting a tree now.",es:"Nosotros estamos plantando un árbol ahora.",tr:"Biz şimdi bir ağaç dikiyoruz.",en:"We are planting a tree now."},
+{t:"mc",q:"Vosotros ______ una carta ahora mismo.",o:["escribís", "estáis escribir", "estáis escribiendo", "escribiendo estáis"],a:2,exp:"Mektup yazma eylemi devam ediyor. | 🇪🇸 Vosotros estáis escribiendo una carta ahora mismo. | 🇹🇷 Siz şu an bir mektup yazıyorsunuz. | 🇬🇧 You are writing a letter right now.",es:"Vosotros estáis escribiendo una carta ahora mismo.",tr:"Siz şu an bir mektup yazıyorsunuz.",en:"You are writing a letter right now."},
+{t:"mc",q:"Yo ______ a mi hermana en este momento.",o:["estoy ayudar", "ayudo", "estoy ayudando", "ayudando estoy"],a:2,exp:"Yardım etme eylemi şu an gerçekleşmektedir. | 🇪🇸 Yo estoy ayudando a mi hermana en este momento. | 🇹🇷 Ben şu an kız kardeşime yardım ediyorum. | 🇬🇧 I am helping my sister at this moment.",es:"Yo estoy ayudando a mi hermana en este momento.",tr:"Ben şu an kız kardeşime yardım ediyorum.",en:"I am helping my sister at this moment."},
+{t:"mc",q:"Tú ______ la luz ahora.",o:["apagas", "estás apagar", "estás apagando", "apagando estás"],a:2,exp:"Işığı kapatma eylemi şu an yapılmaktadır. | 🇪🇸 Tú estás apagando la luz ahora. | 🇹🇷 Sen şimdi ışığı kapatıyorsun. | 🇬🇧 You are turning off the light now.",es:"Tú estás apagando la luz ahora.",tr:"Sen şimdi ışığı kapatıyorsun.",en:"You are turning off the light now."},
+{t:"mc",q:"Nosotros ______ las maletas ahora mismo.",o:["estamos haciendo", "estamos hacer", "hacemos", "haciendo estamos"],a:0,exp:"Valiz hazırlama eylemi şu an sürmektedir. | 🇪🇸 Nosotros estamos haciendo las maletas ahora mismo. | 🇹🇷 Biz şu an valizleri hazırlıyoruz. | 🇬🇧 We are packing the bags right now.",es:"Nosotros estamos haciendo las maletas ahora mismo.",tr:"Biz şu an valizleri hazırlıyoruz.",en:"We are packing the bags right now."},
+{t:"mc",q:"Ellos ______ en la cama en este momento.",o:["están durmiendo", "están dormir", "durmiendo están", "duermen"],a:0,exp:"Yatakta uyuma eylemi devam ediyor. | 🇪🇸 Ellos están durmiendo en la cama en este momento. | 🇹🇷 Onlar şu an yatakta uyuyorlar. | 🇬🇧 They are sleeping in the bed at this moment.",es:"Ellos están durmiendo en la cama en este momento.",tr:"Onlar şu an yatakta uyuyorlar.",en:"They are sleeping in the bed at this moment."},
+{t:"mc",q:"Yo ______ el suelo ahora.",o:["barro", "estoy barriendo", "estoy barrer", "barriendo estoy"],a:1,exp:"Yerleri süpürme eylemi şu an aktiftir. | 🇪🇸 Yo estoy barriendo el suelo ahora. | 🇹🇷 Ben şimdi yerleri süpürüyorum. | 🇬🇧 I am sweeping the floor now.",es:"Yo estoy barriendo el suelo ahora.",tr:"Ben şimdi yerleri süpürüyorum.",en:"I am sweeping the floor now."},
+{t:"mc",q:"Ella ______ las manos ahora mismo.",o:["se lava", "lavando se está", "se está lavar", "se está lavando"],a:3,exp:"Ellerini yıkama eylemi şu an gerçekleşmektedir. | 🇪🇸 Ella se está lavando las manos ahora mismo. | 🇹🇷 O şu an ellerini yıkıyor. | 🇬🇧 She is washing her hands right now.",es:"Ella se está lavando las manos ahora mismo.",tr:"O şu an ellerini yıkıyor.",en:"She is washing her hands right now."},
+{t:"mc",q:"Nosotros ______ un taxi en este momento.",o:["estamos pidiendo", "estamos pedir", "pedimos", "pidiendo estamos"],a:0,exp:"Taksi çağırma eylemi devam etmektedir. | 🇪🇸 Nosotros estamos pidiendo un taxi en este momento. | 🇹🇷 Biz şu an bir taksi istiyoruz. | 🇬🇧 We are asking for a taxi at this moment.",es:"Nosotros estamos pidiendo un taxi en este momento.",tr:"Biz şu an bir taksi istiyoruz.",en:"We are asking for a taxi at this moment."},
+{t:"mc",q:"Ellos ______ música en el concierto ahora.",o:["escuchan", "están escuchar", "están escuchando", "escuchando están"],a:2,exp:"Dinleme eylemi şu an yapılmaktadır. Estar + gerundio kullanılır. | 🇪🇸 Ellos están escuchando música en el concierto ahora. | 🇹🇷 Onlar şimdi konserde müzik dinliyorlar. | 🇬🇧 They are listening to music at the concert now.",es:"Ellos están escuchando música en el concierto ahora.",tr:"Onlar şimdi konserde müzik dinliyorlar.",en:"They are listening to music at the concert now."},
+{t:"mc",q:"Yo ______ un pastel ahora.",o:["haciendo estoy", "hago", "estoy hacer", "estoy haciendo"],a:3,exp:"Pasta yapma eylemi şu an gerçekleşmektedir. | 🇪🇸 Yo estoy haciendo un pastel ahora. | 🇹🇷 Ben şimdi bir pasta yapıyorum. | 🇬🇧 I am making a cake now.",es:"Yo estoy haciendo un pastel ahora.",tr:"Ben şimdi bir pasta yapıyorum.",en:"I am making a cake now."},
+{t:"mc",q:"Tú ______ a tu gato ahora mismo.",o:["llamas", "estás llamar", "estás llamando", "llamando estás"],a:2,exp:"Kediyi çağırma eylemi şu an yapılmaktadır. | 🇪🇸 Tú estás llamando a tu gato ahora mismo. | 🇹🇷 Sen şu an kedini çağırıyorsun. | 🇬🇧 You are calling your cat right now.",es:"Tú estás llamando a tu gato ahora mismo.",tr:"Sen şu an kedini çağırıyorsun.",en:"You are calling your cat right now."},
+{t:"mc",q:"Nosotros ______ la película en este momento.",o:["vemos", "estamos ver", "estamos viendo", "viendo estamos"],a:2,exp:"Film izleme eylemi şu an devam etmektedir. | 🇪🇸 Nosotros estamos viendo la película en este momento. | 🇹🇷 Biz şu an filmi izliyoruz. | 🇬🇧 We are watching the movie at this moment.",es:"Nosotros estamos viendo la película en este momento.",tr:"Biz şu an filmi izliyoruz.",en:"We are watching the movie at this moment."},
+{t:"mc",q:"Ella ______ por el parque ahora.",o:["está caminando", "está caminar", "caminando está", "camina"],a:0,exp:"Parkta yürüme eylemi devam ediyor. | 🇪🇸 Ella está caminando por el parque ahora. | 🇹🇷 O şimdi parkta yürüyor. | 🇬🇧 She is walking through the park now.",es:"Ella está caminando por el parque ahora.",tr:"O şimdi parkta yürüyor.",en:"She is walking through the park now."},
+{t:"mc",q:"Yo ______ las plantas ahora.",o:["estoy regar", "riego", "estoy regando", "regando estoy"],a:2,exp:"Bitki sulama eylemi şu an sürmektedir. | 🇪🇸 Yo estoy regando las plantas ahora. | 🇹🇷 Ben şimdi bitkileri suluyorum. | 🇬🇧 I am watering the plants now.",es:"Yo estoy regando las plantas ahora.",tr:"Ben şimdi bitkileri suluyorum.",en:"I am watering the plants now."},
+{t:"mc",q:"Tú ______ los dientes en este momento.",o:["te estás lavando", "te lavas", "te estás lavar", "lavando te estás"],a:0,exp:"Diş fırçalama eylemi şu an yapılmaktadır. | 🇪🇸 Tú te estás lavando los dientes en este momento. | 🇹🇷 Sen şu an dişlerini fırçalıyorsun. | 🇬🇧 You are brushing your teeth at this moment.",es:"Tú te estás lavando los dientes en este momento.",tr:"Sen şu an dişlerini fırçalıyorsun.",en:"You are brushing your teeth at this moment."},
+{t:"mc",q:"Nosotros ______ un café ahora.",o:["bebemos", "estamos beber", "bebiendo estamos", "estamos bebiendo"],a:3,exp:"Kahve içme eylemi devam etmektedir. | 🇪🇸 Nosotros estamos bebiendo un café ahora. | 🇹🇷 Biz şimdi bir kahve içiyoruz. | 🇬🇧 We are drinking a coffee now.",es:"Nosotros estamos bebiendo un café ahora.",tr:"Biz şimdi bir kahve içiyoruz.",en:"We are drinking a coffee now."},
+{t:"mc",q:"Ellos ______ la puerta ahora.",o:["cierran", "están cerrar", "cerrando están", "están cerrando"],a:3,exp:"Kapıyı kapatma eylemi şu an gerçekleşmektedir. | 🇪🇸 Ellos están cerrando la puerta ahora. | 🇹🇷 Onlar şimdi kapıyı kapatıyorlar. | 🇬🇧 They are closing the door now.",es:"Ellos están cerrando la puerta ahora.",tr:"Onlar şimdi kapıyı kapatıyorlar.",en:"They are closing the door now."},
+{t:"mc",q:"Yo ______ la tarea en este momento.",o:["hago", "estoy haciendo", "estoy hacer", "haciendo estoy"],a:1,exp:"Ödev yapma eylemi şu an sürmektedir. | 🇪🇸 Yo estoy haciendo la tarea en este momento. | 🇹🇷 Ben şu an ödev yapıyorum. | 🇬🇧 I am doing the homework at this moment.",es:"Yo estoy haciendo la tarea en este momento.",tr:"Ben şu an ödev yapıyorum.",en:"I am doing the homework at this moment."},
+{t:"mc",q:"Tú ______ una carta ahora.",o:["estás escribiendo", "escribes", "estás escribir", "escribiendo estás"],a:0,exp:"Mektup yazma eylemi şu an aktiftir. | 🇪🇸 Tú estás escribiendo una carta ahora. | 🇹🇷 Sen şimdi bir mektup yazıyorsun. | 🇬🇧 You are writing a letter now.",es:"Tú estás escribiendo una carta ahora.",tr:"Sen şimdi bir mektup yazıyorsun.",en:"You are writing a letter now."},
+{t:"mc",q:"Nosotros ______ música ahora.",o:["escuchamos", "estamos escuchar", "escuchando estamos", "estamos escuchando"],a:3,exp:"Müzik dinleme eylemi devam ediyor. | 🇪🇸 Nosotros estamos escuchando música ahora. | 🇹🇷 Biz şimdi müzik dinliyoruz. | 🇬🇧 We are listening to music now.",es:"Nosotros estamos escuchando música ahora.",tr:"Biz şimdi müzik dinliyoruz.",en:"We are listening to music now."},
+{t:"mc",q:"Ella ______ la televisión en este momento.",o:["mira", "está mirar", "mirando está", "está mirando"],a:3,exp:"Televizyon izleme eylemi şu an aktiftir. | 🇪🇸 Ella está mirando la televisión en este momento. | 🇹🇷 O şu an televizyon izliyor. | 🇬🇧 She is watching television at this moment.",es:"Ella está mirando la televisión en este momento.",tr:"O şu an televizyon izliyor.",en:"She is watching television at this moment."},
+{t:"mc",q:"Yo ______ por el parque ahora mismo.",o:["estoy caminando", "camino", "estoy caminar", "caminando estoy"],a:0,exp:"Parkta yürüme eylemi şu an yapılmaktadır. | 🇪🇸 Yo estoy caminando por el parque ahora mismo. | 🇹🇷 Ben şu an parkta yürüyorum. | 🇬🇧 I am walking in the park right now.",es:"Yo estoy caminando por el parque ahora mismo.",tr:"Ben şu an parkta yürüyorum.",en:"I am walking in the park right now."},
+{t:"mc",q:"Tú ______ la comida ahora.",o:["preparas", "preparando estás", "estás preparar", "estás preparando"],a:3,exp:"Yemek hazırlama eylemi şu an sürmektedir. | 🇪🇸 Tú estás preparando la comida ahora. | 🇹🇷 Sen şimdi yemeği hazırlıyorsun. | 🇬🇧 You are preparing the food now.",es:"Tú estás preparando la comida ahora.",tr:"Sen şimdi yemeği hazırlıyorsun.",en:"You are preparing the food now."},
+{t:"mc",q:"Nosotros ______ un libro ahora.",o:["leemos", "estamos leer", "leyendo estamos", "estamos leyendo"],a:3,exp:"Kitap okuma eylemi devam ediyor. | 🇪🇸 Nosotros estamos leyendo un libro ahora. | 🇹🇷 Biz şimdi bir kitap okuyoruz. | 🇬🇧 We are reading a book now.",es:"Nosotros estamos leyendo un libro ahora.",tr:"Biz şimdi bir kitap okuyoruz.",en:"We are reading a book now."},
+{t:"mc",q:"Ellos ______ en la oficina en este momento.",o:["trabajan", "están trabajar", "trabajando están", "están trabajando"],a:3,exp:"Ofiste çalışma eylemi şu an aktiftir. | 🇪🇸 Ellos están trabajando en la oficina en este momento. | 🇹🇷 Onlar şu an ofiste çalışıyorlar. | 🇬🇧 They are working in the office at this moment.",es:"Ellos están trabajando en la oficina en este momento.",tr:"Onlar şu an ofiste çalışıyorlar.",en:"They are working in the office at this moment."},
+{t:"mc",q:"Yo ______ la maleta ahora.",o:["haciendo estoy", "hago", "estoy hacer", "estoy haciendo"],a:3,exp:"Valiz hazırlama eylemi şu an gerçekleşmektedir. | 🇪🇸 Yo estoy haciendo la maleta ahora. | 🇹🇷 Ben şimdi valizi hazırlıyorum. | 🇬🇧 I am packing the suitcase now.",es:"Yo estoy haciendo la maleta ahora.",tr:"Ben şimdi valizi hazırlıyorum.",en:"I am packing the suitcase now."},
+{t:"mc",q:"Tú ______ en el mar ahora.",o:["nadas", "estás nadando", "estás nadar", "nadando estás"],a:1,exp:"Denizde yüzme eylemi şu an sürmektedir. | 🇪🇸 Tú estás nadando en el mar ahora. | 🇹🇷 Sen şimdi denizde yüzüyorsun. | 🇬🇧 You are swimming in the sea now.",es:"Tú estás nadando en el mar ahora.",tr:"Sen şimdi denizde yüzüyorsun.",en:"You are swimming in the sea now."},
+{t:"mc",q:"Nosotros ______ una canción en este momento.",o:["estamos cantando", "estamos cantar", "cantamos", "cantando estamos"],a:0,exp:"Şarkı söyleme eylemi devam etmektedir. | 🇪🇸 Nosotros estamos cantando una canción en este momento. | 🇹🇷 Biz şu an bir şarkı söylüyoruz. | 🇬🇧 We are singing a song at this moment.",es:"Nosotros estamos cantando una canción en este momento.",tr:"Biz şu an bir şarkı söylüyoruz.",en:"We are singing a song at this moment."},
+{t:"mc",q:"Mirar fiilinin 'él' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["mira / está mirar", "mira / está mirando", "miras / está mirando", "mira / está mirendo"],a:1,exp:"Mirar fiili düzenli bir fiildir. Geniş zamanda 'mira', şimdiki zamanda 'mirando' olur. | 🇪🇸 Ahora él está mirando la televisión. | 🇹🇷 Şu an televizyon izliyor. | 🇬🇧 He is watching TV now.",es:"Ahora él está mirando la televisión.",tr:"Şu an televizyon izliyor.",en:"He is watching TV now."},
+{t:"mc",q:"Yo ______ un regalo ahora.",o:["estoy comprar", "compro", "estoy comprando", "comprando estoy"],a:2,exp:"Hediye alma eylemi şu an sürmektedir. | 🇪🇸 Yo estoy comprando un regalo ahora. | 🇹🇷 Ben şimdi bir hediye alıyorum. | 🇬🇧 I am buying a gift now.",es:"Yo estoy comprando un regalo ahora.",tr:"Ben şimdi bir hediye alıyorum.",en:"I am buying a gift now."},
+{t:"mc",q:"Tú ______ la verdad ahora.",o:["dices", "estás decir", "estás diciendo", "diciendo estás"],a:2,exp:"Gerçeği söyleme eylemi şu an aktiftir. | 🇪🇸 Tú estás diciendo la verdad ahora. | 🇹🇷 Sen şimdi gerçeği söylüyorsun. | 🇬🇧 You are telling the truth now.",es:"Tú estás diciendo la verdad ahora.",tr:"Sen şimdi gerçeği söylüyorsun.",en:"You are telling the truth now."},
+{t:"mc",q:"Nosotros ______ café en este momento.",o:["estamos bebiendo", "estamos beber", "bebemos", "bebiendo estamos"],a:0,exp:"Kahve içme eylemi devam ediyor. | 🇪🇸 Nosotros estamos bebiendo café en este momento. | 🇹🇷 Biz şu an kahve içiyoruz. | 🇬🇧 We are drinking coffee at this moment.",es:"Nosotros estamos bebiendo café en este momento.",tr:"Biz şu an kahve içiyoruz.",en:"We are drinking coffee at this moment."},
+{t:"mc",q:"Ellos ______ en casa ahora.",o:["duermen", "están dormir", "están durmiendo", "durmiendo están"],a:2,exp:"Evde uyuma eylemi şu an aktiftir. | 🇪🇸 Ellos están durmiendo en casa ahora. | 🇹🇷 Onlar şimdi evde uyuyorlar. | 🇬🇧 They are sleeping at home now.",es:"Ellos están durmiendo en casa ahora.",tr:"Onlar şimdi evde uyuyorlar.",en:"They are sleeping at home now."},
+{t:"mc",q:"Yo ______ ahora.",o:["trabajo", "estoy trabajando", "estoy trabajar", "trabajando estoy"],a:1,exp:"Çalışma eylemi şu an sürmektedir. | 🇪🇸 Yo estoy trabajando ahora. | 🇹🇷 Ben şimdi çalışıyorum. | 🇬🇧 I am working now.",es:"Yo estoy trabajando ahora.",tr:"Ben şimdi çalışıyorum.",en:"I am working now."},
+{t:"mc",q:"Tú ______ la puerta ahora.",o:["cierras", "cerrando estás", "estás cerrar", "estás cerrando"],a:3,exp:"Kapıyı kapatma eylemi şu an yapılmaktadır. | 🇪🇸 Tú estás cerrando la puerta ahora. | 🇹🇷 Sen şimdi kapıyı kapatıyorsun. | 🇬🇧 You are closing the door now.",es:"Tú estás cerrando la puerta ahora.",tr:"Sen şimdi kapıyı kapatıyorsun.",en:"You are closing the door now."},
+{t:"mc",q:"Nosotros ______ ahora.",o:["cantamos", "estamos cantando", "estamos cantar", "cantando estamos"],a:1,exp:"Şarkı söyleme eylemi şu an aktiftir. | 🇪🇸 Nosotros estamos cantando ahora. | 🇹🇷 Biz şimdi şarkı söylüyoruz. | 🇬🇧 We are singing now.",es:"Nosotros estamos cantando ahora.",tr:"Biz şimdi şarkı söylüyoruz.",en:"We are singing now."},
+{t:"mc",q:"Ella ______ español en este momento.",o:["está aprendiendo", "está aprender", "aprendiendo está", "aprende"],a:0,exp:"İspanyolca öğrenme eylemi şu an devam ediyor. | 🇪🇸 Ella está aprendiendo español en este momento. | 🇹🇷 O şu an İspanyolca öğreniyor. | 🇬🇧 She is learning Spanish at this moment.",es:"Ella está aprendiendo español en este momento.",tr:"O şu an İspanyolca öğreniyor.",en:"She is learning Spanish at this moment."},
+{t:"mc",q:"Mentir fiilinin 'tú' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["mientes / estás mentiendo", "mentís / estás mentiendo", "mientes / estás mintiendo", "mentís / estás mintiendo"],a:2,exp:"Mentir fiili geniş zamanda 'e>ie', şimdiki zamanda 'e>i' değişimi gösterir. | 🇪🇸 Ahora mismo tú estás mintiendo. | 🇹🇷 Şu anda yalan söylüyorsun. | 🇬🇧 You are lying right now.",es:"Ahora mismo tú estás mintiendo.",tr:"Şu anda yalan söylüyorsun.",en:"You are lying right now."},
+{t:"mc",q:"Decir fiilinin 'yo' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["dico / estoy diciendo", "digo / estoy deciendo", "digo / estoy diciendo", "dico / estoy deciendo"],a:2,exp:"Decir fiili geniş zamanda 1. tekil şahısta 'g' harfi alır; şimdiki zamanda kökü 'i' olur. | 🇪🇸 En este momento yo estoy diciendo la verdad. | 🇹🇷 Şu anda gerçeği söylüyorum. | 🇬🇧 I am telling the truth at this moment.",es:"En este momento yo estoy diciendo la verdad.",tr:"Şu anda gerçeği söylüyorum.",en:"I am telling the truth at this moment."},
+{t:"mc",q:"Dormir fiilinin 'él' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["duerme / está dormiendo", "duerme / está durmiendo", "dorme / está durmiendo", "dorme / está dormiendo"],a:1,exp:"Dormir fiili geniş zamanda 'o>ue', şimdiki zamanda 'o>u' olur. | 🇪🇸 Ahora él está durmiendo. | 🇹🇷 O şimdi uyuyor. | 🇬🇧 He is sleeping now.",es:"Ahora él está durmiendo.",tr:"O şimdi uyuyor.",en:"He is sleeping now."},
+{t:"mc",q:"Pedir fiilinin 'nosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["pidemos / estamos pediendo", "pidiendo / estamos pidiendo", "pedimos / estamos pidiendo", "pedimos / estamos pediendo"],a:2,exp:"Pedir fiili 'nosotros' formunda geniş zamanda kök değişimi yapmaz (pedimos), şimdiki zamanda 'i' olur (pidiendo). | 🇪🇸 Ahora mismo nosotros estamos pidiendo ayuda. | 🇹🇷 Şu an yardım istiyoruz. | 🇬🇧 We are asking for help right now.",es:"Ahora mismo nosotros estamos pidiendo ayuda.",tr:"Şu an yardım istiyoruz.",en:"We are asking for help right now."},
+{t:"mc",q:"Sentir fiilinin 'vosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["sentís / estáis sentendo", "sentéis / estáis sentiendo", "sentís / estáis sintiendo", "sentéis / estáis sintiendo"],a:2,exp:"Sentir fiili geniş zamanda 'e>ie', şimdiki zamanda 'e>i' değişimi gösterir. | 🇪🇸 Ahora mismo vosotros estáis sintiendo el calor. | 🇹🇷 Şu an sıcağı hissediyorsunuz. | 🇬🇧 You are feeling the heat right now.",es:"Ahora mismo vosotros estáis sintiendo el calor.",tr:"Şu an sıcağı hissediyorsunuz.",en:"You are feeling the heat right now."},
+{t:"mc",q:"Servir fiilinin 'ellos' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["serven / están sirviendo", "serven / están serviendo", "sirven / están serviendo", "sirven / están sirviendo"],a:3,exp:"Servir fiili her iki zamanda da 'e>i' kök değişimini korur. | 🇪🇸 Ahora ellos están sirviendo la cena. | 🇹🇷 Şimdi akşam yemeğini servis ediyorlar. | 🇬🇧 They are serving dinner now.",es:"Ahora ellos están sirviendo la cena.",tr:"Şimdi akşam yemeğini servis ediyorlar.",en:"They are serving dinner now."},
+{t:"mc",q:"Venir fiilinin 'tú' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["venes / estás viniendo", "vienes / estás viniendo", "vienes / estás veniendo", "vienes / estás veniendo"],a:1,exp:"Venir fiili geniş zamanda 'e>ie', şimdiki zamanda 'e>i' olur. | 🇪🇸 Ahora mismo tú estás viniendo a mi casa. | 🇹🇷 Şu an benim evime geliyorsun. | 🇬🇧 You are coming to my house right now.",es:"Ahora mismo tú estás viniendo a mi casa.",tr:"Şu an benim evime geliyorsun.",en:"You are coming to my house right now."},
+{t:"mc",q:"Vivir fiilinin 'nosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["vivemos / estamos viviendo", "vivimos / estamos vivindo", "vivimos / estamos viviendo", "vivimos / estoy viviendo"],a:2,exp:"Vivir fiili düzenli bir -IR fiilidir. Geniş zamanda 'vivimos', şimdiki zamanda 'viviendo' olur. | 🇪🇸 Ahora nosotros estamos viviendo en Madrid. | 🇹🇷 Şu anda Madrid'de yaşıyoruz. | 🇬🇧 We are living in Madrid now.",es:"Ahora nosotros estamos viviendo en Madrid.",tr:"Şu anda Madrid'de yaşıyoruz.",en:"We are living in Madrid now."},
+{t:"mc",q:"Leer fiilinin 'ellos' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["leen / están leendo", "len / están leyendo", "leen / están leyendo", "len / están leendo"],a:2,exp:"Leer fiili gerundio formunda 'y' harfi alır (leyendo). | 🇪🇸 Ahora ellos están leyendo un libro. | 🇹🇷 Şu anda kitap okuyorlar. | 🇬🇧 They are reading a book now.",es:"Ahora ellos están leyendo un libro.",tr:"Şu anda kitap okuyorlar.",en:"They are reading a book now."},
+{t:"mc",q:"Traer fiilinin 'tú' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["traias / estás trayendo", "traes / estás traiendo", "traes / estás traendo", "traes / estás trayendo"],a:3,exp:"Traer fiili gerundio formunda 'y' alır → trayendo. | 🇪🇸 Ahora tú estás trayendo la comida. | 🇹🇷 Sen şimdi yemeği getiriyorsun. | 🇬🇧 You are bringing the food now.",es:"Ahora tú estás trayendo la comida.",tr:"Sen şimdi yemeği getiriyorsun.",en:"You are bringing the food now."},
+{t:"mc",q:"Venir fiilinin 'nosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["venimos / estamos veniendo", "venimos / estamos viniendo", "venemos / estamos viniendo", "venemos / estamos veniendo"],a:1,exp:"Venir fiili gerundio halinde 'e>i' değişimi gösterir → viniendo. | 🇪🇸 Ahora nosotros estamos viniendo a la fiesta. | 🇹🇷 Şu anda partiye geliyoruz. | 🇬🇧 We are coming to the party now.",es:"Ahora nosotros estamos viniendo a la fiesta.",tr:"Şu anda partiye geliyoruz.",en:"We are coming to the party now."},
+{t:"mc",q:"Terminar fiilinin 'ellos' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["terminen / están terminando", "terminan / están terminado", "terminan / están termiendo", "terminan / están terminando"],a:3,exp:"Terminar fiili düzenli bir -AR fiilidir. Geniş zamanda 'terminan', şimdiki zamanda 'terminando' olur. | 🇪🇸 Ahora ellos están terminando el trabajo. | 🇹🇷 Şu anda işi bitiriyorlar. | 🇬🇧 They are finishing the work now.",es:"Ahora ellos están terminando el trabajo.",tr:"Şu anda işi bitiriyorlar.",en:"They are finishing the work now."},
+{t:"mc",q:"Comer fiilinin 'yo' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["como / estoy comendo", "como / estoy comido", "come / estoy comiendo", "como / estoy comiendo"],a:3,exp:"Comer fiili düzenli bir -ER fiilidir. Geniş zamanda 'como', şimdiki zamanda 'comiendo' olur. | 🇪🇸 Ahora yo estoy comiendo. | 🇹🇷 Şu an yemek yiyorum. | 🇬🇧 I am eating now.",es:"Ahora yo estoy comiendo.",tr:"Şu an yemek yiyorum.",en:"I am eating now."},
+{t:"mc",q:"Tener fiilinin 'él' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["tiene / está teniendo", "tene / está teniendo", "tiene / está tenendo", "tene / está tenendo"],a:0,exp:"Tener fiili geniş zamanda 'e>ie' olur, şimdiki zamanda düzenli ek alır. | 🇪🇸 En este momento él está teniendo problemas. | 🇹🇷 Şu anda sorun yaşıyor. | 🇬🇧 He is having problems at this moment.",es:"En este momento él está teniendo problemas.",tr:"Şu anda sorun yaşıyor.",en:"He is having problems at this moment."},
+{t:"mc",q:"Poner fiilinin 'vosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["ponéis / estáis poniendo", "ponéis / estáis puniendo", "punéis / estáis poniendo", "punéis / estáis puniendo"],a:0,exp:"Poner fiili her iki zamanda da bu şahıs için düzenli kök kullanır. | 🇪🇸 Ahora vosotros estáis poniendo las maletas. | 🇹🇷 Şimdi valizleri koyuyorsunuz. | 🇬🇧 You are putting the suitcases now.",es:"Ahora vosotros estáis poniendo las maletas.",tr:"Şimdi valizleri koyuyorsunuz.",en:"You are putting the suitcases now."},
+{t:"mc",q:"Salir fiilinin 'yo' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["salo / estoy saliendo", "salgo / estoy saliendo", "salo / estoy salendo", "salgo / estoy salendo"],a:1,exp:"Salir fiili geniş zamanda 1. tekil şahısta 'g' harfi alır. | 🇪🇸 Ahora mismo yo estoy saliendo de casa. | 🇹🇷 Şu an evden çıkıyorum. | 🇬🇧 I am leaving home right now.",es:"Ahora mismo yo estoy saliendo de casa.",tr:"Şu an evden çıkıyorum.",en:"I am leaving home right now."},
+{t:"mc",q:"Hacer fiilinin 'nosotros' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["hacimos / estamos hacendo", "hacimos / estamos haciendo", "hacemos / estamos hacendo", "hacemos / estamos haciendo"],a:3,exp:"Hacer fiili her iki zamanda da 'hac-' kökünü korur. | 🇪🇸 En este momento nosotros estamos haciendo ejercicio. | 🇹🇷 Şu an egzersiz yapıyoruz. | 🇬🇧 We are exercising at this moment.",es:"En este momento nosotros estamos haciendo ejercicio.",tr:"Şu an egzersiz yapıyoruz.",en:"We are exercising at this moment."},
+{t:"mc",q:"Volver fiilinin 'tú' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["vuelves / estás volviendo", "volves / estás volviendo", "vuelves / estás vuelviendo", "volves / estás vuelviendo"],a:0,exp:"Volver fiili geniş zamanda 'o>ue' olur, şimdiki zamanda düzenlidir. | 🇪🇸 Ahora tú estás volviendo a casa. | 🇹🇷 Şimdi eve dönüyorsun. | 🇬🇧 You are returning home now.",es:"Ahora tú estás volviendo a casa.",tr:"Şimdi eve dönüyorsun.",en:"You are returning home now."},
+{t:"mc",q:"Jugar fiilinin 'ella' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["juega / está jugendo", "juega / está jugando", "juga / está jugando", "juga / está jugendo"],a:1,exp:"Jugar fiili geniş zamanda 'u>ue' değişimi gösterir. | 🇪🇸 Ahora mismo ella está jugando con su gato. | 🇹🇷 Şu an kedisiyle oynuyor. | 🇬🇧 She is playing with her cat right now.",es:"Ahora mismo ella está jugando con su gato.",tr:"Şu an kedisiyle oynuyor.",en:"She is playing with her cat right now."},
+{t:"mc",q:"Ver fiilinin 'yo' öznesine göre geniş zaman çekimi ve şimdiki zaman çekimi aşağıdakilerden hangisidir?",o:["veo / estoy viendo", "veo / estoy vendo", "vey / estoy viendo", "vo / estoy viendo"],a:0,exp:"Ver fiili geniş zamanda 'veo', şimdiki zamanda 'viendo' olur. | 🇪🇸 En este momento yo estoy viendo una película. | 🇹🇷 Şu an bir film izliyorum. | 🇬🇧 I am watching a movie at this moment.",es:"En este momento yo estoy viendo una película.",tr:"Şu an bir film izliyorum.",en:"I am watching a movie at this moment."}
+].slice(50, 100);
+let cur=0,score=0,err=0,state=[],wrongList=[];
+const WARN='';
+function startQuiz(){
+  const n=document.getElementById('introName').value;
+  if(!n){alert('Lütfen adınızı seçin!');return;}
+  document.getElementById('studentName').value=n;
+  state=new Array(Q.length).fill(null);
+  wrongList=[];cur=0;score=0;err=0;
+  document.getElementById('sCorrect').textContent=0;
+  document.getElementById('sWrong').textContent=0;
+  document.getElementById('intro').style.display='none';
+  document.getElementById('result').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  render();
+}
+function render(){
+  document.getElementById('progFill').style.width=((cur/Q.length)*100)+'%';
+  document.getElementById('progLabel').textContent=(cur+1)+' / '+Q.length;
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  const q=Q[cur];
+  document.getElementById('qArea').innerHTML=WARN+buildMC(q,cur);
+  if(state[cur]!==null)restoreState(cur);
+}
+function buildMC(q,i){
+  const letters=['a','b','c','d'];
+  return '<div class="q-card">'+
+    '<div class="q-num">SORU '+(i+1)+'</div>'+
+    '<span class="q-type-badge">ÇOKTAN SEÇMELİ</span>'+
+    '<div class="q-text">'+q.q+'</div>'+
+    '<div class="choices" id="ch'+i+'">'+
+    q.o.map((o,j)=>'<button class="choice-btn" id="cb'+i+'_'+j+'" onclick="answerMC('+i+','+j+')"><span class="cletter">'+letters[j]+'</span>'+o+'</button>').join('')+
+    '</div><div class="explanation" id="exp'+i+'"></div>'+navRow(i)+'</div>';
+}
+function navRow(i){
+  return '<div class="nav-row">'+
+    '<button class="nav-btn" onclick="prev()" '+(i===0?'disabled':'')+'>← Geri</button>'+
+    '<button class="nav-btn" onclick="skipQ()" '+(state[i]!==null?'disabled':'')+'>Atla</button>'+
+    '<button class="nav-btn primary" onclick="next()">'+(i===Q.length-1?'Bitir ✓':'İleri →')+'</button>'+
+    '</div>';
+}
+function answerMC(i,j){
+  if(state[i]!==null)return;
+  const q=Q[i],ok=j===q.a;
+  state[i]={chosen:j,ok};
+  if(ok)score++;else{err++;wrongList.push({idx:i,chosen:q.o[j],correct:q.o[q.a]});}
+  document.getElementById('sCorrect').textContent=score;
+  document.getElementById('sWrong').textContent=err;
+  for(let k=0;k<q.o.length;k++){
+    const btn=document.getElementById('cb'+i+'_'+k);
+    btn.disabled=true;
+    if(k===q.a)btn.classList.add('ok');
+    else if(k===j&&!ok)btn.classList.add('err');
+  }
+  showExp(i,ok);
+  if(cur===Q.length-1){
+    setTimeout(()=>showResult(),700);
+  }
+}
+function restoreState(i){
+  const s=state[i];if(!s)return;
+  const q=Q[i];
+  for(let k=0;k<q.o.length;k++){
+    const btn=document.getElementById('cb'+i+'_'+k);
+    if(btn)btn.disabled=true;
+    if(k===q.a)btn&&btn.classList.add('ok');
+    else if(k===s.chosen&&!s.ok)btn&&btn.classList.add('err');
+  }
+  showExp(i,s.ok);
+}
+function showExp(i,ok){
+  const q=Q[i],el=document.getElementById('exp'+i);
+  if(!el)return;
+  el.className='explanation show '+(ok?'exp-ok':'exp-err');
+  el.innerHTML=(ok?'✅ ':'❌ Doğrusu: <strong>'+q.o[q.a]+'</strong><br>')+
+    q.exp+'<span class="exp-es">🇪🇸 '+q.es+'</span>'+
+    '<span class="exp-tr">🇹🇷 '+q.tr+'</span>'+
+    '<span class="exp-en">🇬🇧 '+q.en+'</span>';
+}
+function next(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);} else showResult();}
+function prev(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
+function skipQ(){if(state[cur]===null){state[cur]={chosen:null,ok:false};} next();}
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  const pct=Math.round(score/Q.length*100);
+  window._lastPct=pct;
+  document.getElementById('scoreBig').innerHTML=pct+'<span>/100</span>';
+  document.getElementById('rCorrect').textContent=score;
+  document.getElementById('rWrong').textContent=err;
+  document.getElementById('rPuan').textContent=pct;
+  document.getElementById('result').style.display='block';
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla ✓';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').textContent='';
+  document.getElementById('summaryCard').style.display='none';
+  window.scrollTo(0,0);
+}
+function confirmName(){
+  const val=document.getElementById('studentName').value;
+  if(!val){alert('Lütfen adınızı seçin!');return;}
+  const grup=GROUPS[val]||'A1.2';
+  const pct=window._lastPct;
+  document.getElementById('studentName').disabled=true;
+  document.getElementById('confirmBtn').disabled=true;
+  document.getElementById('confirmBtn').textContent='✓ Kaydedildi';
+  document.getElementById('summaryName').textContent=val;
+  document.getElementById('summaryOdev').textContent=ODEV_ADI+' · '+grup;
+  document.getElementById('sumPuan').textContent=pct;
+  document.getElementById('sumDogru').textContent=score;
+  document.getElementById('sumYanlis').textContent=err;
+  document.getElementById('summaryCard').style.display='block';
+  const cta=document.getElementById('submitCta');if(cta)cta.style.display='none';
+  const st=document.getElementById('sendStatus');
+  st.style.color='var(--muted)';st.textContent='⏳ Kaydediliyor...';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ogrenci:val,grup:grup,odev:ODEV_ADI,puan:pct,dogru:score,yanlis:err})})
+  .then(()=>{st.textContent='';})
+  .catch(()=>{st.style.color='var(--err)';st.textContent='⚠️ Bağlantı hatası.';});
+}
+function toggleReview(){
+  const sec=document.getElementById('reviewSection');
+  if(sec.style.display==='block'){sec.style.display='none';return;}
+  sec.style.display='block';
+  if(wrongList.length===0){sec.innerHTML='<div style="text-align:center;padding:20px;color:var(--ok);font-weight:700;font-family:Nunito,sans-serif;">🎯 Tebrikler! Hiç hata yok!</div>';return;}
+  sec.innerHTML=wrongList.map(w=>{
+    const q=Q[w.idx];
+    return '<div class="review-item">'+
+      '<div class="ri-num">SORU '+(w.idx+1)+'</div>'+
+      '<div class="ri-q">'+q.q+'</div>'+
+      '<div class="ri-wrong">✗ Senin cevabın: '+w.chosen+'</div>'+
+      '<div class="ri-correct">✓ Doğru: '+w.correct+'</div>'+
+      '</div>';
+  }).join('');
+}
+function retryQuiz(){
+  state=new Array(Q.length).fill(null);
+  wrongList=[];cur=0;score=0;err=0;
+  document.getElementById('result').style.display='none';
+  document.getElementById('reviewSection').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  document.getElementById('confirmBtn').disabled=false;
+  document.getElementById('confirmBtn').textContent='Onayla ✓';
+  document.getElementById('studentName').disabled=false;
+  document.getElementById('sendStatus').textContent='';
+  document.getElementById('summaryCard').style.display='none';
+  render();window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
