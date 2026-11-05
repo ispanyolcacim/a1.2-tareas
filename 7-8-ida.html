@@ -170,6 +170,11 @@ select#studentName:focus{border-color:var(--primary);}
 .review-item .ri-wrong{font-size:13px;color:var(--err);}
 .review-item .ri-correct{font-size:13px;color:var(--ok);font-weight:700;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* Yazma tesliminden önce öğrencinin kendi kopyasını saklama onayı */
+.writing-copy-confirm{display:flex;align-items:flex-start;gap:10px;margin:18px 0 12px;padding:14px 16px;border:1.5px solid #e6bd64;border-radius:12px;background:#fff8e7;color:#634b1b;font-size:14px;line-height:1.6;text-align:left;cursor:pointer}
+.writing-copy-confirm input{flex:0 0 auto;width:20px;height:20px;margin:2px 0 0;accent-color:#b88016;cursor:pointer}
+.writing-copy-confirm small{display:block;font-size:12px;font-weight:400}
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
@@ -299,7 +304,11 @@ select#studentName:focus{border-color:var(--primary);}
         </tbody>
       </table>
     </div>
-    <button class="writing-submit-btn" id="writingSubmitBtn" onclick="submitWriting()">✔ Yazıyı Tamamladım, Teslim Et</button>
+    <label class="writing-copy-confirm" for="writing-copy-confirm">
+      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
+      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
+    </label>
+    <button class="writing-submit-btn" id="writingSubmitBtn" onclick="submitWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
     <button class="writing-back-btn" onclick="backToQuiz()">← Geri (Teste Dön)</button>
   </div>
 </div>
@@ -570,12 +579,14 @@ function updateCharCount(){
   document.getElementById('charCount').textContent=len+' karakter';
 }
 async function submitWriting(){
+  if(!requireWritingCopy()) return;
   const name=document.getElementById('studentName').value||document.getElementById('introName').value;
   const text=document.getElementById('writingText').value.trim();
   if(!name){alert('Lütfen adınızı seçin!');return;}
   if(text.length<50){alert('Lütfen daha uzun bir metin yazın (en az 50 karakter).');return;}
   const btn=document.getElementById('writingSubmitBtn');
   btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
+  document.getElementById('writing-copy-confirm').disabled=true;
   const now=new Date();
   const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
   try{
@@ -590,7 +601,8 @@ async function submitWriting(){
     document.getElementById('writingNote').style.display='block';
     setTimeout(()=>showResult(),1000);
   }catch(e){
-    btn.disabled=false;
+    document.getElementById('writing-copy-confirm').disabled=false;
+    btn.disabled=!document.getElementById('writing-copy-confirm').checked;
     btn.textContent='✔ Yazıyı Tamamladım, Teslim Et';
     alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
   }
@@ -650,6 +662,7 @@ function toggleReview(){
   }).join('');
 }
 function retryQuiz(){
+  resetWritingCopy();
   state=new Array(Q.length).fill(null);
   wrongList=[];cur=0;score=0;err=0;writingSubmitted=false;
   document.getElementById('result').style.display='none';
@@ -662,6 +675,21 @@ function retryQuiz(){
   document.getElementById('summaryCard').style.display='none';
   document.getElementById('writingNote').style.display='none';
   render();window.scrollTo(0,0);
+}
+
+function updateWritingCopyGate(){
+  document.getElementById('writingSubmitBtn').disabled=!document.getElementById('writing-copy-confirm').checked;
+}
+function requireWritingCopy(){
+  if(document.getElementById('writing-copy-confirm').checked) return true;
+  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
+  return false;
+}
+function resetWritingCopy(){
+  const checkbox=document.getElementById('writing-copy-confirm');
+  checkbox.checked=false;
+  checkbox.disabled=false;
+  updateWritingCopyGate();
 }
 </script>
 </body>
