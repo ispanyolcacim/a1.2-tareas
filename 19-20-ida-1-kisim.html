@@ -91,11 +91,19 @@ select:focus{border-color:#6c4eb8}
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
-<style>body > #introScreen{box-sizing:border-box;width:min(608px,calc(100% - 28px));margin:14px auto 32px;padding:clamp(18px,4vw,30px);background:white;border:1px solid #ddd4ff;border-top:5px solid #8057e9;border-radius:16px;box-shadow:0 10px 30px #4b31851a} :is(#intro,#introScreen,#cover) select{max-width:100%;min-width:0} .a12-parts{margin:12px 0;padding:12px;border:1px solid #e8a537;border-left:4px solid #e8a537;border-radius:10px;background:#fff3cd;color:#633500;overflow-wrap:anywhere}.a12-parts a{color:#803500;font-weight:700;text-decoration:underline}</style><style>#introScreen.active,#introCard,#cover{max-width:min(608px,100%);box-sizing:border-box;margin-inline:auto} :is(#introScreen,#introCard,#cover) :is(h1,.intro-title){overflow-wrap:anywhere} :is(#introScreen,#introCard,#cover) select{max-width:100%} :is(#introScreen,#introCard,#cover):not(:has(.brand-bar))::before{content:'● ● ●';display:block;color:#8057e9;letter-spacing:.28em;margin-bottom:.85rem;font-size:.8rem}</style></head>
+<style>body > #introScreen{box-sizing:border-box;width:min(608px,calc(100% - 28px));margin:14px auto 32px;padding:clamp(18px,4vw,30px);background:white;border:1px solid #ddd4ff;border-top:5px solid #8057e9;border-radius:16px;box-shadow:0 10px 30px #4b31851a} :is(#intro,#introScreen,#cover) select{max-width:100%;min-width:0} .a12-parts{margin:12px 0;padding:12px;border:1px solid #e8a537;border-left:4px solid #e8a537;border-radius:10px;background:#fff3cd;color:#633500;overflow-wrap:anywhere}.a12-parts a{color:#803500;font-weight:700;text-decoration:underline}</style><style>#introScreen.active,#introCard,#cover{max-width:min(608px,100%);box-sizing:border-box;margin-inline:auto} :is(#introScreen,#introCard,#cover) :is(h1,.intro-title){overflow-wrap:anywhere} :is(#introScreen,#introCard,#cover) select{max-width:100%} :is(#introScreen,#introCard,#cover):not(:has(.brand-bar))::before{content:'● ● ●';display:block;color:#8057e9;letter-spacing:.28em;margin-bottom:.85rem;font-size:.8rem}</style>
+<link rel="stylesheet" href="weekly-reminders.css?v=20261112">
+<script src="weekly-reminders.js?v=20261112" defer></script>
+</head>
 <body data-a12-theme>
 <div class="card">
   <!-- INTRO -->
   <div id="introScreen" class="screen active">
+<aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="5" data-cover="introScreen">
+  <h2 class="weekly-reminder__title" id="weekly-reminder-title">📚 5. hafta hatırlatması</h2>
+  <p class="weekly-reminder__text">Bu ödevlerle birlikte beşinci haftayı tamamladık! 🌟 <strong class="weekly-reminder__action">Şimdiye kadar eksik kalan çalışmalarınızı tamamlamanızı rica ediyorum.</strong> Derste birlikte çözerken kolay gelen bir soru, tek başınıza çalışırken sizi düşündürebilir. Bireysel çalışma tam da bu yüzden önemli: Neleri rahatça yapabildiğinizi, nerelerde desteğe ihtiyaç duyduğunuzu gösterir. Takıldığınız yerleri not alın; birlikte üzerinden geçelim. 📝</p>
+</aside>
+
     <div class="week-pill">5. HAFTA &#214;DEV&#304; &nbsp;|&nbsp; A1.2 (19-20. DERS)</div>
     <div class="intro-title">FUTURO CON IR A INFINITIVO / MUY - MUCHO</div>
     <div class="intro-sub">1. Kısım · 50 soru</div>

@@ -122,11 +122,19 @@ select#studentName:focus{border-color:var(--primary);}
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a12-theme.css?v=20261103-purple">
+
+<link rel="stylesheet" href="weekly-reminders.css?v=20261112">
+<script src="weekly-reminders.js?v=20261112" defer></script>
 </head>
 <body data-a12-theme>
 <div class="wrap">
 <!-- INTRO -->
 <div id="intro">
+<aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="1" data-cover="intro">
+  <h2 class="weekly-reminder__title" id="weekly-reminder-title">📚 1. hafta hatırlatması</h2>
+  <p class="weekly-reminder__text">Bu ödevlerle birlikte ilk haftayı geride bıraktık! 🎉 <strong class="weekly-reminder__action">Eksik kalan ödevleriniz varsa tamamlamanızı rica ediyorum.</strong> Derste öğrendiklerinize bireysel çalışmayla yeniden dönmeniz, bilgilerin yerleşmesi için çok değerli. Şimdiden küçük bir çalışma rutini oluşturalım; her gün İspanyolcaya ayıracağınız kısa bir zaman bile güzel bir başlangıç. 🌱</p>
+</aside>
+
   <div class="brand-bar">
     <div class="brand-dot"></div><div class="brand-dot"></div><div class="brand-dot"></div>
     <span class="brand-name">@ispanyolcacim · Profe Hazel</span>
