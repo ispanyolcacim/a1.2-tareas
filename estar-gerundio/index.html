@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6c5ce7">
+  <meta name="description" content="A1.2 İspanyolca ders içi etkinliği: estar + gerundio, düzensiz fiiller, meme’ler, Wordwall ve emojili konuşma oyunu.">
+  <title>A1.2 · Estar + Gerundio · Ders İçi Etkinlik</title>
+  <link rel="stylesheet" href="a12-theme.css">
+  <link rel="stylesheet" href="estar-gerundio.css">
+  <script defer src="estar-gerundio.js"></script>
+</head>
+<body data-a12-theme>
+<a class="skip-link" href="#lesson">Etkinliğe geç</a>
+<div class="lesson-shell">
+  <header class="hero">
+    <div class="hero-top"><span class="level">A1.2 · DERS İÇİ ETKİNLİK</span><span class="signature">@ispanyolcacim · Profe Hazel</span><button id="fullscreen" class="icon-button" aria-label="Tam ekranı aç">⛶</button></div>
+    <div class="hero-copy"><div><p class="eyebrow">ESTAR + GERUNDIO</p><h1 lang="es">¿Qué está pasando?</h1><p>Şu anda neler oluyor? Hatırla, keşfet, gülümse ve anlat.</p></div><div class="hero-emoji" aria-hidden="true">💬<span>ahora</span></div></div>
+    <div class="hero-bottom"><span>✦ 7 bölüm</span><span>🗣️ Birlikte konuşalım</span><span>🎲 Oynayarak tekrar edelim</span></div>
+  </header>
+  <nav class="section-nav" aria-label="Etkinlik bölümleri">
+    <button class="nav-item active" data-section="1" aria-current="step"><b>01</b><span>Formülü hatırla</span></button>
+    <button class="nav-item" data-section="2"><b>02</b><span>Düzensiz gerundiolar</span></button>
+    <button class="nav-item" data-section="3"><b>03</b><span>Meme zamanı</span></button>
+    <button class="nav-item" data-section="4"><b>04</b><span>Wordwall 1</span></button>
+    <button class="nav-item" data-section="5"><b>05</b><span>Wordwall 2</span></button>
+    <button class="nav-item" data-section="6"><b>06</b><span>Wordwall 3</span></button>
+    <button class="nav-item" data-section="7"><b>07</b><span>Emoji oyunu</span></button>
+  </nav>
+  <main id="lesson" tabindex="-1">
+    <section class="lesson-section" id="section-1" aria-labelledby="title-1">
+      <div class="section-heading"><div><p class="eyebrow">01 / BİRLİKTE HATIRLAYALIM</p><h2 id="title-1">Bir şey tam şu anda oluyor.</h2><p>Devam eden bir eylemi anlatırken <strong>estar + gerundio</strong> kullanırız.</p></div><span class="heading-emoji" aria-hidden="true">⏳</span></div>
+      <div class="formula" lang="es"><div><small>ÖZNEYE GÖRE</small><strong>estar</strong><span>estoy, estás, está…</span></div><b class="plus">+</b><div><small>FİİLİN GERUNDIO HÂLİ</small><strong>gerundio</strong><span>-ando / -iendo</span></div><b class="equals">=</b><div class="formula-result"><small>ŞU ANDA</small><strong>-yor</strong><span>Estamos aprendiendo.</span></div></div>
+      <div class="two-columns">
+        <article class="surface"><h3>🧩 Estar’ı özneye göre çek.</h3><div class="conjugation" lang="es"><span>yo <b>estoy</b></span><span>nosotros/as <b>estamos</b></span><span>tú <b>estás</b></span><span>vosotros/as <b>estáis</b></span><span>él / ella / usted <b>está</b></span><span>ellos / ellas / ustedes <b>están</b></span></div></article>
+        <article class="surface"><h3>✨ Fiile gerundio kıyafetini giydir.</h3><div class="rule"><b>-ar → -ando</b><span lang="es">hablar → habl<strong>ando</strong></span></div><div class="rule"><b>-er / -ir → -iendo</b><span lang="es">comer → com<strong>iendo</strong><br>vivir → viv<strong>iendo</strong></span></div></article>
+      </div>
+      <div class="example-strip" lang="es"><span class="example-icon">📚</span><div><strong><em>Yo</em> <mark>estoy</mark> <u>estudiando</u> español.</strong><p lang="tr">Ben şu anda İspanyolca çalışıyorum.</p></div><span class="mini-badge">özne + estar + gerundio</span></div>
+      <div class="note">💡 <strong>Çekimlenen fiil estar’dır.</strong> Gerundio özneye göre değişmez: <span lang="es">estoy hablando · estamos hablando.</span><br><strong>Olumsuz:</strong> <span lang="es">No estoy trabajando.</span> &nbsp; <strong>Soru:</strong> <span lang="es">¿Estás trabajando?</span></div>
+      <details class="extra"><summary>🙋 Dönüşlü fiillerde zamir nereye gelir?</summary><p lang="es"><strong>Me estoy duchando.</strong> = <strong>Estoy duchándome.</strong></p><p>Zamir estar’ın önüne gelebilir veya gerundioya bitişebilir. Sona eklenince gerekli vurgu işaretini koyarız: <strong>duchándome, vistiéndome.</strong></p></details>
+    </section>
+    <section class="lesson-section" id="section-2" hidden aria-labelledby="title-2">
+      <div class="section-heading"><div><p class="eyebrow">02 / ÖNCE SEN SÖYLE</p><h2 id="title-2">Bu fiilin gerundiosu ne?</h2><p>Mastar fiile bak, gerundiosunu söyle. Sonra Türkçe cümleyi İspanyolcaya çevir.</p></div><span class="heading-emoji" aria-hidden="true">🪄</span></div>
+      <div class="toolbar"><label>Fiil seç <select id="verb-select" aria-label="Düzensiz fiil seç"></select></label><span class="count" id="verb-counter"></span><button id="shuffle-verbs" class="button ghost">🔀 Karıştır</button></div>
+      <article class="verb-stage surface" aria-live="polite"><span class="mini-badge" id="verb-type"></span><div class="infinitive" lang="es" id="verb-infinitive"></div><p class="verb-meaning" id="verb-meaning"></p><button class="button" id="gerund-toggle" aria-expanded="false" aria-controls="gerund-answer">Gerundioyu göster 👀</button><div class="reveal gerund-answer" lang="es" id="gerund-answer" hidden></div><div class="translation-task"><span class="eyebrow">🇹🇷 İSPANYOLCAYA ÇEVİR</span><p id="turkish-sentence"></p><button class="button secondary" id="translation-toggle" aria-expanded="false" aria-controls="translation-answer">İspanyolca cümleyi göster 💬</button><div class="reveal sentence-answer" lang="es" id="translation-answer" hidden></div></div></article>
+      <div class="pager"><button id="prev-verb" class="button ghost">← Önceki fiil</button><button id="next-verb" class="button">Sonraki fiil →</button></div>
+      <div class="note">🔎 Bazı fiillerde kök değişir (<span lang="es">dormir → durmiendo</span>); bazılarında <strong>y</strong> ortaya çıkar (<span lang="es">leer → leyendo</span>). <span lang="es">Ir → yendo</span> biçimini de ayrıca hatırla.</div>
+    </section>
+    <section class="lesson-section" id="section-3" hidden aria-labelledby="title-3">
+      <div class="section-heading"><div><p class="eyebrow">03 / BİRAZ DA GÜLELİM</p><h2 id="title-3" lang="es">Memes en español</h2><p>Önce oku. Estar + gerundio yapılarını bul. Espri nerede?</p></div><span class="heading-emoji" aria-hidden="true">😂</span></div>
+      <div class="meme-tabs" role="group" aria-label="Meme seç"><button class="button active" data-meme="0" aria-pressed="true">01 · Los sueños 😴</button><button class="button ghost" data-meme="1" aria-pressed="false">02 · Las ofertas 🛍️</button><button class="button ghost" data-meme="2" aria-pressed="false">03 · Las notas 🐱</button></div>
+      <div class="meme-layout"><figure class="meme-figure"><img id="meme-image" src="assets/meme-suenos.webp" alt="Bir öğrenci kanepede uyurken annesine ders çalıştığını söylüyor." width="1024" height="1536"><figcaption id="meme-caption">01 · Estoy estudiando mis sueños.</figcaption></figure><aside class="meme-discussion surface"><p class="eyebrow">🗣️ HABLEMOS</p><h3 lang="es">¿Qué está pasando?</h3><ol id="meme-questions" lang="es"></ol><details id="meme-transcript"><summary>🇪🇸 Diyaloğu metin olarak aç</summary><div id="meme-lines" lang="es"></div></details><button class="button secondary" id="meme-explanation-toggle" aria-expanded="false" aria-controls="meme-explanation">Espriyi ve yapıları aç 🔍</button><div id="meme-explanation" class="reveal" hidden></div></aside></div>
+    </section>
+    <section class="lesson-section wordwall-section" id="section-4" hidden aria-labelledby="title-4"><div class="section-heading"><div><p class="eyebrow">04 / WORDWALL 1</p><h2 id="title-4">İlk oyunla başlayalım!</h2><p>Ekrandaki yönergeyi takip et ve etkinliği birlikte tamamlayalım.</p></div><span class="heading-emoji" aria-hidden="true">🎯</span></div><div class="embed-wrap"><iframe style="max-width:100%" data-src="https://wordwall.net/es/embed/4e49656ad97a4cfbac98b840e1594ee0?themeId=46&templateId=46&fontStackId=0" width="500" height="380" title="Wordwall 1 · Estar + gerundio etkinliği" frameborder="0" allowfullscreen></iframe></div><p class="embed-fallback">Oyun yüklenmezse <a href="https://wordwall.net/es/embed/4e49656ad97a4cfbac98b840e1594ee0?themeId=46&templateId=46&fontStackId=0" target="_blank" rel="noopener">yeni sekmede aç ↗</a></p></section>
+    <section class="lesson-section wordwall-section" id="section-5" hidden aria-labelledby="title-5"><div class="section-heading"><div><p class="eyebrow">05 / WORDWALL 2</p><h2 id="title-5">Bir tur daha!</h2><p>Cevabını sesli söyle; ardından oyunda seçimini yap.</p></div><span class="heading-emoji" aria-hidden="true">🧠</span></div><div class="embed-wrap"><iframe style="max-width:100%" data-src="https://wordwall.net/es/embed/e256cc94612843179f1bb6d9b6b53d02?themeId=1&templateId=36&fontStackId=0" width="500" height="380" title="Wordwall 2 · Estar + gerundio etkinliği" frameborder="0" allowfullscreen></iframe></div><p class="embed-fallback">Oyun yüklenmezse <a href="https://wordwall.net/es/embed/e256cc94612843179f1bb6d9b6b53d02?themeId=1&templateId=36&fontStackId=0" target="_blank" rel="noopener">yeni sekmede aç ↗</a></p></section>
+    <section class="lesson-section wordwall-section" id="section-6" hidden aria-labelledby="title-6"><div class="section-heading"><div><p class="eyebrow">06 / WORDWALL 3</p><h2 id="title-6">Son Wordwall turu.</h2><p>Estar çekimini ve gerundio biçimini birlikte düşün.</p></div><span class="heading-emoji" aria-hidden="true">🚀</span></div><div class="embed-wrap"><iframe style="max-width:100%" data-src="https://wordwall.net/es/embed/1ad6b54f11064f8b8997190bdb2b3717?themeId=45&templateId=72&fontStackId=0" width="500" height="380" title="Wordwall 3 · Estar + gerundio etkinliği" frameborder="0" allowfullscreen></iframe></div><p class="embed-fallback">Oyun yüklenmezse <a href="https://wordwall.net/es/embed/1ad6b54f11064f8b8997190bdb2b3717?themeId=45&templateId=72&fontStackId=0" target="_blank" rel="noopener">yeni sekmede aç ↗</a></p></section>
+    <section class="lesson-section" id="section-7" hidden aria-labelledby="title-7">
+      <div class="section-heading"><div><p class="eyebrow">07 / ZAR AT, İLERLE, ANLAT</p><h2 id="title-7" lang="es">La ruta del gerundio 🎲</h2><p>Emojiyi yorumla; çıkan özneyle <strong>estar + gerundio</strong> cümlesi kur.</p></div></div>
+      <details class="extra"><summary>🎮 Nasıl oynanır?</summary><p>1–4 oyuncu seç. Sıradaki oyuncu zar atsın ve geldiği karedeki eylemi söylesin. Örneğin <strong>ella + 📚 → Ella está leyendo un libro.</strong> Öğretmen onayladığında “Cümleyi kurdum” ile 1 puan kazan ve sırayı devret. Takılırsan fiil ipucunu veya örnek cevabı aç. Bitişe ulaşan oyuncu son cümlesini de kurunca oyunu tamamlar. Bir kareye doğrudan tıklayarak puansız serbest çalışma da yapabilirsin.</p></details>
+      <div class="game-toolbar"><label>Oyuncu sayısı <select id="player-count"><option value="1">1 oyuncu</option><option value="2" selected>2 oyuncu</option><option value="3">3 oyuncu</option><option value="4">4 oyuncu</option></select></label><button class="button ghost" id="reset-game">↺ Oyunu sıfırla</button></div>
+      <div id="scoreboard" class="scoreboard" aria-label="Oyuncular ve puanlar"></div>
+      <div class="game-layout"><div class="board-wrap"><div class="board" id="game-board" aria-label="30 karelik emoji oyun tahtası"></div><p class="board-caption">🐾 Başlangıç → numaraları takip et → 🏁 Bitiş<br>Bir kareye tıklayarak serbest çalışma yapabilirsin.</p></div><aside class="game-task surface"><p class="eyebrow" id="turn-label">SIRA 1. OYUNCUDA</p><div class="dice" id="dice-face" aria-label="Zar">⚄</div><button class="button" id="roll-dice">🎲 Zar at</button><p id="game-message" class="game-message" aria-live="polite">İlk cümle için zar at!</p><div id="game-prompt" hidden><span id="square-label" class="mini-badge"></span><div class="task-emoji" id="task-emoji" role="img"></div><div class="subject-chip" id="task-subject" lang="es"></div><p class="muted">Bu özneyle tam bir cümle kur.</p><div class="hint-row"><button class="button ghost" id="game-hint-toggle" aria-expanded="false" aria-controls="game-hint">Fiil ipucu</button><button class="button ghost" id="game-answer-toggle" aria-expanded="false" aria-controls="game-answer">Örnek cevap</button></div><p class="reveal" id="game-hint" lang="es" hidden></p><p class="reveal" id="game-answer" lang="es" hidden></p><div class="turn-actions"><button class="button" id="accept-sentence">✓ Cümleyi kurdum · +1</button><button class="button ghost" id="pass-turn">Pas geç →</button></div></div></aside></div>
+    </section>
+  </main>
+  <footer class="lesson-footer"><span id="section-progress">Bölüm 1 / 7</span><div><button class="button ghost" id="previous-section" disabled>← Önceki bölüm</button><button class="button" id="next-section">Sonraki bölüm →</button></div></footer>
+  <p class="credit">💜 İspanyolcacım · Profe Hazel · A1.2</p>
+</div>
+</body>
+</html>
