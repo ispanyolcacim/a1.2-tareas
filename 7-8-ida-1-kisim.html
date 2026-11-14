@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>A1.2 (7+8) 1. Kısım</title>
+<title>A1.2 (7+8) Ders Ödevi · 50 Soru</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -198,16 +198,13 @@ select#studentName:focus{border-color:var(--primary);}
   <div class="intro-badge">2. HAFTA ÖDEVİ · A1.2</div>
   <h1>Estar + Gerundio</h1>
   <div class="intro-sub">El Presente Continuo – Dönüşlü Fiiller</div>
-  <div class="intro-desc">1. Kısım · 50 soru</div>
+  <div class="intro-desc">Ders Ödevi · 50 soru</div>
   <div class="sections-info">
-    <div class="section-item"><span class="section-num">Soru 1–70</span><span>Gramatik – estar + gerundio (çoktan seçmeli)</span></div>
-    <div class="section-item"><span class="section-num">Soru 71–100</span><span>Okuma Metni – verdadera / falsa</span></div>
-    <div class="section-item"><span class="section-num" style="background:var(--accent)">Yazma</span><span>Görsel Tanımlama – estar + gerundio (ayrıca değerlendirilir)</span></div>
+    <div class="section-item"><span class="section-num">Soru 1–50</span><span>Gramatik – estar + gerundio (çoktan seçmeli)</span></div>
   </div>
   <div class="chip-row">
     <span class="chip">estar + gerundio</span>
     <span class="chip c2">Dönüşlü fiiller</span>
-    <span class="chip c3">Verdadero / Falso</span>
   </div>
   <div class="name-label">👤 Adınızı seçin</div>
   <select id="introName" class="name-select">
@@ -221,104 +218,21 @@ select#studentName:focus{border-color:var(--primary);}
     <option>Sena Yamak</option>
     <option>Suleyman Bektas</option>
   </select>
-  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button><aside class="a12-parts">⚠️ Bu ödevin diğer kısımları da var. <a href="7-8-ida-2-kisim.html">2. Kısım</a></aside>
+  <button class="start-btn" onclick="startQuiz()">Teste Başla →</button><aside class="a12-parts">✍️ Yazma ödevi ayrı teslim edilir. <a href="7-8-ida-2-kisim.html">7+8. Ders Yazma Ödevine Git</a></aside>
 </div>
 <!-- QUIZ -->
 <div id="quiz">
   <header class="a12-lesson"><span aria-hidden="true">📘</span><div><h2>Estar + Gerundio</h2><p>A1.2 · 7–8. Ders</p></div></header>
   <div class="top-bar">
     <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-    <div class="prog-label" id="progLabel">1 / 100</div>
+    <div class="prog-label" id="progLabel">1 / 50</div>
     <div class="score-bar">
       <span class="sc ok">✓ <span id="sCorrect">0</span></span>
-      <button class="finish-btn-sm a12-finish" onclick="goToWriting()">🏁 Bitir</button>
+      <button class="finish-btn-sm a12-finish" onclick="finishQuiz()">🏁 Bitir</button>
       <span class="sc err">✗ <span id="sWrong">0</span></span>
     </div>
   </div>
   <div id="qArea"></div>
-</div>
-<!-- WRITING -->
-<div id="writing">
-  <div class="writing-card">
-    <div class="writing-badge">✍️ YAZMA BÖLÜMÜ – A1.2 7-8.DERS</div>
-    <div class="writing-title">Describe la imagen usando estar + gerundio</div>
-    <div class="image-box">
-      <img src="https://i.imgur.com/E5C8cMq.jpg"
-           alt="Silly Swim - Piscina"
-           onerror="this.style.display='none'; document.getElementById('imgFallback').style.display='block';">
-      <div id="imgFallback" style="display:none;padding:20px;text-align:center;background:#f3f0fa;font-size:14px;color:var(--muted);">
-        📷 Görsel yüklenemedi. Lütfen internet bağlantınızı kontrol edin.<br>
-        <a href="https://images.squarespace-cdn.com/content/v1/5bbac14b8dfc8c36ff3ae85a/1541015574028-NBQM79H7Z7HVMWVOMQNB/Silly+Swim.jpg" target="_blank" style="color:var(--primary);">Görseli aç</a>
-      </div>
-    </div>
-    <div class="yonerge-box">
-      <div class="yonerge-title">📋 YAZINIZIN BAŞINA EKLEYİN</div>
-      <div class="header-fields">
-        <div>
-          <div class="field-label">Número de tarea</div>
-          <input type="text" class="field-input" value="A1.2 7+8" readonly style="background:#f5f0ff;color:var(--primary);font-weight:700;">
-        </div>
-        <div>
-          <div class="field-label">Tema de la tarea</div>
-          <input type="text" class="field-input" value="Estar + gerundio / Descripción de una imagen" readonly style="background:#f5f0ff;color:var(--primary);font-weight:700;">
-        </div>
-      </div>
-    </div>
-    <div class="yonerge-box">
-      <div class="yonerge-title">📝 YÖNERGELer</div>
-      <ul class="yonerge-list">
-        <li>Görsele dikkatlice bakınız ve görselde şu anda neler olduğunu anlatan kısa bir metin yazınız.</li>
-        <li>Bir <strong>başlık</strong> olmalıdır.</li>
-        <li>Metniniz <strong>giriş, gelişme ve sonuç</strong> bölümlerinden oluşmalıdır.</li>
-        <li>Görseldeki <strong>kişileri, hayvanları ve nesneleri</strong> anlatınız.</li>
-        <li>En az <strong>8 cümle</strong> yazınız.</li>
-        <li>En az <strong>6 tane estar + gerundio</strong> yapısı kullanınız.</li>
-        <li>En az <strong>4 farklı kişi veya hayvan</strong> hakkında yazınız.</li>
-        <li>En az <strong>3 yer bildirimi</strong> kullanınız. Örnek: <em>en la piscina, al lado de la piscina, en el jardín, en la silla</em></li>
-        <li>En az <strong>3 nesne veya renk adı</strong> kullanınız. Örnek: <em>la pelota, el perro, el gato, el submarino, el flotador, amarillo, rojo, azul</em></li>
-        <li>Cümleleriniz kısa, açık ve <strong>A1.2 seviyesine uygun</strong> olmalıdır.</li>
-        <li>Sadece kelime listesi yazmayınız; görseli <strong>kısa bir metin</strong> şeklinde anlatınız.</li>
-        <li>Cümlelerinizde özellikle <strong>estar + gerundio</strong> kullanmaya dikkat ediniz.</li>
-      </ul>
-    </div>
-    <div class="ornek-box">
-      <div class="ornek-title">✏️ ÖRNEK YAPILAR</div>
-      <div class="ornek-item">🔸 Un niño <strong>está nadando</strong> en la piscina.</div>
-      <div class="ornek-item">🔸 Una mujer <strong>está comiendo</strong> al lado de la piscina.</div>
-      <div class="ornek-item">🔸 El perro <strong>está descansando</strong> en la silla.</div>
-      <div class="ornek-item">🔸 Los niños <strong>están jugando</strong> en el jardín.</div>
-      <div class="ornek-item">🔸 El gato <strong>está mirando</strong> el agua.</div>
-    </div>
-    <div style="margin-bottom:14px;">
-      <div class="field-label" style="margin-bottom:8px;">✏️ Yazınızı aşağıya yazın:</div>
-      <textarea id="writingText" class="writing-textarea"
-        placeholder="Metninizi buraya yazın... Başlığınızı ilk satıra yazın, sonra giriş-gelişme-sonuç şeklinde devam edin."
-        oninput="updateCharCount()"></textarea>
-      <div class="char-count" id="charCount">0 karakter</div>
-    </div>
-    <div class="rubric-box">
-      <div class="rubric-title">📊 Puanlama Cetveli</div>
-      <table class="rubric-table">
-        <thead><tr><th>Kriter</th><th>Puan</th></tr></thead>
-        <tbody>
-          <tr><td>Ad, soyad ve başlık bilgilerinin eksiksiz yazılması</td><td>5</td></tr>
-          <tr><td>Giriş–gelişme–sonuç yapısı</td><td>5</td></tr>
-          <tr><td>En az 8 cümle yazılması</td><td>10</td></tr>
-          <tr><td>En az 6 estar + gerundio kullanımı</td><td>10</td></tr>
-          <tr><td>Görseldeki kişi, hayvan ve nesnelerin doğru anlatılması</td><td>10</td></tr>
-          <tr><td>Yer bildiren ifadelerin kullanılması</td><td>5</td></tr>
-          <tr><td>A1.2 seviyesine uygun, açık ve düzgün dil kullanımı</td><td>5</td></tr>
-          <tr><td><strong>Maksimum puan</strong></td><td><strong>50</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <label class="writing-copy-confirm" for="writing-copy-confirm">
-      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
-      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
-    </label>
-    <button class="writing-submit-btn" id="writingSubmitBtn" onclick="submitWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
-    <button class="writing-back-btn" onclick="backToQuiz()">← Geri (Teste Dön)</button>
-  </div>
 </div>
 <!-- RESULT -->
 <div id="result">
@@ -330,9 +244,6 @@ select#studentName:focus{border-color:var(--primary);}
       <div class="score-item"><div class="val ok" id="rCorrect">0</div><div class="lbl">✓ Doğru</div></div>
       <div class="score-item"><div class="val err" id="rWrong">0</div><div class="lbl">✗ Yanlış</div></div>
       <div class="score-item"><div class="val" id="rPuan" style="color:var(--primary)">0</div><div class="lbl">Puan</div></div>
-    </div>
-    <div class="writing-result-note" id="writingNote" style="display:none;">
-      ✍️ Yazma bölümünüz <strong>Profe Hazel'e e-posta olarak gönderildi</strong>. Ayrıca değerlendirilecektir (50 puan).
     </div>
     <div class="submit-cta" id="submitCta">
       <p class="submit-hint">⚠️ Test sonucunuz henüz teslim edilmedi!</p>
@@ -370,11 +281,7 @@ select#studentName:focus{border-color:var(--primary);}
   <div id="reviewSection"></div>
 </div>
 </div><!-- /wrap -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-emailjs.init('xNYEbUQNiWJPvbyoJ');
-const EMAILJS_SERVICE  = 'service_4ee1wh7';
-const EMAILJS_TEMPLATE = 'template_xjyyxhf';
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwbAQtk4nhM73aqYCKwg0z5s5qxPaCAWeLncNVHtSQ2jHbuo7SomG4PJpOBN8C0sXzTQw/exec';
 const ODEV_ADI='H2 – 7-8.Ders (1. KISIM)';
 const GROUPS={
@@ -382,7 +289,7 @@ const GROUPS={
   'Rabia Nur Tok':'A1.2','Selva Akyuz':'A1.2','Sena Yamak':'A1.2','Suleyman Bektas':'A1.2'
 };
 const Q=[
-// ══════════════ KISIM 1: GRAMER (1-70) ══════════════
+// GRAMATİK: 1–50
 {t:"mc",q:"No me gusta dormir mucho. Ahora mismo ______ (levantarse) temprano.",o:["me estoy levantando","estoy levantandome","me levanto","estoy me levantando"],a:0,exp:"\"Ahora mismo\" → şu an → estar + gerundio zorunlu\nReflexivo → me estoy levantando (zamir estar'dan önce)\n❌ B: tilde eksik\n❌ C: presente simple\n❌ D: yanlış dizilim\n🇪🇸 Ahora mismo me estoy levantando temprano.\n🇹🇷 Şu an erken kalkıyorum.\n🇬🇧 I am getting up early right now."},
 {t:"mc",q:"Siempre llego tarde. Ahora ______ (ducharse) rápido.",o:["estoy duchandome","me estoy duchando","estoy me duchando","me ducho"],a:1,exp:"\"Ahora\" → şu an → estar + gerundio\nReflexivo → zamir önce gelir\n🇪🇸 Ahora me estoy duchando rápido.\n🇹🇷 Şu an hızlı duş alıyorum.\n🇬🇧 I am taking a shower quickly now."},
 {t:"mc",q:"Estoy cansado. Ahora mismo ______ (relajarse) en casa.",o:["me relajo","estoy relajandome","estoy relajándome","me estoy relajandome"],a:2,exp:"Zamir gerundioya eklenebilir → relajándome (tilde şart)\n🇪🇸 Ahora mismo estoy relajándome en casa.\n🇹🇷 Şu an evde rahatlıyorum.\n🇬🇧 I am relaxing at home right now."},
@@ -433,60 +340,9 @@ const Q=[
 {t:"mc",q:"Estáis cansados. Ahora ______ (dormirse).",o:["estáis durmiendoos","os dormís","estáis os durmiendo","os estáis durmiendo"],a:3,exp:"dormir → durmiendo → os estáis durmiendo\n🇪🇸 Ahora os estáis durmiendo.\n🇹🇷 Şu an uyuyakalıyorsunuz.\n🇬🇧 You are falling asleep now."},
 {t:"mc",q:"Estáis en casa. Ahora mismo ______ (quedarse).",o:["os estáis quedando","estáis quedandoos","os quedáis","estáis os quedando"],a:0,exp:"quedarse → os estáis quedando\n🇪🇸 Ahora mismo os estáis quedando en casa.\n🇹🇷 Şu an evde kalıyorsunuz.\n🇬🇧 You are staying at home right now."},
 {t:"mc",q:"Estáis en la cama. Ahora ______ (acostarse).",o:["estáis acostendoos","os estáis acostando","estáis os acostando","os acostáis"],a:1,exp:"doğru yapı: os estáis acostando\n🇪🇸 Ahora os estáis acostando.\n🇹🇷 Şu an yatağa gidiyorsunuz.\n🇬🇧 You are going to bed now."},
-{t:"mc",q:"Estoy en casa. Ahora mismo nosotros ______ (relajarse).",o:["nos relajamos","estamos relajandonos","nos estamos relajando","estamos nos relajando"],a:2,exp:"nosotros → nos + estamos + gerundio → nos estamos relajando\n🇪🇸 Nos estamos relajando.\n🇹🇷 Biz rahatlıyoruz.\n🇬🇧 We are relaxing."},
-{t:"mc",q:"Ahora mismo vosotros ______ (prepararse).",o:["os estais preparando","estáis preparándoos","os preparáis","estáis os preparando"],a:1,exp:"Zamir gerundioya eklenebilir → preparándoos (tilde şart)\n🇪🇸 Estáis preparándoos.\n🇹🇷 Hazırlanıyorsunuz.\n🇬🇧 You are getting ready."},
-{t:"mc",q:"Ellos están cansados. Ahora ______ (acostarse).",o:["están acostándose","se están acuestando","se acuestan","están se acostando"],a:0,exp:"Zamir gerundioya eklenmiş → acostándose\n🇪🇸 Están acostándose.\n🇹🇷 Yatağa gidiyorlar.\n🇬🇧 They are going to bed."},
-{t:"mc",q:"Nosotros estamos en casa. Ahora mismo ______ (quedarse).",o:["nos estamos quedándo","estamos nos quedando","nos quedamos","estamos quedándonos"],a:3,exp:"Zamir birleşik kullanım → quedándonos\n🇪🇸 Estamos quedándonos en casa.\n🇹🇷 Evde kalıyoruz.\n🇬🇧 We are staying at home."},
-{t:"mc",q:"Vosotros tenéis frío. Ahora ______ (ponerse) el abrigo.",o:["os ponéis","estáis poniendos","os estáis poniendo","estáis os poniendo"],a:2,exp:"doğru yapı: os estáis poniendo\n🇪🇸 Os estáis poniendo el abrigo.\n🇹🇷 Montunuzu giyiyorsunuz.\n🇬🇧 You are putting on your coats."},
-{t:"mc",q:"Ellas están en casa. Ahora mismo ______ (relajarse).",o:["se están relajándose","están relajándose","se relajan","están se relajando"],a:1,exp:"birleşik yapı: relajándose\n🇪🇸 Están relajándose.\n🇹🇷 Rahatlıyorlar.\n🇬🇧 They are relaxing."},
-{t:"mc",q:"Nosotros estamos en el baño. Ahora ______ (lavarse).",o:["estamos lavándonos","nos estamos lavándonos","nos lavamos","estamos nos lavando"],a:0,exp:"birleşik yapı: lavándonos\n🇪🇸 Estamos lavándonos.\n🇹🇷 Yıkanıyoruz.\n🇬🇧 We are washing ourselves."},
-{t:"mc",q:"Vosotros estáis cansados. Ahora mismo ______ (dormirse).",o:["os estáis durmiéndoos","estáis durmiendos","os dormís","estáis durmiéndoos"],a:3,exp:"birleşik yapı: durmiéndoos (tilde şart)\n🇪🇸 Estáis durmiéndoos.\n🇹🇷 Uyuyakalıyorsunuz.\n🇬🇧 You are falling asleep."},
-{t:"mc",q:"Ellos están en casa. Ahora ______ (quedarse).",o:["se quedan","están quedandose","se están quedando","están se quedando"],a:2,exp:"doğru yapı: se están quedando\n🇪🇸 Se están quedando en casa.\n🇹🇷 Evde kalıyorlar.\n🇬🇧 They are staying at home."},
-{t:"mc",q:"Nosotros estamos listos. Ahora mismo ______ (prepararse).",o:["nos estamos preparándonos","estamos preparándonos","nos preparamos","estamos nos preparando"],a:1,exp:"birleşik yapı: preparándonos\n🇪🇸 Estamos preparándonos.\n🇹🇷 Hazırlanıyoruz.\n🇬🇧 We are getting ready."},
-{t:"mc",q:"Vosotros estáis en casa. Ahora mismo ______ (sentarse).",o:["os estáis sentando","estáis sentandos","os sentáis","estáis os sentando"],a:0,exp:"vosotros → os + estáis + gerundio → os estáis sentando\n🇪🇸 Ahora mismo os estáis sentando.\n🇹🇷 Şu an oturuyorsunuz.\n🇬🇧 You are sitting down right now."},
-{t:"mc",q:"Ellas están cansadas. Ahora ______ (acostarse).",o:["se están acostándose","están se acostando","se acuestan","están acostándose"],a:3,exp:"Zamir gerundioya eklenmiş → acostándose (tilde şart)\n🇪🇸 Ahora están acostándose.\n🇹🇷 Şu an yatağa gidiyorlar.\n🇬🇧 They are going to bed now."},
-{t:"mc",q:"Nosotros estamos tranquilos. Ahora mismo ______ (relajarse).",o:["nos estamos relajándonos","estamos nos relajando","nos relajamos","estamos relajándonos"],a:3,exp:"birleşik yapı → relajándonos\n🇪🇸 Ahora mismo estamos relajándonos.\n🇹🇷 Şu an rahatlıyoruz.\n🇬🇧 We are relaxing right now."},
-{t:"mc",q:"Vosotros estáis en casa. Ahora ______ (quedarse).",o:["os estáis quedando","estáis quedandos","os quedáis","estáis os quedando"],a:0,exp:"doğru yapı: os estáis quedando\n🇪🇸 Ahora os estáis quedando en casa.\n🇹🇷 Şu an evde kalıyorsunuz.\n🇬🇧 You are staying at home now."},
-{t:"mc",q:"Ellos están en el sofá. Ahora mismo ______ (relajarse).",o:["se están relajándose","están relajándose","se relajan","están se relajando"],a:1,exp:"birleşik yapı: relajándose\n🇪🇸 Ahora mismo están relajándose.\n🇹🇷 Şu an rahatlıyorlar.\n🇬🇧 They are relaxing right now."},
-{t:"mc",q:"Nosotros estamos cansados. Ahora ______ (dormirse).",o:["nos estamos durmiéndonos","nos dormimos","estamos durmiéndonos","estamos nos durmiendo"],a:2,exp:"birleşik yapı: durmiéndonos (tilde şart)\n🇪🇸 Ahora estamos durmiéndonos.\n🇹🇷 Şu an uyuyakalıyoruz.\n🇬🇧 We are falling asleep now."},
-{t:"mc",q:"Vosotros estáis en casa. Ahora mismo ______ (prepararse).",o:["estáis os preparando","estáis preparandos","os preparáis","os estáis preparando"],a:3,exp:"doğru yapı: os estáis preparando\n🇪🇸 Ahora mismo os estáis preparando.\n🇹🇷 Şu an hazırlanıyorsunuz.\n🇬🇧 You are getting ready right now."},
-{t:"mc",q:"Ellas están en casa. Ahora ______ (quedarse).",o:["se están quedándose","están quedándose","se quedan","están se quedando"],a:1,exp:"birleşik yapı: quedándose\n🇪🇸 Ahora están quedándose en casa.\n🇹🇷 Şu an evde kalıyorlar.\n🇬🇧 They are staying at home now."},
-{t:"mc",q:"Nosotros estamos en el baño. Ahora mismo ______ (lavarse).",o:["estamos lavándonos","nos estamos lavándonos","nos lavamos","estamos nos lavando"],a:0,exp:"birleşik yapı: lavándonos\n🇪🇸 Ahora mismo estamos lavándonos.\n🇹🇷 Şu an yıkanıyoruz.\n🇬🇧 We are washing ourselves right now."},
-{t:"mc",q:"Vosotros estáis cansados. Ahora ______ (acostarse).",o:["estáis os acostando","estáis acostadoos","os acostáis","os estáis acostando"],a:3,exp:"doğru yapı: os estáis acostando\n🇪🇸 Ahora os estáis acostando.\n🇹🇷 Şu an yatağa gidiyorsunuz.\n🇬🇧 You are going to bed now."},
-// ══════════════ KISIM 2: OKUMA (71-100) ══════════════
-{t:"tf",q:"Texto 71:\nMaría se levanta temprano todos los días. Desayuna café con leche y pan. Luego sale de casa a las siete. Trabaja en una oficina en el centro. Siempre llega puntual. Durante el día habla con muchos clientes. A veces almuerza con sus compañeros. Por la tarde vuelve a casa. Después descansa un poco. Finalmente cena y se acuesta temprano.\n\nAfirmación: María organiza su día de manera que tiene tiempo tanto para trabajar como para descansar.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Hem çalıştığı hem de eve gelip dinlendiği belirtiliyor. Bu da zamanını dengeli kullandığını gösterir."},
-{t:"tf",q:"Texto 72:\nJuan vive en una ciudad pequeña. Tiene una casa cerca del mar. Cada mañana corre por la playa. Después se ducha y desayuna. Trabaja como profesor en una escuela. Le gusta enseñar a los niños. Por la tarde lee libros. A veces sale con amigos. Los fines de semana viaja. Siempre disfruta su vida tranquila.\n\nAfirmación: Juan prefiere un estilo de vida activo pero sin renunciar a la tranquilidad.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Hem spor yapıyor hem seyahat ediyor ama aynı zamanda sakin hayatından memnun olduğu belirtiliyor."},
-{t:"tf",q:"Texto 73:\nAna estudia medicina en la universidad. Tiene muchas clases cada día. A veces se siente cansada. Sin embargo, le gusta aprender cosas nuevas. Estudia en la biblioteca por la tarde. También hace prácticas en el hospital. Sus profesores son muy exigentes. Ella quiere ser doctora. En su tiempo libre ve series. Siempre intenta descansar bien.\n\nAfirmación: Ana solo se dedica a estudiar teoría sin aplicar sus conocimientos.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Hastanede uygulama yaptığı belirtiliyor, yani sadece teori çalışmıyor."},
-{t:"tf",q:"Texto 74:\nPedro trabaja en un restaurante. Empieza a trabajar a las diez. Cocina platos tradicionales. Le gusta preparar comida para los clientes. El restaurante es muy popular. Siempre hay mucha gente. Pedro trabaja muchas horas. A veces está cansado. Pero le gusta su trabajo. Quiere abrir su propio restaurante.\n\nAfirmación: Pedro, a pesar del cansancio, mantiene una actitud positiva hacia su profesión.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Yorulsa da işini sevdiği açıkça belirtiliyor."},
-{t:"tf",q:"Texto 75:\nLaura tiene una familia grande. Vive con sus padres y hermanos. Cada mañana ayuda en casa. Después va a la escuela. Es una buena estudiante. Le gusta leer libros. También practica deporte. Sus amigos la visitan a menudo. Por la noche cena con su familia. Siempre está feliz.\n\nAfirmación: Laura limita su vida social únicamente a su familia.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Arkadaşlarının onu sık sık ziyaret ettiği belirtiliyor, yani sadece ailesiyle vakit geçirmiyor."},
-{t:"tf",q:"Texto 76:\nCarlos trabaja desde casa. Usa su ordenador todo el día. Tiene reuniones en línea. A veces habla con clientes internacionales. Le gusta su trabajo. Puede organizar su tiempo. Por la tarde descansa. Luego hace ejercicio. Cena temprano. Se acuesta a las once.\n\nAfirmación: Carlos tiene un horario completamente rígido sin posibilidad de adaptarlo.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Zamanını organize edebildiği belirtiliyor, yani esnek bir programa sahip."},
-{t:"tf",q:"Texto 77:\nSofía viaja mucho por su trabajo. Visita diferentes países. Conoce nuevas culturas. Le gusta aprender idiomas. Siempre lleva su cámara. Toma muchas fotos. A veces está cansada. Pero disfruta viajar. Es una persona muy curiosa. Quiere seguir viajando.\n\nAfirmación: Sofía considera los viajes como una obligación más que como una experiencia agradable.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Yorulsa bile seyahat etmeyi sevdiği açıkça belirtiliyor."},
-{t:"tf",q:"Texto 78:\nLuis estudia en la universidad. Tiene clases por la mañana. Después almuerza con amigos. Por la tarde estudia en casa. A veces juega videojuegos. Le gusta escuchar música. Los fines de semana descansa. También visita a su familia. Quiere terminar sus estudios pronto. Es un estudiante responsable.\n\nAfirmación: Luis dedica todo su tiempo exclusivamente al estudio sin actividades de ocio.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Video oyun oynadığı ve müzik dinlediği belirtiliyor, yani boş zaman aktiviteleri var."},
-{t:"tf",q:"Texto 79:\nElena trabaja en una tienda de ropa. Atiende a los clientes. Organiza la tienda. Le gusta la moda. Siempre sonríe. Sus compañeros son amables. Trabaja muchas horas. A veces está cansada. Pero le gusta su trabajo. Quiere mejorar en su profesión.\n\nAfirmación: Elena mantiene una actitud negativa debido a la carga de trabajo.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Yorulsa da işini sevdiği ve güler yüzlü olduğu belirtiliyor."},
-{t:"tf",q:"Texto 80:\nMiguel vive con su amigo. Comparten un apartamento. Cocinan juntos. Ven películas por la noche. Miguel trabaja en una empresa. Su amigo estudia. Los fines de semana salen. A veces invitan amigos. Les gusta pasar tiempo juntos. Tienen una buena relación.\n\nAfirmación: Miguel prefiere vivir de forma independiente sin compartir su espacio.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Arkadaşıyla birlikte yaşadığı ve bundan keyif aldığı belirtiliyor."},
-{t:"tf",q:"Texto 81:\nRoberto trabaja en una biblioteca. Ordena libros cada mañana. Ayuda a los visitantes a encontrar información. Usa el ordenador para buscar datos. Le gusta el silencio del lugar. A veces recomienda novelas interesantes. También organiza eventos culturales. Sale del trabajo a las cinco. Luego camina por el parque. Disfruta su rutina tranquila.\n\nAfirmación: Roberto prefiere entornos ruidosos y dinámicos en su vida diaria.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Sessiz ortamı sevdiği açıkça belirtiliyor."},
-{t:"tf",q:"Texto 82:\nLucía practica natación tres veces por semana. Va a la piscina después del trabajo. Nada durante una hora. Luego descansa un poco. Su entrenador le da consejos. Quiere mejorar su técnica. También participa en competiciones. A veces gana premios. Le gusta el deporte. Siempre se siente motivada.\n\nAfirmación: Lucía practica deporte sin ningún objetivo de mejora personal.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Tekniğini geliştirmek istediği açıkça belirtiliyor."},
-{t:"tf",q:"Texto 83:\nTomás conduce un taxi en la ciudad. Trabaja muchas horas al día. Conoce a muchas personas diferentes. A veces tiene clientes extranjeros. Escucha música mientras conduce. Le gusta su trabajo. Descansa por la noche. Cena con su familia. Habla con sus hijos. Es una persona amable.\n\nAfirmación: Tomás tiene un trabajo con poca interacción social.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Birçok farklı insanla tanıştığı belirtiliyor, yani sosyal etkileşim yüksek."},
-{t:"tf",q:"Texto 84:\nIsabel estudia arte en la universidad. Pinta cuadros en su tiempo libre. Visita museos los fines de semana. Le encanta la pintura moderna. Tiene muchos amigos artistas. Participa en exposiciones. Sus profesores la apoyan. Quiere ser pintora famosa. Practica todos los días. Nunca deja de aprender.\n\nAfirmación: Isabel muestra una actitud constante de desarrollo en su campo artístico.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Sürekli pratik yaptığı ve öğrenmeye devam ettiği belirtiliyor."},
-{t:"tf",q:"Texto 85:\nDavid trabaja en una empresa de tecnología. Diseña programas informáticos. Usa diferentes lenguajes de programación. Trabaja con un equipo internacional. Tiene reuniones en línea. Aprende cosas nuevas cada día. A veces trabaja desde casa. Le gusta la innovación. Quiere crear su propia empresa. Es muy creativo.\n\nAfirmación: David desarrolla su trabajo de forma aislada sin colaboración con otros.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Uluslararası bir ekip ile çalıştığı belirtiliyor."},
-{t:"tf",q:"Texto 86:\nCarmen tiene una tienda de flores. Abre temprano cada día. Vende flores frescas. Habla con sus clientes. Decora ramos bonitos. A veces recibe pedidos grandes. Le gusta su trabajo. Cierra por la tarde. Descansa en casa. Es muy trabajadora.\n\nAfirmación: Carmen depende exclusivamente de pedidos pequeños en su negocio.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Zaman zaman büyük siparişler aldığı belirtiliyor, yani sadece küçük siparişlere bağlı değil."},
-{t:"tf",q:"Texto 87:\nJorge estudia idiomas extranjeros. Aprende inglés y francés. Practica todos los días. Escucha música en otros idiomas. Ve películas sin subtítulos. Habla con personas de otros países. Quiere viajar al extranjero. Le gusta aprender culturas nuevas. Es muy curioso. Siempre quiere mejorar.\n\nAfirmación: Jorge limita su aprendizaje únicamente a actividades académicas formales.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Müzik dinleme, film izleme ve insanlarla konuşma gibi informal öğrenme yöntemleri kullanıyor."},
-{t:"tf",q:"Texto 88:\nNatalia trabaja como enfermera. Cuida a los pacientes. Trabaja en turnos largos. A veces está muy cansada. Pero le gusta ayudar a las personas. Habla con los médicos. Aprende nuevas técnicas. Es responsable. Quiere mejorar en su trabajo. Es muy dedicada.\n\nAfirmación: Natalia evita interactuar con otros profesionales de la salud en su trabajo.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Doktorlarla iletişim kurduğu belirtiliyor, yani etkileşimden kaçınmıyor."},
-{t:"tf",q:"Texto 89:\nSergio tiene un restaurante pequeño. Cocina platos tradicionales. Compra ingredientes frescos. Atiende a los clientes personalmente. Le gusta su trabajo. A veces trabaja hasta tarde. Recibe buenas opiniones. Quiere ampliar su negocio. Es muy trabajador. Disfruta cocinar.\n\nAfirmación: Sergio muestra interés en hacer crecer su negocio en el futuro.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"İşini büyütmek istediği belirtiliyor, bu doğrudan çıkarım yapılabilir."},
-{t:"tf",q:"Texto 90:\nPaula estudia arquitectura. Diseña edificios modernos. Usa programas de diseño. Trabaja en proyectos con sus compañeros. Aprende sobre estructuras. Visita obras de construcción. Le gusta crear espacios nuevos. Quiere ser arquitecta. Estudia mucho. Es muy dedicada.\n\nAfirmación: Paula desarrolla su formación sin contacto con entornos reales de construcción.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"İnşaat alanlarını ziyaret ettiği belirtiliyor, yani gerçek ortamlarla bağlantısı var."},
-{t:"tf",q:"Texto 91:\nAndrés trabaja en una empresa internacional. Cada mañana se despierta a las seis. Desayuna rápidamente en casa. Luego toma el metro para ir al trabajo. Su oficina está en el centro de la ciudad. Llega siempre puntual. Trabaja con compañeros de diferentes países. Usa el inglés para comunicarse. A veces tiene reuniones importantes. También escribe correos electrónicos. Su jefe es exigente pero justo. Andrés aprende cosas nuevas cada día. Durante el almuerzo habla con sus compañeros. Le gusta compartir ideas. Por la tarde termina sus tareas. A veces se queda horas extra. Luego vuelve a casa cansado. Cena con su familia. Después ve televisión. También lee noticias. Los fines de semana descansa. A veces viaja. Quiere mejorar en su carrera. Sueña con ser gerente algún día.\n\nAfirmación: Andrés evita asumir responsabilidades adicionales fuera de su horario habitual.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Bazen mesaiye kaldığı belirtiliyor, yani ekstra sorumluluk alıyor."},
-{t:"tf",q:"Texto 92:\nElena estudia en la universidad. Vive en una residencia estudiantil. Comparte habitación con otra estudiante. Cada día asiste a sus clases. Le gustan sus profesores. Estudia muchas horas. A veces se siente estresada. Sin embargo, disfruta aprender. También participa en actividades sociales. Tiene amigos de diferentes países. Practica deportes en su tiempo libre. Va al gimnasio dos veces por semana. Le gusta escuchar música. También ve películas. Los fines de semana sale con amigos. A veces visita a su familia. Quiere terminar sus estudios pronto. Sueña con trabajar en el extranjero. Aprende idiomas. Es muy responsable. Organiza bien su tiempo. Nunca falta a clase. Siempre intenta mejorar.\n\nAfirmación: Elena lleva una vida centrada exclusivamente en el estudio académico.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Sosyal aktiviteler, spor ve arkadaşlarla zaman geçirme gibi farklı alanları var."},
-{t:"tf",q:"Texto 93:\nCarlos vive en un pueblo pequeño. Trabaja en una tienda local. Abre la tienda cada mañana. Saluda a sus clientes. Conoce a todos en el pueblo. Le gusta su vida tranquila. A veces ayuda a sus vecinos. También participa en eventos locales. Los fines de semana descansa. Va al campo con su familia. Le gusta la naturaleza. No le gusta la ciudad. Prefiere el silencio. Tiene pocos amigos pero son cercanos. Cena temprano cada noche. Después mira televisión. A veces lee libros. Es una persona sencilla. Disfruta su rutina. No quiere cambiar su vida. Está feliz donde vive. Siempre sonríe. Es amable con todos.\n\nAfirmación: Carlos siente curiosidad por experimentar la vida en grandes ciudades.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Şehri sevmediği ve hayatını değiştirmek istemediği açıkça belirtiliyor."},
-{t:"tf",q:"Texto 94:\nMaría trabaja como diseñadora gráfica. Crea imágenes digitales. Usa programas de diseño. Trabaja desde casa la mayoría del tiempo. Tiene clientes internacionales. Habla inglés con ellos. Organiza su horario. A veces trabaja por la noche. Le gusta la creatividad. Escucha música mientras trabaja. Tiene un espacio de trabajo cómodo. Aprende nuevas técnicas. Sigue cursos en línea. Quiere mejorar sus habilidades. También colabora con otros diseñadores. Comparte ideas. A veces tiene proyectos grandes. Se siente orgullosa de su trabajo. Descansa los fines de semana. Sale con amigos. Viaja cuando puede. Le gusta descubrir lugares nuevos. Es una persona creativa.\n\nAfirmación: María depende exclusivamente de clientes locales para su trabajo.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Uluslararası müşterilerle çalıştığı belirtiliyor."},
-{t:"tf",q:"Texto 95:\nJavier es estudiante de ingeniería. Tiene muchas clases difíciles. Estudia matemáticas avanzadas. También aprende programación. Pasa mucho tiempo en la biblioteca. A veces se siente cansado. Pero no se rinde. Quiere ser ingeniero. Trabaja en proyectos con sus compañeros. Participa en concursos. Aprende de sus errores. Mejora constantemente. Sus profesores lo apoyan. Tiene metas claras. Organiza bien su tiempo. A veces sale con amigos. También practica deporte. Descansa lo suficiente. Duerme bien. Come sano. Quiere terminar sus estudios. Sueña con trabajar en una gran empresa. Es muy disciplinado.\n\nAfirmación: Javier muestra una actitud pasiva frente a las dificultades académicas.",o:["Verdadera ✅","Falsa ❌"],a:1,exp:"Zorluklara rağmen pes etmediği ve sürekli geliştiği belirtiliyor."},
-{t:"tf",q:"Texto 96:\nLucía trabaja en un hospital grande. Es médica general. Atiende a muchos pacientes cada día. Escucha sus problemas. Da consejos médicos. A veces trabaja turnos largos. Se levanta muy temprano. Llega al hospital a las siete. Usa uniforme blanco. Habla con otros médicos. Colabora con enfermeros. Aprende nuevas técnicas. Lee artículos médicos. Quiere especializarse. A veces está cansada. Pero le gusta ayudar a las personas. Los pacientes confían en ella. Es muy responsable. Después del trabajo descansa. Cena en casa. Ve televisión. Habla con su familia. Duerme bien. Se prepara para el siguiente día. Ama su profesión.\n\nAfirmación: Lucía intenta mejorar profesionalmente a lo largo del tiempo.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Yeni teknikler öğrendiği, makaleler okuduğu ve uzmanlaşmak istediği belirtiliyor."},
-{t:"tf",q:"Texto 97:\nMiguel vive en una ciudad grande. Trabaja en una empresa de transporte. Conduce un autobús. Lleva pasajeros por la ciudad. Empieza a trabajar temprano. Conoce muchas rutas. A veces hay tráfico. Debe ser cuidadoso. Sigue las reglas. Ayuda a los pasajeros. Es amable. Le gusta su trabajo. Habla con diferentes personas. Descansa entre turnos. Come en pequeños restaurantes. Escucha la radio. Termina su jornada por la tarde. Vuelve a casa cansado. Cena con su familia. Ve televisión. Los fines de semana descansa. A veces visita a sus amigos. Es responsable. Nunca llega tarde.\n\nAfirmación: Miguel mantiene contacto frecuente con distintas personas en su trabajo.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Yolcularla konuştuğu ve farklı insanlarla iletişim kurduğu belirtiliyor."},
-{t:"tf",q:"Texto 98:\nSofía estudia música. Toca el piano desde pequeña. Practica todos los días. Tiene clases en el conservatorio. Aprende teoría musical. También canta en un coro. Le gusta la música clásica. Participa en conciertos. A veces viaja para competir. Sus profesores la apoyan. Tiene talento. Quiere ser pianista profesional. Escucha música en su tiempo libre. Estudia partituras. Mejora su técnica. A veces está nerviosa. Pero sigue practicando. Tiene muchos sueños. Quiere tocar en grandes escenarios. Sus padres la apoyan. Dedica mucho tiempo a la música. Es muy disciplinada. Nunca se rinde. Ama la música.\n\nAfirmación: Sofía dedica gran parte de su tiempo a actividades relacionadas con la música.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Hem çalıştığı hem dinlediği hem de performanslara katıldığı belirtiliyor."},
-{t:"tf",q:"Texto 99:\nDaniel trabaja en una empresa de marketing. Diseña campañas publicitarias. Usa redes sociales para promocionar productos. Habla con clientes cada día. Organiza reuniones con su equipo. Tiene muchas ideas creativas. Aprende sobre nuevas tendencias. A veces trabaja bajo presión. Cumple con los plazos. Colabora con diseñadores gráficos. Es responsable en su trabajo. También analiza resultados. Usa datos para mejorar campañas. Le gusta su profesión. Quiere avanzar en su carrera. A veces trabaja desde casa. Tiene un horario flexible. Descansa los fines de semana. Sale con amigos. Ve películas. Lee artículos sobre marketing. Aprende constantemente. Es una persona motivada. Quiere tener éxito. Disfruta su trabajo.\n\nAfirmación: Daniel utiliza diferentes herramientas para mejorar su desempeño laboral.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Sosyal medya kullanması ve veri analizi yapması farklı araçlardan yararlandığını gösterir."},
-{t:"tf",q:"Texto 100:\nClara estudia arquitectura. Asiste a clases todos los días. Aprende sobre diseño y construcción. Trabaja en proyectos con sus compañeros. Usa programas de diseño digital. Dibuja planos detallados. Escucha a sus profesores con atención. Tiene mucho interés en su carrera. A veces trabaja hasta tarde. Quiere mejorar sus habilidades. Visita edificios importantes. Analiza estructuras modernas. Le gusta la arquitectura sostenible. Piensa en el medio ambiente. Participa en exposiciones. Presenta sus proyectos. Recibe comentarios. Aprende de sus errores. Sigue practicando. Dedica mucho tiempo a estudiar. Es muy disciplinada. Tiene grandes metas. Quiere ser arquitecta. Nunca se rinde. Disfruta aprender.\n\nAfirmación: Clara combina el aprendizaje teórico con experiencias prácticas.",o:["Verdadera ✅","Falsa ❌"],a:0,exp:"Hem derslere katıldığı hem de projeler yaptığı ve yapıları analiz ettiği belirtiliyor."}
-].slice(0, 50);
+];
 let cur=0,score=0,err=0,state=[],wrongList=[];
-let writingSubmitted=false;
+
 const WARN='';
 function startQuiz(){
   const n=document.getElementById('introName').value;
@@ -509,12 +365,7 @@ function render(){
   const q=Q[cur];
   const letters=['A','B','C','D'];
   // section badge
-  let badgeHtml='';
-  if(cur+0<70){
-    badgeHtml='<div class="section-badge">📝 KISIM 1 — Gramatik (1–70)</div>';
-  } else {
-    badgeHtml='<div class="section-badge" style="background:linear-gradient(135deg,#00cec9,#0984e3)">📖 KISIM 2 — Okuma Metni (71–100)</div>';
-  }
+  const badgeHtml='<div class="section-badge">📝 GRAMATİK (1–50)</div>';
   // reading text for tf
   let readingHtml='';
   if(q.t==='tf'){
@@ -542,7 +393,7 @@ function render(){
   const expText=state[cur]!==null?(state[cur]===q.a?'✅ ':('❌ Doğrusu: <strong>'+q.o[q.a]+'</strong><br>'))+q.exp.replace(/\n/g,'<br>'):'';
   const isLast=cur===Q.length-1;
   const navNext=isLast
-    ?`<button class="nav-btn gold" onclick="goToWriting()">Bitir ✓</button>`
+    ?`<button class="nav-btn gold" onclick="finishQuiz()">Bitir ✓</button>`
     :`<button class="nav-btn primary" onclick="nextQ()">İleri →</button>`;
   document.getElementById('qArea').innerHTML=WARN+`
 <div class="q-card">
@@ -568,58 +419,18 @@ function answer(i,j){
   document.getElementById('sCorrect').textContent=score;
   document.getElementById('sWrong').textContent=err;
   render();
-  if(i===Q.length-1){setTimeout(()=>goToWriting(),800);}
+  if(i===Q.length-1){setTimeout(()=>finishQuiz(),800);}
 }
 function nextQ(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);}}
 function prevQ(){if(cur>0){cur--;render();window.scrollTo(0,0);}}
-function goToWriting(){document.getElementById('quiz').style.display='none';showResult();}
-function backToQuiz(){
-  document.getElementById('writing').style.display='none';
-  document.getElementById('quiz').style.display='block';
-  window.scrollTo(0,0);
-}
-function updateCharCount(){
-  const len=document.getElementById('writingText').value.length;
-  document.getElementById('charCount').textContent=len+' karakter';
-}
-async function submitWriting(){
-  if(!requireWritingCopy()) return;
-  const name=document.getElementById('studentName').value||document.getElementById('introName').value;
-  const text=document.getElementById('writingText').value.trim();
-  if(!name){alert('Lütfen adınızı seçin!');return;}
-  if(text.length<50){alert('Lütfen daha uzun bir metin yazın (en az 50 karakter).');return;}
-  const btn=document.getElementById('writingSubmitBtn');
-  btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
-  document.getElementById('writing-copy-confirm').disabled=true;
-  const now=new Date();
-  const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
-  try{
-    await emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{
-      student_name:name,
-      lesson:'A1.2 H2 – 7-8.Ders – Estar + Gerundio',
-      submit_date:tarih,
-      writing_text:'=== BAŞLIK BİLGİLERİ ===\nAd Soyad: '+name+'\nÖdev No: A1.2 7+8\nKonu: Estar + gerundio / Descripción de una imagen\n\n=== YAZMA METNİ ===\n'+text
-    });
-    writingSubmitted=true;
-    btn.textContent='✅ Gönderildi!';
-    document.getElementById('writingNote').style.display='block';
-    setTimeout(()=>showResult(),1000);
-  }catch(e){
-    document.getElementById('writing-copy-confirm').disabled=false;
-    btn.disabled=!document.getElementById('writing-copy-confirm').checked;
-    btn.textContent='✔ Yazıyı Tamamladım, Teslim Et';
-    alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
-  }
-}
+function finishQuiz(){document.getElementById('quiz').style.display='none';showResult();}
 function showResult(){
-  document.getElementById('writing').style.display='none';
   const pct=Math.round(score/Q.length*100);
   window._lastPct=pct;
   document.getElementById('scoreBig').innerHTML=pct+'<span>/100</span>';
   document.getElementById('rCorrect').textContent=score;
   document.getElementById('rWrong').textContent=err;
   document.getElementById('rPuan').textContent=pct;
-  if(writingSubmitted)document.getElementById('writingNote').style.display='block';
   document.getElementById('result').style.display='block';
   document.getElementById('confirmBtn').disabled=false;
   document.getElementById('confirmBtn').textContent='📬 ÖDEVİ TESLİM ET';
@@ -666,9 +477,8 @@ function toggleReview(){
   }).join('');
 }
 function retryQuiz(){
-  resetWritingCopy();
   state=new Array(Q.length).fill(null);
-  wrongList=[];cur=0;score=0;err=0;writingSubmitted=false;
+  wrongList=[];cur=0;score=0;err=0;
   document.getElementById('result').style.display='none';
   document.getElementById('reviewSection').style.display='none';
   document.getElementById('quiz').style.display='block';
@@ -677,24 +487,10 @@ function retryQuiz(){
   document.getElementById('studentName').disabled=false;
   document.getElementById('sendStatus').textContent='';
   document.getElementById('summaryCard').style.display='none';
-  document.getElementById('writingNote').style.display='none';
   render();window.scrollTo(0,0);
 }
 
-function updateWritingCopyGate(){
-  document.getElementById('writingSubmitBtn').disabled=!document.getElementById('writing-copy-confirm').checked;
-}
-function requireWritingCopy(){
-  if(document.getElementById('writing-copy-confirm').checked) return true;
-  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
-  return false;
-}
-function resetWritingCopy(){
-  const checkbox=document.getElementById('writing-copy-confirm');
-  checkbox.checked=false;
-  checkbox.disabled=false;
-  updateWritingCopyGate();
-}
 </script>
 </body>
 </html>
+
