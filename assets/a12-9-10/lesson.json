@@ -1,5 +1,5 @@
 {
-  "version": "a12-9-10-dictation-v1",
+  "version": "a12-9-10-dictation-v2",
   "videos": [
     {
       "id": "regular",
@@ -915,558 +915,6 @@
     }
   ],
   "dictionary": {
-    "al": {
-      "lemma": "al",
-      "tr": "-a/-e + belirli eril isim",
-      "en": "to/at the",
-      "type": "Edat + artikel birleşmesi",
-      "note": "A + el → al. A + él birleşmez.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "jugando": {
-      "lemma": "jugar",
-      "tr": "oyun oynamak",
-      "en": "play",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "son": {
-      "lemma": "ser",
-      "tr": "saat ...",
-      "en": "are",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 3. çoğul kişi."
-    },
-    "viendo": {
-      "lemma": "ver",
-      "tr": "görmek, izlemek",
-      "en": "see, watch",
-      "type": "Fiil",
-      "form": "Düzenli gerundio: ver → viendo.",
-      "note": ""
-    },
-    "vistiendo": {
-      "lemma": "vestirse",
-      "tr": "giyinmek",
-      "en": "get dressed",
-      "type": "Dönüşlü fiil",
-      "note": "vestirse → vistiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio; se zamiri çekimli fiilin önündedir."
-    },
-    "escribiendo": {
-      "lemma": "escribir",
-      "tr": "yazmak",
-      "en": "write",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "repitiendo": {
-      "lemma": "repetir",
-      "tr": "tekrar etmek",
-      "en": "repeat",
-      "type": "Fiil",
-      "note": "repetir → repitiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "cayendo": {
-      "lemma": "caer",
-      "tr": "düşmek",
-      "en": "fall",
-      "type": "Fiil",
-      "note": "caer → cayendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "muy": {
-      "lemma": "muy",
-      "tr": "çok (sıfat/zarf önünde)",
-      "en": "very",
-      "type": "Derece zarfı",
-      "note": "Muy buenos içinde buenos sıfatını güçlendirir.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "los": {
-      "lemma": "los",
-      "tr": "belirli artikel (eril/karma çoğul)",
-      "en": "the",
-      "type": "Artikel",
-      "note": "Çoğul isim grubunu belirler.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "viviendo": {
-      "lemma": "vivir",
-      "tr": "yaşamak",
-      "en": "live",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "fotos": {
-      "lemma": "foto",
-      "tr": "fotoğraf",
-      "en": "photo",
-      "type": "İsim",
-      "note": "La foto: dişil isim.",
-      "form": "Çoğul isim. Tekili: foto."
-    },
-    "estamos": {
-      "lemma": "estar",
-      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
-      "en": "are",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 1. çoğul kişi: nosotros/nosotras."
-    },
-    "pero": {
-      "lemma": "pero",
-      "tr": "ama, fakat",
-      "en": "but",
-      "type": "Bağlaç",
-      "note": "Karşıtlık kurar.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "comprar": {
-      "lemma": "comprar",
-      "tr": "satın almak",
-      "en": "buy",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "con": {
-      "lemma": "con",
-      "tr": "ile, beraber",
-      "en": "with",
-      "type": "Edat",
-      "note": "Araç, eşlik veya tarz ilişkisi kurar.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "estudiando": {
-      "lemma": "estudiar",
-      "tr": "ders çalışmak, incelemek",
-      "en": "study",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "yendo": {
-      "lemma": "ir",
-      "tr": "gitmek",
-      "en": "go",
-      "type": "Fiil",
-      "note": "ir → yendo: ir fiilinin özel biçimi. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "cosas": {
-      "lemma": "cosa",
-      "tr": "şey",
-      "en": "thing",
-      "type": "İsim",
-      "note": "La cosa: dişil isim.",
-      "form": "Çoğul isim. Tekili: cosa."
-    },
-    "qué": {
-      "lemma": "qué",
-      "tr": "ne",
-      "en": "what",
-      "type": "Soru zamiri",
-      "form": "Tildeli soru sözcüğü.",
-      "note": ""
-    },
-    "por": {
-      "lemma": "por",
-      "tr": "için; aracılığıyla",
-      "en": "for; by",
-      "type": "Edat",
-      "note": "Por qué = neden; por teléfono = telefonla.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "un": {
-      "lemma": "un",
-      "tr": "bir (eril)",
-      "en": "a; an",
-      "type": "Belirsiz artikel",
-      "note": "Eril tekil isimden önce.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "en": {
-      "lemma": "en",
-      "tr": "-da/-de, içinde",
-      "en": "in; on; at",
-      "type": "Edat",
-      "note": "Yer veya bir eylemin ortamını belirtir.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "lo": {
-      "lemma": "lo",
-      "tr": "bunu; lo que: … olan şey",
-      "en": "it; what",
-      "type": "Nötr zamir / lo que kalıbının öğesi",
-      "form": "Bağlama göre nesne zamiri veya lo que kalıbının parçası.",
-      "note": ""
-    },
-    "pasando": {
-      "lemma": "pasar",
-      "tr": "olmak, gerçekleşmek",
-      "en": "happen",
-      "type": "Fiil",
-      "form": "Düzenli gerundio: pasar → pasando.",
-      "note": ""
-    },
-    "camareros": {
-      "lemma": "camarero",
-      "tr": "garson",
-      "en": "waiter",
-      "type": "İsim",
-      "note": "El camarero: eril isim.",
-      "form": "Çoğul isim. Tekili: camarero."
-    },
-    "nadie": {
-      "lemma": "nadie",
-      "tr": "hiç kimse",
-      "en": "nobody",
-      "type": "Belirsiz zamir",
-      "note": "Fiilden önce gelirse ayrıca no kullanılmaz: nadie escucha.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "para": {
-      "lemma": "para",
-      "tr": "için; amacıyla",
-      "en": "for; in order to",
-      "type": "Edat",
-      "note": "Para + mastar amaç bildirebilir.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "piscina": {
-      "lemma": "piscina",
-      "tr": "havuz",
-      "en": "swimming pool",
-      "type": "İsim",
-      "note": "La piscina: dişil isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "lloviendo": {
-      "lemma": "llover",
-      "tr": "yağmur yağmak",
-      "en": "rain",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "mintiendo": {
-      "lemma": "mentir",
-      "tr": "yalan söylemek",
-      "en": "lie",
-      "type": "Fiil",
-      "note": "mentir → mintiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "paseando": {
-      "lemma": "pasear",
-      "tr": "gezmek, gezdirmek",
-      "en": "walk; take for a walk",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "dinero": {
-      "lemma": "dinero",
-      "tr": "para",
-      "en": "money",
-      "type": "İsim",
-      "note": "El dinero: eril isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "bailando": {
-      "lemma": "bailar",
-      "tr": "dans etmek",
-      "en": "dance",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "oyendo": {
-      "lemma": "oír",
-      "tr": "duymak",
-      "en": "hear",
-      "type": "Fiil",
-      "note": "oír → oyendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "vistiéndose": {
-      "lemma": "vestirse",
-      "tr": "giyinmek",
-      "en": "get dressed",
-      "type": "Dönüşlü fiil",
-      "note": "vestirse → vistiéndose: e → i ve dönüşlü se zamiri. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi; se zamiri sona eklenmiş. Tek başına kişi veya zaman belirtmez."
-    },
-    "viniendo": {
-      "lemma": "venir",
-      "tr": "gelmek",
-      "en": "come",
-      "type": "Fiil",
-      "note": "venir → viniendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "trayendo": {
-      "lemma": "traer",
-      "tr": "getirmek",
-      "en": "bring",
-      "type": "Fiil",
-      "note": "traer → trayendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "ahora": {
-      "lemma": "ahora",
-      "tr": "şimdi",
-      "en": "now",
-      "type": "Zaman zarfı",
-      "note": "Şu an devam eden eylemlerle sık görülür.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "agua": {
-      "lemma": "agua",
-      "tr": "su",
-      "en": "water",
-      "type": "İsim",
-      "note": "Dişil isimdir. Vurgulu a ile başladığı için tekilde el agua denir; sıfat yine dişildir: agua fría.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "muriendo": {
-      "lemma": "morir",
-      "tr": "ölmek",
-      "en": "die",
-      "type": "Fiil",
-      "note": "morir → muriendo: o → u. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "niños": {
-      "lemma": "niño",
-      "tr": "çocuk, erkek çocuk",
-      "en": "child; boy",
-      "type": "İsim",
-      "note": "El niño: eril isim.",
-      "form": "Çoğul isim. Tekili: niño."
-    },
-    "nadando": {
-      "lemma": "nadar",
-      "tr": "yüzmek",
-      "en": "swim",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "la": {
-      "lemma": "la",
-      "tr": "belirli artikel (dişil tekil)",
-      "en": "the",
-      "type": "Artikel",
-      "note": "Burada bir dişil ismi belirli hâle getiriyor.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "cantando": {
-      "lemma": "cantar",
-      "tr": "şarkı söylemek",
-      "en": "sing",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "limpiando": {
-      "lemma": "limpiar",
-      "tr": "temizlemek",
-      "en": "clean",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "sirviendo": {
-      "lemma": "servir",
-      "tr": "servis etmek",
-      "en": "serve",
-      "type": "Fiil",
-      "note": "servir → sirviendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "se": {
-      "lemma": "se",
-      "tr": "zamirli fiilin öznesiyle uyumlu zamir",
-      "en": "pronominal marker",
-      "type": "Zamir",
-      "form": "Üçüncü kişi zamiri; çekimli fiilden önce veya gerundioya bitişik gelebilir.",
-      "note": ""
-    },
-    "estoy": {
-      "lemma": "estar",
-      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
-      "en": "am",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 1. tekil kişi: yo."
-    },
-    "una": {
-      "lemma": "una",
-      "tr": "bir (dişil)",
-      "en": "a; an",
-      "type": "Belirsiz artikel",
-      "note": "Dişil tekil isimden önce.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "pidiendo": {
-      "lemma": "pedir",
-      "tr": "istemek, sipariş vermek",
-      "en": "ask for; order",
-      "type": "Fiil",
-      "note": "pedir → pidiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "diciendo": {
-      "lemma": "decir",
-      "tr": "söylemek",
-      "en": "say; tell",
-      "type": "Fiil",
-      "note": "decir → diciendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "está": {
-      "lemma": "estar",
-      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
-      "en": "is; are (formal you)",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 3. tekil kişi: él/ella/usted."
-    },
-    "que": {
-      "lemma": "que",
-      "tr": "-dığı şey / -an; bağlama göre bağlayıcı",
-      "en": "that, which, what",
-      "type": "İlgi zamiri / bağlayıcı",
-      "form": "Bu metinde isimleri açıklayan yan cümlelerde ve lo que kalıbında bulunur.",
-      "note": ""
-    },
-    "y": {
-      "lemma": "y",
-      "tr": "ve",
-      "en": "and",
-      "type": "Bağlaç",
-      "note": "Sözcükleri veya cümleleri birbirine bağlar.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "riendo": {
-      "lemma": "reír",
-      "tr": "gülmek",
-      "en": "laugh",
-      "type": "Fiil",
-      "note": "reír → riendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "leyendo": {
-      "lemma": "leer",
-      "tr": "okumak",
-      "en": "read",
-      "type": "Fiil",
-      "note": "leer → leyendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "porque": {
-      "lemma": "porque",
-      "tr": "çünkü",
-      "en": "because",
-      "type": "Neden bağlacı",
-      "note": "Tek kelime ve aksansızdır. Por qué = neden?",
-      "form": "Sözlükteki temel biçim."
-    },
-    "están": {
-      "lemma": "estar",
-      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
-      "en": "are",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 3. çoğul kişi: ellos/ellas/ustedes."
-    },
-    "corriendo": {
-      "lemma": "correr",
-      "tr": "koşmak",
-      "en": "run",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "haciendo": {
-      "lemma": "hacer",
-      "tr": "yapmak",
-      "en": "do; make",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "sofá": {
-      "lemma": "sofá",
-      "tr": "kanepe",
-      "en": "sofa",
-      "type": "İsim",
-      "note": "El sofá: eril isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "me": {
-      "lemma": "me",
-      "tr": "bana",
-      "en": "to me",
-      "type": "Nesne zamiri",
-      "form": "Birinci tekil kişi.",
-      "note": "Bu videodaki traer cümlesinde dolaylı nesne görevindedir."
-    },
-    "profesora": {
-      "lemma": "profesora",
-      "tr": "öğretmen (kadın)",
-      "en": "teacher",
-      "type": "İsim",
-      "note": "La profesora: dişil isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "bebiendo": {
-      "lemma": "beber",
-      "tr": "içmek",
-      "en": "drink",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "perro": {
-      "lemma": "perro",
-      "tr": "köpek",
-      "en": "dog",
-      "type": "İsim",
-      "note": "El perro: eril isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "verdad": {
-      "lemma": "verdad",
-      "tr": "gerçek, doğru",
-      "en": "truth",
-      "type": "İsim",
-      "note": "La verdad: dişil isim.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "es": {
-      "lemma": "ser",
-      "tr": "...dır; olmak",
-      "en": "is",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Presente de indicativo, 3. tekil kişi."
-    },
-    "mi": {
-      "lemma": "mi",
-      "tr": "benim",
-      "en": "my",
-      "type": "İyelik belirleyicisi",
-      "note": "Ardından tekil isim gelir.",
-      "form": "Sözlükteki temel biçim."
-    },
     "a": {
       "lemma": "a",
       "tr": "-a/-e; yönelme veya kişi nesnesi işareti",
@@ -1475,101 +923,13 @@
       "note": "A casa yönelme; ayudar a alguien içinde kişi nesnesini başlatır.",
       "form": "Sözlükteki temel biçim."
     },
-    "sintiendo": {
-      "lemma": "sentir",
-      "tr": "hissetmek",
-      "en": "feel",
+    "abrazando": {
+      "lemma": "abrazar",
+      "tr": "sarılmak",
+      "en": "hug",
       "type": "Fiil",
-      "note": "sentir → sintiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "no": {
-      "lemma": "no",
-      "tr": "hayır; değil, -me/-ma",
-      "en": "no; not",
-      "type": "Olumsuzluk zarfı",
-      "note": "Fiilin önünde eylemi olumsuz yapar.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "las": {
-      "lemma": "las",
-      "tr": "belirli artikel (dişil çoğul)",
-      "en": "the",
-      "type": "Artikel",
-      "note": "Dişil çoğul isim grubunu belirler.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "mucho": {
-      "lemma": "mucho",
-      "tr": "çok",
-      "en": "a lot; much",
-      "type": "Miktar sözcüğü",
-      "note": "İsim önünde belirleyici; fiili niteliyorsa zarf olabilir.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "durmiendo": {
-      "lemma": "dormir",
-      "tr": "uyumak",
-      "en": "sleep",
-      "type": "Fiil",
-      "note": "dormir → durmiendo: o → u. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "el": {
-      "lemma": "el",
-      "tr": "belirli artikel (eril tekil)",
-      "en": "the",
-      "type": "Artikel",
-      "note": "Bir ismi belirli hâle getirir. Zamir olan él ile karıştırma.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "del": {
-      "lemma": "del",
-      "tr": "-ın/-in + belirli eril isim",
-      "en": "of/from the",
-      "type": "Edat + artikel birleşmesi",
-      "note": "De + el → del. De + él birleşmez.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "hablando": {
-      "lemma": "hablar",
-      "tr": "konuşmak",
-      "en": "speak; talk",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "de": {
-      "lemma": "de",
-      "tr": "-ın/-in; -dan/-den; aitlik",
-      "en": "of; from",
-      "type": "Edat",
-      "note": "Anlamı kurduğu gruba göre değişir. Del = de + el.",
-      "form": "Sözlükteki temel biçim."
-    },
-    "siguiendo": {
-      "lemma": "seguir",
-      "tr": "takip etmek, sürdürmek",
-      "en": "follow; continue",
-      "type": "Fiil",
-      "note": "seguir → siguiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "comiendo": {
-      "lemma": "comer",
-      "tr": "yemek yemek",
-      "en": "eat",
-      "type": "Fiil",
-      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
-      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
-    },
-    "comida": {
-      "lemma": "comida",
-      "tr": "yemek",
-      "en": "food; meal",
-      "type": "İsim",
-      "note": "La comida: dişil isim.",
-      "form": "Sözlükteki temel biçim."
+      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
     },
     "acuerdo": {
       "lemma": "acuerdo",
@@ -1579,12 +939,44 @@
       "form": "el acuerdo",
       "note": ""
     },
+    "agua": {
+      "lemma": "agua",
+      "tr": "su",
+      "en": "water",
+      "type": "İsim",
+      "note": "Dişil isimdir. Vurgulu a ile başladığı için tekilde el agua denir; sıfat yine dişildir: agua fría.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ahora": {
+      "lemma": "ahora",
+      "tr": "şimdi",
+      "en": "now",
+      "type": "Zaman zarfı",
+      "note": "Şu an devam eden eylemlerle sık görülür.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "al": {
+      "lemma": "al",
+      "tr": "-a/-e + belirli eril isim",
+      "en": "to/at the",
+      "type": "Edat + artikel birleşmesi",
+      "note": "A + el → al. A + él birleşmez.",
+      "form": "Sözlükteki temel biçim."
+    },
     "alguien": {
       "lemma": "alguien",
       "tr": "birisi, biri",
       "en": "someone",
       "type": "Belirsiz zamir",
       "form": "Belirsiz zamir",
+      "note": ""
+    },
+    "andrés": {
+      "lemma": "Andrés",
+      "tr": "Andrés",
+      "en": "Andrés",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
       "note": ""
     },
     "antes": {
@@ -1603,6 +995,38 @@
       "form": "Dişil çoğul sıfat",
       "note": ""
     },
+    "aplaudiendo": {
+      "lemma": "aplaudir",
+      "tr": "alkışlamak",
+      "en": "applaud",
+      "type": "Fiil",
+      "form": "Düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "aprenden": {
+      "lemma": "aprender",
+      "tr": "öğrenmek",
+      "en": "learn",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi",
+      "note": ""
+    },
+    "aprender": {
+      "lemma": "aprender",
+      "tr": "öğrenmek",
+      "en": "learn",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "arreglamos": {
+      "lemma": "arreglar",
+      "tr": "tamir etmek",
+      "en": "repair",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
     "artistas": {
       "lemma": "artista",
       "tr": "sanatçılar",
@@ -1611,12 +1035,52 @@
       "form": "el / la artista · çoğul",
       "note": ""
     },
+    "atendemos": {
+      "lemma": "atender",
+      "tr": "hizmet vermek, ilgilenmek",
+      "en": "serve, attend to",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
     "autopista": {
       "lemma": "autopista",
       "tr": "otoyol",
       "en": "motorway",
       "type": "İsim",
       "form": "la autopista",
+      "note": ""
+    },
+    "ayuda": {
+      "lemma": "ayuda",
+      "tr": "yardım",
+      "en": "help",
+      "type": "İsim",
+      "form": "la ayuda",
+      "note": ""
+    },
+    "bailamos": {
+      "lemma": "bailar",
+      "tr": "dans etmek",
+      "en": "dance",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
+    "bailando": {
+      "lemma": "bailar",
+      "tr": "dans etmek",
+      "en": "dance",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "baile": {
+      "lemma": "baile",
+      "tr": "dans",
+      "en": "dance",
+      "type": "İsim",
+      "form": "el baile",
       "note": ""
     },
     "baloncesto": {
@@ -1635,6 +1099,14 @@
       "form": "el bar",
       "note": ""
     },
+    "bebiendo": {
+      "lemma": "beber",
+      "tr": "içmek",
+      "en": "drink",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
     "bebé": {
       "lemma": "bebé",
       "tr": "bebek",
@@ -1651,12 +1123,76 @@
       "form": "Zarf",
       "note": ""
     },
+    "busca": {
+      "lemma": "buscar",
+      "tr": "aramak",
+      "en": "look for",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": ""
+    },
+    "cada": {
+      "lemma": "cada",
+      "tr": "her",
+      "en": "each",
+      "type": "Belirleyici",
+      "form": "Belirleyici",
+      "note": ""
+    },
+    "café": {
+      "lemma": "café",
+      "tr": "kafe",
+      "en": "café",
+      "type": "İsim",
+      "form": "el café",
+      "note": ""
+    },
     "calle": {
       "lemma": "calle",
       "tr": "sokak",
       "en": "street",
       "type": "İsim",
       "form": "la calle",
+      "note": ""
+    },
+    "camareros": {
+      "lemma": "camarero",
+      "tr": "garson",
+      "en": "waiter",
+      "type": "İsim",
+      "note": "El camarero: eril isim.",
+      "form": "Çoğul isim. Tekili: camarero."
+    },
+    "cantando": {
+      "lemma": "cantar",
+      "tr": "şarkı söylemek",
+      "en": "sing",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "cayendo": {
+      "lemma": "caer",
+      "tr": "düşmek",
+      "en": "fall",
+      "type": "Fiil",
+      "note": "caer → cayendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "centro": {
+      "lemma": "centro",
+      "tr": "merkez",
+      "en": "centre",
+      "type": "İsim",
+      "form": "el centro",
+      "note": ""
+    },
+    "cerca": {
+      "lemma": "cerca",
+      "tr": "yakın",
+      "en": "near",
+      "type": "Yer zarfı",
+      "form": "Yer zarfı",
       "note": ""
     },
     "cerveza": {
@@ -1675,6 +1211,54 @@
       "form": "la chica",
       "note": ""
     },
+    "cinco": {
+      "lemma": "cinco",
+      "tr": "beş",
+      "en": "five",
+      "type": "Sayı",
+      "form": "Sayı",
+      "note": ""
+    },
+    "ciudades": {
+      "lemma": "ciudad",
+      "tr": "şehirler",
+      "en": "cities",
+      "type": "İsim",
+      "form": "la ciudad · çoğul",
+      "note": ""
+    },
+    "clases": {
+      "lemma": "clase",
+      "tr": "dersler",
+      "en": "classes",
+      "type": "İsim",
+      "form": "la clase · çoğul",
+      "note": ""
+    },
+    "club": {
+      "lemma": "club",
+      "tr": "kulüp",
+      "en": "club",
+      "type": "İsim",
+      "form": "el club",
+      "note": ""
+    },
+    "cocina": {
+      "lemma": "cocina",
+      "tr": "mutfak; yemek pişirme",
+      "en": "kitchen; cooking",
+      "type": "İsim",
+      "form": "la cocina",
+      "note": ""
+    },
+    "cocinamos": {
+      "lemma": "cocinar",
+      "tr": "yemek pişirmek",
+      "en": "cook",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
     "coleccionista": {
       "lemma": "coleccionista",
       "tr": "koleksiyoncu",
@@ -1682,6 +1266,54 @@
       "type": "İsim",
       "form": "el / la coleccionista",
       "note": ""
+    },
+    "comentar": {
+      "lemma": "comentar",
+      "tr": "hakkında konuşmak, yorumlamak",
+      "en": "discuss, comment on",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "comida": {
+      "lemma": "comida",
+      "tr": "yemek",
+      "en": "food",
+      "type": "İsim",
+      "form": "la comida",
+      "note": ""
+    },
+    "comiendo": {
+      "lemma": "comer",
+      "tr": "yemek yemek",
+      "en": "eat",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "compra": {
+      "lemma": "comprar",
+      "tr": "satın almak",
+      "en": "buy",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi.",
+      "note": ""
+    },
+    "comprar": {
+      "lemma": "comprar",
+      "tr": "satın almak",
+      "en": "buy",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "con": {
+      "lemma": "con",
+      "tr": "ile, beraber",
+      "en": "with",
+      "type": "Edat",
+      "note": "Araç, eşlik veya tarz ilişkisi kurar.",
+      "form": "Sözlükteki temel biçim."
     },
     "concierto": {
       "lemma": "concierto",
@@ -1691,12 +1323,76 @@
       "form": "el concierto",
       "note": ""
     },
+    "conduciendo": {
+      "lemma": "conducir",
+      "tr": "araç sürmek",
+      "en": "drive",
+      "type": "Fiil",
+      "form": "Gerundio düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "construyendo": {
+      "lemma": "construir",
+      "tr": "inşa etmek",
+      "en": "build",
+      "type": "Fiil",
+      "form": "Gerundio: -yendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
     "consumo": {
       "lemma": "consumo",
       "tr": "tüketim",
       "en": "consumption",
       "type": "İsim",
       "form": "el consumo",
+      "note": ""
+    },
+    "corriendo": {
+      "lemma": "correr",
+      "tr": "koşmak",
+      "en": "run",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "corrigiendo": {
+      "lemma": "corregir",
+      "tr": "düzeltmek",
+      "en": "correct",
+      "type": "Fiil",
+      "form": "Gerundio: e → i. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "corta": {
+      "lemma": "corta",
+      "tr": "kısa",
+      "en": "short",
+      "type": "Dişil tekil sıfat",
+      "form": "Dişil tekil sıfat",
+      "note": ""
+    },
+    "cortando": {
+      "lemma": "cortar",
+      "tr": "kesmek",
+      "en": "cut",
+      "type": "Fiil",
+      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "cosas": {
+      "lemma": "cosa",
+      "tr": "şey",
+      "en": "thing",
+      "type": "İsim",
+      "note": "La cosa: dişil isim.",
+      "form": "Çoğul isim. Tekili: cosa."
+    },
+    "cámara": {
+      "lemma": "cámara",
+      "tr": "fotoğraf makinesi",
+      "en": "camera",
+      "type": "İsim",
+      "form": "la cámara",
       "note": ""
     },
     "césped": {
@@ -1715,6 +1411,118 @@
       "form": "el cómic",
       "note": ""
     },
+    "de": {
+      "lemma": "de",
+      "tr": "-ın/-in; -dan/-den; aitlik",
+      "en": "of; from",
+      "type": "Edat",
+      "note": "Anlamı kurduğu gruba göre değişir. Del = de + el.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "del": {
+      "lemma": "del",
+      "tr": "-ın/-in + belirli eril isim",
+      "en": "of/from the",
+      "type": "Edat + artikel birleşmesi",
+      "note": "De + el → del. De + él birleşmez.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "después": {
+      "lemma": "después",
+      "tr": "sonra",
+      "en": "later; afterwards",
+      "type": "Zaman zarfı",
+      "note": "Media hora después = yarım saat sonra.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "dice": {
+      "lemma": "decir",
+      "tr": "söylemek",
+      "en": "say",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi.",
+      "note": ""
+    },
+    "dicho": {
+      "lemma": "decir",
+      "tr": "söylenmiş; söylemek",
+      "en": "said; say",
+      "type": "Fiil",
+      "form": "Düzensiz participio; ha dicho yapısında.",
+      "note": ""
+    },
+    "diciendo": {
+      "lemma": "decir",
+      "tr": "söylemek",
+      "en": "say; tell",
+      "type": "Fiil",
+      "note": "decir → diciendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "diego": {
+      "lemma": "Diego",
+      "tr": "Diego",
+      "en": "Diego",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
+      "note": ""
+    },
+    "diez": {
+      "lemma": "diez",
+      "tr": "on",
+      "en": "ten",
+      "type": "Sayı",
+      "form": "Sayı",
+      "note": ""
+    },
+    "dinero": {
+      "lemma": "dinero",
+      "tr": "para",
+      "en": "money",
+      "type": "İsim",
+      "note": "El dinero: eril isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "divirtiendo": {
+      "lemma": "divertirse",
+      "tr": "eğlenmek",
+      "en": "have fun",
+      "type": "Fiil",
+      "form": "Gerundio: e → i; bu cümlede se zamiriyle. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "domingo": {
+      "lemma": "domingo",
+      "tr": "pazar",
+      "en": "Sunday",
+      "type": "Gün adı",
+      "form": "Gün adı",
+      "note": ""
+    },
+    "domingos": {
+      "lemma": "domingos",
+      "tr": "pazar günleri",
+      "en": "Sundays",
+      "type": "Çoğul gün adı",
+      "form": "Çoğul gün adı",
+      "note": ""
+    },
+    "durmiendo": {
+      "lemma": "dormir",
+      "tr": "uyumak",
+      "en": "sleep",
+      "type": "Fiil",
+      "note": "dormir → durmiendo: o → u. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "e": {
+      "lemma": "y",
+      "tr": "ve",
+      "en": "and",
+      "type": "Bağlaç",
+      "form": "Y bağlacı, i sesiyle başlayan inglés önünde e olur.",
+      "note": ""
+    },
     "economía": {
       "lemma": "economía",
       "tr": "ekonomi",
@@ -1730,6 +1538,46 @@
       "type": "İsim",
       "form": "el edificio",
       "note": ""
+    },
+    "el": {
+      "lemma": "el",
+      "tr": "belirli artikel (eril tekil)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Bir ismi belirli hâle getirir. Zamir olan él ile karıştırma.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "eligiendo": {
+      "lemma": "elegir",
+      "tr": "seçmek",
+      "en": "choose",
+      "type": "Fiil",
+      "form": "Gerundio: e → i. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "en": {
+      "lemma": "en",
+      "tr": "-da/-de, içinde",
+      "en": "in; on; at",
+      "type": "Edat",
+      "note": "Yer veya bir eylemin ortamını belirtir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "enseña": {
+      "lemma": "enseñar",
+      "tr": "öğretmek",
+      "en": "teach",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": ""
+    },
+    "es": {
+      "lemma": "ser",
+      "tr": "...dır; olmak",
+      "en": "is",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 3. tekil kişi."
     },
     "escaleras": {
       "lemma": "escalera",
@@ -1747,6 +1595,14 @@
       "form": "el escenario",
       "note": ""
     },
+    "escribiendo": {
+      "lemma": "escribir",
+      "tr": "yazmak",
+      "en": "write",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
     "espadas": {
       "lemma": "espada",
       "tr": "kılıçlar",
@@ -1754,6 +1610,14 @@
       "type": "İsim",
       "form": "la espada · çoğul",
       "note": ""
+    },
+    "español": {
+      "lemma": "español",
+      "tr": "İspanyolca",
+      "en": "Spanish",
+      "type": "Dil adı / sıfat",
+      "note": "Bu etkinlikte çoğunlukla dil adı olarak kullanılıyor.",
+      "form": "Sözlükteki temel biçim."
     },
     "espectadores": {
       "lemma": "espectador",
@@ -1779,6 +1643,22 @@
       "form": "la estación",
       "note": ""
     },
+    "estamos": {
+      "lemma": "estar",
+      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
+      "en": "are",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 1. çoğul kişi: nosotros/nosotras."
+    },
+    "este": {
+      "lemma": "este",
+      "tr": "bu (eril)",
+      "en": "this",
+      "type": "İşaret belirleyicisi",
+      "note": "Yakındaki bir ismi gösterir.",
+      "form": "Sözlükteki temel biçim."
+    },
     "esto": {
       "lemma": "esto",
       "tr": "bu, bu şey",
@@ -1795,12 +1675,52 @@
       "form": "Eril çoğul işaret belirleyicisi",
       "note": ""
     },
+    "estoy": {
+      "lemma": "estar",
+      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
+      "en": "am",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 1. tekil kişi: yo."
+    },
+    "estudiando": {
+      "lemma": "estudiar",
+      "tr": "ders çalışmak, incelemek",
+      "en": "study",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "está": {
+      "lemma": "estar",
+      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
+      "en": "is; are (formal you)",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 3. tekil kişi: él/ella/usted."
+    },
+    "están": {
+      "lemma": "estar",
+      "tr": "olmak/bulunmak; -yor yapısında yardımcı fiil",
+      "en": "are",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 3. çoğul kişi: ellos/ellas/ustedes."
+    },
     "examen": {
       "lemma": "examen",
       "tr": "sınav",
       "en": "exam",
       "type": "İsim",
       "form": "el examen",
+      "note": ""
+    },
+    "explica": {
+      "lemma": "explicar",
+      "tr": "açıklamak",
+      "en": "explain",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
       "note": ""
     },
     "favor": {
@@ -1819,6 +1739,46 @@
       "form": "la flor · çoğul",
       "note": ""
     },
+    "fotografía": {
+      "lemma": "fotografía",
+      "tr": "fotoğrafçılık",
+      "en": "photography",
+      "type": "İsim",
+      "form": "la fotografía",
+      "note": ""
+    },
+    "fotos": {
+      "lemma": "foto",
+      "tr": "fotoğraf",
+      "en": "photo",
+      "type": "İsim",
+      "note": "La foto: dişil isim.",
+      "form": "Çoğul isim. Tekili: foto."
+    },
+    "friendo": {
+      "lemma": "freír",
+      "tr": "kızartmak",
+      "en": "fry",
+      "type": "Fiil",
+      "form": "Gerundio: friendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "funciona": {
+      "lemma": "funcionar",
+      "tr": "çalışmak, işlemek",
+      "en": "work, function",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": ""
+    },
+    "fáciles": {
+      "lemma": "fáciles",
+      "tr": "kolay",
+      "en": "easy",
+      "type": "Çoğul sıfat",
+      "form": "Çoğul sıfat",
+      "note": ""
+    },
     "grandes": {
       "lemma": "grande",
       "tr": "büyük, büyükçe",
@@ -1826,6 +1786,46 @@
       "type": "Sıfat",
       "form": "Çoğul sıfat",
       "note": ""
+    },
+    "grupo": {
+      "lemma": "grupo",
+      "tr": "grup",
+      "en": "group",
+      "type": "İsim",
+      "form": "el grupo",
+      "note": ""
+    },
+    "ha": {
+      "lemma": "haber",
+      "tr": "birleşik geçmiş zaman yardımcısı",
+      "en": "perfect-tense auxiliary",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi; ardından participio gelir.",
+      "note": ""
+    },
+    "hablamos": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
+    "hablando": {
+      "lemma": "hablar",
+      "tr": "konuşmak",
+      "en": "speak; talk",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "haciendo": {
+      "lemma": "hacer",
+      "tr": "yapmak",
+      "en": "do; make",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
     },
     "hermano": {
       "lemma": "hermano",
@@ -1843,12 +1843,84 @@
       "form": "el hombre",
       "note": ""
     },
+    "hoy": {
+      "lemma": "hoy",
+      "tr": "bugün",
+      "en": "today",
+      "type": "Zaman zarfı",
+      "note": "Eylemin gerçekleştiği günü belirtir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "idiomas": {
+      "lemma": "idioma",
+      "tr": "diller",
+      "en": "languages",
+      "type": "İsim",
+      "form": "el idioma · çoğul",
+      "note": ""
+    },
+    "inglés": {
+      "lemma": "inglés",
+      "tr": "İngilizce",
+      "en": "English",
+      "type": "Dil adı",
+      "form": "Bu bağlamda dil adı olarak kullanılıyor.",
+      "note": ""
+    },
     "instituto": {
       "lemma": "instituto",
       "tr": "ortaöğretim okulu, lise",
       "en": "secondary school",
       "type": "İsim",
       "form": "el instituto",
+      "note": ""
+    },
+    "jueves": {
+      "lemma": "jueves",
+      "tr": "perşembe",
+      "en": "Thursday",
+      "type": "Gün adı",
+      "form": "Gün adı",
+      "note": ""
+    },
+    "jugando": {
+      "lemma": "jugar",
+      "tr": "oyun oynamak",
+      "en": "play",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "juntos": {
+      "lemma": "juntos",
+      "tr": "birlikte",
+      "en": "together",
+      "type": "Birliktelik bildiren sözcük",
+      "form": "Birliktelik bildiren sözcük",
+      "note": ""
+    },
+    "la": {
+      "lemma": "la",
+      "tr": "belirli artikel (dişil tekil)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Burada bir dişil ismi belirli hâle getiriyor.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "las": {
+      "lemma": "las",
+      "tr": "belirli artikel (dişil çoğul)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Dişil çoğul isim grubunu belirler.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "lectura": {
+      "lemma": "lectura",
+      "tr": "okuma",
+      "en": "reading",
+      "type": "İsim",
+      "form": "la lectura",
       "note": ""
     },
     "lejos": {
@@ -1859,12 +1931,108 @@
       "form": "Yer zarfı",
       "note": ""
     },
+    "leyendo": {
+      "lemma": "leer",
+      "tr": "okumak",
+      "en": "read",
+      "type": "Fiil",
+      "note": "leer → leyendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "libre": {
+      "lemma": "libre",
+      "tr": "boş, müsait",
+      "en": "free, available",
+      "type": "Sıfat",
+      "form": "Sıfat",
+      "note": ""
+    },
+    "libro": {
+      "lemma": "libro",
+      "tr": "kitap",
+      "en": "book",
+      "type": "İsim",
+      "form": "el libro",
+      "note": ""
+    },
+    "libros": {
+      "lemma": "libro",
+      "tr": "kitaplar",
+      "en": "books",
+      "type": "İsim",
+      "form": "el libro · çoğul",
+      "note": ""
+    },
+    "limpiando": {
+      "lemma": "limpiar",
+      "tr": "temizlemek",
+      "en": "clean",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "llorando": {
+      "lemma": "llorar",
+      "tr": "ağlamak",
+      "en": "cry",
+      "type": "Fiil",
+      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "lloviendo": {
+      "lemma": "llover",
+      "tr": "yağmur yağmak",
+      "en": "rain",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "lo": {
+      "lemma": "lo",
+      "tr": "bunu; lo que: … olan şey",
+      "en": "it; what",
+      "type": "Nötr zamir / lo que kalıbının öğesi",
+      "form": "Bağlama göre nesne zamiri veya lo que kalıbının parçası.",
+      "note": ""
+    },
     "londres": {
       "lemma": "Londres",
       "tr": "Londra",
       "en": "London",
       "type": "Özel isim",
       "form": "Özel isim",
+      "note": ""
+    },
+    "los": {
+      "lemma": "los",
+      "tr": "belirli artikel (eril/karma çoğul)",
+      "en": "the",
+      "type": "Artikel",
+      "note": "Çoğul isim grubunu belirler.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "luchando": {
+      "lemma": "luchar",
+      "tr": "mücadele etmek, dövüşmek",
+      "en": "fight",
+      "type": "Fiil",
+      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "lucía": {
+      "lemma": "Lucía",
+      "tr": "Lucía",
+      "en": "Lucía",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
+      "note": ""
+    },
+    "lunes": {
+      "lemma": "lunes",
+      "tr": "pazartesi",
+      "en": "Monday",
+      "type": "Gün adı",
+      "form": "Gün adı",
       "note": ""
     },
     "mal": {
@@ -1875,12 +2043,68 @@
       "form": "Zarf",
       "note": ""
     },
+    "marta": {
+      "lemma": "Marta",
+      "tr": "Marta",
+      "en": "Marta",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
+      "note": ""
+    },
+    "mañana": {
+      "lemma": "mañana",
+      "tr": "sabah",
+      "en": "morning",
+      "type": "İsim",
+      "note": "La mañana: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "me": {
+      "lemma": "me",
+      "tr": "bana",
+      "en": "to me",
+      "type": "Nesne zamiri",
+      "form": "Birinci tekil kişi.",
+      "note": "Bu videodaki traer cümlesinde dolaylı nesne görevindedir."
+    },
     "mercado": {
       "lemma": "mercado",
       "tr": "pazar",
       "en": "market",
       "type": "İsim",
       "form": "el mercado",
+      "note": ""
+    },
+    "mes": {
+      "lemma": "mes",
+      "tr": "ay",
+      "en": "month",
+      "type": "İsim",
+      "form": "el mes",
+      "note": ""
+    },
+    "mi": {
+      "lemma": "mi",
+      "tr": "benim",
+      "en": "my",
+      "type": "İyelik belirleyicisi",
+      "note": "Ardından tekil isim gelir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "mintiendo": {
+      "lemma": "mentir",
+      "tr": "yalan söylemek",
+      "en": "lie",
+      "type": "Fiil",
+      "note": "mentir → mintiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "miércoles": {
+      "lemma": "miércoles",
+      "tr": "çarşamba",
+      "en": "Wednesday",
+      "type": "Gün adı",
+      "form": "Gün adı",
       "note": ""
     },
     "monedas": {
@@ -1891,6 +2115,14 @@
       "form": "la moneda · çoğul",
       "note": ""
     },
+    "mucho": {
+      "lemma": "mucho",
+      "tr": "çok",
+      "en": "a lot; much",
+      "type": "Miktar sözcüğü",
+      "note": "İsim önünde belirleyici; fiili niteliyorsa zarf olabilir.",
+      "form": "Sözlükteki temel biçim."
+    },
     "muchos": {
       "lemma": "mucho",
       "tr": "çok; çok sayıda kişi",
@@ -1899,12 +2131,100 @@
       "form": "Eril çoğul miktar sözcüğü",
       "note": ""
     },
+    "muriendo": {
+      "lemma": "morir",
+      "tr": "ölmek",
+      "en": "die",
+      "type": "Fiil",
+      "note": "morir → muriendo: o → u. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "muy": {
+      "lemma": "muy",
+      "tr": "çok (sıfat/zarf önünde)",
+      "en": "very",
+      "type": "Derece zarfı",
+      "note": "Muy buenos içinde buenos sıfatını güçlendirir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "música": {
+      "lemma": "música",
+      "tr": "müzik",
+      "en": "music",
+      "type": "İsim",
+      "form": "la música",
+      "note": ""
+    },
+    "nadando": {
+      "lemma": "nadar",
+      "tr": "yüzmek",
+      "en": "swim",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "nadie": {
+      "lemma": "nadie",
+      "tr": "hiç kimse",
+      "en": "nobody",
+      "type": "Belirsiz zamir",
+      "note": "Fiilden önce gelirse ayrıca no kullanılmaz: nadie escucha.",
+      "form": "Sözlükteki temel biçim."
+    },
     "niña": {
       "lemma": "niña",
       "tr": "kız çocuğu",
       "en": "girl",
       "type": "İsim",
       "form": "la niña",
+      "note": ""
+    },
+    "niños": {
+      "lemma": "niño",
+      "tr": "çocuk, erkek çocuk",
+      "en": "child; boy",
+      "type": "İsim",
+      "note": "El niño: eril isim.",
+      "form": "Çoğul isim. Tekili: niño."
+    },
+    "no": {
+      "lemma": "no",
+      "tr": "hayır; değil, -me/-ma",
+      "en": "no; not",
+      "type": "Olumsuzluk zarfı",
+      "note": "Fiilin önünde eylemi olumsuz yapar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "nos": {
+      "lemma": "nos",
+      "tr": "bizi/bize; kendimizi",
+      "en": "us; ourselves",
+      "type": "Nesne/dönüşlü zamir",
+      "note": "Nos ayudan içinde bize; nos estamos duchando içinde dönüşlü.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "novela": {
+      "lemma": "novela",
+      "tr": "roman",
+      "en": "novel",
+      "type": "İsim",
+      "form": "la novela",
+      "note": ""
+    },
+    "nuestras": {
+      "lemma": "nuestras",
+      "tr": "bizim",
+      "en": "our",
+      "type": "Dişil çoğul iyelik belirleyicisi",
+      "form": "Dişil çoğul iyelik belirleyicisi",
+      "note": ""
+    },
+    "nueve": {
+      "lemma": "nueve",
+      "tr": "dokuz",
+      "en": "nine",
+      "type": "Sayı",
+      "form": "Sayı",
       "note": ""
     },
     "nuevo": {
@@ -1915,12 +2235,36 @@
       "form": "Eril tekil sıfat",
       "note": ""
     },
+    "once": {
+      "lemma": "once",
+      "tr": "on bir",
+      "en": "eleven",
+      "type": "Sayı",
+      "form": "Sayı",
+      "note": ""
+    },
     "ordenador": {
       "lemma": "ordenador",
       "tr": "bilgisayar",
       "en": "computer",
       "type": "İsim",
       "form": "el ordenador",
+      "note": ""
+    },
+    "ordenadores": {
+      "lemma": "ordenador",
+      "tr": "bilgisayarlar",
+      "en": "computers",
+      "type": "İsim",
+      "form": "el ordenador · çoğul",
+      "note": ""
+    },
+    "organizando": {
+      "lemma": "organizar",
+      "tr": "düzenlemek",
+      "en": "organise",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: -ar → -ando",
       "note": ""
     },
     "oso": {
@@ -1939,6 +2283,62 @@
       "form": "el otoño",
       "note": ""
     },
+    "otras": {
+      "lemma": "otras",
+      "tr": "diğer",
+      "en": "other",
+      "type": "Dişil çoğul belirsiz belirleyici",
+      "form": "Dişil çoğul belirsiz belirleyici",
+      "note": ""
+    },
+    "oyendo": {
+      "lemma": "oír",
+      "tr": "duymak",
+      "en": "hear",
+      "type": "Fiil",
+      "note": "oír → oyendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "pablo": {
+      "lemma": "Pablo",
+      "tr": "Pablo",
+      "en": "Pablo",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
+      "note": ""
+    },
+    "paisaje": {
+      "lemma": "paisaje",
+      "tr": "manzara",
+      "en": "landscape",
+      "type": "İsim",
+      "form": "el paisaje",
+      "note": ""
+    },
+    "pantallas": {
+      "lemma": "pantalla",
+      "tr": "ekranlar",
+      "en": "screens",
+      "type": "İsim",
+      "form": "la pantalla · çoğul",
+      "note": ""
+    },
+    "para": {
+      "lemma": "para",
+      "tr": "için; amacıyla",
+      "en": "for; in order to",
+      "type": "Edat",
+      "note": "Para + mastar amaç bildirebilir.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "parque": {
+      "lemma": "parque",
+      "tr": "park",
+      "en": "park",
+      "type": "İsim",
+      "note": "El parque: eril isim.",
+      "form": "Sözlükteki temel biçim."
+    },
     "partido": {
       "lemma": "partido",
       "tr": "spor karşılaşması, maç",
@@ -1946,6 +2346,150 @@
       "type": "İsim",
       "form": "el partido",
       "note": ""
+    },
+    "pasando": {
+      "lemma": "pasar",
+      "tr": "olmak, gerçekleşmek",
+      "en": "happen",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: pasar → pasando.",
+      "note": ""
+    },
+    "pasean": {
+      "lemma": "pasear",
+      "tr": "yürüyüş yapmak",
+      "en": "walk",
+      "type": "Fiil",
+      "form": "Presente · üçüncü çoğul kişi",
+      "note": ""
+    },
+    "paseando": {
+      "lemma": "pasear",
+      "tr": "gezmek, gezdirmek",
+      "en": "walk; take for a walk",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "pasear": {
+      "lemma": "pasear",
+      "tr": "yürüyüş yapmak",
+      "en": "walk",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "paseos": {
+      "lemma": "paseo",
+      "tr": "gezintiler, yürüyüşler",
+      "en": "walks",
+      "type": "İsim",
+      "form": "el paseo · çoğul",
+      "note": ""
+    },
+    "paso": {
+      "lemma": "paso",
+      "tr": "adım",
+      "en": "step",
+      "type": "İsim",
+      "form": "el paso",
+      "note": ""
+    },
+    "pasos": {
+      "lemma": "paso",
+      "tr": "adımlar",
+      "en": "steps",
+      "type": "İsim",
+      "form": "el paso · çoğul",
+      "note": ""
+    },
+    "pero": {
+      "lemma": "pero",
+      "tr": "ama, fakat",
+      "en": "but",
+      "type": "Bağlaç",
+      "note": "Karşıtlık kurar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "perro": {
+      "lemma": "perro",
+      "tr": "köpek",
+      "en": "dog",
+      "type": "İsim",
+      "note": "El perro: eril isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "perros": {
+      "lemma": "perro",
+      "tr": "köpekler",
+      "en": "dogs",
+      "type": "İsim",
+      "form": "el perro · çoğul",
+      "note": ""
+    },
+    "persona": {
+      "lemma": "persona",
+      "tr": "kişi",
+      "en": "person",
+      "type": "İsim",
+      "note": "La persona: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "personas": {
+      "lemma": "persona",
+      "tr": "kişiler",
+      "en": "people",
+      "type": "İsim",
+      "form": "la persona · çoğul",
+      "note": ""
+    },
+    "pidiendo": {
+      "lemma": "pedir",
+      "tr": "istemek, sipariş vermek",
+      "en": "ask for; order",
+      "type": "Fiil",
+      "note": "pedir → pidiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "pintamos": {
+      "lemma": "pintar",
+      "tr": "resim yapmak",
+      "en": "paint",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
+    "pintando": {
+      "lemma": "pintar",
+      "tr": "resim yapmak",
+      "en": "paint",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: -ar → -ando",
+      "note": ""
+    },
+    "pintar": {
+      "lemma": "pintar",
+      "tr": "resim yapmak",
+      "en": "paint",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "pintura": {
+      "lemma": "pintura",
+      "tr": "resim, boyama",
+      "en": "painting",
+      "type": "İsim",
+      "form": "la pintura",
+      "note": ""
+    },
+    "piscina": {
+      "lemma": "piscina",
+      "tr": "havuz",
+      "en": "swimming pool",
+      "type": "İsim",
+      "note": "La piscina: dişil isim.",
+      "form": "Sözlükteki temel biçim."
     },
     "plátano": {
       "lemma": "plátano",
@@ -1971,12 +2515,292 @@
       "form": "el polvo",
       "note": ""
     },
+    "por": {
+      "lemma": "por",
+      "tr": "için; aracılığıyla",
+      "en": "for; by",
+      "type": "Edat",
+      "note": "Por qué = neden; por teléfono = telefonla.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "porque": {
+      "lemma": "porque",
+      "tr": "çünkü",
+      "en": "because",
+      "type": "Neden bağlacı",
+      "note": "Tek kelime ve aksansızdır. Por qué = neden?",
+      "form": "Sözlükteki temel biçim."
+    },
+    "practicamos": {
+      "lemma": "practicar",
+      "tr": "pratik yapmak",
+      "en": "practise",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
+    "preparando": {
+      "lemma": "preparar",
+      "tr": "hazırlamak",
+      "en": "prepare",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: -ar → -ando",
+      "note": ""
+    },
+    "preparar": {
+      "lemma": "preparar",
+      "tr": "hazırlamak",
+      "en": "prepare",
+      "type": "Fiil",
+      "form": "Mastar",
+      "note": ""
+    },
+    "profesor": {
+      "lemma": "profesor",
+      "tr": "öğretmen",
+      "en": "teacher",
+      "type": "İsim",
+      "form": "El profesor · eril tekil isim",
+      "note": ""
+    },
+    "profesora": {
+      "lemma": "profesora",
+      "tr": "öğretmen (kadın)",
+      "en": "teacher",
+      "type": "İsim",
+      "note": "La profesora: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "que": {
+      "lemma": "que",
+      "tr": "-dığı şey / -an; bağlama göre bağlayıcı",
+      "en": "that, which, what",
+      "type": "İlgi zamiri / bağlayıcı",
+      "form": "Bu metinde isimleri açıklayan yan cümlelerde ve lo que kalıbında bulunur.",
+      "note": ""
+    },
+    "quiere": {
+      "lemma": "querer",
+      "tr": "istemek",
+      "en": "want",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi; ardından comprar mastarı geliyor.",
+      "note": ""
+    },
+    "qué": {
+      "lemma": "qué",
+      "tr": "ne",
+      "en": "what",
+      "type": "Soru zamiri",
+      "form": "Tildeli soru sözcüğü.",
+      "note": ""
+    },
+    "recetas": {
+      "lemma": "receta",
+      "tr": "tarifler",
+      "en": "recipes",
+      "type": "İsim",
+      "form": "la receta · çoğul",
+      "note": ""
+    },
+    "reparando": {
+      "lemma": "reparar",
+      "tr": "tamir etmek",
+      "en": "repair",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: -ar → -ando",
+      "note": ""
+    },
+    "repararlo": {
+      "lemma": "reparar",
+      "tr": "onu tamir etmek",
+      "en": "repair it",
+      "type": "Fiil",
+      "form": "Mastar + doğrudan nesne zamiri lo",
+      "note": ""
+    },
+    "repitiendo": {
+      "lemma": "repetir",
+      "tr": "tekrar etmek",
+      "en": "repeat",
+      "type": "Fiil",
+      "note": "repetir → repitiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "reunimos": {
+      "lemma": "reunirse",
+      "tr": "buluşmak",
+      "en": "meet",
+      "type": "Fiil",
+      "form": "Presente · nosotros; nos zamiriyle",
+      "note": ""
+    },
+    "riendo": {
+      "lemma": "reír",
+      "tr": "gülmek",
+      "en": "laugh",
+      "type": "Fiil",
+      "note": "reír → riendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "saliendo": {
+      "lemma": "salir",
+      "tr": "çıkmak, ayrılmak",
+      "en": "leave, go out",
+      "type": "Fiil",
+      "form": "Gerundio düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "salimos": {
+      "lemma": "salir",
+      "tr": "çıkmak",
+      "en": "go out",
+      "type": "Fiil",
+      "form": "Presente · nosotros",
+      "note": ""
+    },
+    "salsa": {
+      "lemma": "salsa",
+      "tr": "salsa dansı",
+      "en": "salsa dance",
+      "type": "İsim",
+      "form": "la salsa",
+      "note": ""
+    },
+    "sara": {
+      "lemma": "Sara",
+      "tr": "Sara",
+      "en": "Sara",
+      "type": "Özel isim",
+      "form": "Kişi adı; çevrilmez.",
+      "note": ""
+    },
+    "se": {
+      "lemma": "se",
+      "tr": "zamirli fiilin öznesiyle uyumlu zamir",
+      "en": "pronominal marker",
+      "type": "Zamir",
+      "form": "Üçüncü kişi zamiri; çekimli fiilden önce veya gerundioya bitişik gelebilir.",
+      "note": ""
+    },
+    "seis": {
+      "lemma": "seis",
+      "tr": "altı",
+      "en": "six",
+      "type": "Sayı",
+      "form": "Sayı",
+      "note": ""
+    },
+    "siete": {
+      "lemma": "siete",
+      "tr": "yedi",
+      "en": "seven",
+      "type": "Sayı",
+      "form": "Sayı",
+      "note": ""
+    },
+    "siguiendo": {
+      "lemma": "seguir",
+      "tr": "takip etmek, sürdürmek",
+      "en": "follow; continue",
+      "type": "Fiil",
+      "note": "seguir → siguiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
     "silencio": {
       "lemma": "silencio",
       "tr": "sessizlik; sessiz olun",
       "en": "silence",
       "type": "İsim",
       "form": "el silencio",
+      "note": ""
+    },
+    "sintiendo": {
+      "lemma": "sentir",
+      "tr": "hissetmek",
+      "en": "feel",
+      "type": "Fiil",
+      "note": "sentir → sintiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "sirviendo": {
+      "lemma": "servir",
+      "tr": "servis etmek",
+      "en": "serve",
+      "type": "Fiil",
+      "note": "servir → sirviendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "sofá": {
+      "lemma": "sofá",
+      "tr": "kanepe",
+      "en": "sofa",
+      "type": "İsim",
+      "note": "El sofá: eril isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "son": {
+      "lemma": "ser",
+      "tr": "saat ...",
+      "en": "are",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Presente de indicativo, 3. çoğul kişi."
+    },
+    "sopa": {
+      "lemma": "sopa",
+      "tr": "çorba",
+      "en": "soup",
+      "type": "İsim",
+      "form": "la sopa",
+      "note": ""
+    },
+    "su": {
+      "lemma": "su",
+      "tr": "onun; sizin (resmî)",
+      "en": "his; her; your",
+      "type": "İyelik belirleyicisi",
+      "note": "Sahibin cinsiyetini göstermez; bağlam kimin olduğunu açıklar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "subiendo": {
+      "lemma": "subir",
+      "tr": "yukarı çıkmak",
+      "en": "go up",
+      "type": "Fiil",
+      "form": "Düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
+      "note": ""
+    },
+    "sus": {
+      "lemma": "su",
+      "tr": "onun/onların/sizin (çoğul isimle)",
+      "en": "his; her; their; your",
+      "type": "İyelik belirleyicisi",
+      "note": "Su’nun çoğulu; sahip olunan şey çoğul.",
+      "form": "Çoğul iyelik belirleyicisi."
+    },
+    "sábados": {
+      "lemma": "sábados",
+      "tr": "cumartesi günleri",
+      "en": "Saturdays",
+      "type": "Çoğul gün adı",
+      "form": "Çoğul gün adı",
+      "note": ""
+    },
+    "taller": {
+      "lemma": "taller",
+      "tr": "atölye",
+      "en": "workshop",
+      "type": "İsim",
+      "form": "el taller",
+      "note": ""
+    },
+    "tarde": {
+      "lemma": "tarde",
+      "tr": "öğleden sonra, akşamüstü",
+      "en": "afternoon",
+      "type": "İsim",
+      "form": "La tarde; de la tarde ifadesinde.",
       "note": ""
     },
     "televisión": {
@@ -1995,12 +2819,36 @@
       "form": "el tenis",
       "note": ""
     },
+    "terminado": {
+      "lemma": "terminar",
+      "tr": "bitmiş; bitirmek",
+      "en": "finished; finish",
+      "type": "Fiil",
+      "form": "Düzenli participio; ha terminado yapısında.",
+      "note": ""
+    },
     "terraza": {
       "lemma": "terraza",
       "tr": "teras, açık oturma alanı",
       "en": "terrace",
       "type": "İsim",
       "form": "la terraza",
+      "note": ""
+    },
+    "tiempo": {
+      "lemma": "tiempo",
+      "tr": "zaman, vakit",
+      "en": "time",
+      "type": "İsim",
+      "form": "El tiempo",
+      "note": "Tener tiempo libre = boş vakti olmak."
+    },
+    "tienda": {
+      "lemma": "tienda",
+      "tr": "dükkân",
+      "en": "shop",
+      "type": "İsim",
+      "form": "la tienda",
       "note": ""
     },
     "tiendas": {
@@ -2010,6 +2858,46 @@
       "type": "İsim",
       "form": "la tienda · çoğul",
       "note": ""
+    },
+    "tiene": {
+      "lemma": "tener",
+      "tr": "sahip olmak; zamanı olmak",
+      "en": "have",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": ""
+    },
+    "todo": {
+      "lemma": "todo",
+      "tr": "her şey",
+      "en": "everything",
+      "type": "Belirsiz zamir",
+      "form": "Belirsiz zamir",
+      "note": ""
+    },
+    "todos": {
+      "lemma": "todos",
+      "tr": "herkes, hepsi",
+      "en": "everyone, all",
+      "type": "Belirsiz zamir",
+      "form": "Belirsiz zamir",
+      "note": ""
+    },
+    "trae": {
+      "lemma": "traer",
+      "tr": "getirmek",
+      "en": "bring",
+      "type": "Fiil",
+      "form": "Presente · üçüncü tekil kişi",
+      "note": ""
+    },
+    "trayendo": {
+      "lemma": "traer",
+      "tr": "getirmek",
+      "en": "bring",
+      "type": "Fiil",
+      "note": "traer → trayendo: i → y. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
     },
     "tren": {
       "lemma": "tren",
@@ -2027,172 +2915,28 @@
       "form": "Sıfat · tekil",
       "note": ""
     },
+    "un": {
+      "lemma": "un",
+      "tr": "bir (eril)",
+      "en": "a; an",
+      "type": "Belirsiz artikel",
+      "note": "Eril tekil isimden önce.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "una": {
+      "lemma": "una",
+      "tr": "bir; saat bir",
+      "en": "one; a",
+      "type": "Sayı / belirsiz artikel",
+      "form": "Sayı / belirsiz artikel",
+      "note": ""
+    },
     "universidad": {
       "lemma": "universidad",
       "tr": "üniversite",
       "en": "university",
       "type": "İsim",
       "form": "la universidad",
-      "note": ""
-    },
-    "ya": {
-      "lemma": "ya",
-      "tr": "zaten, çoktan",
-      "en": "already",
-      "type": "Zarf",
-      "form": "Zaman zarfı",
-      "note": ""
-    },
-    "abrazando": {
-      "lemma": "abrazar",
-      "tr": "sarılmak",
-      "en": "hug",
-      "type": "Fiil",
-      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "aplaudiendo": {
-      "lemma": "aplaudir",
-      "tr": "alkışlamak",
-      "en": "applaud",
-      "type": "Fiil",
-      "form": "Düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "conduciendo": {
-      "lemma": "conducir",
-      "tr": "araç sürmek",
-      "en": "drive",
-      "type": "Fiil",
-      "form": "Gerundio düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "construyendo": {
-      "lemma": "construir",
-      "tr": "inşa etmek",
-      "en": "build",
-      "type": "Fiil",
-      "form": "Gerundio: -yendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "corrigiendo": {
-      "lemma": "corregir",
-      "tr": "düzeltmek",
-      "en": "correct",
-      "type": "Fiil",
-      "form": "Gerundio: e → i. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "cortando": {
-      "lemma": "cortar",
-      "tr": "kesmek",
-      "en": "cut",
-      "type": "Fiil",
-      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "divirtiendo": {
-      "lemma": "divertirse",
-      "tr": "eğlenmek",
-      "en": "have fun",
-      "type": "Fiil",
-      "form": "Gerundio: e → i; bu cümlede se zamiriyle. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "eligiendo": {
-      "lemma": "elegir",
-      "tr": "seçmek",
-      "en": "choose",
-      "type": "Fiil",
-      "form": "Gerundio: e → i. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "friendo": {
-      "lemma": "freír",
-      "tr": "kızartmak",
-      "en": "fry",
-      "type": "Fiil",
-      "form": "Gerundio: friendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "llorando": {
-      "lemma": "llorar",
-      "tr": "ağlamak",
-      "en": "cry",
-      "type": "Fiil",
-      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "luchando": {
-      "lemma": "luchar",
-      "tr": "mücadele etmek, dövüşmek",
-      "en": "fight",
-      "type": "Fiil",
-      "form": "Düzenli: -ar → -ando. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "saliendo": {
-      "lemma": "salir",
-      "tr": "çıkmak, ayrılmak",
-      "en": "leave, go out",
-      "type": "Fiil",
-      "form": "Gerundio düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "subiendo": {
-      "lemma": "subir",
-      "tr": "yukarı çıkmak",
-      "en": "go up",
-      "type": "Fiil",
-      "form": "Düzenli: -ir → -iendo. Estar ile devam eden eylem yapısında kullanılıyor.",
-      "note": ""
-    },
-    "compra": {
-      "lemma": "comprar",
-      "tr": "satın almak",
-      "en": "buy",
-      "type": "Fiil",
-      "form": "Presente · üçüncü tekil kişi.",
-      "note": ""
-    },
-    "dice": {
-      "lemma": "decir",
-      "tr": "söylemek",
-      "en": "say",
-      "type": "Fiil",
-      "form": "Presente · üçüncü tekil kişi.",
-      "note": ""
-    },
-    "dicho": {
-      "lemma": "decir",
-      "tr": "söylenmiş; söylemek",
-      "en": "said; say",
-      "type": "Fiil",
-      "form": "Düzensiz participio; ha dicho yapısında.",
-      "note": ""
-    },
-    "ha": {
-      "lemma": "haber",
-      "tr": "birleşik geçmiş zaman yardımcısı",
-      "en": "perfect-tense auxiliary",
-      "type": "Fiil",
-      "form": "Presente · üçüncü tekil kişi; ardından participio gelir.",
-      "note": ""
-    },
-    "quiere": {
-      "lemma": "querer",
-      "tr": "istemek",
-      "en": "want",
-      "type": "Fiil",
-      "form": "Presente · üçüncü tekil kişi; ardından comprar mastarı geliyor.",
-      "note": ""
-    },
-    "terminado": {
-      "lemma": "terminar",
-      "tr": "bitmiş; bitirmek",
-      "en": "finished; finish",
-      "type": "Fiil",
-      "form": "Düzenli participio; ha terminado yapısında.",
       "note": ""
     },
     "va": {
@@ -2202,6 +2946,916 @@
       "type": "Fiil",
       "form": "Presente · üçüncü tekil kişi. Va mal = kötü gidiyor.",
       "note": ""
+    },
+    "varias": {
+      "lemma": "varias",
+      "tr": "birkaç",
+      "en": "several",
+      "type": "Dişil çoğul belirsiz belirleyici",
+      "form": "Dişil çoğul belirsiz belirleyici",
+      "note": ""
+    },
+    "verdad": {
+      "lemma": "verdad",
+      "tr": "gerçek, doğru",
+      "en": "truth",
+      "type": "İsim",
+      "note": "La verdad: dişil isim.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "verduras": {
+      "lemma": "verdura",
+      "tr": "sebzeler",
+      "en": "vegetables",
+      "type": "İsim",
+      "form": "la verdura · çoğul",
+      "note": ""
+    },
+    "viendo": {
+      "lemma": "ver",
+      "tr": "görmek, izlemek",
+      "en": "see, watch",
+      "type": "Fiil",
+      "form": "Düzenli gerundio: ver → viendo.",
+      "note": ""
+    },
+    "viernes": {
+      "lemma": "viernes",
+      "tr": "cuma",
+      "en": "Friday",
+      "type": "Gün adı",
+      "form": "Gün adı",
+      "note": ""
+    },
+    "viniendo": {
+      "lemma": "venir",
+      "tr": "gelmek",
+      "en": "come",
+      "type": "Fiil",
+      "note": "venir → viniendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "vistiendo": {
+      "lemma": "vestirse",
+      "tr": "giyinmek",
+      "en": "get dressed",
+      "type": "Dönüşlü fiil",
+      "note": "vestirse → vistiendo: e → i. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio; se zamiri çekimli fiilin önündedir."
+    },
+    "vistiéndose": {
+      "lemma": "vestirse",
+      "tr": "giyinmek",
+      "en": "get dressed",
+      "type": "Dönüşlü fiil",
+      "note": "vestirse → vistiéndose: e → i ve dönüşlü se zamiri. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi; se zamiri sona eklenmiş. Tek başına kişi veya zaman belirtmez."
+    },
+    "viviendo": {
+      "lemma": "vivir",
+      "tr": "yaşamak",
+      "en": "live",
+      "type": "Fiil",
+      "note": "Sözlük biçimi mastardır; -ar, -er veya -ir ile biter.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
+    },
+    "y": {
+      "lemma": "y",
+      "tr": "ve",
+      "en": "and",
+      "type": "Bağlaç",
+      "note": "Sözcükleri veya cümleleri birbirine bağlar.",
+      "form": "Sözlükteki temel biçim."
+    },
+    "ya": {
+      "lemma": "ya",
+      "tr": "zaten, çoktan",
+      "en": "already",
+      "type": "Zarf",
+      "form": "Zaman zarfı",
+      "note": ""
+    },
+    "yendo": {
+      "lemma": "ir",
+      "tr": "gitmek",
+      "en": "go",
+      "type": "Fiil",
+      "note": "ir → yendo: ir fiilinin özel biçimi. Gerundio tek başına kişi eki almaz; estar kişiye göre çekilir.",
+      "form": "Gerundio biçimi. Tek başına kişi veya zaman belirtmez."
     }
+  },
+  "matching": {
+    "ads": [
+      {
+        "id": "A",
+        "title": {
+          "id": "ad-A-title",
+          "chunks": [
+            {
+              "text": "Clases de pintura",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-A-1",
+            "chunks": [
+              {
+                "text": "Pintamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "los sábados de once a una.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Pintamos, her cumartesi yapılan düzenli etkinliği anlatır."
+          },
+          {
+            "id": "ad-A-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos pintando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "un paisaje.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Estar + pintando, şu anda süren çalışmayı anlatır."
+          },
+          {
+            "id": "ad-A-3",
+            "chunks": [
+              {
+                "text": "El profesor",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "explica",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "todo",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "paso a paso.",
+                "role": "Tarz bildiren ifade"
+              }
+            ],
+            "note": "Paso a paso = adım adım."
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": {
+          "id": "ad-B-title",
+          "chunks": [
+            {
+              "text": "Club de lectura",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-B-1",
+            "chunks": [
+              {
+                "text": "Nos reunimos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "los miércoles a las seis de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Nos reunimos, grubun düzenli buluşmasını anlatır."
+          },
+          {
+            "id": "ad-B-2",
+            "chunks": [
+              {
+                "text": "Este mes",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos leyendo",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "una novela corta.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Leer → leyendo. Este mes, şu sıralar devam eden okuma sürecini belirtir."
+          },
+          {
+            "id": "ad-B-3",
+            "chunks": [
+              {
+                "text": "Después",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "hablamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "del libro.",
+                "role": "Hakkında konuşulan konuyu bildiren grup"
+              }
+            ],
+            "note": "Del = de + el. Hablar de, bir şey hakkında konuşmaktır."
+          }
+        ]
+      },
+      {
+        "id": "C",
+        "title": {
+          "id": "ad-C-title",
+          "chunks": [
+            {
+              "text": "Cocina en grupo",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-C-1",
+            "chunks": [
+              {
+                "text": "Cocinamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "juntos",
+                "role": "Birlikte yapmayı belirten sözcük"
+              },
+              {
+                "text": "los jueves a las siete de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Presente, mutfak grubunun haftalık programını anlatır."
+          },
+          {
+            "id": "ad-C-2",
+            "chunks": [
+              {
+                "text": "Hoy",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos preparando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "una sopa de verduras.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Preparar → preparando. Bugünkü devam eden hazırlık anlatılıyor."
+          },
+          {
+            "id": "ad-C-3",
+            "chunks": [
+              {
+                "text": "Todos",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "aprenden",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "recetas fáciles.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Aprender, öğrenmek demektir. Fáciles sıfatı recetas ile çoğuldur."
+          }
+        ]
+      },
+      {
+        "id": "D",
+        "title": {
+          "id": "ad-D-title",
+          "chunks": [
+            {
+              "text": "Paseos con perros",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-D-1",
+            "chunks": [
+              {
+                "text": "Salimos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "al parque",
+                "role": "Yer bildiren grup"
+              },
+              {
+                "text": "los domingos a las diez de la mañana.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Salir al parque, parka çıkmak; los domingos, düzenli pazar günleri anlamındadır."
+          },
+          {
+            "id": "ad-D-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos organizando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "un grupo nuevo.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Organizar → organizando. Yeni grubun hazırlığı şu anda sürüyor."
+          },
+          {
+            "id": "ad-D-3",
+            "chunks": [
+              {
+                "text": "Las personas",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "pasean",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "con sus perros.",
+                "role": "Birliktelik bildiren grup"
+              }
+            ],
+            "note": "Con sus perros, köpekleriyle birlikte anlamındadır."
+          }
+        ]
+      },
+      {
+        "id": "E",
+        "title": {
+          "id": "ad-E-title",
+          "chunks": [
+            {
+              "text": "Ayuda con el ordenador",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-E-1",
+            "chunks": [
+              {
+                "text": "Arreglamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "ordenadores",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "de lunes a viernes, de nueve a seis.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Arreglar, burada bilgisayarları onarmak anlamındadır."
+          },
+          {
+            "id": "ad-E-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos reparando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "varias pantallas.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Reparar → reparando. Şu anda yapılan onarım anlatılıyor."
+          },
+          {
+            "id": "ad-E-3",
+            "chunks": [
+              {
+                "text": "Atendemos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "en la tienda del centro.",
+                "role": "Yer bildiren grup"
+              }
+            ],
+            "note": "Atender, burada müşterilere hizmet vermek anlamındadır."
+          }
+        ]
+      },
+      {
+        "id": "F",
+        "title": {
+          "id": "ad-F-title",
+          "chunks": [
+            {
+              "text": "Clases de baile",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-F-1",
+            "chunks": [
+              {
+                "text": "Bailamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "salsa",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "los sábados de cinco a seis de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "İlanın düzenli dans dersi saati cumartesi 17.00–18.00 arasındadır."
+          },
+          {
+            "id": "ad-F-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos preparando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "un baile nuevo.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Preparar → preparando. Yeni bir dans üzerinde çalışılıyor."
+          },
+          {
+            "id": "ad-F-3",
+            "chunks": [
+              {
+                "text": "La profesora",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "enseña",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "los pasos",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "con música.",
+                "role": "Eşlik eden unsuru belirten grup"
+              }
+            ],
+            "note": "Enseñar = öğretmek. Los pasos, dans adımlarıdır."
+          }
+        ]
+      },
+      {
+        "id": "G",
+        "title": {
+          "id": "ad-G-title",
+          "chunks": [
+            {
+              "text": "Taller de fotografía",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-G-1",
+            "chunks": [
+              {
+                "text": "Nos reunimos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "los domingos a las cinco de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Buluşma günü pazar, saati öğleden sonra beştir."
+          },
+          {
+            "id": "ad-G-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos haciendo",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "fotos",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "en el parque.",
+                "role": "Yer bildiren grup"
+              }
+            ],
+            "note": "Hacer fotos = fotoğraf çekmek."
+          },
+          {
+            "id": "ad-G-3",
+            "chunks": [
+              {
+                "text": "Cada persona",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "trae",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "su cámara.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Cada persona tekil olduğu için trae kullanılır."
+          }
+        ]
+      },
+      {
+        "id": "H",
+        "title": {
+          "id": "ad-H-title",
+          "chunks": [
+            {
+              "text": "Café de idiomas",
+              "role": "İlan başlığı · isim grubu"
+            }
+          ],
+          "note": "İlanın konusu başlıkta belirtiliyor."
+        },
+        "sentences": [
+          {
+            "id": "ad-H-1",
+            "chunks": [
+              {
+                "text": "Practicamos",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "español e inglés",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "los jueves a las seis de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Practicamos, grubun düzenli dil pratiğini anlatır."
+          },
+          {
+            "id": "ad-H-2",
+            "chunks": [
+              {
+                "text": "Ahora",
+                "role": "Zaman / gün / saat bildiren grup"
+              },
+              {
+                "text": "estamos hablando",
+                "role": "Estar + gerundio · şu anda süren eylem / hazırlık"
+              },
+              {
+                "text": "de nuestras ciudades.",
+                "role": "Konuşmanın konusunu bildiren grup"
+              }
+            ],
+            "note": "Hablar de = hakkında konuşmak. Nuestras ciudades = şehirlerimiz."
+          },
+          {
+            "id": "ad-H-3",
+            "chunks": [
+              {
+                "text": "El café",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "está",
+                "role": "Estar · konum bildiren presente çekimi"
+              },
+              {
+                "text": "cerca de la estación.",
+                "role": "Yer bildiren grup"
+              }
+            ],
+            "note": "Buradaki está, konum anlatır; ardından gerundio gelmez."
+          }
+        ]
+      }
+    ],
+    "people": [
+      {
+        "id": "1",
+        "name": "Lucía",
+        "sentences": [
+          {
+            "id": "person-1-1",
+            "chunks": [
+              {
+                "text": "Lucía",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "busca",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "un grupo para comentar libros.",
+                "role": "Aranan grubu ve amacını belirten nesne grubu"
+              }
+            ],
+            "note": "Buscar = aramak. Para + mastar, burada amacı bildirir."
+          },
+          {
+            "id": "person-1-2",
+            "chunks": [
+              {
+                "text": "Tiene",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "tiempo libre",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "los miércoles por la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Tener tiempo libre = boş vakti olmak."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Kitaplar hakkında konuşmak istiyor ve çarşamba öğleden sonra müsait. B ilanı çarşamba 18.00’de buluşan okuma kulübü."
+      },
+      {
+        "id": "2",
+        "name": "Pablo",
+        "sentences": [
+          {
+            "id": "person-2-1",
+            "chunks": [
+              {
+                "text": "El ordenador de Pablo",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "no funciona.",
+                "role": "Olumsuz presente · çalışmıyor"
+              }
+            ],
+            "note": "Funcionar = çalışmak; no, çekimli fiilin önündedir."
+          },
+          {
+            "id": "person-2-2",
+            "chunks": [
+              {
+                "text": "Busca",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "una tienda para repararlo.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Repararlo, onu tamir etmek demektir; lo, ordenador sözcüğüne gönderme yapar."
+          }
+        ],
+        "answer": "E",
+        "explanation": "Bilgisayarı çalışmıyor ve onarım için bir dükkân arıyor. E ilanı bilgisayar onarımı sunuyor."
+      },
+      {
+        "id": "3",
+        "name": "Marta",
+        "sentences": [
+          {
+            "id": "person-3-1",
+            "chunks": [
+              {
+                "text": "Marta",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "quiere aprender",
+                "role": "Querer + mastar · öğrenmek istemek"
+              },
+              {
+                "text": "a pintar.",
+                "role": "Öğrenilmek istenen beceri"
+              }
+            ],
+            "note": "Aprender a + mastar, bir şeyi yapmayı öğrenmektir."
+          },
+          {
+            "id": "person-3-2",
+            "chunks": [
+              {
+                "text": "Está",
+                "role": "Estar · durum bildiren presente çekimi"
+              },
+              {
+                "text": "libre",
+                "role": "Müsait olma durumunu bildiren sıfat"
+              },
+              {
+                "text": "los sábados de once a una.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Cumartesi 11.00–13.00 arasında müsait."
+          }
+        ],
+        "answer": "A",
+        "explanation": "Resim yapmayı öğrenmek istiyor ve cumartesi 11.00–13.00 arasında müsait. A ilanının konusu ve saati tam uyuyor."
+      },
+      {
+        "id": "4",
+        "name": "Andrés",
+        "sentences": [
+          {
+            "id": "person-4-1",
+            "chunks": [
+              {
+                "text": "Andrés",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "tiene",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "un perro.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Tener, burada sahip olmayı anlatır."
+          },
+          {
+            "id": "person-4-2",
+            "chunks": [
+              {
+                "text": "Quiere pasear",
+                "role": "Querer + mastar · yürüyüş yapmak istemek"
+              },
+              {
+                "text": "con otras personas y sus perros",
+                "role": "Birliktelik bildiren grup"
+              },
+              {
+                "text": "el domingo por la mañana.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "İlanı seçerken hem köpeklerle yapılan etkinliğe hem de pazar sabahına dikkat et."
+          }
+        ],
+        "answer": "D",
+        "explanation": "Köpeğiyle başka köpek sahiplerine katılmak ve pazar sabahı yürümek istiyor. D ilanı pazar 10.00’daki köpekli yürüyüş grubu."
+      },
+      {
+        "id": "5",
+        "name": "Sara",
+        "sentences": [
+          {
+            "id": "person-5-1",
+            "chunks": [
+              {
+                "text": "Sara",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "quiere preparar",
+                "role": "Querer + mastar · hazırlamak istemek"
+              },
+              {
+                "text": "comida",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "con otras personas.",
+                "role": "Birliktelik bildiren grup"
+              }
+            ],
+            "note": "Burada birlikte yemek hazırlamak istediği anlatılıyor."
+          },
+          {
+            "id": "person-5-2",
+            "chunks": [
+              {
+                "text": "Está",
+                "role": "Estar · durum bildiren presente çekimi"
+              },
+              {
+                "text": "libre",
+                "role": "Müsait olma durumunu bildiren sıfat"
+              },
+              {
+                "text": "los jueves a las siete de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Perşembe akşamı saat 19.00’da müsait."
+          }
+        ],
+        "answer": "C",
+        "explanation": "Birlikte yemek hazırlamak istiyor ve perşembe 19.00’da müsait. C ilanı bu saatteki yemek grubunu anlatıyor."
+      },
+      {
+        "id": "6",
+        "name": "Diego",
+        "sentences": [
+          {
+            "id": "person-6-1",
+            "chunks": [
+              {
+                "text": "Diego",
+                "role": "Özne · eylemi yapan kişi veya grup"
+              },
+              {
+                "text": "quiere aprender",
+                "role": "Querer + mastar · öğrenmek istemek"
+              },
+              {
+                "text": "salsa.",
+                "role": "Eylemi tamamlayan nesne grubu"
+              }
+            ],
+            "note": "Salsa, bu bağlamda bir dans türüdür."
+          },
+          {
+            "id": "person-6-2",
+            "chunks": [
+              {
+                "text": "Tiene",
+                "role": "Presente · alışkanlık, düzenli etkinlik veya genel bilgi"
+              },
+              {
+                "text": "tiempo",
+                "role": "Eylemi tamamlayan nesne grubu"
+              },
+              {
+                "text": "los sábados de cinco a seis de la tarde.",
+                "role": "Zaman / gün / saat bildiren grup"
+              }
+            ],
+            "note": "Cumartesi 17.00–18.00 aralığı veriliyor."
+          }
+        ],
+        "answer": "F",
+        "explanation": "Salsa öğrenmek istiyor ve cumartesi 17.00–18.00 arasında zamanı var. F ilanı aynı saatlerdeki salsa dersidir."
+      }
+    ]
   }
 }
