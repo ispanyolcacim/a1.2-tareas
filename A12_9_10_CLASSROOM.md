@@ -1,6 +1,6 @@
 # A1.2 · 9–10 classroom activity
 
-Canonical page: `a12-9-10-ders-ici-etkinlik.html`.
+Canonical page: `09-10-ders-ici-ispanyolcacim-a12.html`.
 
 1. Video 1 dictation: `oUkEc8yCSqA`.
 2. Video 1 complete transcript and expandable phrase analysis.
