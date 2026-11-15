@@ -2,8 +2,7 @@
 'use strict';
 const LESSON_TITLE='A1.2 (11-12) Ders İçi Grup Yazma Çalışması';
 function validateSubmission(s){
- if(!Array.isArray(s.names)||!s.names.length||s.names.some(n=>!n.trim())) return 'Lütfen her grup üyesinin adını ve soyadını yazın.';
- if(s.names.some(n=>n.trim().split(/\s+/).length<2)) return 'Her grup üyesinin adını ve soyadını birlikte yazın.';
+ if(!Array.isArray(s.names)||!s.names.length||s.names.some(n=>!n.trim())) return 'Lütfen grup üyelerinin adlarını yazın.';
  if(new Set(s.names.map(n=>n.trim().toLocaleLowerCase('tr-TR'))).size!==s.names.length) return 'Aynı öğrenci iki kez yazılmış; isimleri kontrol edin.';
  if(!s.title.trim()) return 'Metninize bir başlık verin.';
  if(s.text.trim().length<100) return 'Metniniz çok kısa görünüyor. Yazınızı tamamlayıp tekrar deneyin.';
@@ -75,6 +74,8 @@ function openWord(button){
  let e=window.LESSON_WORDS[raw]||{lemma:raw,tr:'Bu ifadede kullanılan sözcük',en:'Word used in this expression',type:'Sözcük',form:'Bağlam için sözlük bağlantısını aç'};
  if(raw==='cocina'&&context.includes('Leo cocina')) e={lemma:'cocinar',tr:'yemek pişiriyor',en:'cooks / is cooking',type:'Fiil',form:'Presente de indicativo · él / ella / usted'};
  if(raw==='español'&&context.includes('en español')) e={...e,tr:'İspanyolca',en:'Spanish',type:'Dil adı',form:'Eril tekil isim'};
+ if(context==='por eso') e={...e,tr:'bu yüzden (por eso)',en:'therefore / that is why (por eso)',type:'Neden-sonuç bağlantı ifadesinin parçası',form:'por eso birlikte okunur'};
+ if(context==='así que') e={...e,tr:'dolayısıyla / bu yüzden (así que)',en:'so / therefore (así que)',type:'Sonuç bildiren bağlacın parçası',form:'así que birlikte okunur'};
  const scope=button.closest('[data-focus]');
  const before=context.toLowerCase();
  if(e.lemma==='viejo') e={...e,tr:/viejo amigo/.test(before)?'eski / uzun zamandır tanınan':'yaşlı',en:/viejo amigo/.test(before)?'long-standing':'old / elderly'};
@@ -129,7 +130,7 @@ const DRAFT_KEY='a12-11-12-classroom-group-writing-v1';let sending=false,snapsho
 function addMember(value=''){
  const i=$('members').children.length;if(i>=8)return;
  const row=document.createElement('div');row.className='member-row';
- const label=document.createElement('label');label.textContent='Öğrenci '+(i+1);const input=document.createElement('input');input.type='text';input.maxLength=80;input.autocomplete='name';input.placeholder='Ad Soyad';input.value=value;input.className='member-name';input.required=true;label.append(input);row.append(label);
+ const label=document.createElement('label');label.textContent='Öğrenci '+(i+1);const input=document.createElement('input');input.type='text';input.maxLength=80;input.autocomplete='name';input.placeholder='Adınız';input.value=value;input.className='member-name';input.required=true;label.append(input);row.append(label);
  const remove=document.createElement('button');remove.type='button';remove.className='small-button';remove.textContent='×';remove.setAttribute('aria-label','Bu öğrenci alanını kaldır');remove.onclick=()=>{if($('members').children.length>1){row.remove();renumberMembers();saveDraft();}};row.append(remove);$('members').append(row);renumberMembers();
 }
 function renumberMembers(){[...$('members').children].forEach((row,i)=>{row.querySelector('label').firstChild.textContent='Öğrenci '+(i+1);row.querySelector('button').disabled=$('members').children.length===1;});$('addMember').disabled=$('members').children.length>=8;}
