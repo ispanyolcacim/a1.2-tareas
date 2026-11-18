@@ -7,6 +7,7 @@
 | --- | --- | --- |
 | A1.2 · 9+10 | [Etkinliği aç](https://ispanyolcacim.github.io/a1.2-tareas/09-10-ders-ici-ispanyolcacim-a12.html) | [09-10-ders-ici-ispanyolcacim-a12.html](09-10-ders-ici-ispanyolcacim-a12.html) |
 | A1.2 · 11+12 | [Etkinliği aç](https://ispanyolcacim.github.io/a1.2-tareas/11-12-ders-ici-ispanyolcacim-a12.html) | [11-12-ders-ici-ispanyolcacim-a12.html](11-12-ders-ici-ispanyolcacim-a12.html) |
+| A1.2 · 13+14 | [Etkinliği aç](https://ispanyolcacim.github.io/a1.2-tareas/13-14-ders-ici-ispanyolcacim-a12.html) | [13-14-ders-ici-ispanyolcacim-a12.html](13-14-ders-ici-ispanyolcacim-a12.html) |
 
 Dosya adı düzeni: `DD-DD-ders-ici-ispanyolcacim-a12.html`. Ders numaraları iki basamaklı yazılır. 11–12 etkinliği: Adjetivo, RAE kaynaklarıyla doğrulanmış sıfat kullanımı ve La casa en movimiento grup yazısı.
 
