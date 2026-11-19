@@ -10,6 +10,7 @@
 .group-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 9px; }
 .group-head h3 { margin: 0; }
 .form-label { border-radius: 20px; padding: 3px 10px; background: var(--soft); color: var(--dark); font-size: 13px; font-weight: 900; }
+.group-note { margin: 0 0 12px; padding: 8px 12px; border-inline-start: 3px solid var(--primary); border-radius: 6px; background: var(--soft); color: var(--dark); }
 .summary-table { width: 100%; }
 .summary-table td, .summary-table th { padding: 9px 10px; vertical-align: top; }
 .summary-table tr:last-child td { border-bottom: 0; }
@@ -18,7 +19,7 @@
 .summary-table .sentence { font-size: 16px; }
 .example-translation { display: block; color: var(--muted); }
 .grammar-source { margin-top: 16px; font-size: 14px; }
-.reading-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.13fr); align-items: start; gap: 17px; }
+.reading-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: start; gap: 17px; }
 .reading-figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 19px; box-shadow: 0 4px 16px #4d286c12; }
 .reading-figure img { display: block; width: 100%; height: auto; }
 .reading-card p { margin: 0 0 14px; }
@@ -39,6 +40,8 @@
 .word[aria-expanded="true"] { text-decoration: underline; text-underline-offset: .15em; }
 .reading-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0; }
 .legend-chip { display: inline-block; padding: 4px 8px; border-radius: 8px; background: var(--phrase-color); font-size: 13px; }
+.reading-prompt { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: baseline; }
+.question-number { font-weight: 900; color: var(--primary); }
 .reading-question .lock { margin-top: 6px; }
 .reading-question .solution { margin-top: 7px; }
 .word-card { position: fixed; z-index: 10; width: min(350px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; padding: 13px 15px; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: 0 15px 36px #42296340; }
@@ -55,6 +58,9 @@
 .homework-links { display: flex; flex-wrap: wrap; gap: 8px; }
 #section-count { margin-inline: auto; }
 
+@media screen and (min-width: 691px) and (min-height: 550px) {
+  .reading-figure { position: sticky; top: 16px; }
+}
 @media (max-width: 850px) {
   .lesson-tabs .tab:last-child { grid-column: auto; }
   .reminder-button { justify-content: center; }
@@ -68,8 +74,9 @@
 }
 @media print {
   .word-card, .reminder, .reading-legend { display: none !important; }
-  .reading-layout { grid-template-columns: 1fr; }
+  .reading-layout { display: block; }
   .reading-figure img { max-height: 75mm; object-fit: contain; }
+  .reading-card { break-inside: auto; }
   .periphrasis-group tr { break-inside: avoid; }
   .focus-card, .periphrasis-group { box-shadow: none; }
 }

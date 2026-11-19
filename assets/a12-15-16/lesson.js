@@ -1,5 +1,5 @@
-import { groups, notes, story, questions } from './content.js';
-import { glossary } from './glossary.js';
+import { groups, notes, story, questions } from './content.js?v=2';
+import { glossary } from './glossary.js?v=2';
 
 const roles = {
   S: 'Özne', V: 'Fiil öbeği', O: 'Doğrudan nesne', I: 'Dolaylı tümleç',
@@ -70,6 +70,8 @@ for (const group of groups) {
   name.lang = 'es';
   putWords(name, group.form);
   heading.append(element('h3', '', group.title), name);
+  box.append(heading);
+  if (group.note) box.append(element('p', 'group-note', group.note));
   const table = element('table', 'summary-table');
   const header = element('thead');
   const headerRow = element('tr');
@@ -91,7 +93,7 @@ for (const group of groups) {
     body.append(row);
   }
   table.append(header, body);
-  box.append(heading, table);
+  box.append(table);
   get('periphrasis-groups').append(box);
 }
 
@@ -120,8 +122,8 @@ for (const [i, [prompt, answer]] of questions.entries()) {
     button.textContent = model.hidden ? '🔒 Cevabı aç' : '🔓 Cevabı gizle';
     button.setAttribute('aria-expanded', String(!model.hidden));
   });
-  const question = element('div');
-  question.append(sentence(prompt));
+  const question = element('div', 'reading-prompt');
+  question.append(element('span', 'question-number', (i + 1) + '.'), sentence(prompt));
   block.append(question, button, model);
   get('questions').append(block);
 }
