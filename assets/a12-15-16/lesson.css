@@ -1,0 +1,75 @@
+.tabs { align-items: center; }
+.lesson-tabs { align-items: stretch; }
+.focus-card { margin-bottom: 24px; border-inline-start: 5px solid var(--primary); }
+.focus-card > p { margin-block: 8px; }
+.gerund-forms { background: #f8f4fd; padding: 12px 15px; border-radius: 12px; }
+.gerund-forms p { margin: 5px 0 0; }
+#estar-forms { color: var(--dark); font-weight: 800; }
+#placement-examples > div { border: 1px solid var(--line); padding: 8px 11px; border-radius: 10px; }
+.periphrasis-group { margin: 20px 0 0; }
+.group-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 9px; }
+.group-head h3 { margin: 0; }
+.form-label { border-radius: 20px; padding: 3px 10px; background: var(--soft); color: var(--dark); font-size: 13px; font-weight: 900; }
+.summary-table { width: 100%; }
+.summary-table td, .summary-table th { padding: 9px 10px; vertical-align: top; }
+.summary-table tr:last-child td { border-bottom: 0; }
+.summary-table td:first-child { width: 28%; color: var(--dark); font-weight: 900; }
+.summary-table td:nth-child(2) { width: 29%; }
+.summary-table .sentence { font-size: 16px; }
+.example-translation { display: block; color: var(--muted); }
+.grammar-source { margin-top: 16px; font-size: 14px; }
+.reading-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.13fr); align-items: start; gap: 17px; }
+.reading-figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 19px; box-shadow: 0 4px 16px #4d286c12; }
+.reading-figure img { display: block; width: 100%; height: auto; }
+.reading-card p { margin: 0 0 14px; }
+.reading-card p:last-child { margin-bottom: 0; }
+.reading-card .sentence { font-size: 17px; }
+.sentence .phrase { padding-inline: 1px; }
+.phrase, .legend-chip { --phrase-color: #efeaf8; }
+[data-role="S"] { --phrase-color: #f9d7e7; }
+[data-role="V"] { --phrase-color: #dfe5fb; }
+[data-role="O"] { --phrase-color: #fff0bd; }
+[data-role="I"] { --phrase-color: #cfeee4; }
+[data-role="C"] { --phrase-color: #e9def6; }
+[data-role="A"] { --phrase-color: #ffdfca; }
+[data-role="P"] { --phrase-color: #dcebd2; }
+[data-role="B"] { --phrase-color: #ede5da; }
+[data-role="D"] { --phrase-color: #fbe1df; }
+.sentence:is(:hover, :focus-within, .is-active) .phrase { background: var(--phrase-color); }
+.word[aria-expanded="true"] { text-decoration: underline; text-underline-offset: .15em; }
+.reading-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0; }
+.legend-chip { display: inline-block; padding: 4px 8px; border-radius: 8px; background: var(--phrase-color); font-size: 13px; }
+.reading-question .lock { margin-top: 6px; }
+.reading-question .solution { margin-top: 7px; }
+.word-card { position: fixed; z-index: 10; width: min(350px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; padding: 13px 15px; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: 0 15px 36px #42296340; }
+.word-card .word-top { gap: 8px; }
+.word-card .word-top h3 { color: var(--dark); }
+.word-card #word-close { min-height: 36px; padding: 3px 10px; }
+.word-card summary { cursor: pointer; font-size: 14px; font-weight: 800; }
+#word-dictionary { display: inline-block; margin-top: 6px; font-size: 14px; }
+.reminder { width: min(565px, calc(100% - 24px)); padding: 23px; border: 1px solid var(--line); border-top: 4px solid var(--primary); border-radius: 18px; background: #faf6ff; color: var(--ink); }
+.reminder::backdrop { background: #301b5080; backdrop-filter: blur(3px); }
+.reminder form { float: right; margin: -7px -7px 0 10px; }
+.reminder h2 { color: var(--dark); margin-bottom: 11px; }
+.reminder p:last-child { margin-bottom: 0; }
+.homework-links { display: flex; flex-wrap: wrap; gap: 8px; }
+#section-count { margin-inline: auto; }
+
+@media (max-width: 850px) {
+  .lesson-tabs .tab:last-child { grid-column: auto; }
+  .reminder-button { justify-content: center; }
+}
+@media (max-width: 690px) {
+  .reading-layout { grid-template-columns: 1fr; }
+  .summary-table thead { display: none; }
+  .summary-table, .summary-table tbody, .summary-table tr, .summary-table td { display: block; }
+  .summary-table tr + tr { border-top: 1px solid var(--line); padding-top: 7px; margin-top: 6px; }
+  .summary-table td, .summary-table td:first-child, .summary-table td:nth-child(2) { width: auto; border: 0; padding: 3px 0; }
+}
+@media print {
+  .word-card, .reminder, .reading-legend { display: none !important; }
+  .reading-layout { grid-template-columns: 1fr; }
+  .reading-figure img { max-height: 75mm; object-fit: contain; }
+  .periphrasis-group tr { break-inside: avoid; }
+  .focus-card, .periphrasis-group { box-shadow: none; }
+}
